@@ -1,0 +1,32 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+Database file #1: Bibliography.bib
+I was expecting a `,' or a `}'---line 7 of file Bibliography.bib
+ :   year=1988
+ :            .
+I'm skipping whatever remains of this entry
+Too many commas in name 1 of "Dmitri B. Strukov,Gregory S. Snider,Duncan R. Stewart, R. Stanley Williams" for entry MisMem
+while executing---line 1233 of file unsrtnat.bst
+Name 1 in "E. Knapp, R. Häusermann, H. U. Schwarzenbach, and B. Ruhstaller" has a comma at the end for entry SimChargeTrans
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter" for entry PedotBook
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter" for entry PedotBook
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "Dmitri B. Strukov,Gregory S. Snider,Duncan R. Stewart, R. Stanley Williams" for entry MisMem
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "Dmitri B. Strukov,Gregory S. Snider,Duncan R. Stewart, R. Stanley Williams" for entry MisMem
+while executing---line 1315 of file unsrtnat.bst
+Name 1 in "E. Knapp, R. Häusermann, H. U. Schwarzenbach, and B. Ruhstaller" has a comma at the end for entry SimChargeTrans
+while executing---line 1315 of file unsrtnat.bst
+Name 1 in "E. Knapp, R. Häusermann, H. U. Schwarzenbach, and B. Ruhstaller" has a comma at the end for entry SimChargeTrans
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter" for entry PedotBook
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter" for entry PedotBook
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter" for entry PedotBook
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter" for entry PedotBook
+while executing---line 1315 of file unsrtnat.bst
+(There were 13 error messages)

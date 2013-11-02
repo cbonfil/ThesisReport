@@ -1,0 +1,482 @@
+% Chapter Template
+
+\chapter{Theory} % Main chapter title
+
+\label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 2. \emph{Theory}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+\section{Carrier Transport Equations}
+We will be solving drift-diffusion equations, which are based on BTE, in order to model the complex behaviour of the memristor. Drift-diffusion equations can be obtained by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model. The approximations also serve as guidelines for where this model can and can not be used, therefore they need to be well understood.
+
+Derivation of Boltzmann transport equation starts by stating that charged particles can be defined by their position in space \textbf{r} and momentum \textbf{k} at time \textbf{t} using a probability distribution function f(k,r,t). We get the most general form of Boltzmann transport equation. \cite{snowden} 
+
+\begin{equation}
+\frac{d }{dt}f(k,r,t)=0
+\end{equation}
+
+This general form of BTE needs to be expanded and relevant physical equations need to be plugged in to get an appropriate equation describing specific a problem or device. 
+Many different device simulators use some sort of approximation to BTE. In a semiconductor device we are usually interested in the movement and the density distribution of charge carriers, holes (p) and electrons (n). 
+
+After this brief introduction to BTE, rather than going through the tedious mathematical derivation of the drift diffusion model we can directly discuss the approximations that are made along the process of derivation in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to electric field is called the drift current. The relationship between drift velocity and the electric field is given by the following equation:
+
+\begin{equation}
+v=\mu E
+\end{equation}
+
+$\mu$ is called mobility constant and it determines the speed at which the particles are going to move when subject to an electric field. Based on drift velocity we can get a term for drift current density.
+
+\begin{equation}
+J_E=q n\mu E=q n v 
+\end{equation}
+
+Where q is the elementary charge and n is the electron density. In addition to the previous assumptions, we assume that the lattice is perfectly uniform, has a uniform temperature distribution and all the particles are close to the temperature of the lattice. Based on this assumption we can say that all the particles that move due to thermal effects has the same thermal velocity ($v_{th}$) and mean free path ($l_f$). These quantities can be combined into one single coefficient called diffusion constant. 
+
+\begin{equation}
+D=v_{th} \;l_f
+\end{equation}
+
+Drift and diffusion coefficients are related to each other via Einstein relationship:
+
+\begin{equation}
+D=\frac{\mu k T}{q}
+\end{equation}
+
+Where k is the Boltzmann constant and T is the lattice temperature. Now we have a second term which contributes to carrier movement which is called the diffusion current density.
+
+\begin{equation}
+J_D=qD\frac{dn}{dx}
+\end{equation}
+
+Unlike the drift current density, which is directly related to the carrier density, diffusion current density is related to the carrier density's first order derivative in space. Combining these two terms we get the current density equation for electrons in one dimension.
+
+\begin{equation}
+\vec{J_n^x}=q \mu_{n} n \vec{E_x}+qD_{n} \frac{dn}{dx} 
+\label{cdenn}
+\end{equation}
+
+This equation can be easily extended to more dimensions by simply using the appropriate terms.
+
+\begin{equation}
+\vec{J_n^y}=q \mu_{n} n \vec{E_x}+qD_{n} \frac{dn}{dy} 
+\end{equation}
+
+At this point we can also note that anisotropic drift and diffusion coefficients can also be handled with ease by using different coefficients for different directions. Current density equation works equivalently well for positively or negatively charged particles.
+
+\begin{equation}
+\vec{J_p^x}=q \mu_{p} p \vec{E_x}-qD_{p} \frac{dp}{dx} 
+\label{cdenp}
+\end{equation}
+
+Current density equations by themselves are not enough to solve a time dependent problem. For this we need to account the movement of charge over time which is captured in the continuity equation. It is basically a statement of conservation of particle density over time. The change in the amount of carriers over time in a particular area must be equal to the difference in current density over the same area. Additionally the amount of charge can change due to generation-recombination of charged particles.
+
+
+\begin{equation}
+\frac{\partial n}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_n}+U_{n}
+\label{conn}
+\end{equation}
+
+\begin{equation}
+\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}+U_{p}
+\label{conp}
+\end{equation}
+
+$U_{n}$ and $U_{p}$ are net generation recombination rates. 
+
+We must keep in mind that electric field in an area can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied field. It is possible calculate the potential distribution over an area by using Poisson's equation. Once the potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential.
+
+\begin{equation}
+\nabla \cdot  (\varepsilon \nabla V)=-\rho=-q(p-n+N_{D}^{+}-N_{A}^{-})
+\label{poisson}
+\end{equation}
+\begin{equation}
+\vec{E}=-\nabla V
+\label{Efield}
+\end{equation}
+
+We can split the electric field into two components $\vec{E_x}$ and $\vec{E_y}$.
+
+\begin{equation}
+\vec{E_x}=-\frac{\partial V}{\partial x}
+\end{equation}
+
+\begin{equation}
+\vec{E_y}=-\frac{\partial V}{\partial y}
+\end{equation}
+
+It is possible to see that through the electric field and net charge distribution, Poisson's equation and drift-diffusion equations are coupled and non linear. The strength of the non linearity depends on the size of the device and charge density which determines the total amount of charge over an area.  
+
+Usually we are particularly interested in finding the amount of current in a device. This can be easily calculated by integrating the current density over an area.
+
+\begin{equation}
+I=\int\limits_{s}^{}\vec{J_{tot}} \cdot ds = \int\limits_{s}^{}(J_n+J_p+\varepsilon\frac{\partial E}{\partial t})ds
+\end{equation}
+
+Overall the main equations for the drift-diffusion model can be compactly written as:
+\begin{equation}
+\nabla \cdot  (\varepsilon \nabla V)=-q(p-n+N_{D}^{+}-N_{A}^{-})
+\end{equation}
+\begin{equation}
+\vec{J_n}=q\mu_n n \vec{E}+q D_n \nabla n
+\end{equation}
+\begin{equation}
+\vec{J_p}=q\mu_p p \vec{E}-q D_p \nabla p
+\end{equation}
+\begin{equation}
+\frac{\partial n}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_n}+U_{n}
+\end{equation}
+\begin{equation}
+\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}+U_{p}
+\end{equation}
+
+Unfortunately even after so many approximations and simplifications to BTE, drif diffusion equations have analytical solutions for only few isolated cases. The simplicity of these analytical solutions makes them a good candidate for testing any numerical methods that is created to solve drift diffusion equations. 
+
+\clearpage
+\section{Analytic Solutions}
+\subsection{Steady State Solution Over a Finite Domain}
+
+The simplest problem we can solve using drift diffusion model is charge enclosed over a finite area. Basically there is no flow in or out of the area we are solving for. There is a finite amount of charge and a uniform electric field which does not get affected by the enclosed charge. Now to get an analytic solution we assume that everything is at steady state and all the transients have died. In this case the total current density in the device must be zero. It is important to note here that the initial distribution of the charge density does not matter in this problem since everything will be redistributed in steady state. We only need to know the total amount of charge over the entire area.
+
+\begin{equation}
+J_p(x)=q \mu_{p} p E-qD_{p} \frac{dp}{dx} =0
+\end{equation}
+
+Total current density will only be zero when the drift current density generated by the electric field is completely balanced by the diffusion current density.
+\begin{equation}
+q \mu_{p} p E=qD_{p} \frac{dp}{dx}
+\end{equation}
+
+\begin{equation}
+ \frac{\mu_{p} E}{D_{p}} p  = \frac{dp}{dx}
+ \label{pdif}
+\end{equation}
+
+Here we have a very simple differential equation that can be solved by assuming that it has the following form:
+
+\begin{equation}
+p(x)=Ce^{ax}
+\label{px}
+\end{equation}
+
+\textbf{C} and \textbf{a} are arbitrary constants. Now we can plug equation \eqref{px} into \eqref{pdif}
+
+\begin{equation}
+ \frac{\mu_{p} E}{D_{p}} Ce^{ax}  = a Ce^{ax}
+\end{equation}
+
+\begin{equation}
+a=\frac{\mu_{p} E}{D_{p}}
+\end{equation}
+
+Plugging \textbf{a} back to equation \eqref{px} we get a general form for the solution.
+\begin{equation}
+p(x)=Ce^{\frac{\mu_{p} E}{D_{p}}x}
+\end{equation}
+
+It is possible to solve for \textbf{C} by observing that the total number of charges at steady state must be equal to the initial number of charges. So the integral of charge density at time zero must be equal to the integral of charge density at steady state.
+
+
+\begin{equation}\nonumber
+\int\limits_{0}^{L}Ce^{\frac{\mu_{p} E}{D_{p}}x}dx=\int\limits_{0}^{L}p(t=0,x)dx
+\end{equation}
+
+\begin{equation}\nonumber
+C=\frac{\int\limits_{0}^{L}p(t=0,x)dx}{\int\limits_{0}^{L}e^{\frac{\mu_{p} E}{D_{p}}x}dx}
+\end{equation}
+
+\begin{equation}
+C=\frac{\int\limits_{0}^{L}p(t=0,x)dx}{\frac{D_p}{\mu_p E}[e^{\frac{\mu_p E}{D} L} -1]}
+\end{equation}
+
+So the full solution takes the following form:
+
+\begin{equation}
+p(x)=\frac{\int\limits_{0}^{L}p(t=0,x)dx}{\frac{D_p}{\mu_p E}[e^{\frac{\mu_p E}{D}L} -1]}e^{\frac{\mu_{p} E}{D_{p}}x}
+\end{equation}
+
+By examining the solution we can tell that increasing electric field will concentrate the charge density at the edge of the area. Physically this makes perfect sense since the force that is pushing the particles is getting greater and it is making the charges accumulate more in one side. 
+
+Since this solution does not have any time dependence it is not suitable for testing a numerical methods transient response but it is quite good for testing the accuracy of a steay-state solution as well as the conservation of mass over time.
+
+
+\clearpage
+\subsection{Transient Solution Over an Infinite Domain}
+
+This time, in order to find a transient solution, we need to use the continuity equation (\ref{conn}). The problem we are going to solve consists of an initial particle density distribution subject to a uniform electric field over an infinitely long conductor. Same as the steady state problem we solved earlier, the particle density's effect on the electric field is negligible therefore we do not need to solve for Poisson's equation at the same time. 
+
+We start our solution by plugging \eqref{cdenn} into \eqref{conn} and assuming that generation/recombination rate is zero, so $U_{n}=0$.
+
+\begin{equation}
+\frac{\partial n}{\partial t} = \frac{1}{q}\nabla \cdot (\vec{J_n})
+\end{equation}
+
+
+\begin{equation}
+\frac{\partial n}{\partial t} = \frac{1}{q}\nabla \cdot (q \mu_{n} n \vec{E}+qD_{n} \frac{dn}{dx} )
+\end{equation}
+
+For 1-D above equation can be simplified to:
+\begin{equation}
+\frac{\partial n}{\partial t} = \mu_n E \frac{d n}{d x}+D_{n}\frac{d^{2}n}{dx^{2}}
+\label{adifg}
+\end{equation}
+
+Here we make use of separation of variables which assumes that the solution can be separated into a time and space dependent functions.
+\begin{equation}
+n(t,x)=n(t)n(x)=n_t n_x
+\label{adifn}
+\end{equation}
+Plugging equation \eqref{adifn} into \eqref{adifg} and dividing by n(t,x),
+\begin{equation}
+\frac{1}{n_{t}}\frac{d n_{t}}{d t}=\mu_n E \frac{1}{n_{x}}\frac{d n_{x}}{dx}+D\frac{1}{n_{x}}\frac{d^2 n_{x}}{dx^2}
+\label{Adif}
+\end{equation}
+Assuming both sides of the equation are equal to a constant -k, time dependent part of the problem becomes a simple first order differential equation.
+
+\begin{equation}
+\nonumber
+\frac{1}{n_{t}}\frac{d n_{t}}{dl t}=-k
+\end{equation}
+
+\begin{equation}
+\nonumber
+\frac{d n_{t}}{d t}=-kn_t
+\end{equation}
+
+Based on the above differential equation we can get a general form for $n_t$:
+
+\begin{equation}
+n_t=C_1 e^{-kt}
+\label{nt}
+\end{equation}
+
+Now for $n_x$ assume a solution in the following form,
+
+\begin{equation}
+n_x=C_2 e^{-j\omega x}
+\label{nx}
+\end{equation}
+
+Plug \eqref{nx} into \eqref{Adif}
+
+\begin{equation}
+\omega^2 D C_2 e^{-j\omega x}-j\omega \mu_n E C_2 e^{-j\omega x}+kC_2e^{-j\omega x}=0
+\label{omegak}
+\end{equation}
+
+Simplifying equation \eqref{omegak} and solving for k gives,
+
+\begin{equation}
+k=\omega^2 D+j\omega \mu_n E
+\label{k}
+\end{equation}
+
+Combining equation \eqref{nt}, \eqref{nx} and \eqref{k} to get the initial form of the solution. $(C=C_1C_2)$
+
+\begin{equation}
+n=n_tn_x=Ce^{(-\omega^2 D + j\omega \mu_n E)t} e^{-j\omega x}
+\end{equation}
+
+Using superposition principle we get,
+
+\begin{equation}
+n=n_tn_x=\int\limits_{-\infty}^{\infty}C(\omega)e^{(-\omega^2 D + j\omega \mu_n E)t} e^{-j\omega x}d\omega
+\label{nfinal1}
+\end{equation}
+
+The distribution of $n_x$ is known at t=0.
+
+\begin{equation}
+n(x,t=0)=\int\limits_{-\infty}^{\infty}C(\omega) e^{-j\omega x}d\omega
+\end{equation}
+
+$C(\omega)$ is just the inverse fourier transform of $n(x,0)$.
+
+\begin{equation}
+C(\omega)=\int\limits_{-\infty}^{\infty}n(x,0)e^{-j\omega x}dx
+\label{comega}
+\end{equation}
+
+Plugging equation \eqref{comega} into \eqref{nfinal1} we get the final form of the solution,
+
+\begin{equation}
+n=\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}n(z,0)e^{j\omega z}dz e^{(\omega ^2 D-j\omega \mu_n E)t}e^{-j\omega x}d\omega
+\label{nfinal2}
+\end{equation}
+
+Rearranging equation \eqref{nfinal2},
+
+\begin{equation}
+n=\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}n(z,0) e^{(\omega ^2 D-j\omega \mu_n E)t}e^{-j\omega x} e^{j\omega z}  dz d\omega
+\end{equation}
+
+If the initial distribution is a gaussian distribution then we get,
+
+\begin{equation}
+n(x,0)=e^{- (\frac{x-x_o}{\sigma})^2}
+\end{equation}
+
+\begin{equation}
+n(x,t)=\frac{1}{\sqrt{4D_n\sigma^{-2}t+1}}e^{-\frac{(t\mu_n E-x+x_o)}{4D_n t+\sigma^2}}
+\end{equation}
+
+If the initial distribution is a rectangular distribution then we get,
+
+\begin{equation}
+n(x,0)=\prod (w(x))
+\end{equation}
+
+\begin{equation}
+n(x,t)=\frac{1}{2} erf(\frac{w+2t \mu_n E-2x}{4\sqrt{D_n t}})-\frac{1}{2}erf(\frac{-w+2t \mu_n E-2x}{4\sqrt{D_n t}}) 
+\end{equation}
+
+\clearpage
+\subsection{PN Junction}
+Previous analytical solutions involved the solution of Poisson's equation and continuity equation which were not coupled. Now we can look at an example where these equations are tightly coupled. There are usually no direct analytical solution for coupled equation but it is possible to get a closed form solution by making use of certain approximations. One simple example of this situation is an abrupt p-n junction. An abrupt p-n junction is created when two materials of uniform opposite doping,p type and n type, are brought together. A p type material has an excess number of acceptors $N_A$ and an n type material has an excess number of donors $N_D$. The junction is defined at the interface where $N_A=N_D$. 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.8]{3331}
+\caption{PN junction electron/hole density} 
+\end{figure}
+
+
+In this example we will be deriving an analytical solution for an abrupt p-n junction. In order to get a solution for this problem we can make use of the depletion region approximation. This approximation starts by assuming that the charges are fully depleted around the junction. All the electric field is confined in the depletion region and regions far away from the junction are neutral. Based on this the net charge density over the entire region is:
+
+\begin{equation}
+\frac{d \vec{E} }{dx}=\frac{\rho}{\varepsilon}=\frac{q}{\varepsilon}(-N_{A}+N_{D})
+\end{equation}
+
+\begin{equation}
+\rho = \begin{cases}
+         0 & \text{for} \;  x<-x_{p}\\
+       -qN_{A} & \text{for}  -x_{p}\leq x \leq 0 \\
+        qN_{D} & \text{for} \; 0 \leq x \leq< x_{n}  \\
+        0 & \text{for}\;  x>x_{n} \\
+     \end{cases}
+\end{equation}
+
+The electric field over the entire region can be calculated by integrating $\rho$.
+
+\begin{equation}
+E = \begin{cases}
+       \int \frac{-qN_{A}}{\varepsilon}  dx+ C_{1} & \text{for}  -x_{p}\leq x \leq 0 \\
+       \int \frac{qN_{D}}{\varepsilon} dx+ C_{2}   & \text{for } \; 0 \leq x \leq x_{n}  \\
+     \end{cases}
+\end{equation}
+
+We can solve for $C_{1}$ and $C_{2}$ since electric field must go to zero at $x_{p}$ and $x_{n}$.
+
+\begin{equation}
+E(x=-x_{p})=0  \; \;  \Rightarrow  \;\; C_{1}= \frac{-qN_{A}}{\varepsilon}x_{p}
+\end{equation}
+
+\begin{equation}
+E(x=x_{n})=0  \; \;  \Rightarrow  \;\; C_{1}= \frac{qN_{D}}{\varepsilon}x_{n}
+\end{equation}
+
+Then E(x) becomes:
+
+\begin{equation}
+E(x) = \begin{cases}
+         \frac{-qN_{A}}{\varepsilon}(x+x_{p}) & \text{for}  -x_{p}\leq x \leq 0 \\
+         \frac{qN_{D}}{\varepsilon}(x-x_{n})  &  \text{for} \; 0 \leq x \leq x_{n}  \\
+     \end{cases}
+\end{equation}
+ Additionally, we know that the electric field must be continuous across the interface therefore the electric field in the p-type side and the n-type side must equal each other at the interface or when x = 0. 
+
+\begin{equation}
+\frac{-qN_{A}}{\varepsilon}(x_{p})=\frac{qN_{D}}{\varepsilon}(-x_{n})
+\end{equation}
+
+\begin{equation}
+N_{A}x_{p}=N_{D}x_{n}
+\label{NAeqND}
+\end{equation}This equation makes physical sense since it states that the total charge on one side of the junction must be the same as the total charge on the other. In other words, the net charge on each side keeps the electric field confined to the depletion region.
+
+To find the voltage as a function of distance, we can make use of equation \ref{Efield} and integrate the electric field.
+
+\begin{equation}
+V(x) = \begin{cases}
+       \int -E(x)dx=\int \frac{qN_{A}}{\varepsilon}(x+x_{p}) dx = \frac{qN_{A}}{\varepsilon}(\frac{x}{2}+x_{p})+ C_{3} & \text{for}  -x_{p}\leq x \leq 0 \\
+       \int -E(x)dx=\int \frac{qN_{D}}{\varepsilon}(x-x_{n}) dx = \frac{qN_{D}}{\varepsilon}(-\frac{x}{2}+x_{n})+ C_{4}  &  \text{for} \; 0 \leq x \leq x_{n}  \\
+     \end{cases}
+\end{equation}
+
+We are usually interested in the potential difference across the junction and can arbitrarily set one side to zero. Here we define the voltage on the p type side as zero, such that at x= $âˆ’x_p$, V=0. This gives the constant C3 as:
+
+
+\begin{equation}
+C_{3}=\frac{qN_{A}}{2\varepsilon}x_{p}^{2}
+\end{equation}
+
+\begin{equation}
+V(x)=\frac{qN_{A}}{2\varepsilon}(x+x_{p})^{2}  \; \; \;\;  \text{for}  -x_{p}\leq x \leq 0 \\
+\end{equation}
+
+We can find C4 by using the fact that the potential on the n-type side and p-type side are equal at the interface, such that:
+
+\begin{equation}
+V_{p}(x=0)=\frac{qN_{A}}{2\varepsilon}x_{p}^2=V_{n}(x=0)=\frac{qN_{A}}{2\varepsilon}(x_{n}-\frac{x}{2})x+C_{4}
+\end{equation}
+
+\begin{equation}
+C_{4}=\frac{qN_{A}}{2\varepsilon}x_{p}^2
+\end{equation}
+
+Now we can get an overall expression for V(x).
+
+\begin{equation}
+V(x) = \begin{cases}
+       \frac{qN_{A}}{\varepsilon}(x+x_{p})^2 & \text{for}  -x_{p}\leq x \leq 0 \\
+       \frac{qN_{D}}{\varepsilon}(-\frac{x}{2}+x_{n})x  &  \text{for} \; 0 \leq x \leq x_{n}  \\
+     \end{cases}
+\end{equation}
+
+The maximum voltage across the junction is at  $x= x_{n}$, which is:
+
+\begin{equation}
+V_{bi}=\frac{q}{2\varepsilon}(N_{D}x_{n}^2+N_{A}x_{p}^2)
+\end{equation}
+
+Using \eqref{NAeqND} in the above equation and rearranging allows $x_{p}$ and $x_{n}$ to be determined. They are:
+
+\begin{equation}
+x_{n}=\sqrt{\frac{2\varepsilon V_{bi}}{q}\frac{N_{A}}{N_{D}(N_{D}+N_{A})}}
+\end{equation}
+
+\begin{equation}
+x_{p}=\sqrt{\frac{2\varepsilon V_{bi}}{q}\frac{N_{D}}{N_{A}(N_{D}+N_{A})}}
+\end{equation}
+
+
+The value of the built in potential can also be calculated using fermi levels of p and n doped materials.
+
+\begin{equation}
+E_{FN}-E_{i}=kT \; ln(\frac{N_{D}}{n_i})
+\end{equation}
+
+\begin{equation}
+E_{i}-E_{FP}=kT \; ln(\frac{N_{A}}{n_i})
+\end{equation}
+$E_{FN}$ and $E_{FP}$ are fermi energy levels of electrons and holes respectively. The difference between the fermi levels divided by the single electron charge gives us the built in potential of the pn junction.
+\begin{equation}
+E_{FN}-E_{FP}=q V_{bi}=kT \; ln(\frac{N_{D}}{n_i})+kT \; ln(\frac{N_{A}}{n_i})=kT \; ln(\frac{N_{A}N_{D}}{n_i^2})
+\end{equation}
+
+\begin{equation}
+V_{bi}=\frac{kT}{q} \; ln(\frac{N_{A}N_{D}}{n_i^2})
+\end{equation}
+
+With the calculation of the built in potential we have all the information we need for the analytical solution of the pn junction without any external bias. Following graphs shows the plots of approximate solutions for net charge, electric field and the junction potential.
+
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{3332}
+\caption{Approximate Solution of a PN Junction} 
+\end{figure}
+
+
+

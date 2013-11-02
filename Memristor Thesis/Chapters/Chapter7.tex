@@ -1,0 +1,21 @@
+% Chapter Template
+
+\chapter{Conclusion} % Main chapter title
+
+\label{Chapter7} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 7. \emph{Conclusion}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+
+The purpose of this thesis was to create a memristor model for computer simulation. We were able to model the change in conductivity through the movement of lithium and undoping of PEDOT. The transient simulation results match experimental data visually for both single channel and notched memristor. Although our simulation matched with the experimental data this model requires more work and can be improved through better numerical schemes, physical models and thorough experimentation. There are also few limitations of this model due to its size and physical features.
+
+In terms of numerical methods there are a few down sides of using finite difference. The simulation for this device was done in 2-D instead of 3-D. This did not cause a lot of problems in our case since the structures we used were quite simple and produced reasonable results in 2-D. Unfortunately getting a transient response for devices using finite difference is computationally expensive. Even though we had a 100x100 grid, which is quite coarse, the simulation time was not less than 3 hours on a computer with multiple cores. Addition of another 100 points for a third dimension will make this simulation at least a 100 times longer. This makes 3-D simulations impractically long and very hard to test and optimize.
+
+Another fundamental issue with this simulation arises from debye length. Maximum grid size in finite difference depends on the debye length, which is at least 5 or 6 orders of magnitude smaller than the device size. This means that we need at least $10^5$ points in each direction in order to simulate this device. At this point the simulation becomes impossibly long so we had to compromise by either reducing the device size or carrier density.     
+
+The model we have developed is quite open for improvements on carrier transport models. A constant bulk mobility was used for holes in this model which is not the case in an actual device. Holes move from site to site via hopping. Addition of lithium into PEDOT not only reduces the number of available holes but also decreases the number of possible sites through holes can move. A variable range hopping mechanism and thermal effects can be added into this model for a more complete simulation. Also PEDOT:PSS is a disordered material and the way it was deposited on a substrate can make a big difference on hole movement. Anisotropic hole mobilty can be implemented in order to account for this issue.
+
+Overall we have showed that it is possible to simulate a memristor using a simple finite difference method which can be very useful model in understanding the way ions and holes move in PEDOT. Our results show a very promising start for a vast research and development opportunities on memristor and polymer conductors.
+
+
+

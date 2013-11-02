@@ -1,0 +1,58 @@
+\contentsline {chapter}{Abstract}{ii}{dummy.1}
+\vspace {1em}
+\contentsline {chapter}{Acknowledgements}{iii}{dummy.2}
+\vspace {1em}
+\contentsline {chapter}{List of Figures}{vi}{dummy.4}
+\contentsline {chapter}{List of Tables}{x}{dummy.6}
+\contentsline {chapter}{Abbreviations}{xi}{dummy.8}
+\contentsline {chapter}{Physical Constants}{xii}{dummy.11}
+\contentsline {chapter}{Symbols}{xiii}{dummy.14}
+\vspace {2em}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.17}
+\contentsline {chapter}{\numberline {2}Theory}{4}{chapter.19}
+\contentsline {section}{\numberline {2.1}Carrier Transport Equations}{4}{section.20}
+\contentsline {section}{\numberline {2.2}Analytic Solutions}{8}{section.42}
+\contentsline {subsection}{\numberline {2.2.1}Steady State Solution Over a Finite Domain}{8}{subsection.43}
+\contentsline {subsection}{\numberline {2.2.2}Transient Solution Over an Infinite Domain}{10}{subsection.55}
+\contentsline {subsection}{\numberline {2.2.3}PN Junction}{13}{subsection.77}
+\contentsline {chapter}{\numberline {3}Numerical Solution of Drift-Diffusion Equation}{18}{chapter.101}
+\contentsline {section}{\numberline {3.1}Finite Difference Method}{18}{section.102}
+\contentsline {section}{\numberline {3.2}Solving Drift-Diffusion Equations}{21}{section.117}
+\contentsline {subsection}{\numberline {3.2.1}Poisson Solver}{21}{subsection.118}
+\contentsline {subsection}{\numberline {3.2.2}Current Density Equations}{24}{subsection.138}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Finite Difference Method}{24}{subsubsection.139}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Scharfatter-Gummel Method}{25}{subsubsection.146}
+\contentsline {subsubsection}{\numberline {3.2.2.3}Boundary Conditions}{27}{subsubsection.164}
+\contentsline {subsection}{\numberline {3.2.3}Continuity Equation}{29}{subsection.170}
+\contentsline {subsection}{\numberline {3.2.4}Stability and Computational Efficiency}{31}{subsection.184}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Physical Limitations}{31}{subsubsection.185}
+\contentsline {subsubsection}{\numberline {3.2.4.2}Numerical Limitations}{31}{subsubsection.188}
+\contentsline {subsubsection}{\numberline {3.2.4.3}Explicit vs. Implicit Solution}{32}{subsubsection.191}
+\contentsline {subsection}{\numberline {3.2.5}Simulation Procedure}{34}{subsection.192}
+\contentsline {chapter}{\numberline {4}Test Cases: Analytic vs. Numerical Solutions}{36}{chapter.194}
+\contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{36}{section.195}
+\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{40}{section.200}
+\contentsline {section}{\numberline {4.3}Hybrid Method}{41}{section.202}
+\contentsline {section}{\numberline {4.4}PN Junction}{47}{section.214}
+\contentsline {section}{\numberline {4.5}Region Specific Particle Density Limit}{50}{section.219}
+\contentsline {chapter}{\numberline {5}Chapter Title Here}{56}{chapter.231}
+\contentsline {section}{\numberline {5.1}Problem Analysis}{56}{section.232}
+\contentsline {section}{\numberline {5.2}Debye Length and Simulation Validity}{57}{section.234}
+\contentsline {subsection}{\numberline {5.2.1}1-D Horizontal Electrolyte}{57}{subsection.236}
+\contentsline {subsection}{\numberline {5.2.2}1-D ?}{61}{subsection.241}
+\contentsline {subsection}{\numberline {5.2.3}1-D Horizontal PEDOT:PSS with Notch}{64}{subsection.245}
+\contentsline {subsection}{\numberline {5.2.4}1-D Vertical Electrolyte/PEDOT Interface}{67}{subsection.249}
+\contentsline {section}{\numberline {5.3}Ion movement in a 1-D Memristor}{72}{section.255}
+\contentsline {chapter}{\numberline {6}Memristor Simulation}{84}{chapter.267}
+\contentsline {section}{\numberline {6.1}2-D Memristor Model}{84}{section.268}
+\contentsline {subsection}{\numberline {6.1.1}Intercalation of Lithium Ions}{86}{subsection.269}
+\contentsline {section}{\numberline {6.2}Simulation vs. Experimental Results}{95}{section.278}
+\contentsline {subsection}{\numberline {6.2.1}Single Channel Memristor}{95}{subsection.279}
+\contentsline {subsection}{\numberline {6.2.2}Noteched PEDOT}{104}{subsection.296}
+\contentsline {chapter}{\numberline {7}Conclusion}{115}{chapter.323}
+\vspace {2em}
+\contentsline {chapter}{\numberline {A}Lithium Intercalation}{117}{appendix.324}
+\contentsline {chapter}{\numberline {B}Single Channel PEDOT Lithium and Hole Density}{129}{appendix.336}
+\contentsline {chapter}{\numberline {C}Title 3}{132}{appendix.341}
+\vspace {2em}
+\contentsline {chapter}{Bibliography}{133}{dummy.342}

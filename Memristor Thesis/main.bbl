@@ -1,0 +1,62 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chua(1971)]{chua}
+L.O. Chua.
+\newblock Memristor-the missing circuit element.
+\newblock \emph{Circuit Theory, IEEE Transactions on}, 18\penalty0
+  (5):\penalty0 507--519, 1971.
+\newblock ISSN 0018-9324.
+
+\bibitem[D.~Vasileska(2006)]{Dragica1}
+Stephen M.~Goodnick D.~Vasileska.
+\newblock \emph{Computational Electronics}.
+\newblock Morgan and Claypool, Arizona,United States, 2006.
+
+\bibitem[Scharfetter and Gummel(1969)]{SG}
+D.L. Scharfetter and H.K. Gummel.
+\newblock Large-signal analysis of a silicon read diode oscillator.
+\newblock \emph{Electron Devices, IEEE Transactions on}, 16\penalty0
+  (1):\penalty0 64--77, 1969.
+\newblock ISSN 0018-9383.
+
+\bibitem[Holmes(2007)]{NumModel}
+Mark~H. Holmes.
+\newblock \emph{Introduction to Numerical Methods in Differential Equations}.
+\newblock Springer Science,Business Media,, New York,United States, 2007.
+\newblock ISBN 978-0387-30891-3.
+
+\bibitem[Dmitri B.~Strukov(2008)]{MisMem}
+Duncan R. Stewart R. Stanley~Williams Dmitri B.~Strukov, Gregory S.~Snider.
+\newblock Missing memristor found.
+\newblock \emph{Nature}, 453:\penalty0 80--83, 2008.
+\newblock ISSN 0028-0836.
+
+\bibitem[E.~Knapp and Ruhstaller(2010)]{SimChargeTrans}
+H.~U.~Schwarzenbach E.~Knapp, R.~Häusermann and B.~Ruhstaller.
+\newblock Numerical simulation of charge transport in disordered organic
+  semiconductor devices.
+\newblock \emph{J. Appl. Phys}, 108, 2010.
+\newblock ISSN 1089-7550.
+
+\bibitem[A.~Elschner(2011)]{PedotBook}
+W.~Lövenich U. Merker K.~Reuter A.~Elschner, S.~Kirchmeyer.
+\newblock \emph{Introduction to Numerical Methods in Differential Equations}.
+\newblock Taylor and Francis Group,, Florida,United States, 2011.
+\newblock ISBN 978-1-4200-6911-2.
+
+\bibitem[C.M.(1988)]{snowden}
+Snowden C.M.
+\newblock \emph{Semiconductor Device Modelling}.
+\newblock Peter Peregrinus Ltd., London,United Kingdom, 1988.
+
+\bibitem[Nardes(2007)]{PedotCon}
+A.M. Nardes.
+\newblock \emph{{On the conductivity of PEDOT:PSS thin films}}.
+\newblock PhD thesis, Technische Universiteit Eindhoven, Eindhoven, 2007.
+
+\end{thebibliography}

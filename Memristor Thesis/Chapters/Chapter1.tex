@@ -1,0 +1,33 @@
+% Chapter 1
+
+\chapter{Introduction} % Main chapter title
+
+\label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+
+\lhead{Chapter 1. \emph{Introduction}} % This is for the header on each page - perhaps a shortened title
+
+
+The purpose of this thesis is to create a numerical model to simulate a device called "Memristor". In order to achieve this goal we will be using an approximate version of Boltzmann Transport Equations (BTE) called drift diffusion equations and a numerical method called finite difference (FD). 
+
+The term memristor was first used by Chua in 1971 in his paper called  "Memristor — The Missing Circuit Element" \cite{chua}. He theorized that there is a fourth passive circuit element yet to be discovered in addition to resistor,capacitor and inductor. He said that we already know and use five out of six possible combinations that can be made out of four fundamental circuit variables, current \textit{I}, voltage \textit{V}, charge \textit{q} and flux linkage \textit{$\varphi$}. Chua claimed that we were missing a circuit element which produces a relationship between flux linkage(time integral of the potential) and charge. He introduced a new variable named memristance which has units of resistance and it is a function of charge. The relationship between the current and the potential of a memristor is calculated by replacing the resistance by memristance in ohms law \cite{chua} \cite{Dragica1} \cite{SG} \cite{NumModel} \cite{MisMem} \cite{SimChargeTrans} \cite{PedotBook} \cite{snowden} \cite{PedotCon}.
+
+\begin{equation}
+v(t)=M(q(t))i(t)
+\end{equation}
+
+Theoretically memristor retains its resistance in the absence of any power source. When a potential is applied the resistance can be influenced by the direction and the magnitude of the current. If the current flows in one dirfection resistance increases and if it flows in the other direction resistance decreases. This produces an I-V response which looks like a pinched hysteresis curve. This response is the main characteristic of a memristor. 
+
+This new element remained mostly a theory and did not get much academic attention until a group of researches in Hewlett Packard claimed to have found the Chua's missing memristor in 2008. They have successfully fabricated a nano scale memristor using $TiO_2$ (titanium dioxide). After the discovery in HP labs there was an increase of interest in memristors due to its potential applications for data storage and addition of learning capabilities into passive circuits. 
+
+The memristor we are going to be looking at is in millimeter rather then nano meter scale and uses a conductor made out of a polymer called PEDOT:PSS. It is made of two polymer chains attached together and conducts electricity via hole transport. Unfortunately this conduction mechanism is not perfectly understood and needs further research due to the complexity of the material.
+
+Unlike a semiconductors like silicon, the structure of a polymer is quite irregular. Polymers have individual molecules with different chain lengths and changing amounts of defects.
+Additionally, they can be amorphous or partially crystalline and further differences occur through aging. The conduction and electronic properties depend the orientation of polymer chains which can change in x,y and z directions. These irregularities in the structure makes these conducting polymers resemble amorphous inorganic semiconductors. Following the concept of charge transport in amorphous inorganic semiconductors, the conduction mechanism of conducting polymers is commonly explained by variable range hopping. This mechanism was first introduced by Mott in 1968. He proposed a model for charge transport in systems that are randomly disordered. In variable range hopping charge transport occurs via jumps between available sites. Every charge carrier has a probability of jumping between two sites depending on its energy and the distance to the next available site. Temperature has a big impact on conductivity since it changes the structure of the molecules and increases the energy of charge carriers.
+
+Apart from temperature there are other ways to change the conductivity of PEDOT. It is possible to affect conductivity by either doping or counter doping. Depending on the method used, doping can be reversible or permanent. When reversible doping is employed, resulting device behaves like a memristor since its resistance is now dependent on charge. 
+
+There are few approximate analytic solutions for inorganic memristors similar to the one produced in HP labs. These solutions are mostly based on parameter fitting and some basic physics. Studies on organic memristors are even more sparse than studies on inorganic ones. The physics behind the conduction mechanism and the changes in conductivity due to doping requires further research and development of a computer model can help in various ways. First of all it is very difficult to get experimental data on the movement of ions and holes inside PEDOT due its disordered structure and its geometry. Since experimental data is hard to get it is also hard to come up with theories that explain the movement of charged particles and their interactions with each other. A simulation can be a useful tool in testing various theories without having to set up and perform complicated experiments. Also once a solid understanding of the conduction mechanism has been achieved, simulations can be very useful to test different device structures and optimize them before fabrication. 
+
+In this thesis we will try to develop a simple method to simulate a memristor using PEDOT:PSS as a conductor and lithium as a reversible counter doping agent. First we will be examining drift diffusion equations and its solutions in order to create some test cases for our simulation scheme. Then, we will be using a method called finite difference in order to create a numerical solution to drift diffusion equations. After we developed a method to solve drift diffusion equations we will be using analytic solutions as well as a commercially available simulator called COMSOL Multiphysics in order to test the accuracy and reliability of our simulation method. Finally once we have a reliable way to solve drift diffusion problems we will be simulating a memristor based on physical structure, experimental data and observations.
+
+ 
