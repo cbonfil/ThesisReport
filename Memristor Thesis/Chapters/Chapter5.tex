@@ -27,7 +27,7 @@ PEDOT:PSS is a regular conductor with fixed negative charge and mobile holes. Ho
 
 It is important to analyze computational requirements of a simulation in order to asses the feasibility of the computation scheme. It is possible to determine these spacial and temporal requirements using the equations \ref{debye} to \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. Following graph \ref{SpaceTime} shows the requirements for a memristor of the scale discussed above and a typical semiconductor device around 1 $\mu$m. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the minimum step size was set to be 5 times the Debye length. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.c show the amount of points required to simulate a semiconductor and a memristor based on minimum step size. It is important to note that these values are for 1-D simulation and they can be converted to 2-D and 3-D by squaring or cubing y axis values respectively. Plots \ref{SpaceTime}.b and \ref{SpaceTime}.d were created using CFL conditions for drift and diffusion and dielectric relaxation time. A typical simulation time was estimated using mobility and electric field. Based on the estimated simulation time the number of time steps were calculated using the minimum time step obtained from CFL conditions and dielectric relaxation time.
 
-It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation. This is due to the larger size and higher charge density of the memristor. Graph \ref{SpaceTime}.a \ref{SpaceTime}.b show that a memristor with $10^{26}$ $m^{3}$ charge density of the electrolyte would require close to $10^9$ points and $10^{14}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. One possible solution to this problem is to use a much lower charge density and assume that all the values scale linearly. Following cross sectional simulations were made to determine the effect of increasing charge density and to find out if scaling can be used without compromising the reliability of the simulation.
+It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation. This is due to the larger size and higher charge density of the memristor. Graph \ref{SpaceTime}.a \ref{SpaceTime}.b show that a memristor with $10^{26}$ $m^{3}$ charge density of the electrolyte would require close to $10^9$ points and $10^{14}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. One possible solution to this problem is to use a much lower charge density and assume that all the values scale linearly. Following cross sectional simulations (Figure \ref{MemStc}) were made to determine the effect of increasing charge density on memristor simulations and to investigate if scaling can be used without compromising the reliability of the simulation.
 
 \begin{landscape}
 \begin{figure}[htp]
@@ -40,6 +40,8 @@ It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristo
 
 \clearpage
 \section{Memristor Cross Sectional Simulations}
+
+Even though it is possible to simulate the structure presented in section 5.1 in 2-D, simulating cross sections of the memristor separately has one major advantage. The purpose of these preliminary  simulations is to test the affect of various charge densities which requires mesh density to be as high as possible. Increasing mesh density in 1-D has a smaller impact on the total simulation time therefore higher charge densities are more accessible.  
 
 \subsection{Electrolyte Simulation (Cross Section 1)}
 
@@ -189,6 +191,15 @@ It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristo
 \caption{} 
 \label{}
 \end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.60]{Ex5Current}
+\caption{} 
+\label{}
+\end{figure}
+
+
 
 \clearpage
 \subsection{PEDOT:PSS with Notch (Cross Section 2)}
