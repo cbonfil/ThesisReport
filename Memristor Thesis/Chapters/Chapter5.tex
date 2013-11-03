@@ -6,7 +6,7 @@
 
 \lhead{Chapter 5. \emph{1-D Memristor Simulation}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
-A numerical method for a memristor simulation was developed in previous chapters based on drift-diffusion equations and finite difference. The final step before the actual simulation is the determination of initial and boundary conditions, initial values and physical parameters. This chapters starts with the introduction of the memristor's structure and its physical parameters used for the simulation. It continues with a preliminary problem analysis to determine required mesh density and maximum possible time step. This preliminary analysis is followed by 1-D simulations of 3 different cross sections of a memristor.
+A numerical method for a memristor simulation was developed and tested in previous chapters based on drift-diffusion equations and finite difference. This chapter starts with the introduction of the memristor's structure and its physical parameters used for the simulation. It continues with a preliminary problem analysis to determine required mesh density and maximum possible time step. This preliminary analysis is followed by 1-D simulations of 3 different cross sections of a memristor.
 
 \section{Memristor Structure}
 %-Problem Analysis and assumptions, semiconductor vs memristor plots
@@ -14,6 +14,8 @@ Following figure (\ref{MemStc}) shows the structure of a simple memristor which 
 
 PEDOT:PSS is a regular conductor with fixed negative charge and mobile holes. Holes can move in an out of the PEDOT through the metal contacts. The interface between PEDOT and electrolyte only allows the exchange of lithium ions. The movement of lithium ions into the PEDOT changes the conductivity of the material by increasing or decreasing the amount of available holes through coulomb forces. In the actual device lithium ions change the conductivity via various physical effects like changing the mobility of holes through modifying their hopping distance. These additional affects are beyond the scope of this thesis. 
 
+%-Details on Boundary conditions, boundary values, initial values, physical constants 
+%-Wet/Dry pedot
 
 \begin{figure}[!htp]
 \centering
@@ -41,7 +43,7 @@ It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristo
 \clearpage
 \section{Memristor Cross Sectional Simulations}
 
-Even though it is possible to simulate the structure presented in section 5.1 in 2-D, simulating cross sections of the memristor separately has one major advantage. The purpose of these preliminary  simulations is to test the affect of various charge densities which requires mesh density to be as high as possible. Increasing mesh density in 1-D has a smaller impact on the total simulation time therefore higher charge densities are more accessible.  
+Even though it is possible to simulate the structure presented in section 5.1 in 2-D, simulating cross sections of the memristor separately has a major advantage. The purpose of these preliminary  simulations is to test the affect of various charge densities which requires mesh density to be as high as possible. Increasing mesh density in 1-D has a smaller impact on the total simulation time therefore higher charge densities are more accessible.  
 
 \subsection{Electrolyte Simulation (Cross Section 1)}
 
