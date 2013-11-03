@@ -228,106 +228,6 @@ E^{y}_{i,j+\frac{1}{2},k}=\frac{E^y_{i,j+1,k}+E^y_{i,j,k}}{2}
 
 Same current density equations can be used for positively charged particles by replacing n by p and changing the sign of the diffusion term.
 
-\subsubsection{Scharfatter-Gummel Method}
-This method assumes that $J_n$,$\mu E$ and D are constant over the interval $[x_i,x_{i+1}]$. What is
-not constant is the density n, but we assume that we do know the boundary
-values of n. We thus have a boundary value problem for the equation:
-
-\begin{equation}
-J_n=\mu_n n E+ D_n \frac{\partial n}{\partial x}
-\end{equation}
-
-Now, we know that any first-order equation can be integrated with the
-proper integrating factor. In this case it is an exponential, and we can
-write:
-
-\begin{equation}
-J_n e^{\frac{\mu E (x-x_i)}{D_n}}=(\mu_n n E+ D_n \frac{\partial n}{\partial x})e^{\frac{\mu_n E (x-x_i)}{D_n}}
-\end{equation}
-
-\begin{equation}
-J_n e^{\frac{\mu_n E (x-x_i)}{D_n}}=D_n \frac{\partial }{\partial x}(ne^{\frac{\mu_n E (x-x_i)}{D_n}})
-\end{equation}
-
-Integrating both sides of this equation we get:
-
-\begin{equation}\nonumber
-\int\limits_{x_i}^{x_i+h}J_n e^{\frac{\mu_n E (x-x_i)}{D_n}}dx=\int\limits_{x_i}^{x_i+h}D_n \frac{\partial }{\partial x}(ne^{\frac{\mu_n E (x-x_i)}{D_n}})dx
-\end{equation}
-
-\begin{equation}\nonumber
-J_n\int\limits_{0}^{h} e^{\frac{\mu_n E (x-x_i)}{D_n}}dx=D_n (ne^{\frac{\mu_n E (x-x_i)}{D_n}})|^{x_i+h}_{x_i}
-\end{equation}
-
-\begin{equation}\nonumber
-J_n\frac{D}{\mu_n E}(e^{\frac{\mu_n E h}{D_n}}-1)=D_n (n_{i+1}e^{\frac{\mu_n E h}{D_n}}-n_i)
-\end{equation}
-
-After some algebra we get the final form of the equation. Same as the previous method, current density falls between two points.
-
-\begin{equation}
-J_n =\mu_n E\frac{(n_{i+1}e^{\frac{\mu_n E h}{D_n}}-n_i)}{e^{\frac{\mu_n E h}{D_n}}-1}
-\end{equation}
-
-Even though the derivation was made for negatively charged particles it can be extended to positively charged by changing the sign of the exponential terms.
-
-\begin{equation}
-J_p =\mu_p E\frac{(p_{i+1}e^{\frac{-\mu_p E h}{D_p}}-p_i)}{e^{\frac{-\mu_p E h}{D_p}}-1}
-\end{equation}
-
-We can double check that this equation gives the right formula for drift and diffusion separately. Lets start by pure diffusion and assume that drift term goes to zero.
-
-\begin{equation}
-\lim\limits_{\mu_n E \rightarrow 0}J_n=\lim\limits_{\mu_n E \rightarrow 0}\mu_n E\frac{(n_{i+1}e^{\frac{\mu_n E h}{D_n}}-n_i)}{e^{\frac{\mu_n E h}{D_n}}-1}
-\end{equation}
-
-We can use Taylor expansion on the exponential and keep first two terms.
-
-\begin{equation}
-\lim\limits_{\mu_n E \rightarrow 0}J_n=\lim\limits_{\mu_n E \rightarrow 0}\mu_n E\frac{(n_{i+1}(1+\frac{\mu_n E h}{D_n})-n_i)}{(1+\frac{\mu_n E h}{D_n})-1}
-\end{equation}
-
-Since $\mu_n E$ is going to zero we can assume that the term multiplying $n_{i+1}$ is just 1.
-
-\begin{equation}
-\lim\limits_{\mu_n E \rightarrow 0}J_n=\lim\limits_{\mu_n E \rightarrow 0}\mu_n E\frac{(n_{i+1}-n_i)}{\frac{\mu_n E h}{D_n}}
-\end{equation}
-
-So the final form of the pure diffusion is the same as the central difference formula.
-\begin{equation}
-\lim\limits_{\mu_n E \rightarrow 0}J_n=D_n\frac{n_{i+1}-n_i}{h}
-\end{equation}
-
-For pure drift we assume that $\mu |E| >> D$ instead of setting using $D=0$ since it physically does not make sense. Particles will always have random movements due to thermal energy. We have two different cases for pure drift because the electric field can have positive and negative values based on its direction. For the positive case the exponential term gets fairly large so we can assume $n_i$ is insignificant compared to $n_{i+1}$. Same argument is also valid for the denominator.
-
-\begin{equation}
-J_n =\mu_n E\frac{(n_{i+1}e^{\frac{\mu_n E h}{D_n}})}{e^{\frac{\mu_n E h}{D_n}}}
-\end{equation}
-
-\begin{equation}
-J_n=\mu E n_{i+1} 
-\end{equation}
-
-For negative electric field values exponential terms go to zero. This means that any value multiplied by the exponential term goes to zero as well.
-
-\begin{equation}
-J_n =\mu_n E\frac{(-n_i)}{-1}
-\end{equation}
-
-\begin{equation}
-J_n =\mu_n E n_i
-\end{equation}
-
-So overall we have:
-
-\begin{equation}
-J_n = \begin{cases}
-       \mu E n_i  & \text{for}  \;  E<0 \\
-       \mu E n_{i+1}  & \text{for}  \; E>0 \\
-     \end{cases}
-\end{equation}
-
-This equation works the same way as an upwind scheme which is a method used to simulate pure drift processes. The equation we get for almost pure drift is quite different than what we get from directly applying finite difference and averaging the electric field and particle density. They are both valid solutions but their accuracy depends on the physics of the problem.
 
 \subsubsection{Boundary Conditions}
 
@@ -446,6 +346,7 @@ Before we go into numerical limitations of solving drift diffusion equation via 
 Debye length is the length over which mobile charge carriers screen out an external electric field. It determines how steeply charges will accumulate over a certain distance when subject to an electric field. 
 \begin{equation}
 L_D=\sqrt{\frac{\varepsilon V_{th}}{q n}}
+\label{debye}
 \end{equation}
 Debye length limits how coarse the grid can be since we need to be able to accurately capture the distribution of charge density. As it can bee seen from the formula above the higher the charge density is the steeper the charge will accumulate. This can become a major problem for device sizes in millimetre range or higher and high charge concentrations since the mesh density needs to be extremely high.
 
@@ -453,6 +354,7 @@ The amount if time it takes for charge fluctuations to disappear is called Diele
 
 \begin{equation}
 t_{dr}=\frac{\varepsilon}{q n \mu}
+\label{tdr}
 \end{equation}
 
 Dielectric relaxation time is only important when electric potential is highly affected by redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
@@ -462,12 +364,14 @@ There are also numerical limits which can affect convergence and stability of a 
 
 \begin{equation}
 \frac{\Delta ^2}{2 D_n}>\Delta t
+\label{CFL_Diff}
 \end{equation}
 
 Above condition is for pure diffusion and it restricts the maximum time step. Following condition is for drift dominated systems:
 
 \begin{equation}
 \frac{2 \Delta }{\mu E}>\Delta t
+\label{CFL_Drift}
 \end{equation}
 
 This is the second numerical restriction on our simulation. Interestingly the condition for drift depends on the electric field therefore it needs to be satisfied as the electric field changes over time during simulation.

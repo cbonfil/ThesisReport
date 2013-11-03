@@ -1,6 +1,6 @@
 % Chapter Template
 
-\chapter{Memristor Simulation} % Main chapter title
+\chapter{2-D Memristor Simulation} % Main chapter title
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
@@ -20,87 +20,6 @@ The difference between the thickness of the PEDOT and electrolyte makes the simu
 The contacts have constant potential so they have dirichlet boundary conditions. There were no constraints for the edges of the simulation domain so the potential was set to float using Neumann boundary condition.
 
 Another important aspect of this device is the change in mobility between different materials. Lithium ions move very slowly when they get intercalated into the PEDOT. Also the regions of PEDOT that are in contact with the electrolite (wet region) has higher mobility for lithium compared to the regions that are not in contact (dry region).
-
-\clearpage
-\subsection{Intercalation of Lithium Ions}
-
-The following series of simulations were done to study how adding various effects changes the intercalation of lithium ions into PEDOT. We have six different scenarios with increasing complexity. All the simulations start at same initial conditions shown in figure \ref{61101}. The ions are all in the electrolyte and they are uniformly distributed. All the holes and electrons are in PEDOT and they are also uniformly distributed. All the positive charges in the system are balanced by negative charges. For the following six simulations the change of mobility between wet and dry regions are abrupt so lithium cannot move past the wet region of the PEDOT.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.8]{61101}
-\caption{Initial distribution of holes, electrons, lithium and perchlorate } 
-\label{61101}
-\end{figure}
-
-The result of the first simulation is shown in figure \ref{NnNpp61101}. In this case the equations are assumed to be decoupled and there is no applied potential at the contacts. This means that there is no electric field and the only force acting on the particles is diffusion. Perchlorate ions and holes have nowhere to diffuse into so their concentrations stay constant. However, lithium ions diffuse freely into the PEDOT until overall density is uniform since there is no limit on its density. 
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.8]{NnNpp61101}
-\caption{Particle distribution at steady state without any applied potential or density limit. Equations are decoupled} 
-\label{NnNpp61101}
-\end{figure}
-
-In this second example shown in figure \ref{NnNpp61102} we kept all the conditions the same but applied a constant potential at the contacts. The electric field pulls lithium and perchlorate ions towards opposite sides. Lithium atoms drift and diffuse into the PEDOT and perchlorate ions stay in the electrolyte as expected. PEDOT just behaves like a regular resistor and holes uniformly flow in and out of the device.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.75]{NnNpp61102}
-\caption{Particle distribution at steady state with applied potential and without density limit. Equations are decoupled} 
-\label{NnNpp61102}
-\end{figure}
-
-A limit for lithium was added for the last simulation without coupled equations. If we compare figure \ref{NnNpp61102} and \ref{NnNpp61103} we can clearly see the difference in lithium density in PEDOT as it gets uniformly distributed instead of exponentially collecting on one side. Lithium still has no effect on holes since the electric field due to charged particles are ignored.
-
-For the last three examples we will be going over the same simulations by taking coupling into account. With the addition of coupling between Poisson's equation and drift diffusion equations, the system of particles will always try to stay as charge neutral as possible. 
-
- 
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.76]{NnNpp61103}
-\caption{Particle distribution at steady state with applied potential and density limit. Equations are decoupled} 
-\label{NnNpp61103}
-\end{figure}
-
-Figure \ref{NnNpp61104} is good example illustrating this effect since the only drift force pushing the particles are self generated. Lithium ions diffuse into PEDOT leaving a net negative charge near the interface which pulls them back into the electrolyte. Now since there is an accumulation of positive charge inside the PEDOT perchlorate ions move towards the interface. At the same time holes are being pushed out from PEDOT and they are slowly getting replaced by lithium ions. Figure \ref{NnNpp61104} clearly shows that there is a lack of holes where lithium ions have diffused in.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.77]{NnNpp61104}
-\caption{Particle distribution at steady state without any applied potential or density limit. Equations are coupled} 
-\label{NnNpp61104}
-\end{figure}
-
-As before adding a potential to the contacts separates positive and negative ions. This time hey will separate until the electric field is canceled out. In figure \ref{NnNpp61105} we can see the negative charges in the electrolyte holding most lithium ions from moving into the PEDOT. Also as they move into the PEDOT the electric field gets weaker. So compared to the case without coupling (figure \ref{NnNpp61102}) there are less lithium ions in the PEDOT. On the right side of the PEDOT we can see a strip of missing holes due to the migration of lithium. We can also see holes accumulating at the interface on the left side due to the increased amount of perchlorate ions right across the interface.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.71]{NnNpp61105}
-\caption{Particle distribution at steady state with applied potential and without density limit. Equations are coupled} 
-\label{NnNpp61105}
-\end{figure}
-
-In the last example (figure \ref{NnNpp61106}) the addition of the density limit flattens out the accumulation of lithium ions in the PEDOT. We can see that holes are getting replaced by lithium on a larger area since its accumulation is not as concentrated at the edge. The accumulation of holes due to perchlorate ions across the interface does not get affected by this change.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.71]{NnNpp61106}
-\caption{Particle distribution at steady state with applied potential and without density limit. Equations are decoupled} 
-\label{NnNpp61106}
-\end{figure}
-
-Finally we can look at how the electric field looks at steady state. We see an electric field in figure \ref{V61102}.a created by the excess of positive charge in the PEDOT due to the diffusion of lithium. Even though there is an electric field in this simulation, its magnitude is so small that it does not have any impact on the movement of the charge carriers. In the last two figures at the top row (figure \ref{V61102}.b and \ref{V61102}.c) we can see the uniform electric field created by the potential applied at the contacts. Since the equations are decoupled the electric field does not get affected by the redistribution of charge. In figure \ref{V61102}.d most of the electric field is generated due to the diffusion of lithium into PEDOT. Net positive charge in the PEDOT, under the electrolyte, creates an outward electric field. 
-
-The effects of coupling in the potential can be easily seen by comparing figure \ref{V61102}.b and \ref{V61102}.e. In the electrolyte charges separate and cancel the electic field. In the PEDOT there is a very high electric field at the interface between wet and dry regions since lithium ions cannot travel into the dry region. The limitation of lithium density in the PEDOT decreases the sharpness of the change in charge density therefore the electric field changes over a slightly longer distance. 
-\begin{landscape}
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.60]{V61102}
-\caption{Potential and Electric Field in Steady State} 
-\label{V61102}
-\end{figure}
-\end{landscape}
 
 
 \clearpage
