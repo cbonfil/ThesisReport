@@ -259,14 +259,40 @@ n=\frac{1}{2}(N_D - N_A + \sqrt{(N_D - N_A)^2+4n_i^2})
 \label{nbound}
 \end{equation}
 
-We can calculate the hole concentration using mass action law.
+Once electron concentration is obtained it is possible to calculate the hole concentration using mass action law.
 
 \begin{equation}
 p=\frac{n_i^2}{n}
 \label{pbound}
 \end{equation}
 
-So we have a Dirichlet condition for electrons and hole which are given by \ref{nbound} and \ref{pbound} respectively.
+
+During simulation, the application of this boundary condition differs from the no flow boundary which was applied implicitly. All the boundaries are simulated using a no flow condition but their values are set to the appropriate value at the end of every time step. Lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time.
+
+\begin{equation}
+\frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
+\end{equation}
+
+$n_{cr}$ is the current charge density and $n_{ct}$ is the contact charge density. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents. 
+
+\begin{equation}
+Q=An
+\label{charge_charge_density}
+\end{equation} 
+
+\begin{equation}
+I=\frac{dQ}{dt}
+\label{current_charge}
+\end{equation} 
+ 
+
+Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating current at any metal contact.
+
+\begin{equation}
+I=A \frac{dn}{dt}
+\label{current_charge_density}
+\end{equation}
+
 
 \clearpage
 \subsection{Continuity Equation}

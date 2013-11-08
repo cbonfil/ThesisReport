@@ -22,34 +22,34 @@
 \contentsline {subsection}{\numberline {3.2.2}Current Density Equations}{24}{subsection.138}
 \contentsline {subsubsection}{\numberline {3.2.2.1}Finite Difference Method}{24}{subsubsection.139}
 \contentsline {subsubsection}{\numberline {3.2.2.2}Boundary Conditions}{25}{subsubsection.146}
-\contentsline {subsection}{\numberline {3.2.3}Continuity Equation}{26}{subsection.152}
-\contentsline {subsection}{\numberline {3.2.4}Stability and Computational Efficiency}{28}{subsection.166}
-\contentsline {subsubsection}{\numberline {3.2.4.1}Physical Limitations}{28}{subsubsection.167}
-\contentsline {subsubsection}{\numberline {3.2.4.2}Numerical Limitations}{28}{subsubsection.170}
-\contentsline {subsubsection}{\numberline {3.2.4.3}Explicit vs. Implicit Solution}{29}{subsubsection.173}
-\contentsline {subsection}{\numberline {3.2.5}Simulation Procedure}{31}{subsection.174}
-\contentsline {chapter}{\numberline {4}Test Cases: Analytic vs. Numerical Solutions}{33}{chapter.176}
-\contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{33}{section.177}
-\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{37}{section.182}
-\contentsline {section}{\numberline {4.3}PN Junction}{38}{section.184}
-\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{41}{section.189}
-\contentsline {chapter}{\numberline {5}1-D Memristor Simulation}{47}{chapter.201}
-\contentsline {section}{\numberline {5.1}Memristor Structure}{47}{section.202}
-\contentsline {section}{\numberline {5.2}Simulation Requirements}{49}{section.204}
-\contentsline {section}{\numberline {5.3}Memristor Cross Sectional Simulations}{51}{section.206}
-\contentsline {subsection}{\numberline {5.3.1}Electrolyte Simulation (Cross Section 1)}{51}{subsection.207}
-\contentsline {subsection}{\numberline {5.3.2}1-D Horizontal Memristor (Cross Section 2)}{55}{subsection.212}
-\contentsline {subsection}{\numberline {5.3.3}PEDOT:PSS with Notch (Cross Section 2)}{67}{subsection.226}
-\contentsline {subsection}{\numberline {5.3.4}Electrolyte/PEDOT Interface (Cross Section 3) }{70}{subsection.230}
-\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{75}{chapter.235}
-\contentsline {section}{\numberline {6.1}2-D Memristor Model}{75}{section.236}
-\contentsline {section}{\numberline {6.2}Simulation vs. Experimental Results}{77}{section.237}
-\contentsline {subsection}{\numberline {6.2.1}Single Channel Memristor}{77}{subsection.238}
-\contentsline {subsection}{\numberline {6.2.2}Noteched PEDOT}{86}{subsection.255}
-\contentsline {chapter}{\numberline {7}Conclusion}{97}{chapter.282}
+\contentsline {subsection}{\numberline {3.2.3}Continuity Equation}{27}{subsection.156}
+\contentsline {subsection}{\numberline {3.2.4}Stability and Computational Efficiency}{29}{subsection.170}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Physical Limitations}{29}{subsubsection.171}
+\contentsline {subsubsection}{\numberline {3.2.4.2}Numerical Limitations}{29}{subsubsection.174}
+\contentsline {subsubsection}{\numberline {3.2.4.3}Explicit vs. Implicit Solution}{30}{subsubsection.177}
+\contentsline {subsection}{\numberline {3.2.5}Simulation Procedure}{32}{subsection.178}
+\contentsline {chapter}{\numberline {4}Test Cases: Analytic vs. Numerical Solutions}{34}{chapter.180}
+\contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{34}{section.181}
+\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{38}{section.186}
+\contentsline {section}{\numberline {4.3}PN Junction}{39}{section.188}
+\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{42}{section.193}
+\contentsline {chapter}{\numberline {5}1-D Memristor Simulation}{48}{chapter.205}
+\contentsline {section}{\numberline {5.1}Memristor Structure}{48}{section.206}
+\contentsline {section}{\numberline {5.2}Simulation Requirements}{50}{section.208}
+\contentsline {section}{\numberline {5.3}Memristor Cross Sectional Simulations}{52}{section.210}
+\contentsline {subsection}{\numberline {5.3.1}Electrolyte Simulation (Cross Section 1)}{52}{subsection.211}
+\contentsline {subsection}{\numberline {5.3.2}1-D Horizontal Memristor (Cross Section 2)}{56}{subsection.216}
+\contentsline {subsection}{\numberline {5.3.3}PEDOT:PSS with Notch (Cross Section 2)}{68}{subsection.230}
+\contentsline {subsection}{\numberline {5.3.4}Electrolyte/PEDOT Interface (Cross Section 3) }{71}{subsection.234}
+\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{76}{chapter.239}
+\contentsline {section}{\numberline {6.1}2-D Memristor Model}{76}{section.240}
+\contentsline {section}{\numberline {6.2}Simulation vs. Experimental Results}{78}{section.241}
+\contentsline {subsection}{\numberline {6.2.1}Single Channel Memristor}{78}{subsection.242}
+\contentsline {subsection}{\numberline {6.2.2}Noteched PEDOT}{87}{subsection.259}
+\contentsline {chapter}{\numberline {7}Conclusion}{98}{chapter.286}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Lithium Intercalation}{99}{appendix.283}
-\contentsline {chapter}{\numberline {B}Single Channel PEDOT Lithium and Hole Density}{111}{appendix.295}
-\contentsline {chapter}{\numberline {C}Title 3}{114}{appendix.300}
+\contentsline {chapter}{\numberline {A}Lithium Intercalation}{100}{appendix.287}
+\contentsline {chapter}{\numberline {B}Single Channel PEDOT Lithium and Hole Density}{112}{appendix.299}
+\contentsline {chapter}{\numberline {C}Title 3}{115}{appendix.304}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{115}{dummy.301}
+\contentsline {chapter}{Bibliography}{116}{dummy.305}
