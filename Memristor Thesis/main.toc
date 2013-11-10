@@ -33,23 +33,23 @@
 \contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{38}{section.186}
 \contentsline {section}{\numberline {4.3}PN Junction}{39}{section.188}
 \contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{42}{section.193}
-\contentsline {chapter}{\numberline {5}1-D Memristor Simulation}{48}{chapter.205}
+\contentsline {chapter}{\numberline {5}Memristor Simulation}{48}{chapter.205}
 \contentsline {section}{\numberline {5.1}Memristor Structure}{48}{section.206}
 \contentsline {section}{\numberline {5.2}Simulation Requirements}{50}{section.208}
 \contentsline {section}{\numberline {5.3}Memristor Cross Sectional Simulations}{52}{section.210}
 \contentsline {subsection}{\numberline {5.3.1}Electrolyte Simulation (Cross Section 1)}{52}{subsection.211}
-\contentsline {subsection}{\numberline {5.3.2}1-D Horizontal Memristor (Cross Section 2)}{56}{subsection.216}
-\contentsline {subsection}{\numberline {5.3.3}PEDOT:PSS with Notch (Cross Section 2)}{68}{subsection.230}
-\contentsline {subsection}{\numberline {5.3.4}Electrolyte/PEDOT Interface (Cross Section 3) }{77}{subsection.239}
-\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{82}{chapter.244}
-\contentsline {section}{\numberline {6.1}2-D Memristor Model}{82}{section.245}
-\contentsline {section}{\numberline {6.2}Simulation vs. Experimental Results}{84}{section.246}
-\contentsline {subsection}{\numberline {6.2.1}Single Channel Memristor}{84}{subsection.247}
-\contentsline {subsection}{\numberline {6.2.2}Noteched PEDOT}{93}{subsection.264}
-\contentsline {chapter}{\numberline {7}Conclusion}{104}{chapter.291}
+\contentsline {subsection}{\numberline {5.3.2}1-D Horizontal Memristor (Cross Section 2)}{57}{subsection.216}
+\contentsline {subsection}{\numberline {5.3.3}PEDOT:PSS with Notch (Cross Section 2)}{69}{subsection.230}
+\contentsline {subsection}{\numberline {5.3.4}Electrolyte/PEDOT Interface (Cross Section 3) }{78}{subsection.239}
+\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{83}{chapter.244}
+\contentsline {section}{\numberline {6.1}2-D Memristor Model}{83}{section.245}
+\contentsline {section}{\numberline {6.2}Simulation vs. Experimental Results}{85}{section.246}
+\contentsline {subsection}{\numberline {6.2.1}Single Channel Memristor}{85}{subsection.247}
+\contentsline {subsection}{\numberline {6.2.2}Noteched PEDOT}{94}{subsection.264}
+\contentsline {chapter}{\numberline {7}Conclusion}{105}{chapter.291}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Lithium Intercalation}{106}{appendix.292}
-\contentsline {chapter}{\numberline {B}Single Channel PEDOT Lithium and Hole Density}{118}{appendix.304}
-\contentsline {chapter}{\numberline {C}Title 3}{121}{appendix.309}
+\contentsline {chapter}{\numberline {A}Lithium Intercalation}{107}{appendix.292}
+\contentsline {chapter}{\numberline {B}Single Channel PEDOT Lithium and Hole Density}{119}{appendix.304}
+\contentsline {chapter}{\numberline {C}Title 3}{122}{appendix.309}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{122}{dummy.310}
+\contentsline {chapter}{Bibliography}{123}{dummy.310}
