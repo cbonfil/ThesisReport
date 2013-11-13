@@ -94,7 +94,7 @@ The inverse relationship between charge density and debye length was given in eq
 \clearpage
 \subsection{1-D Horizontal Memristor (Cross Section 2)}
 
-Cross section 2 from figure \ref{MemStc} has the most crucial elements of the memristor but its simulation in 1-D is not as straight forward as the simulation of the electrolyte. Horizontal cross section through the PEDOT does not include the vertical movement of lithium. Without this effect PEDOT is just a regular conductor with a uniform current density. In order to overcome this problem a generation/recombination term for lithium ions, calculated at every time step, was added to capture the vertical movement in addition to regular drift diffusion equations which represents the horizontal movement. This generation/recombination term can be represented as a current source with a resistor connected to every node (figure \ref{MemStc15}). 
+Cross section 2 from figure \ref{MemStc} has the most crucial elements of the memristor but its simulation in 1-D is not as straight forward as the simulation of the electrolyte. Horizontal cross section through the PEDOT does not include the vertical movement of lithium. Without this effect PEDOT is just a regular conductor with a uniform current density. In order to overcome this problem a generation/recombination term for lithium ions, calculated at every time step, was added to capture the vertical movement in addition to regular drift diffusion equations which represents the horizontal movement. This generation/recombination term can be represented as a current source with a resistor connected to every node (figure \ref{MemStc15}). Perchlorate ions were not included since they do not move into the PEDOT.
 
 The lithium source has two different terms, one for drift and another one for diffusion. It was assumed that the concentration of lithium was always constant in the electrolyte. This way the vertical diffusion current density can be calculated using the difference between the lithium density in PEDOT and electrolyte. For the diffusion term an electric field has to be estimated between the PEDOT and the electrolyte. First the potential of the electrolyte was assumed to be half of the net applied potential. Then an electric field is calculated using the electrolyte and the potential of the PEDOT at different positions.
   
@@ -105,13 +105,24 @@ The lithium source has two different terms, one for drift and another one for di
 \label{MemStc15}
 \end{figure}
 
+Figure \ref{MemV} shows the change in potential over time as holes and lithium gets redistributed. The interface between wet and dry PEDOT acts as a barrier for lithium. Charge accumulation and depletion occurs around that interface. Holes get depleted in the dry region so a net 
+
 
 \begin{landscape}
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.40]{Ex5V_Time1}
 \caption{1-D Memristor potential distribution over time} 
-\label{}
+\label{MemV}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.40]{Ex5E_Time1}
+\caption{Electric field distribution over time (Not aligned with potential distribution) } 
+\label{MemE}
 \end{figure}
 \end{landscape}
 
@@ -120,7 +131,7 @@ The lithium source has two different terms, one for drift and another one for di
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.40]{Ex5NetQ_Time1}
-\caption{Normalized net charge density distribution over time} 
+\caption{Normalized net charge density distribution over time (Not aligned with potential distribution) } 
 \label{}
 \end{figure}
 \end{landscape}

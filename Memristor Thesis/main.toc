@@ -39,17 +39,17 @@
 \contentsline {section}{\numberline {5.3}Memristor Cross Sectional Simulations}{52}{section.210}
 \contentsline {subsection}{\numberline {5.3.1}Electrolyte Simulation (Cross Section 1)}{52}{subsection.211}
 \contentsline {subsection}{\numberline {5.3.2}1-D Horizontal Memristor (Cross Section 2)}{57}{subsection.216}
-\contentsline {subsection}{\numberline {5.3.3}PEDOT:PSS with Notch (Cross Section 2)}{64}{subsection.225}
-\contentsline {subsection}{\numberline {5.3.4}Electrolyte/PEDOT Interface (Cross Section 3) }{69}{subsection.230}
-\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{74}{chapter.235}
-\contentsline {section}{\numberline {6.1}2-D Memristor Model}{74}{section.236}
-\contentsline {section}{\numberline {6.2}Simulation vs. Experimental Results}{76}{section.237}
-\contentsline {subsection}{\numberline {6.2.1}Single Channel Memristor}{76}{subsection.238}
-\contentsline {subsection}{\numberline {6.2.2}Noteched PEDOT}{85}{subsection.255}
-\contentsline {chapter}{\numberline {7}Conclusion}{96}{chapter.282}
+\contentsline {subsection}{\numberline {5.3.3}PEDOT:PSS with Notch (Cross Section 2)}{65}{subsection.226}
+\contentsline {subsection}{\numberline {5.3.4}Electrolyte/PEDOT Interface (Cross Section 3) }{70}{subsection.231}
+\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{75}{chapter.236}
+\contentsline {section}{\numberline {6.1}2-D Memristor Model}{75}{section.237}
+\contentsline {section}{\numberline {6.2}Simulation vs. Experimental Results}{77}{section.238}
+\contentsline {subsection}{\numberline {6.2.1}Single Channel Memristor}{77}{subsection.239}
+\contentsline {subsection}{\numberline {6.2.2}Noteched PEDOT}{86}{subsection.256}
+\contentsline {chapter}{\numberline {7}Conclusion}{97}{chapter.283}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Lithium Intercalation}{98}{appendix.283}
-\contentsline {chapter}{\numberline {B}Single Channel PEDOT Lithium and Hole Density}{110}{appendix.295}
-\contentsline {chapter}{\numberline {C}Title 3}{113}{appendix.300}
+\contentsline {chapter}{\numberline {A}Lithium Intercalation}{99}{appendix.284}
+\contentsline {chapter}{\numberline {B}Single Channel PEDOT Lithium and Hole Density}{111}{appendix.296}
+\contentsline {chapter}{\numberline {C}Title 3}{114}{appendix.301}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{114}{dummy.301}
+\contentsline {chapter}{Bibliography}{115}{dummy.302}
