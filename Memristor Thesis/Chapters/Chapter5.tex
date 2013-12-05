@@ -228,7 +228,7 @@ Figure \ref{AllDiff} shows the difference hole/lithium density makes in the simu
 
 In all 3 cases, there is an increase in average difference for increasing carrier density. Hole density shows the most difference between plots. Since holes are free to move inside the PEDOT they directly get effected by the change in debye length due to the increase in hole density. This is not the case for lithium ions because their movement is restricted by the limit on lithium density. In contrast, current density is not as sensitive to density changes as lithium and hole distributions.
 
- An approximate error estimation can be made for current density if a low hole/lithium density is used for simulation and then scaled up to match the actual memristor. Figure \ref{AllDiff} shows around 3.5 \% difference for 2 orders of magnitude increase in hole density. Assuming the error scales linearly after that point a total of 6 orders of magnitude will result in 10.5 \% error introduced in order to linearly scale from $10^{15}$ to $10^{21}$. The actual error is likely to be less since the error progresses sub linearly. Following the same procedure 6 orders of magnitude difference produces a 13.5 \% error for lithium distribution and 48 \% error for hole distribution. The difference in hole distribution looks very large but the overall shape of the plot is still reserved, most change occurs around the wet/dry PEDOT interface where lithium accumulates. Based on these error margins and previous plots it can be concluded that the behavior of the memristor simulated using low charge density is very similar to the simulation at high carrier density.    
+ An approximate error estimation can be made for current density if a low hole/lithium density is used for simulation and then scaled up to match the actual memristor. Figure \ref{AllDiff} shows around 3.3 \% difference for 2 orders of magnitude increase in hole density. Assuming the error scales linearly after that point a total of 6 orders of magnitude will result in 9.9 \% error introduced in order to linearly scale from $10^{15}$ to $10^{21}$. The actual error is likely to be less since the error progresses sub linearly. Following the same procedure 6 orders of magnitude difference produces a 12 \% error for lithium distribution and 48 \% error for hole distribution. The difference in hole distribution looks very large but the overall shape of the plot is still reserved, most change occurs around the wet/dry PEDOT interface where lithium accumulates. Based on these error margins and previous plots it can be concluded that the behavior of the memristor simulated using low charge density is very similar to the simulation at high carrier density.    
 
 
 \begin{figure}[!htp]
@@ -240,9 +240,9 @@ In all 3 cases, there is an increase in average difference for increasing carrie
 
 
 \clearpage
-\subsection{Changes in Conductivity due to Lithium/Hole Mobility and Applied Potential}
+\subsection{Experiment vs. Simulation}
 
-Hopping distance change due to lithium
+Hopping distance change due to lithium modifies hole mobility. Can be used to match maximum resistivity.
 
 \begin{figure}[!htp]
 \centering
@@ -251,7 +251,7 @@ Hopping distance change due to lithium
 \label{}
 \end{figure}
 
-Lithium mobility scaling to match experiment
+Lithium mobility can be scaled to match the experimental values
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.70]{1DLithiumMobility}
@@ -259,7 +259,8 @@ Lithium mobility scaling to match experiment
 \label{}
 \end{figure}
 
-Resistivity change due to applied potential
+Resistivity change due to applied potential. This behaves unexpectedly. I thought the resistivity would go higher with increased applied potential. Probably because of 1 line approximation for the electrolyte, the vertical potential is probably off.
+
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.70]{1DMem_V}
@@ -267,5 +268,4 @@ Resistivity change due to applied potential
 \label{}
 \end{figure}
 
-\clearpage
-\subsection{Experiment vs. Simulation}
+-Can add Notch simulation vs. notch experiment. They visually match
