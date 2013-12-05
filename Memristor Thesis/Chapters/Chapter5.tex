@@ -60,7 +60,7 @@ Since the main characteristic of memristor is the change in resistivity over tim
 \clearpage
 \subsection{1-D Memristor Simulation Using a Pulse Train}
   
-For the following simulation a potential pulse train, slow enough to let the memristor reach steady state, was applied on the left contact. Following plot \ref{MemResTrain} shows the resistivity measured using both contacts separately. As expected the resistance of the device more than doubled as the lithium ions move in. Additionally, it can be seen from the graph \ref{MemResTrain} that left and right contacts do not always show the same resistivity over the duration of the simulation. This is normal since the difference is due to PEDOT layer losing holes on one side which reduces the overall conductivity of the device. 
+For the following simulation a potential pulse train, slow enough to let the memristor reach steady state, was applied on the left contact. Following plot \ref{MemResTrain} shows the resistivity measured using both contacts separately. As expected the resistance of the device more than doubled as the lithium ions move in. Additionally, it can be seen from the graph \ref{MemResTrain} the resistivity measurements from left and right contacts are not always the same over the duration of the simulation. This is normal since this is due to PEDOT layer losing holes on one side and gaining holes on the other which produces a difference in measured resistivity between contacts. 
 
 The resistivity in figure \ref{MemResTrain} shows a sudden drop when the potential is switched from 1 to 0 and vice versa. This sudden drop occurs because of the accumulation of lithium ions and holes near the negative contact which opposes the electric field generated due to the applied potential (see figure \ref{MemEss}). When the potential changes suddenly, previously opposing electric field now helps the movement of holes and lithium towards the other end of the device. This additional electric field momentarily reduces the resistivity of the device.
 
@@ -123,12 +123,45 @@ The minimum resistance of this device is just the total resistance of the PEDOT 
 \label{MemEss}
 \end{figure}
 
+\clearpage
+\subsection{1-D Memristor Simulation Using a Sinusoid}
+
+Memristor with a pulse train simulation showed the change in resistivity over time due to an applied potential but it does not demnostrate any memory effects. The memory effect of the memristor can be clearly demonstrated in an I-V curve using sinusoidal potential. Following four graphs (figure \ref{Bowtie}) were created using an AC potential with different frequencies at the contacts. All the plots show that current can have more than one value for the same potential at different times. This means that simulated memristor's past states affects its present output, therefore the device has memory. 
+
+The sudden changes in current around 0 V can be attributed to the density limiting mechanism for lithium. Instead of a slowdown in the movement of lithium ions near maximum concentration, the current flow into that region is completely blocked. Even though this makes the lithium density more responsive to changes, sudden movement block combined with large time steps can result in fast changes which can be directly seen as abrupt changes in the hole/lithium current density during transient simulations.  
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.45]{BowtiefAll}
+\caption{Normalized Current vs. applied potential at different frequencies} 
+\label{Bowtie}
+\end{figure}
+
+As AC potential pushes lithium ions from one side to the other, an equilibrium is reached over time. The changes in resistivity starts to repeat itself and after a while it becomes  periodic. Figure \ref{BowtieCurr} shows the changes in memristor current over time for the right metal contact. At first, as lithium moves into the PEDOT there is a drop in current on average. Once enough lithium settles into the PEDOT the increase in resistiviy simply shifts from left to right but it stays fairly constant on average. The final figure (\ref{BowtieRes}) show the changes in resistivity of PEDOT over time. The maximum value of the resistivity increases over time until it reaches a steady value on either side.
+ 
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.60]{BowtieCurr4f}
+\caption{Normalized current over time} 
+\label{BowtieCurr}
+\end{figure}
+
+
+\begin{landscape}
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.90]{1DMemACResistivity}
+\caption{Normalized resistivity over time (f = 5 Hz)} 
+\label{BowtieRes}
+\end{figure}
+\end{landscape} 
+
 
 
 \clearpage
 \subsection{1-D Memristor Simulation With Increasing Charge Density}
 
-After establishing that the simulation behaves appropriately it is important to investigate how charge density effects this model since the size of the device limits the maximum charge density that can be simulated. The actual device has a hole density in the range of $ \approx 10^{22}$ $m^{-3}$ but the simulation is restricted to $\approx 10^{15}$ $m^{-3}$. In theory, if the densities used for simulation does have a limited affect on the behavior of the memristor then low densitiy can be use as a proxy for the actual device which operates in much higher carrier densities.
+After establishing that the simulation behaves appropriately it is important to investigate how charge density effects this model since the size of the device limits the maximum charge density that can be simulated. The actual device has a hole density in the range of $ \approx 10^{22}$ $m^{-3}$ but the simulation is restricted to $\approx 10^{15}$ $m^{-3}$. In theory, if the densities used for simulation does have a limited affect on the behavior of the memristor then simulations in low densitiy can be use as a proxy for the actual device which operates in much higher carrier densities.
 
  Following 3 graphs (\ref{HoleDiff}, \ref{LithiumDiff} and \ref{DensityDiff} ) show hole and lithium densities at steady state as well as the current density over time at the right metal contact for various charge densities. The simulations were done on high mesh densities to allow stable simulation at high charge concentrations. 20 different simulations were made using densities ranging from $5$ x $10^{15}$  $m^{-3}$ to 1 x $10^{17}$  $m^{-3}$ but only 5 of them were plotted for illustration purposes. All the values were normalized to the initial plot using respective hole/lithium density ratios. Following equations were used for the normalization procedure.
 
@@ -188,10 +221,10 @@ P_i = \frac{1}{ K}\sum_{k=1}^{K}\lvert 100 \;\frac{n_{i}(x_k)/r-n_{0}(x_k)}{n_{0
 P_i = \frac{1}{ T}\sum_{k=1}^{T}\lvert 100 \;\frac{J_{i}(t_k)/r-J_{0}(t_k)}{J_{0}(t)}\rvert
 \end{equation}
 
-(These explanations are not very clear they need revision)
-K is for total number of points along x axis and T is the total number of time steps taken by the simulator. $x_{k}$ and $t_{k}$ are used to for a point in x axis and point in time respectively. r is the normalization constant described in equation \ref{NormConst}. Both equations start by taking a point in either space (lithium/hole density) or time (current density) for a simulation with a certain carrier density an normalize them. After that point is normalized its percent difference from the lowest carrier density simulation is calculated. Finally all the differences are averaged. This average is used as a measure of the difference between simulations with different charge densities. It can also be used as an error factor for scaling.  
 
-Figure \ref{AllDiff} shows the difference increasing hole/lithium density makes in the simulation. Carrier densities in the dry regions of the PEODT change very little between consecutive simulations since lithium ions do not reach there. For this reason only the densities at the wet regions were used to measure the difference between plots. 
+K is for total number of points along x axis and T is the total number of time steps taken by the simulator. $x_{k}$ and $t_{k}$ are used to for a point in x axis and a point in time respectively. r is the normalization constant described in equation \ref{NormConst}. Both equations start by taking a point in either space (lithium/hole density) or time (current density) for a simulation with a certain carrier density and normalize them. After that point is normalized its difference from the lowest carrier density simulation is calculated as a percentage. Finally all the differences are averaged and used as a measure of the difference between simulations with different charge densities. They can also be used as an error factor for scaling.(Is this paragraph clear enough ?)  
+
+Figure \ref{AllDiff} shows the difference hole/lithium density makes in the simulation. Carrier densities in the dry regions of the PEODT change very little between consecutive simulations since lithium ions do not reach there. For this reason only the densities at the wet PEDOT were used to measure the difference between plots. 
 
 In all 3 cases, there is an increase in average difference for increasing carrier density. Hole density shows the most difference between plots. Since holes are free to move inside the PEDOT they directly get effected by the change in debye length due to the increase in hole density. This is not the case for lithium ions because their movement is restricted by the limit on lithium density. In contrast, current density is not as sensitive to density changes as lithium and hole distributions.
 
@@ -204,41 +237,6 @@ In all 3 cases, there is an increase in average difference for increasing carrie
 \caption{} 
 \label{AllDiff}
 \end{figure}
-
-
-
-\clearpage
-\subsection{1-D Memristor Simulation Using a Sinusoid}
-
-
-Following two figures were created using an AC potential at the contacts. First figure shows (\ref{Bowtie}) shows applied potential versus normalized current. Bow tie plot in this figure is the most commonly seen memristor plot which demonstrates the memory effect of the device since the output current depends on the past states of the device. (add arrows showing the direction of the current on the plot). 
-\begin{landscape}
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.60]{BowtiefAll}
-\caption{Normalized Current vs. applied potential at different frequencies} 
-\label{Bowtie}
-\end{figure}
-\end{landscape} 
-
-   
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.60]{BowtieCurr4f}
-\caption{Normalized current over time} 
-\label{}
-\end{figure}
-
-
-\begin{landscape}
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.90]{1DMemACResistivity}
-\caption{Normalized resistivity over time (f = 5 Hz)} 
-\label{}
-\end{figure}
-\end{landscape} 
-
 
 
 \clearpage
