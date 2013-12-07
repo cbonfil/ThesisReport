@@ -7,30 +7,30 @@
 \lhead{Chapter 2. \emph{Theory}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 \section{Carrier Transport Equations}
-We will be solving drift-diffusion equations, which are based on BTE, in order to model the complex behaviour of the memristor. Drift-diffusion equations can be obtained by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model. The approximations also serve as guidelines for where this model can and can not be used, therefore they need to be well understood.
+Drift diffusion equations, which are based on BTE, need to be solved in order to model the complex behaviour of the memristor. Drift-diffusion equations can be obtained by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model and serve as guidelines for where this model can be used, therefore they need to be well understood.
 
-Derivation of Boltzmann transport equation starts by stating that charged particles can be defined by their position in space \textbf{r} and momentum \textbf{k} at time \textbf{t} using a probability distribution function f(k,r,t). We get the most general form of Boltzmann transport equation. \cite{snowden} 
+Derivation of Boltzmann transport equation starts by stating that any charged particles can be defined its position in space \textbf{r} and momentum \textbf{k} in time \textbf{t} using a probability distribution function f(k,r,t). This results in the most general form of Boltzmann transport equation. \cite{snowden} 
 
 \begin{equation}
 \frac{d }{dt}f(k,r,t)=0
 \end{equation}
 
-This general form of BTE needs to be expanded and relevant physical equations need to be plugged in to get an appropriate equation describing specific a problem or device. 
-Many different device simulators use some sort of approximation to BTE. In a semiconductor device we are usually interested in the movement and the density distribution of charge carriers, holes (p) and electrons (n). 
+This general form of BTE needs to be expanded and relevant physical equations need to be placed in to get an appropriate equation describing a specific problem or a device. 
+Many different device simulators use some sort of approximation to BTE. In a semiconductor simulations they are commonly used for the movement and the density distribution of charge carriers, holes (p) and electrons (n). 
 
-After this brief introduction to BTE, rather than going through the tedious mathematical derivation of the drift diffusion model we can directly discuss the approximations that are made along the process of derivation in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to electric field is called the drift current. The relationship between drift velocity and the electric field is given by the following equation:
+After this brief introduction to BTE, rather than going through the tedious mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation can be discussed in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to electric field is called the drift current. The relationship between drift velocity and the electric field is given by the following equation:
 
 \begin{equation}
 v=\mu E
 \end{equation}
 
-$\mu$ is called mobility constant and it determines the speed at which the particles are going to move when subject to an electric field. Based on drift velocity we can get a term for drift current density.
+$\mu$ is called mobility constant and it determines the speed at which the particles are going to move when subject to an electric field. Drift current density can be derived based on drift velocity.
 
 \begin{equation}
 J_E=q n\mu E=q n v 
 \end{equation}
 
-Where q is the elementary charge and n is the electron density. In addition to the previous assumptions, we assume that the lattice is perfectly uniform, has a uniform temperature distribution and all the particles are close to the temperature of the lattice. Based on this assumption we can say that all the particles that move due to thermal effects has the same thermal velocity ($v_{th}$) and mean free path ($l_f$). These quantities can be combined into one single coefficient called diffusion constant. 
+Where q is the elementary charge and n is the electron density. In addition to the previous assumptions, it is assumed that the lattice is perfectly uniform, has a uniform temperature distribution and all the particles are close to the temperature of the lattice. Based on this assumption we can say that all the particles that move due to thermal effects has the same thermal velocity ($v_{th}$) and mean free path ($l_f$). These quantities can be combined into one single coefficient called diffusion constant. 
 
 \begin{equation}
 D=v_{th} \;l_f
@@ -42,7 +42,7 @@ Drift and diffusion coefficients are related to each other via Einstein relation
 D=\frac{\mu k T}{q}
 \end{equation}
 
-Where k is the Boltzmann constant and T is the lattice temperature. Now we have a second term which contributes to carrier movement which is called the diffusion current density.
+Where k is the Boltzmann constant and T is the lattice temperature. This results in a second term which contributes to carrier movement and it is called the diffusion current density.
 
 \begin{equation}
 J_D=qD\frac{dn}{dx}
@@ -55,20 +55,24 @@ Unlike the drift current density, which is directly related to the carrier densi
 \label{cdenn}
 \end{equation}
 
-This equation can be easily extended to more dimensions by simply using the appropriate terms.
+This equation can be easily extended to higher dimensions by simply using the appropriate terms.
+
 
 \begin{equation}
 \vec{J_n^y}=q \mu_{n} n \vec{E_x}+qD_{n} \frac{dn}{dy} 
 \end{equation}
 
-At this point we can also note that anisotropic drift and diffusion coefficients can also be handled with ease by using different coefficients for different directions. Current density equation works equivalently well for positively or negatively charged particles.
+Current density equations can be used for both positive and negatively charged particles by changing the sign of the diffusion current density.
 
 \begin{equation}
 \vec{J_p^x}=q \mu_{p} p \vec{E_x}-qD_{p} \frac{dp}{dx} 
 \label{cdenp}
 \end{equation}
+Anisotropic drift and diffusion coefficients can be handled with ease by using different coefficients for different directions. Also Mobility and diffusivity can be a function of any variable such as position or temperature. This is a useful property for a memristor simulation since hole mobility depends on lithium density in the PEDOT:PSS at any given position. 
 
-Current density equations by themselves are not enough to solve a time dependent problem. For this we need to account the movement of charge over time which is captured in the continuity equation. It is basically a statement of conservation of particle density over time. The change in the amount of carriers over time in a particular area must be equal to the difference in current density over the same area. Additionally the amount of charge can change due to generation-recombination of charged particles.
+For the memristor simulation the movement of lithium and perchlorate ions inside the electrolyte is modeled as if they were moving in a solid state device. So all the derivations that were made for positive and negatively charged particles include holes and electrons as well as lithium and perchlorate ions. Viscosity of the liquid and all possible deformations due to movement of ions are simply ignored. This approximation was made based on the assumption that the amount of ions in the electrolyte are very large compared what PEDOT:PSS can absorb. Additionally the solution is very dilute. So the distribution of ions inside the electrolyte remain mostly unchanged and the exchange of ions do not disturb the shape or the physical characteristics of the solution on top of PEDOT:PSS.  
+
+Current density equations by themselves are not enough to solve a time dependent problem. It is necessary to account for the movement of charge over time which is captured in the continuity equation. It is basically a statement of conservation of particle density over time. The change in the amount of carriers over time in a particular area must be equal to the difference in current density over the same area. Additionally the amount of charge can change due to generation-recombination of charged particles.
 
 
 \begin{equation}
@@ -81,9 +85,9 @@ Current density equations by themselves are not enough to solve a time dependent
 \label{conp}
 \end{equation}
 
-$U_{n}$ and $U_{p}$ are net generation recombination rates. 
+$U_{n}$ and $U_{p}$ are net generation recombination rates. These terms were not used for the modeling of the memristor. (Not sure how to justify this. Maybe I can say I have not used it because there is no equation for it and it is not modeled yet ? I dont even know if GR happens in PEDOT )
 
-We must keep in mind that electric field in an area can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied field. It is possible calculate the potential distribution over an area by using Poisson's equation. Once the potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential.
+Electric field can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied potential. It is possible calculate the potential distribution over an area by using Poisson's equation. Once the potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential.
 
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-\rho=-q(p-n+N_{D}^{+}-N_{A}^{-})
@@ -94,7 +98,7 @@ We must keep in mind that electric field in an area can be generated in two diff
 \label{Efield}
 \end{equation}
 
-We can split the electric field into two components $\vec{E_x}$ and $\vec{E_y}$.
+Electric field can be split into one, two or three components depending on the dimensions of the problem. In a 2-D case they are $\vec{E_x}$ and $\vec{E_y}$.
 
 \begin{equation}
 \vec{E_x}=-\frac{\partial V}{\partial x}
@@ -104,32 +108,42 @@ We can split the electric field into two components $\vec{E_x}$ and $\vec{E_y}$.
 \vec{E_y}=-\frac{\partial V}{\partial y}
 \end{equation}
 
-It is possible to see that through the electric field and net charge distribution, Poisson's equation and drift-diffusion equations are coupled and non linear. The strength of the non linearity depends on the size of the device and charge density which determines the total amount of charge over an area.  
-
-Usually we are particularly interested in finding the amount of current in a device. This can be easily calculated by integrating the current density over an area.
+Once the electric field and current density is known, the amount of current in a particular place in the device can be easily calculated by using the following integral.
 
 \begin{equation}
 I=\int\limits_{s}^{}\vec{J_{tot}} \cdot ds = \int\limits_{s}^{}(J_n+J_p+\varepsilon\frac{\partial E}{\partial t})ds
 \end{equation}
 
-Overall the main equations for the drift-diffusion model can be compactly written as:
+
+Through the electric field and net charge distribution, Poisson's equation and drift-diffusion equations are coupled and non linear. The strength of the non linearity depends on the size of the device and charge density which determines the total amount of charge over an area. In a strongly coupled system of differential equations, small changes in either the charge density or electric field can easily cause instabilities in the simulation. This is further discussed in the next chapter while developing a numerical scheme to solve the system of equations described in this chapter. 
+
+The main equations for the drift-diffusion model that are used for memristor simulation can be compactly written as:
+
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-q(p-n+N_{D}^{+}-N_{A}^{-})
-\end{equation}
-\begin{equation}
-\vec{J_n}=q\mu_n n \vec{E}+q D_n \nabla n
 \end{equation}
 \begin{equation}
 \vec{J_p}=q\mu_p p \vec{E}-q D_p \nabla p
 \end{equation}
 \begin{equation}
-\frac{\partial n}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_n}+U_{n}
+\vec{J_{N_{A}^{-}}}=q\mu_{N_{A}^{-}} N_{A}^{-} \vec{E}+q D_{N_{A}^{-}} \nabla N_{A}^{-}
 \end{equation}
 \begin{equation}
-\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}+U_{p}
+\vec{J_{N_{D}^{+}}}=q\mu_{N_{D}^{+}} N_{D}^{+} \vec{E}-q D_{N_{D}^{+}} \nabla N_{D}^{+}
+\end{equation}
+\begin{equation}
+\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{A}^{-}}}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{D}^{+}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{D}^{+}}}
 \end{equation}
 
-Unfortunately even after so many approximations and simplifications to BTE, drif diffusion equations have analytical solutions for only few isolated cases. The simplicity of these analytical solutions makes them a good candidate for testing any numerical methods that is created to solve drift diffusion equations. 
+This system of equations consist of 4 different charge carriers. There are 3 mobile species lithium ($N_{D}^{+}$) and perchlorate ($N_{A}^{-}$) and holes (p) and one fixed charge, electrons (n). The particles are coupled to each other through Poisson's equation since they all carry electric charge. 
+
+Unfortunately even after so many approximations and simplifications to BTE, drif diffusion equations have analytical solutions for only few isolated cases. Analytical solutions developed in the rest of this chapter will be used in testing of the numerical method developed for simulating a memristor. 
 
 \clearpage
 \section{Analytic Solutions}
