@@ -86,11 +86,11 @@ Figure \ref{MempLi} demonstrates the replacement of holes by lithium ions over t
 
 It is important to note that lithium ions are free to move in x and y direction. In figure \ref{MempLi} it can be seen that after the potential is switched as the lithium density moves from  side to the other. Most of the lithium movement happens through the exchange of ions between PEDOT and the electrolyte since the distance between them is far less than the length of the PEDOT. So lithium ions, traveling from the positive to the negative contact, are pulled into the electrolyte before they reach the other side. Near the negative contact lithium ions are quickly pulled into the PEDOT and accumulate at the wet/dry interface. Figure \ref{MemResistivityTrain} shows the changes in resistivity throughout PEDOT due to the accumulation of lithium. The resistivity is increased in regions where there is high lithium accumulation. 
 
-By examining the resistivity plot of PEDOT it is possible to conclude that it is composed of 3 distinct regions. 2 dry regions, where there is no contact with the electrolyte, have constant uniform resistance. Between these two resistances there is a variable non uniformly distributed resistance controlled by hole/lithium concentration and hole mobility. So this model captures the main characteristic of the memristor which is a variable resistance where the resistance at any time depends on the past of the device. Following equation gives the total resistance for the memristor model developed for this thesis:
+By examining the resistivity plot of PEDOT it is possible to conclude that it is composed of 3 distinct regions. 2 dry regions, where there is no contact with the electrolyte, have constant uniform resistance. Between these two resistances there is a variable non uniformly distributed resistance controlled by hole/lithium concentration and hole mobility. So this model captures the main characteristic of the memristor which is a variable resistance where the resistance at any time depends on the past of the device. Following equation gives the total resistance/memristance for the memristor model developed for this thesis:
 
 \begin{equation}
 \centering
-R_{tot}=2R_{dry}+R(Li,p,\mu_{hole})
+M(q(t))_{tot}=2R_{dry}+R(Li,p,\mu_{hole})
 \end{equation}
 
 The minimum resistance of this device is just the total resistance of the PEDOT without the lithium ions. The maximum resistance depends on different factors such as applied potential and the distribution and concentration of lithium ions inside PEDOT.
@@ -138,7 +138,9 @@ The sudden changes in current around 0 V can be attributed to the density limiti
 \end{figure}
 
 As AC potential pushes lithium ions from one side to the other, an equilibrium is reached over time. The changes in resistivity starts to repeat itself and after a while it becomes  periodic. Figure \ref{BowtieCurr} shows the changes in memristor current over time for the right metal contact. At first, as lithium moves into the PEDOT there is a drop in current on average. Once enough lithium settles into the PEDOT the increase in resistiviy simply shifts from left to right but it stays fairly constant on average. The final figure (\ref{BowtieRes}) show the changes in resistivity of PEDOT over time. The maximum value of the resistivity increases over time until it reaches a steady value on either side.
- 
+
+(The current is pinched for negative potential because it is measured from the contact on the right side) 
+
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.60]{BowtieCurr4f}
