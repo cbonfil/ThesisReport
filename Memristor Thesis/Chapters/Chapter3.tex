@@ -96,8 +96,8 @@ f^{''}_{i}=\frac{f_{i+1}-2f_{i}+f_{i-1}}{h^2}+O(h^2)
 Overall these finite difference equations are enough to solve drift diffusion equations. Even though all the derivations were done in 1-D it is trivial to extend them to higher dimensions. This method can be used to solve Poisson's equation and drift diffusion equations.
 
 \clearpage
-\section{Solving Drift-Diffusion Equations}
-\subsection{Poisson Solver}
+
+\section{Poisson Solver}
 
 Poisson's equation needs to be solved before drift diffusion equations in order find the potential distribution as well as the electric field inside the device. In order to solve for electric field and potential Poisson's equation will be simplified through assumptions and then finite difference will be used to solve this simplified equation. The first step of simplification is assuming that the permittivity is isotropic.
  
@@ -196,7 +196,7 @@ After solving for the potential distribution it is easy to calculate the electri
 \end{equation}
 
 \clearpage
-\subsection{Current Density Equations}
+\section{Current Density Equations}
  Both drift and diffusion currents can be calculated over the entire grid. Drift current does not involve any differentials but it is a function of electric field and the diffusion current can be calculated using first order central difference. The current density is calculated in such a way that it falls between two points which simplifies the application of the boundary conditions.
 \begin{equation}
 J^x_{i+\frac{1}{2},j,k}=q\mu_n n_{i+\frac{1}{2},j,k} E^x_{i+\frac{1}{2},j,k}+D_n \frac{n_{i+1,j,k}-n_{i,j,k}}{\Delta}
@@ -229,9 +229,7 @@ For a drift diffusion problem there are few different possibilities for boundary
 J=0
 \end{equation}
 
-For the memristor simulation this boundary condition can is used conditionally to limit the lithium density. This condition is used to cut the flow of particles into an area when a certain particle concentration is reached. This is achieved by calculating the current density at any point for the next time step. If the density is going to take a value higher than the limit then current flow into that node is blocked.
-
-Dirichlet boundary condition is also used for metal contacts. It is assumed that metal contacts have infinite amount of charge and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
+For memristor simulation this boundary condition is used to conditionally limit the lithium density. The implementation of the limiting process is discussed in detail and tested thoroughly in section 4 of chapter 4. Dirichlet boundary condition is also used for metal contacts. It is assumed that metal contacts have infinite amount of charge and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
 
 \begin{equation}
 N_{D} + p=N_{A} + n
@@ -359,10 +357,10 @@ Since all the equations in B matrix are linear  $n$ can be taken and out of the 
 
 This solution needs a matrix inversion every time step but it is unconditionally stable if not used together with Poisson's equation. The decision to use implicit or explicit solution is not very simple and it will be discussed in detail the next section.
 \clearpage
-\subsection{Stability and Computational Efficiency}
+\section{Stability and Computational Efficiency}
 Before discussing numerical limitations of solving drift diffusion equation via finite difference it is important to look into physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve drift diffusion equations.
 
-\subsubsection{Physical Limitations}
+\subsection{Physical Limitations}
 Debye length is the length over which mobile charge carriers screen out an external electric field. It determines how steeply charges will accumulate over a certain distance when subject to an electric field. 
 \begin{equation}
 L_D=\sqrt{\frac{\varepsilon V_{th}}{q n}}
@@ -378,7 +376,7 @@ t_{dr}=\frac{\varepsilon}{q n \mu}
 \end{equation}
 
 Dielectric relaxation time is only important when electric potential is highly affected by redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
-\subsubsection{Numerical Limitations}
+\subsection{Numerical Limitations}
 
 There are also numerical limits which can affect convergence and stability of a solution when using an explicit scheme. These are called Courant-Friedrichs-Lewy (CFL)conditions. We can look at CFL conditions for pure diffusion and pure drift.
 
@@ -398,21 +396,25 @@ This is the second numerical restriction on our simulation. Interestingly the co
 
 Both physical and numerical constraints have to be evaluated and mesh density and time step need to be selected in order to satisfy all these conditions discussed above. Particularly mesh density have a very strong effect on the accuracy, stability and computational efficiency of the simulation. Increasing mesh density increases the computational time needed to calculate every time step since there are more points. Additionally because of the CFL condition for diffusion time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be fixed by using a non uniform mesh which can dramatically decrease the amount points needed for the simulation. Unfortunately this is usually not very straightforward to implement in a finite difference scheme. Also small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Numerical and physical constraints in memristor simulation are further discussed in chapter 5.
 
-\subsubsection{Explicit vs. Implicit Solution}
+\subsection{Explicit vs. Implicit Solution}
 
 Overall explicit and implicit solutions have their advantages and disadvantages. Choosing one over the other requires careful analysis of the problem. Implicit solution by itself is unconditionally stable therefore it can support very large time steps without any stability issues. However with increased time step, the accuracy of the transient solution decreases but the steady state solution does not get affected. So for steady state solutions it is better to use an implicit method which can reach steady state very quickly. This advantage disappears when particle densities are high enough to affect the electic field and Poisson's equation needs to be solved for every time step. In this scenario the maximum step size is determined by dielectric relaxation time which tends to be around the same order as CFL conditions. Now since the time step is going to be around the same order for both implicit and explicit methods it makes sense to use the explicit one because it is computationally less expensive.
 
 Usually implicit solution is preferable when there is no coupling between Poisson's equation and drift diffusion equations and the transient response is not very important. Explicit solution have an edge over the implicit solution due to its lower computational resource requirement when the equations are coupled and the time steps for both schemes are restricted to fairly small values. For memirstor simulation, drift diffusion equations are strongly coupled with Poisson's equation. For this reason all memristor simulations use explicit time stepping. 
 
 \clearpage
-\subsection{Simulation Procedure}
-Over the past section we have gone through different equations and schemes that are used to solve drift diffusion and Poisson's equation. Using all this information we can create a general strategy to solve a drift diffusion problem. 
+\section{Equations Used for Memristor Simulation}
 
-First of all we need to define the geometry and physical properties of the problem as well as all initial and boundary conditions. Initialization sets up the first time step of the problem at $t=0$. Once this first step is done we can generate required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
 
-The solution process starts by solving Poisson's equation using the charge distribution at current time step. Once it is solved we can calculate the electric field distribution and use it in drift diffusion equations to calculate current density distribution. One important choice to make here is to either use finite difference method or Scharfatter-Gummel method in order to calculate current density. The conditions that favor one or the other are not simple to determine and will be discussed in detail in the next chapter. The next decision to be made is either to use an implicit or explicit solution which will determine if we can directly calculate the next step or need to solve a matrix. Finally once we have the carrier distribution for the next step we can check for a stopping criterion. If this criterion is not met then the whole process will start all over again with a small difference. If the charge concentration is so small that the equations are decoupled then we can skip solving Poisson's equation again. This can significantly speed up the simulation since we only need to solve for the continuity equation after this point.
+\clearpage
+\section{Simulation Procedure}
+Different equations and schemes that are used to solve drift diffusion and Poisson's equation was shown over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. 
 
- There are two different criteria that can be used to decide weather to finish the simulation or not. We can stop if we intend to solve for a certain time frame and we reached the final time. This is quite simple since we look at the current time and if it is equal or greater than the required simulation time we can just stop the simulation. We could also be interested in reaching a steady state solution. This can be determined by comparing the current carrier distributions with distribution at the previous time step. If the difference is very small then we can conclude that the simulation has reached steady state and it is time stop the solution process. This makes physical sense since it makes sure that the time derivative of the carrier densities are close to zero. The flowchart in figure \ref{flowchart} summarizes the solution procedure.
+The geometry and physical properties of the problem as well as all initial and boundary conditions needs to be defined at the beginning of the solution process. Initialization sets up the first time step of the problem at $t=0$. Once this first step is done it is possible generate required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
+
+The solution process starts by solving Poisson's equation using the charge distribution at current time step. Once it is solved, the electric field distribution is calculated and used in drift diffusion equations to calculate current density distribution. Next explicit time stepping is used to determine carrier density in the next time step. Finally once the carrier distribution for the next step is calculated it is possible check for a stopping criterion. If this criterion is not met then the whole process will start all over again with a small difference. If the charge concentration is so small that the equations are decoupled then it is possible to skip solving Poisson's equation for the rest of the simulation which speeds up the solution process.
+
+ There are two different criteria that can be used to decide weather to finalize the simulation process or not. The simulation can stop if it reaches a certain time point. This is quite simple since the current time can be checked and if it is equal or greater than the required simulation time then the simulation can be stopped. It is also possible to simulate until the simulation reaches steady state. This can be determined by comparing the current carrier distributions with distribution at the previous time step. If the difference is very small then the time derivatives of the carrier densities are very close to zero and the simulation has reached steady state therefore the simulation process can be stopped. The flowchart in figure \ref{flowchart} summarizes the solution procedure.
 
 
 \clearpage
@@ -423,3 +425,4 @@ The solution process starts by solving Poisson's equation using the charge distr
 \caption{Finite Difference Drift-Diffusion Scheme Flowchart} 
 \label{flowchart}
 \end{figure}
+

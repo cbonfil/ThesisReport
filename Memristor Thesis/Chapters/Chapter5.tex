@@ -15,7 +15,7 @@ Following figure (\ref{MemStc}) shows the structure of a simple memristor which 
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.7]{Mem1}
-\caption{} 
+\caption{The structure of the memristor used for simulation (not to scale)} 
 \label{MemStc}
 \end{figure}
 
@@ -42,7 +42,7 @@ It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristo
 
 
 \clearpage
-\subsection{1-D Memristor Approximation}
+\section{1-D Memristor Approximation}
 
 The horizontal cross section from figure \ref{MemStc} has the most crucial elements of the memristor but its simulation in 1-D is not straight forward. This cross section through the PEDOT does not include the vertical movement of lithium. Without this effect, PEDOT is just a regular conductor with a uniform current density. In order to overcome this problem a generation/recombination term for lithium ions, calculated at every time step, was added to capture the vertical movement in addition to regular drift diffusion equations which represents the horizontal movement. This generation/recombination term can be symbolized as a current source with a resistor connected to all the nodes (figure \ref{MemStc15}). Perchlorate ions were not included in the simulation since they do not move into the PEDOT.
 
@@ -58,22 +58,37 @@ The lithium source has two different terms, one for drift and another one for di
 Since the main characteristic of memristor is the change in resistivity over time it is important to develop a standard approach for measuring it. For the simulations in this chapter and the following one, first all the simulations were run until steady state without the movement of lithium/perchlorate ions. Lithium and perchlorate ions start to move after the steady state has been reached. The movement of ions create another transient which includes changes in resistivity. The current density (at steady state) obtained from the initial simulation was used as a normalizing factor in order to determine the changes in resistivity after the ion movement has started.
 
 \clearpage
+\section{1-D Memristor Simulations}
+\textbf{(add intro)}
 \subsection{1-D Memristor Simulation Using a Pulse Train}
   
 For the following simulation a potential pulse train, slow enough to let the memristor reach steady state, was applied on the left contact. Following plot \ref{MemResTrain} shows the resistivity measured using both contacts separately. As expected the resistance of the device more than doubled as the lithium ions move in. Additionally, it can be seen from the graph \ref{MemResTrain} the resistivity measurements from left and right contacts are not always the same over the duration of the simulation. This is normal since this is due to PEDOT layer losing holes on one side and gaining holes on the other which produces a difference in measured resistivity between contacts. 
 
-The resistivity in figure \ref{MemResTrain} shows a sudden drop when the potential is switched from 1 to 0 and vice versa. This sudden drop occurs because of the accumulation of lithium ions and holes near the negative contact which opposes the electric field generated due to the applied potential (see figure \ref{MemEss}). When the potential changes suddenly, previously opposing electric field now helps the movement of holes and lithium towards the other end of the device. This additional electric field momentarily reduces the resistivity of the device.
-
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.45]{1DMemPulseTrain}
+\includegraphics[scale=0.40]{1DMemPulseTrain}
 %\includegraphics[scale=0.60]{Ex5DCResistivity}
 \caption{Change in resistivity over time due to applied potential} 
 \label{MemResTrain}
 \end{figure}
 
+The resistivity in figure \ref{MemResTrain} shows a sudden drop when the potential is switched from 1 to 0 and vice versa. This sudden drop occurs because of the accumulation of lithium ions and holes near the negative contact which opposes the electric field generated due to the applied potential (see figure \ref{MemEss}). When the potential changes suddenly, previously opposing electric field now helps the movement of holes and lithium towards the other end of the device. This additional electric field momentarily reduces the resistivity of the device.
 
-\clearpage
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.60]{1DMemPotentialSS}
+\caption{Potential at steady state} 
+\label{MemVss}
+\end{figure}
+
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.60]{1DMemEfieldSS}
+\caption{Electric field at steady state} 
+\label{MemEss}
+\end{figure}
+
 Figure \ref{MempLi} demonstrates the replacement of holes by lithium ions over time which directly effects resistivity seen in figure \ref{MemResistivityTrain}.  As lithium ions get pulled in from the electrolyte toward the contact they accumulate inside PEDOT and push holes out via coulomb forces. Decreased hole concentration in the PEDOT increases the resistivity of the material. This change in resistivity over time is illustrated in figure \ref{MemResTrain}.
 
 \begin{figure}[!htp]
@@ -102,31 +117,10 @@ The minimum resistance of this device is just the total resistance of the PEDOT 
 \label{MemResistivityTrain}
 \end{figure}
 
-
-
-\clearpage
-(the following figures can go in appendix ?)
-
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.60]{1DMemPotentialSS}
-\caption{Potential at steady state} 
-\label{MemVss}
-\end{figure}
-
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.60]{1DMemEfieldSS}
-\caption{Electric field at steady state} 
-\label{MemEss}
-\end{figure}
-
 \clearpage
 \subsection{1-D Memristor Simulation Using a Sinusoid}
 
-Memristor with a pulse train simulation showed the change in resistivity over time due to an applied potential but it does not demnostrate any memory effects. The memory effect of the memristor can be clearly demonstrated in an I-V curve using sinusoidal potential. Following four graphs (figure \ref{Bowtie}) were created using an AC potential with different frequencies at the contacts. All the plots show that current can have more than one value for the same potential at different times. This means that simulated memristor's past states affects its present output, therefore the device has memory. 
+Memristor with a pulse train simulation showed the change in resistivity over time due to an applied potential but it does not demnostrate any memory effects. The memory effect of the memristor can be clearly demonstrated in an I-V curve using sinusoidal potential. Following four graphs (figure \ref{Bowtie}) were created using an AC potential with different frequencies at the contacts. All the plots show that current can have more than one value for the same potential at different times. This means that simulated memristor's past states affects its present output, therefore the device has memory. There is a pinch in the current for negative applied potential because it is measured from one contact which sees a higher resistance for a period of time during transient. 
 
 The sudden changes in current around 0 V can be attributed to the density limiting mechanism for lithium. Instead of a slowdown in the movement of lithium ions near maximum concentration, the current flow into that region is completely blocked. Even though this makes the lithium density more responsive to changes, sudden movement block combined with large time steps can result in fast changes which can be directly seen as abrupt changes in the hole/lithium current density during transient simulations.  
 
@@ -139,7 +133,6 @@ The sudden changes in current around 0 V can be attributed to the density limiti
 
 As AC potential pushes lithium ions from one side to the other, an equilibrium is reached over time. The changes in resistivity starts to repeat itself and after a while it becomes  periodic. Figure \ref{BowtieCurr} shows the changes in memristor current over time for the right metal contact. At first, as lithium moves into the PEDOT there is a drop in current on average. Once enough lithium settles into the PEDOT the increase in resistiviy simply shifts from left to right but it stays fairly constant on average. The final figure (\ref{BowtieRes}) show the changes in resistivity of PEDOT over time. The maximum value of the resistivity increases over time until it reaches a steady value on either side.
 
-(The current is pinched for negative potential because it is measured from the contact on the right side) 
 
 \begin{figure}[!htp]
 \centering
@@ -261,7 +254,7 @@ Lithium mobility can be scaled to match the experimental values
 \label{}
 \end{figure}
 
-Resistivity change due to applied potential. This behaves unexpectedly. I thought the resistivity would go higher with increased applied potential. Probably because of 1 line approximation for the electrolyte, the vertical potential is probably off.
+Resistivity change due to applied potential.(This behaves unexpectedly. I thought the resistivity would go higher with increased applied potential. Probably because of 1 line approximation for the electrolyte, the vertical potential is probably off)
 
 \begin{figure}[!htp]
 \centering
@@ -269,5 +262,3 @@ Resistivity change due to applied potential. This behaves unexpectedly. I though
 \caption{} 
 \label{}
 \end{figure}
-
--Can add Notch simulation vs. notch experiment. They visually match
