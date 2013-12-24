@@ -15,7 +15,7 @@ The physical dimensions of the memristor was presented in the previous chapter. 
 
 An alternative solution to this meshing problem is using an infinitesimally thin PEDOT:PSS layer in a 2-D simulation. This method is used for the memristor simulations in this chapter. For PEDOT:PSS effects in 2-D are ignored since the layer thickness is 10000 times smaller than other dimensions such as the thickness of the electrolyte. For holes in the conductive layer only the horizontal component of the electric field is used and all the current densities are calculated in 1-D. Following plots compare two simulations with PEDOT:PSS thicknesses higher than the actual device and a 2-D simulation with 1-D PEDOT:PSS layer.  
 
-The memristor was simulated using a constant potential at the contacts. Left metal contact is held at 1 V and the right metal contact is grounded. Resistivity measured at the right contact for different PEDOT:PSS thicknesses is shown in figure \ref{thick_resistivity}. Resistivity plots show as the thickness gets smaller the device responds faster. This is due to the decrease in the distance lithium ions have to travel inside PEDOT:PSS in order to change its resistivity. Another change in the behavior of the memristor is its resistivity at steady state. The increase in resistivity for different thicknesses at steady state can be attributed to the ion/hole interaction at the interface between PEDOT:PSS and electrolyte solution which is illustrated in the following figures \ref{thick_p_ss}, \ref{thick_li_ss} and \ref{thick_perch_ss}. \textbf{(not sure about this)}
+The memristor was simulated using a constant potential at the contacts. Left metal contact is kept at 1 V and the right metal contact is grounded. Resistivity measured at the right contact for different PEDOT:PSS thicknesses is shown in figure \ref{thick_resistivity}. Resistivity plots show as the thickness gets smaller the device responds faster. This is due to the decrease in the distance lithium ions have to travel inside PEDOT:PSS in order to change its resistivity. Another change in the behavior of the memristor is its resistivity at steady state. The increase in resistivity for different thicknesses at steady state can be attributed to the ion/hole interaction at the interface between PEDOT:PSS and electrolyte solution which is illustrated in the following figures \ref{thick_p_ss}, \ref{thick_li_ss} and \ref{thick_perch_ss}. \textbf{(not sure about this)}
 
 \begin{figure}[!htp]
 \centering
@@ -24,7 +24,7 @@ The memristor was simulated using a constant potential at the contacts. Left met
 \label{thick_resistivity}
 \end{figure}
 
-Figure \ref{thick_p_ss} shows hole distribution in PEDOT:PSS at steady state for different thicknesses. The electrolyte is on top of PEDOT:PSS but it is not visible in these plots since its hole concentration is zero at all times but they do affect the distribution of holes. As lithium ions move into the PEDOT:PSS they move towards the negative contact and pushe the holes out. This effect can be seen in figures \ref{thick_p_ss} and  \ref{thick_li_ss}. For all thicknesses there is a section of the hole density which is missing due to lithium ions.
+Figure \ref{thick_p_ss} shows hole distribution in PEDOT:PSS at steady state for different thicknesses. The electrolyte is on top of PEDOT:PSS but it is not visible in these plots since its hole concentration is zero at all times but they do affect the distribution of holes. As lithium ions move into the PEDOT:PSS they move towards the negative contact and pushes the holes out. This effect can be seen in figures \ref{thick_p_ss} and  \ref{thick_li_ss}. For all thicknesses there is a section of the hole density which is missing due to lithium ions.
 
 The accumulation of holes at the surface of the PEDOT:PSS is due to perchlorate ions accumulating near the positive contact in the electrolyte (figure \ref{thick_perch_ss}). As perchlorate ions accumulate to cancel the electric field they also attract holes towards the surface.
 \begin{figure}[!htp]
@@ -166,15 +166,35 @@ Above plots showed that changing the thickness of the PEDOT:PSS does not have a 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.45]{2D_Memristor_5e-1Hz}
+\includegraphics[scale=0.40]{2D_Memristor_5e-1Hz}
 \caption{} 
 \label{}
 \end{figure}
 
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.33]{Bowtief01Vchng}
+\caption{} 
+\label{}
+\end{figure}
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.50]{2D_Memristor_V_chng}
+\includegraphics[scale=0.65]{MemF}
+\caption{} 
+\label{}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.35]{experimental}
+\caption{} 
+\label{}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.45]{Notch_flip_side}
 \caption{} 
 \label{}
 \end{figure}
