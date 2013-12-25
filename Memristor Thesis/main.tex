@@ -55,10 +55,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
 
 % PDF meta-data
-\hypersetup{pdftitle={\ttitle}}
-\hypersetup{pdfsubject=\subjectname}
-\hypersetup{pdfauthor=\authornames}
-\hypersetup{pdfkeywords=\keywordnames}
+
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -66,77 +63,87 @@
 
 \begin{titlepage}
 \begin{center}
+\LARGE
+\textbf{Drift Diffusion Simulation of an Organic Memristor}
+\vspace{6 mm}
+\large 
+\begin{center}
+by 
+\vspace{6 mm}
+\end{center}
+\large  
+Cem Bonfil, B. Eng.
+\end{center}
 
-\textsc{\LARGE Carleton University}\\[1.5cm] % Carleton University
-\textsc{\Large Master's Thesis}\\[0.5cm] % Thesis type
 
-\HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries Simulation of an Organic Memristor}\\[0.4cm] % Thesis title
-\HRule \\[1.5cm] % Horizontal line
- 
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\
-{Cem Bonfil} % Author name - remove the \href bracket to remove the link
-\end{flushleft}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-\begin{flushright} \large
-\emph{Supervisor:} \\
-{Dr. Tom Smy}\\ % Supervisor name - remove the \href bracket to remove the link  
-{Dr. Steven P. McGarry}
-\end{flushright}
-\end{minipage}\\[3cm]
- 
-\large \textit{A thesis submitted in fulfilment of the requirements\\ for the degree of Master's of Science in Electrical and Computer Engineering }\\[0.3cm] % University requirement text
-\textit{in the}\\[0.4cm]
-Carleton University\\[2cm] % Research group name and department name
 
-{\large \today}\\[4cm] % Date
-\includegraphics[scale=0.25]{Logo.png} % University/department logo - uncomment to place it
+\large  
+\begin{center}
+A thesis submitted to the
+Faculty of Graduate and Postdoctoral Affairs
+in partial fulfillment of
+the requirements for the degree of
+\end{center}
 
-\vfill
+\vspace{6 mm}
+\large  
+\begin{center}
+Master of Applied Science
+\end{center}
+\large  
+\begin{center}
+in
+\end{center}
+\large  
+\begin{center}
+Electrical and Computer Engineering
+\end{center}
+
+\vspace{6 mm}
+
+\large  
+\begin{center}
+Ottawa-Carleton Institute for Electrical and Computer Engineering
+\end{center}
+
+\large  
+\begin{center}
+Department of Electronics
+\end{center}
+\large  
+\begin{center}
+Carleton University
+\end{center}
+\large  
+\begin{center}
+Ottawa, Ontario, Canada
+\end{center}
+
+\vspace{6 mm}
+\large  
+\begin{center}
+\copyright 2014, Cem Bonfil
 \end{center}
 
 \end{titlepage}
 
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE
-%	Your institution may give you a different text to place here
-%----------------------------------------------------------------------------------------
 
 
+\newpage % Start a new page
 
-%----------------------------------------------------------------------------------------
-%	QUOTATION PAGE
-%----------------------------------------------------------------------------------------
+\large
 
-\pagestyle{empty} % No headers or footers for the following pages
+\textbf{ABSTRACT}
 
-\null\vfill % Add some space to move the quote down the page a bit
 
-\textit{"Quote"}
-
-\begin{flushright}
-Cem Bonfil
-\end{flushright}
-
-\vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
-
-\clearpage % Start a new page
-
-%----------------------------------------------------------------------------------------
-%	ABSTRACT PAGE
-%----------------------------------------------------------------------------------------
-
-\addtotoc{Abstract} % Add the "Abstract" page entry to the Contents
-
-\abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
-
+\normalsize
+\begin{center}
 The device that is simulated in this thesis has a conducting PEDOT:PSS sheet with two metal contacts and an electrolyte solution containing lithium and perchlorate ions is placed on top of the conducting sheet. When a potential is applied at both ends of the conducting polymer, lithium ions, which act as reversible counter doping agents, travel into the PEDOT and modify the conductivity of the sheet. Overall this system mainly consists 4 different charge carriers, 3 (holes, lithium and perchlorate ions) mobile and 1 stationary (electrons).
-}
+\end{center}
 
-\clearpage % Start a new page
+
+
+\newpage % Start a new page
 
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
