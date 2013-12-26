@@ -6,8 +6,11 @@
 
 \lhead{Chapter 2. \emph{Theory}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 \begin{doublespace}
+Memristor studied in this thesis has a strip of PEDOT:PSS as a conductor. A drop of an electrolytic solution which has lithium and perchlorate ions is placed on top of this conducting strip. When the conductor has an applied potential, lithium ions inside the electrolyte solution migrate into PEDOT:PSS and modifiy its conductivity. Hole transport inside PEDOT:PSS as well as lithium and perchlorate movement is modeled using basic drift diffusion equations which are derived in the first part of this chapter. The second half of the chapter shows analytic solutions to drift diffusion equations which will be used to test the numerical methods derived in the following chapter.
+
+
 \section{Carrier Transport Equations}
-Drift diffusion equations, which are based on BTE, need to be solved in order to model the complex behaviour of the memristor. Drift-diffusion equations can be obtained by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model and serve as guidelines for where this model can be used, therefore they need to be well understood.
+Drift diffusion equations, which are based on BTE, need to be solved in order to model the complex behaviour of the memristor. Drift-diffusion equations are derived by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model and serve as guidelines for where this model can be used, therefore they need to be well understood.
 
 Derivation of Boltzmann transport equation starts by stating that any charged particles can be defined its position in space \textbf{r} and momentum \textbf{k} in time \textbf{t} using a probability distribution function f(k,r,t). This results in the most general form of Boltzmann transport equation.
 
@@ -16,9 +19,9 @@ Derivation of Boltzmann transport equation starts by stating that any charged pa
 \end{equation}
 
 This general form of BTE needs to be expanded and relevant physical equations need to be placed in to get an appropriate equation describing a specific problem or a device. 
-Many different device simulators use some sort of approximation to BTE. In a semiconductor simulations they are commonly used for the movement and the density distribution of charge carriers, holes (p) and electrons (n). 
+Many different device simulators use some sort of approximation to BTE. In a semiconductor simulations they are commonly used for the movement and the density distribution of charge carriers such as holes (p) and electrons (n). 
 
-After this brief introduction to BTE, rather than going through the tedious mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation can be discussed in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to electric field is called the drift current. The relationship between drift velocity and the electric field is given by the following equation:
+After this brief introduction to BTE, rather than going through the mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation can be discussed in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to electric field is called the drift current. The relationship between drift velocity and the electric field is given by the following equation:
 
 \begin{equation}
 v=\mu E
@@ -30,7 +33,7 @@ $\mu$ is called mobility constant and it determines the speed at which the parti
 J_E=q n\mu E=q n v 
 \end{equation}
 
-Where q is the elementary charge and n is the electron density. In addition to the previous assumptions, it is assumed that the lattice is perfectly uniform, has a uniform temperature distribution and all the particles are close to the temperature of the lattice. Based on this assumption we can say that all the particles that move due to thermal effects has the same thermal velocity ($v_{th}$) and mean free path ($l_f$). These quantities can be combined into one single coefficient called diffusion constant. 
+Where q is the elementary charge and n is the electron density. In addition to the previous assumptions, it is assumed that the lattice is perfectly uniform, has a uniform temperature distribution and all the particles are close to the temperature of the lattice. Based on this assumption it is possible say that all the particles that move due to thermal effects has the same thermal velocity ($v_{th}$) and mean free path ($l_f$). These quantities can be combined into one single coefficient called diffusion constant. 
 
 \begin{equation}
 D=v_{th} \;l_f
@@ -48,7 +51,7 @@ Where k is the Boltzmann constant and T is the lattice temperature. This results
 J_D=qD\frac{dn}{dx}
 \end{equation}
 
-Unlike the drift current density, which is directly related to the carrier density, diffusion current density is related to the carrier density's first order derivative in space. Combining these two terms we get the current density equation for electrons in one dimension.
+Unlike the drift current density, which is directly related to the carrier density, diffusion current density is related to the carrier density's first order derivative in space. Combining these two terms results in the following the current density equation for electrons in one dimension.
 
 \begin{equation}
 \vec{J_n^x}=q \mu_{n} n \vec{E_x}+qD_{n} \frac{dn}{dx} 
@@ -62,7 +65,7 @@ This equation can be easily extended to higher dimensions by simply using the ap
 \vec{J_n^y}=q \mu_{n} n \vec{E_x}+qD_{n} \frac{dn}{dy} 
 \end{equation}
 
-Current density equations can be used for both positive and negatively charged particles by changing the sign of the diffusion current density.
+Current density equations can be used for both positively and negatively charged particles by changing the sign of the diffusion current density.
 
 \begin{equation}
 \vec{J_p^x}=q \mu_{p} p \vec{E_x}-qD_{p} \frac{dp}{dx} 
@@ -70,9 +73,9 @@ Current density equations can be used for both positive and negatively charged p
 \end{equation}
 Anisotropic drift and diffusion coefficients can be handled with ease by using different coefficients for different directions. Also Mobility and diffusivity can be a function of any variable such as position or temperature. This is a useful property for a memristor simulation since hole mobility depends on lithium density in the PEDOT:PSS at any given position. 
 
-For the memristor simulation the movement of lithium and perchlorate ions inside the electrolyte is modeled as if they were moving in a solid state device. So all the derivations that were made for positive and negatively charged particles include holes and electrons as well as lithium and perchlorate ions. Viscosity of the liquid and all possible deformations due to movement of ions are simply ignored. This approximation was made based on the assumption that the amount of ions in the electrolyte are very large compared what PEDOT:PSS can absorb. Additionally the solution is very dilute. So the distribution of ions inside the electrolyte remain mostly unchanged and the exchange of ions do not disturb the shape or the physical characteristics of the solution on top of PEDOT:PSS.  
+For the memristor simulation the movement of lithium and perchlorate ions inside the electrolyte is modeled as if they were moving in a solid state device. So all the derivations that were made for positively and negatively charged particles include holes and electrons as well as lithium and perchlorate ions. Viscosity of the liquid and all possible deformations due to movement of ions are simply ignored. This approximation was made based on the assumption that the amount of ions in the electrolyte are very large compared what PEDOT:PSS can absorb. Additionally the solution is very dilute. So the distribution of ions inside the electrolyte remain mostly unchanged and the exchange of ions do not disturb the shape or the physical characteristics of the solution on top of PEDOT:PSS.  
 
-Current density equations by themselves are not enough to solve a time dependent problem. It is necessary to account for the movement of charge over time which is captured in the continuity equation. It is basically a statement of conservation of particle density over time. The change in the amount of carriers over time in a particular area must be equal to the difference in current density over the same area. Additionally the amount of charge can change due to generation-recombination of charged particles.
+Current density equations by themselves are not enough to solve this time dependent problem. It is necessary to account for the movement of charge over time which is captured in the continuity equation. It is basically a statement of conservation of particle density over time. The change in the amount of carriers over time in a particular area must be equal to the difference in current density over the same area. Additionally the amount of charge can change due to generation-recombination of charged particles.
 
 
 \begin{equation}
@@ -85,7 +88,7 @@ Current density equations by themselves are not enough to solve a time dependent
 \label{conp}
 \end{equation}
 
-$U_{n}$ and $U_{p}$ are net generation recombination rates. These terms were not used for the modeling of the memristor. \textbf{(Not sure how to justify this. Maybe I can say I have not used it because there is no equation/model for it ? )}
+$U_{n}$ and $U_{p}$ are net generation recombination rates. These terms were not included in the modeling of the memristor. 
 
 Electric field can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied potential. It is possible calculate the potential distribution over an area by using Poisson's equation. Once the potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential.
 
@@ -115,7 +118,7 @@ I=\int\limits_{s}^{}\vec{J_{tot}} \cdot ds = \int\limits_{s}^{}(J_n+J_p+\varepsi
 \end{equation}
 
 
-Through the electric field and net charge distribution, Poisson's equation and drift-diffusion equations are coupled and non linear. The strength of the non linearity depends on the size of the device and charge density which determines the total amount of charge over an area. In a strongly coupled system of differential equations, small changes in either the charge density or electric field can easily cause instabilities in the simulation. This is further discussed in the next chapter while developing a numerical scheme to solve the system of equations described in this chapter. 
+Through the electric field and net charge distribution, Poisson's equation and drift-diffusion equations are coupled and non linear. The strength of the non linear coupling depends on the size of the device and charge density which determines the total amount of charge over an area. In a strongly coupled system of differential equations, small changes in either the charge density or electric field can easily cause instabilities in the simulation. This is further discussed in the next chapter while developing a numerical scheme to solve the system of equations described in this chapter. 
 
 The main equations for the drift-diffusion model that are used for memristor simulation can be compactly written as:
 
@@ -143,7 +146,7 @@ The main equations for the drift-diffusion model that are used for memristor sim
 
 This system of equations consist of 4 different charge carriers. There are 3 mobile species lithium ($N_{D}^{+}$) and perchlorate ($N_{A}^{-}$) and holes (p) and one fixed charge, electrons (n). The particles are coupled to each other through Poisson's equation since they all carry electric charge. 
 
-Unfortunately even after so many approximations and simplifications to BTE, drif diffusion equations have analytical solutions for only few isolated cases. Analytical solutions developed in the rest of this chapter will be used in testing of the numerical method developed for simulating a memristor. 
+Unfortunately even after many approximations and simplifications to BTE, drif diffusion equations have analytical solutions for only few isolated cases. Analytical solutions developed in the rest of this chapter will be used in testing of the numerical method developed for simulating a memristor. 
 
 \clearpage
 \section{Analytic Solutions}
@@ -159,6 +162,7 @@ J_p(x)=q \mu_{p} p E-qD_{p} \frac{dp}{dx} =0
 \end{equation}
 
 Total current density will only be zero when the drift current density generated by the electric field is completely balanced by the diffusion current density.
+
 \begin{equation}
 q \mu_{p} p E=qD_{p} \frac{dp}{dx}
 \end{equation}
@@ -175,7 +179,7 @@ p(x)=Ce^{ax}
 \label{px}
 \end{equation}
 
-\textbf{C} and \textbf{a} are arbitrary constants. Now we can insert equation \eqref{px} into \eqref{pdif}
+\textbf{C} and \textbf{a} are arbitrary constants. Equation \eqref{px} can be placed into \eqref{pdif}.
 
 \begin{equation}
  \frac{\mu_{p} E}{D_{p}} Ce^{ax}  = a Ce^{ax}
@@ -212,7 +216,7 @@ So the full solution takes the following form:
 p(x)=\frac{\int\limits_{0}^{L}p(t=0,x)dx}{\frac{D_p}{\mu_p E}[e^{\frac{\mu_p E}{D}L} -1]}e^{\frac{\mu_{p} E}{D_{p}}x}
 \end{equation}
 
-The solution shows that increasing electric field will concentrate the charge density at the edge of the area. Physically this behavior is reasonable, since the force that is pushing the particles against a wall is getting greater and it is making the charges accumulate further. Following plot demonstrates the effect of increasing electric field on hole distribution.
+The solution shows that increasing electric field will concentrate the charge density at the edge of the area. Physically this behavior is reasonable, since the force that is pushing the particles against a wall is getting greater and it is making the charges accumulate even more. Following plot demonstrates the effect of increasing electric field on hole distribution.
 
 \begin{figure}[!htp]
 \centering
@@ -223,7 +227,7 @@ The solution shows that increasing electric field will concentrate the charge de
 \clearpage
 \subsection{Transient Solution Over an Infinite Domain}
 
-The problem that will be solved in this section consists of an initial particle density distribution subject to a uniform electric field over an infinitely long conductor. The charge distribution will drift and diffuse over time. This requires a transient solution and the continuity equation (\ref{conn}) needs to be employed. Again, charged particles do not affect the electric field therefore solution of Poisson's equation is not necessary. 
+The problem that will be solved in this section consists of an initial particle density distribution subject to a uniform electric field over an infinitely long conductor. The charge distribution will drift and diffuse over time. This requires a transient solution and the continuity equation (\ref{conn}) needs to be solved. Again, charged particles do not affect the electric field therefore solution of Poisson's equation is not necessary. 
 
 The first step of the solution process is the insertion of \eqref{cdenn} into \eqref{conn}.
 
@@ -242,7 +246,7 @@ For 1-D above equation can be simplified to:
 \label{adifg}
 \end{equation}
 
-The separation of variables can be used which assumes that the solution can be separated into a time and space dependent functions.
+Using separation of variables it is possible to assume that the solution can be separated into a time and space dependent functions.
 \begin{equation}
 n(t,x)=n(t)n(x)=n_t n_x
 \label{adifn}
@@ -298,7 +302,7 @@ Combining equation \eqref{nt}, \eqref{nx} and \eqref{k} to get the initial form 
 n=n_tn_x=Ce^{(-\omega^2 D + j\omega \mu_n E)t} e^{-j\omega x}
 \end{equation}
 
-The application of superposition principle leads to:
+The application of the superposition principle leads to:
 
 \begin{equation}
 n=n_tn_x=\int\limits_{-\infty}^{\infty}C(\omega)e^{(-\omega^2 D + j\omega \mu_n E)t} e^{-j\omega x}d\omega
@@ -366,7 +370,7 @@ Following plots show the evolution of two particle densities with different init
 \end{figure}
 \clearpage
 \subsection{PN Junction}
-Previous analytical solutions involved the solution of Poisson's equation and continuity equation which were not coupled. Now we can look at an example where these equations are tightly coupled. There are usually no direct analytical solution for coupled equation but it is possible to get a closed form solution by making use of certain approximations. One simple example of this situation is an abrupt p-n junction. An abrupt p-n junction is created when two materials of uniform opposite doping,p type and n type, are brought together. A p type material has an excess number of acceptors $N_A$ and an n type material has an excess number of donors $N_D$. The junction is defined at the interface where $N_A=N_D$. 
+Previous analytical solutions involved the solution of Poisson's equation and continuity equation which were not coupled. An example where these equations are tightly coupled will be examined in this section. There are usually no direct analytical solution for coupled equations but it is possible to get a closed form solution by making use of certain approximations. One simple example of this situation is an abrupt p-n junction. An abrupt p-n junction is created when two materials of opposite doping,p type and n type, are brought together. A p type material has an excess number of acceptors $N_A$ and an n type material has an excess number of donors $N_D$. The junction is defined at the interface where $N_A=N_D$. 
 
 \begin{figure}[!htp]
 \centering
@@ -374,8 +378,7 @@ Previous analytical solutions involved the solution of Poisson's equation and co
 \caption{PN junction electron/hole density} 
 \end{figure}
 
-
-In this example an analytical solution for an abrupt p-n junction will be derived. To get a solution for this problem depletion region approximation we will be used. This approximation starts by assuming that the charges are fully depleted around the junction. All the electric field is confined in the depletion region and regions far away from the junction are neutral. Based on this the net charge density over the entire region is:
+In this example an analytical solution for an abrupt p-n junction will be derived. To get a solution for this problem depletion region approximation will be used. This approximation starts by assuming that the charges are fully depleted around the junction. All the electric field is confined in the depletion region and regions far away from the junction are neutral. Based on this the net charge density over the entire region is:
 
 \begin{equation}
 \frac{d \vec{E} }{dx}=\frac{\rho}{\varepsilon}=\frac{q}{\varepsilon}(-N_{A}+N_{D})
@@ -437,7 +440,7 @@ V(x) = \begin{cases}
      \end{cases}
 \end{equation}
 
-The potential at one side of the junction can be set to zero. Defining the voltage on the p type side as zero, such that at x= $âˆ’x_p$, V=0. This gives the constant C3 as:
+The potential at one side of the junction can be set to zero. Defining the voltage on the p type side as zero, such that at x= $x_p$, V=0. This gives the constant $C_3$ as:
 
 
 \begin{equation}
@@ -448,7 +451,7 @@ C_{3}=\frac{qN_{A}}{2\varepsilon}x_{p}^{2}
 V(x)=\frac{qN_{A}}{2\varepsilon}(x+x_{p})^{2}  \; \; \;\;  \text{for}  -x_{p}\leq x \leq 0 \\
 \end{equation}
 
-C4 can be found by using the fact that the potential on the n-type side and p-type side are equal at the interface, such that:
+$C_4$ can be found by using the fact that the potential on the n-type side and p-type side are equal at the interface, such that:
 
 \begin{equation}
 V_{p}(x=0)=\frac{qN_{A}}{2\varepsilon}x_{p}^2=V_{n}(x=0)=\frac{qN_{A}}{2\varepsilon}(x_{n}-\frac{x}{2})x+C_{4}
