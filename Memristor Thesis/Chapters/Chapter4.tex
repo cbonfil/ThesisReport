@@ -8,10 +8,10 @@
 
 \begin{doublespace}
 
-In the past chapter went through the details of how to solve drift-diffusion and Poisson's equation using finite difference method. In this chapter steady state and transient analysis for drift diffusion equations using finite differnce is compared to analytical solutions as well as a commercially available simulator called 'COMSOL Multiphysics' which uses finite element method instead of finite difference. Following test cases were made to ensure that the key parts of the finite difference scheme runs properly and does not produce unexpected results. 
+Past chapter went through the details of how to solve drift-diffusion and Poisson's equation using finite difference method. In this chapter steady state and transient analysis for drift diffusion equations using finite differnce is compared to analytical solutions as well as a commercially available simulator called 'COMSOL Multiphysics' which uses finite element method instead of finite difference. Following test cases were made to ensure that the key parts of the finite difference scheme runs properly and does not produce unexpected results. 
 
 \section{Solution for Closed Boundary}
-In this section the accuracy of the finite difference solution in steady state will be tested. In order to do this simple 1-D problem where with a finite number of negatively charged particles over a certain distance subject to constant electric field is used. This is the same problem that was solved analytically in section 3.3.1. It is also assumed that the charge density is very low and does not affect the electric field. Both ends of the simulation domain have no flow boundary conditions for charged particles. The solution process requires an initial distribution for charge density over the area. For this problem the density of the negative particles was initialized to be uniform over the entire area. 
+In this section the accuracy of the finite difference solution in steady state will be tested. In order to do this simple 1-D problem with a finite number of negatively charged particles over a certain distance subject to constant electric field is used. This is the same problem that was solved analytically in section 3.3.1. It is also assumed that the charge density is very low and does not affect the electric field. Both ends of the simulation domain have no flow boundary conditions for charged particles. The solution process requires an initial distribution for charge density over the area. For this problem the density of the negative particles was initialized to be uniform over the entire region. 
 
 Since the differential equations are uncoupled solving Poisson's equation only once is sufficient to determine the electric field over the course of the entire simulation. Figures \ref{5E} and \ref{5pot} show the potential and the electric field distribution over the entire simulation area calculated from Poisson's equation using finite difference. 
 
@@ -47,15 +47,13 @@ Figure  \ref{5ss} has two simulation results as well as the exact solution of th
  \label{5curdens}
 \end{figure}
 
-While deriving an analytical solution for this problem we have assumed that at steady state the drift current density must be equal to the diffusion current density. In figure \ref{5curdens} we see drift and diffusion current densities in log scale. Overall both currents match quite tightly.
+While deriving an analytical solution for this problem it was assumed that at steady state the drift current density must be equal to the diffusion current density. In figure \ref{5curdens} we see drift and diffusion current densities in log scale. Overall both currents match quite tightly.
 
-\textbf{(Add problems with high electric fields and debye length)}
-\newline
-\textbf{(This example tested the simulation for, steady state dn/dt=0 etc.. Generates good results for low E field but problems with high E fields)}
+Even though the simulation results are good for this example high electric fields due to either applied potential or high charge densities can introduce inaccuracies. If the electric field is very high then the accumulation of the charge can get very steep. The exponential accumulation requires higher mesh densities for accurate calculation.
 
 \clearpage
 \section{Solutions for Open Boundary}
-Another crucial aspect of drift-diffusion simulation is its transient response. Like the previous test case, the analytic solution can be used to test the accuracy of the transient response. Two different analytic solutions for a similar drift diffusion problems which involved infinite boundaries and a uniform electric field were generated in section 3.3.2. The only difference between two cases are their initial carrier distributions. One has a rectangular and the other one has a gaussian initial carrier distribution. Finite difference scheme does not allow simulation over an infinitely long conductor. For this simulation, a solution will be generated until the carrier distribution gets close to a wall.   
+Another crucial aspect of drift-diffusion simulation is its transient response. Like the previous test case, the analytic solution can be used to test the accuracy of the transient response. Two different analytic solutions for a similar drift diffusion problems which involved infinite boundaries and a uniform electric field were generated in section 3.3.2. The only difference between two cases are their initial carrier distributions. One has a rectangular and the other one has a gaussian initial carrier distribution. Finite difference scheme does not allow simulation over an infinitely long conductor. For this test case, simulation will only be carried until the carrier distribution gets close to a wall.   
 
 \begin{figure}[ht]
 \centering
@@ -66,13 +64,12 @@ Another crucial aspect of drift-diffusion simulation is its transient response. 
 
 Figure \ref{51} has the transient response from COMSOL, finite difference and analytical solution. Snapshots of the carrier distributions were taken for each method at different time steps and they were superposed on top of each other. Increasing levels on y axis represent a carrier distributions at a different time starting from the bottom and moving forward in time towards the top. Figure \ref{51} has a gaussian initial carrier distribution. It can be seen from that the transient solution generated by both COMSOL and finite difference are quite close to the analytical solution.
 
-\textbf{(Needs conclusion, What this example showed ?)}
 
 \clearpage
 \section{PN Junction}
 In previous test cases, Poisson's equation was not coupled with drift diffusion equations. In this example both drift diffusion and Poisson's equation will be tested to investigate how well they work when they are coupled together. A simple pn junction is quite adequate for this task since it has analytical solutions (under certain assumptions) for electric potential, electric field and carrier distribution.
 
-For the simulation ,the initial hole and electron distributions were determined using mass action law and they were assumed to be constant at the boundaries. Keeping carrier concentrations constant at the boundaries creates a mechanism in which the charge can move in and out of the simulation domain. If the charge density at any time step is higher than the fixed density then the difference will move out of the system. If there is a lack of charge at the boundary then carriers will move in to fill in the gap. Following figure (\ref{npcon}) shows the final result of bringing p and n type materials together. 
+For the simulation, initial hole and electron distributions were determined using mass action law and they were assumed to be constant at the boundaries. Keeping carrier density constant creates a mechanism in which the charge can move in and out of the simulation domain. If the charge density at any time step is higher than the fixed density then the difference will move out of the system. If there is a lack of charge at the boundary then carriers will move in to fill in the gap. Following figure (\ref{npcon}) shows the final result of bringing p and n type materials together. 
  
 \begin{figure}[ht]
 \centering
@@ -81,9 +78,9 @@ For the simulation ,the initial hole and electron distributions were determined 
 \label{npcon}
 \end{figure}
 
-There is a little mismatch between simulated and analytic concentration densities. Analytic solution have sharp edges and simulated solution does not. This is due to all the assumptions made in order to find an analytic solution. This mismatch can also be seen for electric field, electric potential and net charge .
+There is a little mismatch between simulated and analytic charge densities. Analytic solution have sharp edges and simulated solution does not. This is due to all the assumptions made in order to find an analytic solution. This mismatch can also be seen for electric field, electric potential and net charge .
 
- Figure \ref{pnpot} shows the potential distribution for simulated and analytic solution. Close match in electric potential distribution shows that coupled equations can generate fairly accurate solutions.
+ Figure \ref{pnpot} shows the potential distribution for simulated and analytic solutions. Close match in electric potential distribution shows that coupled equations can generate accurate solutions.
  
 \begin{figure}[!htp]
 \centering
@@ -103,26 +100,26 @@ Calculation of the electric field involves one basic derivative. Since simulated
 Figure \ref{pncd} shows the total charge distribution at steady state. Simulated net charge density follows the analytic one except the abrupt changes at two ends. 
 \begin{figure}
 \centering
-\includegraphics[scale=0.8]{5314}
+\includegraphics[scale=0.7]{5314}
 \caption{Total Charge Distribution of a PN Junction} 
 \label{pncd}
 \end{figure}
 
-\textbf{(Needs conclusion, What this example showed ?)}
+This example showed that simulation of a system of coupled equations, drift diffusion and Poisson's equation, using finite difference can produce accurate results. This accuracy depends on the strength of the coupling. High charge densities will produce strongly coupled systems. This effect shows the importance of CFL conditions as well as physical limitations of the simulation.
 
 
 \clearpage
 \section{Region Specific Particle Density Limit}
 
-The last property of the drift diffusion simulation scheme to be tested concerns the movement of lithium ions. As lithium ions move into the PEDOT:PSS they bond with PSS polymers and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymers to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This behavior can be captured during simulation by using a Dirichlet boundary condition (J=0) to stop the particle flow into a node if the density will go over a preset limit. This can be achieved in two different ways. 
+The last property of the drift diffusion simulation scheme to be tested concerns the movement of lithium ions. As lithium ions move into the PEDOT:PSS they bond with PSS polymers and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymers to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This behavior can be captured during simulation by using a Dirichlet boundary condition (J=0) to stop the particle flow into a node if the density will go over a set limit. This can be achieved in two different ways. 
 
-A soft limit can be set by making particle mobility a function of its density. This function can be defined such a way that it switches from high to a low value when the particle density approaches its limit. This implementation is straightforward and can be used in commercial simulators but it has a drawback. Once the particle density is reached the mobility and diffusivity of the lithium particles are stuck at very low values. If there is an outflux of particles from that particular node then the density is stuck at the limit until the mobility function goes back to a value which allows particle flow. This can introduces a considerable lag in the response of lithium current density.  
+A soft limit can be set by making particle mobility a function of its density. This function can be defined in such a way that it switches from high to a low value when the particle density approaches its limit. This implementation is straightforward and can be used in commercial simulators but it has a drawback. Once the particle density is reached the mobility and diffusivity of the lithium particles are stuck at very low values. If there is an outflux of particles from that particular node then the density is stuck at the limit until the mobility function goes back to a value which allows particle flow. This can introduces a considerable lag in the response of lithium current density.  
 
-An alternative approach is precalculating the particle density of a density limited node at the next time step, setting any influx to zero if the density is going to go over the limit and finally recalculating the particle densities at the next time step using the updated current densities. This mechanism sets a hard limit on the density since there is a sudden cut instead of a gradual cut in the current flow. This density limiting mechanism is more responsive than the previous one but it requires the calculation of the next time step twice for the species that has a limit. Also large currents caused by either a big time step or high electric field can force the algorithm to cut the current flow into a node before the density reaches its limit.
+An alternative approach is precalculating the particle density of a density limited node at the next time step, setting any influx to zero if the density is going to go over the limit and finally recalculating the particle densities at the next time step using the updated current densities. This mechanism sets a hard limit on the density since there is a sudden break instead of a gradual slowdown in the current flow. This density limiting mechanism is more responsive than the previous one but it requires the calculation of the next time step twice for the species that has a limit. Also large currents caused by either a big time step or high electric field can force the algorithm to cut the current flow into a node before the density reaches its limit.
 
 To avoid adding any lag into the system latter method was chosen for memristor simulations in this thesis. This method was implemented in finite difference drift diffusion solver and it is tested in this chapter. Also a soft limit was implementend in COMSOL for comparison since it did not support the hard limit method.  
 
-In order to test density limiting method implemented for memristor simulation a simple example was set up. Two positively charged particles were initialized like the figure below (\ref{5412}). One set of particles has a concentration limit of $2 \; 10^{10} \; m^{-3}$ on the right side of the simulation area and no limit on the left side. The other set has no restrictions.
+In order to test density limiting method implemented for memristor simulation a simple example was set up. Two positively charged particles were initialized like the figure below (\ref{5412}). One set of particles has a concentration limit of $2 \; 10^{10} \; m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions.
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.7]{5412}
@@ -130,7 +127,7 @@ In order to test density limiting method implemented for memristor simulation a 
 \label{5412}
 \end{figure}
 
-This transient simulation was done using a potential train. The potential is applied to the left side of the device and the right side is always grounded. For the first half of the simulation applied potential was positive and for the second half it was negative. Figure \ref{5412} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right side. The limit for the other particles is effectively stopping them from going in and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
+This transient simulation was done using a potential train. The potential is applied at the left side of the device and the right side is always grounded. For the first half of the simulation applied potential was positive and for the second half it was negative. Figure \ref{5412} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right side. The limit for the other particles is effectively stopping them from going in and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
 
 \begin{figure}[!htp]
 \centering
@@ -147,7 +144,7 @@ When the potential is switched all the particles accumulate freely to the left s
 \label{5414}
 \end{figure}
 
-This last figure (\ref{5411}) shows the transient response  over time of a single node on the right side. The potential is positive for the first 1.5 seconds and it is switched to negative for the last 1.5 seconds. The node without limit keeps accepting charge until steady state has been reached but the node with a limit on stops accepting charged particles once the limit is reached. After the potential is switched density limited node has no problem releasing the particles.
+This last figure (\ref{5411}) shows the transient response over time of a single node on the right side. The potential is positive for the first 1.5 seconds and it is switched to negative for the last 1.5 seconds. The node without limit keeps accepting charge until steady state has been reached but the node with a limit on stops accepting charged particles once the limit is reached. After the potential is switched density limited node has no problem releasing the particles.
 
 
 \begin{figure}[!htp]
@@ -250,8 +247,6 @@ This comparison can be finalized by looking the particle density transient respo
 \end{figure}
 
 The simulations above showed that is possible to impose a density limit over any area using a simple no flow boundary condition in finite difference. For COMSOL some workarounds had to be implemented in order to simulate the same behavior which caused convergence issues. 
-
-\textbf{(Need a better conclusion)}
 
 
 \end{doublespace}

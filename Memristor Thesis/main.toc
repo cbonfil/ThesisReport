@@ -26,30 +26,29 @@
 \contentsline {subsection}{\numberline {3.4.1}Physical Limitations}{38}{subsection.173}
 \contentsline {subsection}{\numberline {3.4.2}Numerical Limitations}{39}{subsection.176}
 \contentsline {subsection}{\numberline {3.4.3}Explicit vs. Implicit Solution}{40}{subsection.179}
-\contentsline {section}{\numberline {3.5}Equations Used for Memristor Simulation}{41}{section.180}
-\contentsline {section}{\numberline {3.6}Simulation Procedure}{42}{section.181}
-\contentsline {chapter}{\numberline {4}Testing Drift Diffusion Solver}{44}{chapter.183}
-\contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{44}{section.184}
-\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{49}{section.189}
-\contentsline {section}{\numberline {4.3}PN Junction}{51}{section.191}
-\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{54}{section.196}
-\contentsline {chapter}{\numberline {5}Memristor Simulation}{62}{chapter.208}
-\contentsline {section}{\numberline {5.1}Memristor Structure}{62}{section.209}
-\contentsline {section}{\numberline {5.2}Simulation Requirements}{65}{section.211}
-\contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{67}{section.213}
-\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{69}{section.215}
-\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Pulse Train}{69}{subsection.216}
-\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{73}{subsection.222}
-\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{80}{subsection.229}
-\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{85}{chapter.239}
-\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{85}{section.240}
-\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Pulse Train}{91}{section.247}
-\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{94}{section.253}
-\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{97}{section.260}
-\contentsline {chapter}{\numberline {7}Conclusion}{101}{chapter.269}
+\contentsline {section}{\numberline {3.5}Simulation Procedure}{41}{section.180}
+\contentsline {chapter}{\numberline {4}Testing Drift Diffusion Solver}{43}{chapter.182}
+\contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{43}{section.183}
+\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{48}{section.188}
+\contentsline {section}{\numberline {4.3}PN Junction}{49}{section.190}
+\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{52}{section.195}
+\contentsline {chapter}{\numberline {5}Memristor Simulation}{60}{chapter.207}
+\contentsline {section}{\numberline {5.1}Memristor Structure}{60}{section.208}
+\contentsline {section}{\numberline {5.2}Simulation Requirements}{63}{section.210}
+\contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{65}{section.212}
+\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{67}{section.214}
+\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Pulse Train}{67}{subsection.215}
+\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{71}{subsection.221}
+\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{78}{subsection.228}
+\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{83}{chapter.238}
+\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{83}{section.239}
+\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Pulse Train}{89}{section.246}
+\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{92}{section.252}
+\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{95}{section.259}
+\contentsline {chapter}{\numberline {7}Conclusion}{99}{chapter.268}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Title 1}{103}{appendix.270}
-\contentsline {chapter}{\numberline {B}Title 2}{104}{appendix.271}
-\contentsline {chapter}{\numberline {C}Title 3}{105}{appendix.272}
+\contentsline {chapter}{\numberline {A}Title 1}{101}{appendix.269}
+\contentsline {chapter}{\numberline {B}Title 2}{102}{appendix.270}
+\contentsline {chapter}{\numberline {C}Title 3}{103}{appendix.271}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{106}{dummy.273}
+\contentsline {chapter}{Bibliography}{104}{dummy.272}
