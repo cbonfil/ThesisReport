@@ -119,14 +119,14 @@ Dividing both sides by permittivity and expanding the left hand side,,
  \nabla^2 V =\frac{\partial^2 V}{\partial^2 x}+\frac{\partial^2 V}{\partial^2 y}
 \end{equation}
 
-After discretizing electric potential over a 2-D uniform grid and using the second order central finite difference formula \eqref{fdc2} laplacian of the electric potential can be calculated using:
+After discretizing the electric potential over a 2-D uniform grid and using the second order central finite difference formula \eqref{fdc2} laplacian of the electric potential can be calculated using:
 
 \begin{equation}
  \nabla^2 V_{i,j}=\frac{V_{i+1,j}-2V_{i,j}+V_{i-1,j}}{\Delta x^2}+\frac{V_{i,j+1}-2V_{i,j}+V_{i,j-1}}{\Delta y^2}
  \label{nablafd}
 \end{equation}
 
-Since the grid is uniform the distance between two nodes in x and y directions are equal therefore only one variable is need for distance between two points.
+Since the grid is uniform, the distance between two nodes in x and y directions are equal therefore only one variable is needed to represent the distance between two points.
 
 \begin{equation}
 \Delta=\Delta x =\Delta y
@@ -159,26 +159,26 @@ Where $V_{b}$ is the value of the potential at the boundary. The other possible 
 \label{neumannx}
 \end{equation}
 
-So for a boundary over y axis:
+So for a boundary in y direction:
 
 \begin{equation}
 V_{i+1,j}=V_{i,j}
 \label{neumanny}
 \end{equation}
 
-Neumann boundary condition over x axis is obtained using the same procedure.
+Neumann boundary condition in x direction is obtained using the same procedure.
 
 \begin{equation}
 V_{i,j+1}=V_{i,j}
 \end{equation}
 
-Combining the equations above (\ref{discrete_poisson}, \ref{dirichlet},\ref{neumannx} and \ref{neumanny}) it is possible to turn Poisson's equation, which is a second order differential equation, into a linear equation.
+Combining the equations above (\ref{discrete_poisson}, \ref{dirichlet},\ref{neumannx} and \ref{neumanny}) it is possible to turn Poisson's equation, which is a second order differential equation, into a linear set of coupled algebraic equation.
 
 \begin{equation}
 D_{2}\vec{V}=-\Delta^2\vec{\rho}-\vec{V_b}
 \end{equation}
 
-One can easily get the potential distribution by simply solving the matrix equation obtained by using finite difference. Due to the nature of the problem resulting matrix is quite sparse and using a sparse LU decomposition dramatically increases the computational efficiency.
+$D_{2}$ is the Laplace operator converted into a matrix using the finite difference method. One can easily get the potential distribution by simply solving this matrix equation. Due to the nature of the problem the resulting matrix is quite sparse and using a sparse LU rather than a regular LU decomposition increases the computational efficiency. Additionally, LU decomposition only needs to be performed once. Since the equation is static L and U matrices can be reused for all the solutions following the initial one. 
 
 \begin{equation}
 \vec{V}=D_{2}^{-1}(-\Delta^2\vec{\rho_{i,j}}-\vec{V_b})
@@ -200,7 +200,7 @@ After solving for the potential distribution it is straightforward to calculate 
 \begin{equation}
 J^x_{i+\frac{1}{2},j,k}=q\mu_n n_{i+\frac{1}{2},j,k} E^x_{i+\frac{1}{2},j,k}+D_n \frac{n_{i+1,j,k}-n_{i,j,k}}{\Delta}
 \end{equation}
-The electric field was calculated exactly on the nodes and linear interpolation was used in order to get a value between the nodes. Same argument is also valid for particle densities \textit{p} and \textit{n}. They were defined on the nodes but they were linearly interpolated to be used in current density equations.
+The electric field was calculated exactly on the nodes and linear interpolation was used in order to get a value between the nodes. The same argument is also valid for particle densities \textit{p} and \textit{n}. They were defined on the nodes but they were linearly interpolated to be used in current density equations.
 
 \begin{equation}\nonumber
 n_{i+\frac{1}{2},j,k}=\frac{n_{i+1,j,k}+n_{i,j,k}}{2}
@@ -221,72 +221,10 @@ n_{i,j+\frac{1}{2},k}=\frac{n_{i,j+1,k}+n_{i,j,k}}{2}
 E^{y}_{i,j+\frac{1}{2},k}=\frac{E^y_{i,j+1,k}+E^y_{i,j,k}}{2}
 \end{equation}
 
-\subsection{Boundary Conditions}
-
-For a drift diffusion problem there are few different possibilities for boundary conditions. The first one is when the particles cannot go past through a certain boundary, no flow boundary condition. This can be achieved by using Dirichlet bounday condition and setting the flow at the boundary to zero. 
-\begin{equation}
-J=0
-\end{equation}
-
-For memristor simulation this boundary condition is used to conditionally limit the lithium density. The implementation of the limiting process is discussed in detail and tested thoroughly in section 4 of chapter 4. Dirichlet boundary condition is also used for metal contacts. It is assumed that metal contacts have infinite amount of positive and negative charge and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
-
-\begin{equation}
-N_{D} + p=N_{A} + n
-\label{chargeneutrality}
-\end{equation}
-
-For a semiconductor holes and electrons have to obey mass action law.
-
-\begin{equation}
-np=n_i^2
-\label{massaction}
-\end{equation}
-
-$n_i$ is the concentration of the semiconductor at equilibrium before getting doped. Solving \eqref{massaction} and \eqref{chargeneutrality} together results in the equation below:
-
-\begin{equation}
-n=\frac{1}{2}(N_D - N_A + \sqrt{(N_D - N_A)^2+4n_i^2})
-\label{nbound}
-\end{equation}
-
-Once electron concentration is obtained it is possible to calculate the hole concentration using mass action law.
-
-\begin{equation}
-p=\frac{n_i^2}{n}
-\label{pbound}
-\end{equation}
-
-
-During simulation, the application of this boundary condition differs from the no flow boundary which was applied implicitly. All the boundaries are simulated using a no flow condition but their values are set to the appropriate value at the end of every time step. Lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. Current in and out of the device is calculated by integrating the derivative of the current density over time. 
-
-\begin{equation}
-\frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
-\end{equation}
-
-$n_{cr}$ is the excess carrier density and $n_{ct}$ is the equilibrium carrier density at the contact. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents. 
-
-\begin{equation}
-Q=An
-\label{charge_charge_density}
-\end{equation} 
-
-\begin{equation}
-I=\frac{dQ}{dt}
-\label{current_charge}
-\end{equation} 
- 
-
-Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating current at any metal contact.
-
-\begin{equation}
-I=A \frac{dn}{dt}
-\label{current_charge_density}
-\end{equation}
-
 
 \clearpage
 \subsection{Continuity Equation}
-Continuity equation is needed to calculate a transient solution for drift diffusion equations. The equation is simple to discretize using finite difference method. There are two terms that need to be discretized, a first order derivative in time and a first order derivative in space. First the divergence term in equation \eqref{conn} needs to be evaluated.
+The continuity equation is needed to calculate a transient solution for the drift diffusion equations. The equation is simple to discretize using the finite difference method. There are two terms that need to be discretized, a first order derivative in time and a first order derivative in space. First the divergence term in the equation \eqref{conn} needs to be evaluated.
 
 \begin{equation}
 \nabla \cdot J=\frac{\partial J}{\partial x}+\frac{\partial J}{\partial y}=\frac{d J_x}{d x}+\frac{d J_y}{d y}
@@ -304,14 +242,14 @@ It is possible to replace the derivative with central finite difference terms.
 \label{delJ}
 \end{equation}
 
-This is the general form of the divergence of the current density. Placing current density formulas in equation \ref{delJ} and collecting all the terms in a matrix gives rise to the following equation:
+This is the general form of the divergence of the current density. These set of equations can be placed in to a matrix which is a linear function of particle density at time t.
 
 \begin{equation}
-\nabla \cdot J_k =B
+B = \nabla \cdot J_k 
 \label{fd_div}
 \end{equation}
 
-The time derivative can also be replaced by a forward or backward finite difference terms respectively.
+The time derivative can be replaced by a forward or backward finite difference terms respectively.
 
 \begin{equation}
 \frac{\partial  \vec{n}_k}{\partial t}=\frac{ \vec{n}_{k+1}-\vec{n}_k}{\Delta t}
@@ -336,7 +274,7 @@ Forward difference approximation can be used to get an explicit solution for con
 \label{explicit}
 \end{equation}
 
-Both forward and backward difference formulas work sequentially in order to generate a transient solution. Solution from the previous time step is needed to calculate the next time step. Forward difference gives an explicit solution which has few advantages. This solution can be implemented, without forming any matrices by directly calculating the divergence of the current density for each node and then marching through time using equation \ref{explicit}. Additionally, unlike backward difference, there are no equations to be solved for every time step. These two properties ease the computational load of the problem and speed up the solution process. Unfortunately this scheme has very strict stability conditions which has to be met in order to get produce solution.
+Both forward and backward difference formulas work sequentially in order to generate a transient solution.The solution from the previous time step is needed to calculate the solution for the next time step. The forward difference gives an explicit solution which has a few advantages. This solution can be implemented, without forming any matrices by directly calculating the divergence of the current density for each node and then marching through time using equation \ref{explicit}. Additionally, unlike backward difference, there are no equations to be solved for every time step. These two properties ease the computational load of the problem and speed up the solution process. Unfortunately this scheme has very strict stability conditions which have to be met in order to produce a solution.
 
 Backward difference can be used instead of forward difference to get an implicit solution.
 \begin{equation}\nonumber
@@ -346,7 +284,7 @@ Backward difference can be used instead of forward difference to get an implicit
 \vec{n}_{k}-\Delta t B =\vec{n}_{k-1}
 \end{equation}
 
-Since all the equations in B matrix are linear  $n$ can be taken and out of the parenthesis $(B=Cn)$.
+Since all the equations in B matrix are a linear functions on n, it can be separated into two terms, $B=Cn$.
 \begin{equation}\nonumber
 \vec{n}_{k}-\Delta t C\vec{n}_{k-1} =\vec{n}_{k-1}
 \end{equation}
@@ -354,8 +292,95 @@ Since all the equations in B matrix are linear  $n$ can be taken and out of the 
 \vec{n}_k=(I-\Delta t C)^{-1}\vec{n}_{k-1}
 \end{equation}
 
-This solution needs a matrix inversion every time step but it is unconditionally stable if not used together with Poisson's equation. The decision to use implicit or explicit solution is not very simple and it will be discussed in detail the next section.
+This solution needs a matrix inversion every time step but it is unconditionally stable if it is not used together with Poisson's equation. The decision to use an implicit or an explicit solution is not very simple and it will be discussed in detail in the section following boundary conditions.
 \clearpage
+
+
+\subsection{Boundary Conditions}
+
+For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on charged particles, no flow boundary and metal contact. No flow conditions are imposed on current density equations where metal contact condition is imposed on particle densities. There are two sub types of no flow boundary conditions used during simulation, regular and dependent no flow boundary conditions. A regular no flow condition is used when the particles cannot go past a certain boundary. This can be achieved by setting the particle flow at any boundary to zero. 
+
+Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is made a function of lithium density and it is used not only for the boundaries but also for all the points inside the PEDOT:PSS. Basically, during simulation at any point inside PEDOT:PSS if the lithium density goes over a certain limit then that point turns into a no flow wall for the lithium ions as long as there is an influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient.  
+
+To simulate the metal contacts it is assumed that they have an infinite amount of positive and negative charge and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
+
+\begin{equation}
+N_{D} + p=N_{A} + n
+\label{chargeneutrality}
+\end{equation}
+
+For a semiconductor holes and electrons have to obey mass action law.
+
+\begin{equation}
+np=n_i^2
+\label{massaction}
+\end{equation}
+
+$n_i$ is the concentration of the semiconductor at equilibrium before getting doped. Solving \eqref{massaction} and \eqref{chargeneutrality} together results in the equation below:
+
+\begin{equation}
+p=\frac{1}{2}(N_A - N_D + \sqrt{(N_A - N_D)^2+4n_i^2})
+\label{nbound}
+\end{equation}
+
+Once the hole concentration is obtained it is possible to calculate the electron concentration using mass action law.
+
+\begin{equation}
+n=\frac{n_i^2}{p}
+\label{pbound}
+\end{equation}
+
+Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the boundary conditions used for holes, lithium and perchlorate ions.
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.6]{bc_hole}
+\caption{Boundary conditions for the holes } 
+\label{bc_hole}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.6]{bc_lithium}
+\caption{Boundary conditions for the lithium ions } 
+\label{bc_lithium}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.6]{bc_perchlorate}
+\caption{Boundary conditions for the perchlorate ions } 
+\label{bc_perchlorate}
+\end{figure}
+
+
+During simulation, the application of this boundary condition differs from the no flow boundary which was applied implicitly. All the boundaries are simulated using a no flow condition but their values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
+
+\begin{equation}
+\frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
+\end{equation}
+
+$n_{cr}$ is the excess carrier density and $n_{ct}$ is the equilibrium carrier density at the contact. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents. 
+
+\begin{equation}
+Q=An
+\label{charge_charge_density}
+\end{equation} 
+
+\begin{equation}
+I=\frac{dQ}{dt}
+\label{current_charge}
+\end{equation} 
+ 
+
+Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating the current leaving or entering the device at any metal contact.
+
+\begin{equation}
+I=A \frac{dn}{dt}
+\label{current_charge_density}
+\end{equation}
+
+
 \section{Stability and Computational Efficiency}
 Before discussing numerical limitations of solving drift diffusion equation via finite difference it is important to look into physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve drift diffusion equations.
 
@@ -365,7 +390,7 @@ Debye length is the length over which mobile charge carriers screen out an exter
 L_D=\sqrt{\frac{\varepsilon V_{th}}{q n}}
 \label{debye}
 \end{equation}
-Debye length limits how coarse the grid can be since the distribution of charge density needs to be accurately captured. As it can bee seen from the formula above the higher the charge density is the steeper the charge will accumulate. This can become a major problem for device sizes in millimetre range and high charge concentrations since the mesh density needs to be extremely high.
+Debye length limits how coarse the grid can be since the distribution of the charge density needs to be accurately captured. As it can be seen from the formula above the higher the charge density is the steeper the charge will accumulate. This behavior is also appears in the analytic solution provided in section 2.2.1 in chapter 2. The accumulation of the charged particle at the wall becomes steeper as the electric field strength increases. The debye length can become a major problem for device sizes in millimeter range and high charge densities since the mesh density needs to be extremely high.
 
 The amount if time it takes for charge fluctuations to disappear is called Dielectric relaxation time. It limits the maximum time step of a simulation since the fluctuations that are not properly resolved over time will make the simulation unstable.
 
@@ -393,24 +418,46 @@ Above condition is for pure diffusion and it restricts the maximum time step. Fo
 
 This is the second numerical restriction on the simulation. The condition for drift depends on the electric field therefore it needs to be satisfied as the electric field changes over time during simulation.
 
-Both physical and numerical constraints have to be evaluated and mesh density and time step need to be selected in order to satisfy all these conditions discussed above. Particularly mesh density have a very strong effect on the accuracy, stability and computational efficiency of the simulation. Increasing mesh density increases the computational time needed to calculate every time step since there are more points. Additionally because of the CFL condition for diffusion time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be fixed by using a non uniform mesh which can dramatically decrease the amount points needed for the simulation. Unfortunately this is usually not very straightforward to implement in a finite difference scheme. Also small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Numerical and physical constraints for memristor simulation are further discussed in chapter 5.
+Both physical and numerical constraints have to be evaluated and mesh density and time step needs to be selected in order to satisfy all these conditions discussed above. Particularly mesh density has a very strong effect on the accuracy, stability and computational efficiency of the simulation. Increasing the mesh density increases the computational time needed to calculate every time step since there are more points. Additionally because of the CFL condition for diffusion, time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be fixed by using a non uniform mesh which can dramatically decrease the amount points needed for the simulation. This is usually not very straightforward to implement in a finite difference scheme. Also a small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Both numerical and physical constraints for the memristor simulation are further discussed in chapter 5.
 
 \subsection{Explicit vs. Implicit Solution}
 
-Overall explicit and implicit solutions have their advantages and disadvantages. Choosing one over the other requires careful analysis of the problem. Implicit solution by itself is unconditionally stable therefore it can support very large time steps without any stability issues. However with increased time step, the accuracy of the transient solution decreases but the steady state solution does not get affected. So for steady state solutions it is better to use an implicit method which can reach steady state very quickly. This advantage disappears when particle densities are high enough to affect the electric field and Poisson's equation needs to be solved for every time step. In this scenario the maximum step size is determined by dielectric relaxation time which can around the same order as CFL conditions or even smaller. Now since the time step is going to be around the same order for both implicit and explicit methods it is reasonable to use the explicit one because it is computationally less expensive.
+Overall explicit and implicit solutions have their advantages and disadvantages. Choosing one over the other requires careful analysis of the problem. Implicit solution by itself is unconditionally stable therefore it can support very large time steps without any stability issues. However with increased time step, the accuracy of the transient solution decreases but the steady state solution does not get affected. So for steady state solutions it is better to use an implicit method which can reach steady state very quickly. This advantage disappears when particle densities are high enough to affect the electric field and Poisson's equation needs to be solved for every time step. In this scenario the maximum step size is determined by dielectric relaxation time which can be around the same order as CFL conditions or even smaller. Since the time step is going to be around the same order for both implicit and explicit methods it is reasonable to use the explicit one because it is computationally less expensive.
 
-Usually implicit solution is preferable when there is no coupling between Poisson's equation and drift diffusion equations and the transient response is not very important. Explicit solution have an edge over the implicit solution due to its lower computational resource requirement when the equations are coupled and the time steps for both schemes are restricted to fairly small values. For memirstor simulation, drift diffusion equations are strongly coupled with Poisson's equation. For this reason all memristor simulations in this thesis use explicit time stepping. 
+Usually implicit solution is preferable when there is no coupling between Poisson's equation and the drift diffusion equations and the transient response is not very important. Explicit solution has an edge over the implicit solution due to its lower computational resource requirement when the equations are coupled and the time steps for both schemes are restricted to fairly small values. For memirstor simulation, drift diffusion equations are strongly coupled with Poisson's equation. For this reason all memristor simulations in this thesis use explicit time stepping. 
 
 
 \clearpage
 \section{Simulation Procedure}
-Different equations and schemes that are used to solve drift diffusion and Poisson's equation was shown over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. 
+Different equations and schemes that are used to solve drift diffusion and Poisson's equation is shown over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. Following equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using finite difference method:
 
-The geometry and physical properties of the problem as well as all initial and boundary conditions need to be defined at the beginning of the solution process. Initialization sets up the first time step of the problem at $t=0$. Once this first step is done it is possible generate required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
+\begin{equation}
+\nabla \cdot  (\varepsilon \nabla V)=-q(p-n+N_{D}^{+}-N_{A}^{-})
+\end{equation}
+\begin{equation}
+\vec{J_p}=q\mu_p p \vec{E}-q D_p \nabla p
+\end{equation}
+\begin{equation}
+\vec{J_{N_{A}^{-}}}=q\mu_{N_{A}^{-}} N_{A}^{-} \vec{E}+q D_{N_{A}^{-}} \nabla N_{A}^{-}
+\end{equation}
+\begin{equation}
+\vec{J_{N_{D}^{+}}}=q\mu_{N_{D}^{+}} N_{D}^{+} \vec{E}-q D_{N_{D}^{+}} \nabla N_{D}^{+}
+\end{equation}
+\begin{equation}
+\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{A}^{-}}}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{D}^{+}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{D}^{+}}}
+\end{equation}
 
-The solution process starts by solving Poisson's equation using the charge distribution at current time step. Once it is solved, the electric field distribution is calculated and used in drift diffusion equations to calculate current density distribution. Next explicit time stepping is used to determine carrier density in the next time step. Finally once the carrier distribution for the next step is calculated it is possible check for a stopping criterion. If this criterion is not met then the whole process will start all over again with a small difference. If the charge concentration is so small that the equations are decoupled then it is possible to skip solving Poisson's equation for the rest of the simulation which speeds up the solution process.
+The geometry and physical properties of the problem as well as all initial and boundary conditions need to be defined at the beginning of the solution process.The initialization sets up the first time step of the problem at $t=0$. Once this first step is done it is possible generate the required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
 
- There are two different criteria that can be used to decide whether to finalize the simulation process or not. The simulation can stop if it reaches a certain time point. This is quite simple since the current time can be checked and if it is equal or greater than the required simulation time then the simulation can be stopped. It is also possible to simulate until the simulation reaches steady state. This can be determined by comparing the current carrier distributions with distribution at the previous time step. If the difference is very small then the time derivatives of the carrier densities are very close to zero and the simulation has reached steady state therefore the simulation process can be stopped. The flowchart in figure \ref{flowchart} summarizes the solution procedure.
+The solution process starts by solving Poisson's equation using the charge distribution at current time step. Once it is solved, the electric field distribution is calculated and used in drift diffusion equations to calculate current density distribution. Next, explicit time stepping is used to determine carrier density in the next time step. Finally once the carrier distribution for the next step is calculated it is possible check for a stopping criterion. If this criterion is not met then the whole process will start all over again. If the charge concentration is so small that the equations are decoupled then it is possible to skip solving Poisson's equation for the rest of the simulation which speeds up the solution process.
+
+ There are two different criteria that can be used to decide whether to finalize the simulation process or not. The simulation can stop if it reaches a certain point in time. This is quite simple since the current time can be checked and if it is equal or greater than the required simulation time then the simulation can be stopped. It is also possible to simulate until the simulation reaches steady state. This can be determined by comparing the current carrier distributions with distribution at the previous time step. If the difference is very small then the time derivatives of the carrier densities are very close to zero and the simulation has reached steady state therefore the simulation process can be stopped. The flowchart in figure \ref{flowchart} summarizes the solution procedure.
 
 
 \clearpage
