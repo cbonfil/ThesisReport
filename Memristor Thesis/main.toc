@@ -38,12 +38,12 @@
 \contentsline {section}{\numberline {5.2}Simulation Requirements}{66}{section.219}
 \contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{68}{section.221}
 \contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{70}{section.223}
-\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Pulse Train}{70}{subsection.224}
+\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Potential Pulse Train}{70}{subsection.224}
 \contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{74}{subsection.230}
 \contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{78}{subsection.236}
 \contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{83}{chapter.246}
 \contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{83}{section.247}
-\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Pulse Train}{89}{section.254}
+\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{89}{section.254}
 \contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{92}{section.260}
 \contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{95}{section.267}
 \contentsline {chapter}{\numberline {7}Conclusion}{99}{chapter.276}
