@@ -44,12 +44,12 @@
 \contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{83}{chapter.246}
 \contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{83}{section.247}
 \contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{89}{section.254}
-\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{92}{section.260}
-\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{95}{section.267}
-\contentsline {chapter}{\numberline {7}Conclusion}{99}{chapter.276}
+\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{93}{section.260}
+\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{96}{section.264}
+\contentsline {chapter}{\numberline {7}Conclusion}{101}{chapter.273}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Title 1}{101}{appendix.277}
-\contentsline {chapter}{\numberline {B}Title 2}{102}{appendix.278}
-\contentsline {chapter}{\numberline {C}Title 3}{103}{appendix.279}
+\contentsline {chapter}{\numberline {A}Title 1}{103}{appendix.274}
+\contentsline {chapter}{\numberline {B}Title 2}{104}{appendix.275}
+\contentsline {chapter}{\numberline {C}Title 3}{105}{appendix.276}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{104}{dummy.280}
+\contentsline {chapter}{Bibliography}{106}{dummy.277}
