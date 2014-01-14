@@ -162,74 +162,75 @@ Figures \ref{fhole} and \ref{flit} show hole and lithium densities over time ins
 
 The memristor model presented in this thesis has many approximations and it is far from complete but the preliminary simulations show promising results. In this section 2-D memristor simulations are compared with experimental results in order to validate the model developed in this thesis. Due to the approximations and difficulties in the simulation mentioned in the previous chapters the current values obtained from the simulation is much lower than the actual device therefore the memristor model is only behaviorally compared to the experimental results. 
 
-Figures \ref{memf1e-1} and \ref{Bowtief01Vchng} show the I-V curve of the memristor using various potentials. At low potentials the current voltage relationship is linear for both simulation and experimental results which means that the resistance is constant over time. At low voltages lithium ions do not move very fast therefore the change in the resistivity of the PEDOT:PSS is minimal. At higher potentials the resistivity starts to change do to the accumulation of lithium ions and it over time it completely cancels out the increase in the potential. 
 
-\clearpage
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.36]{memf1e-1}
+\includegraphics[scale=0.30]{memf1e-1}
 \caption{Experimental results for various applied potentials at 0.1 Hz (Courtesy of Eduardo Barrera)} 
 \label{memf1e-1}
 \end{figure}
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.40]{Bowtief01Vchng}
+\includegraphics[scale=0.35]{Bowtief01Vchng}
 \caption{Simulation results for various applied potentials at 0.1 Hz} 
 \label{Bowtief01Vchng}
 \end{figure}
 
-\clearpage
-
-For following two plots the same experiment is repeated using a frequency of 1.0 Hz. This time the linear region is longer since the change in potential is faster and lithium ions cannot keep up with it. Once the movement of the lithium ions speeds up and there is enough accumulation inside the PEDOT:PSS then the resistivity increases much faster than the increase in the potential. The pinched area towards the end of the outermost loop shows that the resistivity slows down as it starts to reach its maximum value. This was also apparent in the transient simulations with potential pulse train. The increase in resistance is fast up to a certain value and then it slows down as PEDOT:PSS is saturated by lithium ions.
+Figures \ref{memf1e-1} and \ref{Bowtief01Vchng} show the I-V curve of the memristor using various potentials. At low potentials the current voltage relationship is linear for both simulation and experimental results which means that the resistance is constant over time. At low voltages lithium ions do not move very fast therefore the change in the resistivity of the PEDOT:PSS is minimal. At higher potentials the resistivity starts to change do to the accumulation of lithium ions and it over time it completely cancels out the increase in the potential. 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.3]{memf1}
+\includegraphics[scale=0.27]{memf1}
 \caption{Experimental results for various applied potentials at 1.0 Hz (Courtesy of Eduardo Barrera)} 
 \label{memf1}
 \end{figure}
 
+For plots \ref{memf1} and \ref{2D_Memristor_5e-1Hz} the same experiment is repeated using a frequency of 1.0 Hz. This time the linear region is longer since the change in potential is faster and lithium ions cannot keep up with it. Once the movement of the lithium ions speeds up and there is enough accumulation inside the PEDOT:PSS then the resistivity increases much faster than the increase in the potential. 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.38]{2D_Memristor_5e-1Hz}
+\includegraphics[scale=0.35]{2D_Memristor_5e-1Hz}
 \caption{Simulation results for various applied potentials at 1.0 Hz} 
 \label{2D_Memristor_5e-1Hz}
 \end{figure}
 
-\clearpage
-Following plots (\ref{2D_Memristor_5e-1Hz} and \ref{memf1}) are created using a variable frequency instead of a variable potential.
+The pinched area towards the end of the outermost loop shows that the resistivity slows down as it starts to reach its maximum value. This is also apparent in the transient simulations with a potential pulse train. The increase in resistance is fast up to a certain value and then it slows down as PEDOT:PSS is saturated by lithium ions.
+
+Following plots (\ref{experimental} and \ref{MemF}) are created using a variable frequency instead of a variable potential. For both simulation and the experiment, the memristor behaves more like a resistor as frequency increases. This is due to lithium ions not having enough time to drift into the PEDOT:PSS to make a change in the resistance. Even though the frequencies used for simulation is different than the ones used in the experiment, both plots show similar behavior. A better match can be achieved by improving the mobility models used for lithium ions and holes. 
+
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.35]{experimental}
-\caption{(Courtesy of Eduardo Barrera)} 
-\label{}
+\includegraphics[scale=0.31]{experimental}
+\caption{Measured I-V curve at different frequencies (Courtesy of Eduardo Barrera)} 
+\label{experimental}
 \end{figure}
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.65]{MemF}
-\caption{} 
-\label{}
+\includegraphics[scale=0.55]{MemF}
+\caption{Simulated I-V curve at different frequencies } 
+\label{MemF}
 \end{figure}
 
-
 \clearpage
--Proof of density limit
+This last example consists of a memristor where PEDOT:PSS strip is separated into two pieces with a notch which prohibits the hole flow trough the device. Figure \ref{notch} shows the movement of lithium from the right strip to the left strip. Red color represents the lack of charge and blue color shows the presence of charge. For the simulation results (figre \ref{Notch_flip_side}) red color represents a high charge density and blue color represents a low charge density.
+
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.45]{notch}
-\caption{(Courtesy of Eduardo Barrera)} 
-\label{}
+\caption{Experimental results for accumulation of lithium inside PEDOT:PSS (Courtesy of Eduardo Barrera)} 
+\label{notch}
 \end{figure}
 
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.45]{Notch_flip_side}
-\caption{} 
-\label{}
+\caption{Simulation results for accumulation of lithium inside PEDOT:PSS} 
+\label{Notch_flip_side}
 \end{figure}
+
+When a potential is applied one side of the PEDOT:PSS strip is filled with lithium ions. It can be seen from both the simulation and the experimental that lithium ions start migrate out of the PEDOT:PSS near the notch and the wet/dry PEDOT:PSS interface which are the areas with highest electric field. Both plots show that lithium ions uniformly distribute themselves inside PEDOT:PSS at steady state. This uniform distribution of lithium ions support the assumption that there is a limit on how many lithium ions PEDOT:PSS can accept per unit area. If this was not the case lithium ions would have accumulated one side of the device instead of being uniformly distributed.
 
 
 \end{doublespace}
