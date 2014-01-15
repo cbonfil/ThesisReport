@@ -6,34 +6,34 @@
 
 \lhead{Chapter 2. \emph{Theory}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 \begin{doublespace}
-Memristor studied in this thesis has a strip of PEDOT:PSS as a conductor. A drop of an electrolytic solution which has lithium and perchlorate ions is placed on top of this conducting strip. When the conductor has an applied potential, lithium ions inside the electrolyte solution migrate into PEDOT:PSS and modifiy its conductivity. Hole transport inside PEDOT:PSS as well as lithium and perchlorate movement is modeled using basic drift diffusion equations which are derived in the first part of this chapter. The second half of the chapter shows analytic solutions to drift diffusion equations which will be used to test the numerical methods derived in the following chapter.
+The memristor studied in this thesis uses a strip of PEDOT:PSS as a conductor. A drop of an electrolytic solution which has lithium and perchlorate ions is placed on top of this conducting strip. When a potential is applied to the conductor, lithium ions inside the electrolyte solution migrate into PEDOT:PSS and modifiy its conductivity. Hole transport inside PEDOT:PSS as well as lithium and perchlorate movement is modeled using basic drift diffusion equations which are derived in the first part of this chapter. The second half of the chapter shows analytic solutions to drift diffusion equations which will be used to test the numerical methods derived in the following chapter.
 
 
 \section{Carrier Transport Equations}
 Drift diffusion equations, which are based on BTE, need to be solved in order to model the complex behaviour of the memristor. Drift-diffusion equations are derived by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model and serve as guidelines for where this model can be used, therefore they need to be well understood.
 
-Derivation of Boltzmann transport equation starts by stating that a distribution of charged particles can be defined by its position in space \textbf{r} and momentum \textbf{k} in time \textbf{t} using a probability distribution function f(k,r,t). This results in the most general form of Boltzmann transport equation.
+Derivation of Boltzmann transport equation starts by stating that a distribution of charged particles can be defined by their position in space \textbf{r} and momentum \textbf{k} in time \textbf{t} using a probability distribution function f(k,r,t). This results in the most general form of Boltzmann transport equation.
 
 \begin{equation}
 \frac{d }{dt}f(k,r,t)=0
 \end{equation}
 
-This general form of BTE needs to be expanded and relevant physical equations need to be placed in to get an appropriate equation describing a specific problem or a device. 
-Many different device simulators use some sort of approximation to BTE. In a semiconductor simulations they are commonly used for the movement and the density distribution of charge carriers such as holes (p) and electrons (n). 
+This general form of BTE needs to be expanded and relevant physical equations need to be placed in to get an equation describing a specific problem or a device. 
+Many different device simulators use some sort of approximation to BTE. In semiconductor simulations they are commonly used for the movement and the density distribution of charge carriers such as holes (p) and electrons (n). 
 
-After this brief introduction to BTE, rather than going through the mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation will be discussed in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to electric field is called the drift current. The relationship between drift velocity and the electric field is given by the following equation:
+After this brief introduction to BTE, rather than going through the mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation will be discussed in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to the electric field is called the drift current. The relationship between the drift velocity and the electric field is given by the following equation:
 
 \begin{equation}
 v=\mu E
 \end{equation}
 
-$\mu$ is called mobility constant and it determines the speed at which the particles are going to move when subject to an electric field. Drift current density can be derived based on drift velocity.
+$\mu$ is called the mobility constant and it determines the speed at which the particles are going to move when subject to an electric field. Drift current density can be derived based on drift velocity.
 
 \begin{equation}
 J_E=q n\mu E=q n v 
 \end{equation}
 
-Where q is the elementary charge and n is the electron density. In addition to the previous assumptions, it is assumed that the lattice is perfectly uniform, has a uniform temperature distribution and all the particles are close to the temperature of the lattice. Based on this assumption it is possible say that all the particles move due to thermal effects with the same thermal velocity ($v_{th}$) and mean free path ($l_f$). These quantities can be combined into one single coefficient called the diffusion constant. 
+Where q is the elementary charge and n is the electron density. In addition to the previous assumptions, it is assumed that the lattice is perfectly uniform, has a uniform temperature distribution and all the temperature of the particles are close to the temperature of the lattice. Based on this assumption it is possible say that all the particles move due to thermal effects with the same thermal velocity ($v_{th}$) and mean free path ($l_f$). These quantities can be combined into one single coefficient called the diffusion constant. 
 
 \begin{equation}
 D=v_{th} \;l_f
@@ -45,7 +45,7 @@ Drift and diffusion coefficients are related to each other via the Einstein rela
 D=\frac{\mu k T}{q}
 \end{equation}
 
-Where k is the Boltzmann constant and T is the lattice temperature. The random thermally driven motion produces diffusion and results in a second term which contributes to carrier movement and it is called the diffusion current density.
+Where k is the Boltzmann constant and T is the lattice temperature. The random thermally driven motion produces diffusion and results in a second term which contributes to the carrier movement and it is called the diffusion current density.
 
 \begin{equation}
 J_D=qD\frac{dn}{dx}
@@ -64,13 +64,13 @@ This equation can be easily extended to other dimensions by simply using the app
 \vec{J_n^y}=q \mu_{n} n \vec{E_y}+qD_{n} \frac{dn}{dy} 
 \end{equation}
 
-Current density equations can be used for both positively and negatively charged particles by changing the sign of the diffusion current density.
+The current density equations can be used for both positively and negatively charged particles by changing the sign of the diffusion current density.
 
 \begin{equation}
 \vec{J_p^x}=q \mu_{p} p \vec{E_x}-qD_{p} \frac{dp}{dx} 
 \label{cdenp}
 \end{equation}
-Anisotropic drift and diffusion coefficients can be handled with ease by using different coefficients for different directions. Also mobility and diffusivity can be a function of any variable such as position or temperature. This is a useful property for a memristor simulation since hole mobility depends on lithium density in the PEDOT:PSS at any given position. 
+Anisotropic drift and diffusion coefficients can be handled with ease by using different coefficients for different directions. Also the mobility and the diffusivity can be a function of any variable such as position or temperature. This is a useful property for a memristor simulation since hole mobility depends on lithium density in the PEDOT:PSS at any given position. 
 
 Current density equations by themselves are not enough to solve this time dependent problem. It is necessary to account for the movement of charge over time which is captured in the continuity equation. It is basically a statement of conservation of particle density over time. The change in the amount of carriers over time in a particular area must be equal to the difference in current density over the same area. Additionally the amount of charge can change due to generation-recombination of charged particles. The continuity is captured by the equations:
 
