@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -12,51 +12,111 @@ L.O. Chua.
   (5):\penalty0 507--519, 1971.
 \newblock ISSN 0018-9324.
 
-\bibitem[D.~Vasileska(2006)]{Dragica1}
-Stephen M.~Goodnick D.~Vasileska.
-\newblock \emph{Computational Electronics}.
-\newblock Morgan and Claypool, Arizona,United States, 2006.
-
-\bibitem[Scharfetter and Gummel(1969)]{SG}
-D.L. Scharfetter and H.K. Gummel.
-\newblock Large-signal analysis of a silicon read diode oscillator.
-\newblock \emph{Electron Devices, IEEE Transactions on}, 16\penalty0
-  (1):\penalty0 64--77, 1969.
-\newblock ISSN 0018-9383.
-
-\bibitem[Holmes(2007)]{NumModel}
-Mark~H. Holmes.
-\newblock \emph{Introduction to Numerical Methods in Differential Equations}.
-\newblock Springer Science,Business Media,, New York,United States, 2007.
-\newblock ISBN 978-0387-30891-3.
-
 \bibitem[Dmitri B.~Strukov(2008)]{MisMem}
 Duncan R. Stewart R. Stanley~Williams Dmitri B.~Strukov, Gregory S.~Snider.
 \newblock Missing memristor found.
 \newblock \emph{Nature}, 453:\penalty0 80--83, 2008.
 \newblock ISSN 0028-0836.
 
-\bibitem[E.~Knapp and Ruhstaller(2010)]{SimChargeTrans}
-H.~U.~Schwarzenbach E.~Knapp, R.~Häusermann and B.~Ruhstaller.
-\newblock Numerical simulation of charge transport in disordered organic
-  semiconductor devices.
-\newblock \emph{J. Appl. Phys}, 108, 2010.
-\newblock ISSN 1089-7550.
+\bibitem[Berzina et~al.(2009)Berzina, Smerieri, Bernabo, Pucci, Ruggeri,
+  Erokhin, and Fontana]{AdaptiveMem}
+T.~Berzina, Anteo Smerieri, Marco Bernabo, Andrea Pucci, Giacomo Ruggeri,
+  V.~Erokhin, and M.P. Fontana.
+\newblock Optimization of an organic memristor as an adaptive memory element.
+\newblock \emph{Journal of Applied Physics}, 105\penalty0 (12):\penalty0
+  124515--124515--5, 2009.
+\newblock ISSN 0021-8979.
+
+\bibitem[Alan~Doolittle et~al.(2009)Alan~Doolittle, Calley, and
+  Henderson]{Synapse}
+W.~Alan~Doolittle, W.L. Calley, and W.~Henderson.
+\newblock Complementary oxide memristor technology facilitating both inhibitory
+  and excitatory synapses for potential neuromorphic computing applications.
+\newblock In \emph{Semiconductor Device Research Symposium, 2009. ISDRS '09.
+  International}, pages 1--2, 2009.
+
+\bibitem[Wang et~al.(2012)Wang, Fei, and Yu]{CMOS}
+Yuhao Wang, Wei Fei, and Hao Yu.
+\newblock Spice simulator for hybrid cmos memristor circuit and system.
+\newblock In \emph{Cellular Nanoscale Networks and Their Applications (CNNA),
+  2012 13th International Workshop on}, pages 1--6, 2012.
+
+\bibitem[Erokhin(2010)]{OrganicMem}
+V.~Erokhin.
+\newblock Organic memristors : Basic principles.
+\newblock In \emph{Circuits and Systems (ISCAS), Proceedings of 2010 IEEE
+  International Symposium on}, pages 5--8, 2010.
 
 \bibitem[A.~Elschner(2011)]{PedotBook}
 W.~Lövenich U. Merker K.~Reuter A.~Elschner, S.~Kirchmeyer.
-\newblock \emph{Introduction to Numerical Methods in Differential Equations}.
+\newblock \emph{PEDOT}.
 \newblock Taylor and Francis Group,, Florida,United States, 2011.
 \newblock ISBN 978-1-4200-6911-2.
+
+\bibitem[Mott(1969)]{Mott}
+N.F. Mott.
+\newblock Charge transport in non-crystalline semiconductors.
+\newblock In O.~Madelung, editor, \emph{Festkörper Probleme \{IX\}}, pages 22
+  -- 45. Pergamon, 1969.
+\newblock ISBN 978-0-08-015543-2.
+
+\bibitem[Sapp et~al.(2006)Sapp, Luebben, Losovyj, Jeppson, Schulz, and
+  Caruso]{PedotDope}
+Shawn Sapp, Silvia Luebben, Ya.~B. Losovyj, P.~Jeppson, D.~L. Schulz, and A.~N.
+  Caruso.
+\newblock Work function and implications of doped
+  poly(3,4-ethylenedioxythiophene)-co-poly(ethylene glycol).
+\newblock \emph{Applied Physics Letters}, 88\penalty0 (15):\penalty0 152107,
+  2006.
+
+\bibitem[Kim et~al.(2012)Kim, Sah, Yang, Cho, and Chua]{ChuaSim}
+Hyongsuk Kim, M.P. Sah, Changju Yang, Seongik Cho, and L.O. Chua.
+\newblock Memristor emulator for memristor circuit applications.
+\newblock \emph{Circuits and Systems I: Regular Papers, IEEE Transactions on},
+  59\penalty0 (10):\penalty0 2422--2431, 2012.
+\newblock ISSN 1549-8328.
+
+\bibitem[Adzmi et~al.(2012)Adzmi, Nasrudin, Abdullah, and
+  Herman]{MemCircuitSim}
+A.F. Adzmi, A.~Nasrudin, W.F.H. Abdullah, and S.H. Herman.
+\newblock Memristor spice model for designing analog circuit.
+\newblock In \emph{Research and Development (SCOReD), 2012 IEEE Student
+  Conference on}, pages 78--83, 2012.
+
+\bibitem[Vasileska and Goodnick(2006)]{Dragica1}
+D.~Vasileska and Stephen~M. Goodnick.
+\newblock \emph{Computational Electronics}.
+\newblock Morgan and Claypool, Arizona,United States, 2006.
 
 \bibitem[C.M.(1988)]{snowden}
 Snowden C.M.
 \newblock \emph{Semiconductor Device Modelling}.
 \newblock Peter Peregrinus Ltd., London,United Kingdom, 1988.
 
-\bibitem[Nardes(2007)]{PedotCon}
-A.M. Nardes.
-\newblock \emph{{On the conductivity of PEDOT:PSS thin films}}.
-\newblock PhD thesis, Technische Universiteit Eindhoven, Eindhoven, 2007.
+\bibitem[Sze and Ng(2006)]{Physem}
+S.M. Sze and K.K. Ng.
+\newblock \emph{Physics of Semiconductor Devices}.
+\newblock Wiley, 2006.
+\newblock ISBN 9780470068304.
+
+\bibitem[Lindfield and Penny(2012)]{numerical2}
+G.~Lindfield and J.~Penny.
+\newblock \emph{Numerical Methods: Using MATLAB}.
+\newblock Elsevier Science, 2012.
+\newblock ISBN 9780123869883.
+
+\bibitem[Smith(1985)]{smith1985numerical}
+G.D. Smith.
+\newblock \emph{Numerical Solution of Partial Differential Equations: Finite
+  Difference Methods}.
+\newblock Oxford applied mathematics and computing science series. Clarendon
+  Press, 1985.
+\newblock ISBN 9780198596509.
+
+\bibitem[Holmes(2007)]{NumModel}
+Mark~H. Holmes.
+\newblock \emph{Introduction to Numerical Methods in Differential Equations}.
+\newblock Springer Science,Business Media,, New York,United States, 2007.
+\newblock ISBN 978-0387-30891-3.
 
 \end{thebibliography}

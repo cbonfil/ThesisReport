@@ -10,7 +10,7 @@ The memristor studied in this thesis uses a strip of PEDOT:PSS as a conductor. A
 
 
 \section{Carrier Transport Equations}
-Drift diffusion equations, which are based on BTE, need to be solved in order to model the complex behaviour of the memristor. Drift-diffusion equations are derived by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model and serve as guidelines for where this model can be used, therefore they need to be well understood.
+Drift diffusion equations, which are based on BTE\cite{Dragica1}, need to be solved in order to model the complex behaviour of the memristor. Drift-diffusion equations are derived by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model and serve as guidelines for where this model can be used, therefore they need to be well understood.
 
 Derivation of Boltzmann transport equation starts by stating that a distribution of charged particles can be defined by their position in space \textbf{r} and momentum \textbf{k} in time \textbf{t} using a probability distribution function f(k,r,t). This results in the most general form of Boltzmann transport equation.
 
@@ -21,7 +21,7 @@ Derivation of Boltzmann transport equation starts by stating that a distribution
 This general form of BTE needs to be expanded and relevant physical equations need to be placed in to get an equation describing a specific problem or a device. 
 Many different device simulators use some sort of approximation to BTE. In semiconductor simulations they are commonly used for the movement and the density distribution of charge carriers such as holes (p) and electrons (n). 
 
-After this brief introduction to BTE, rather than going through the mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation will be discussed in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to the electric field is called the drift current. The relationship between the drift velocity and the electric field is given by the following equation:
+After this brief introduction to BTE, rather than going through the mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation will be discussed in order to get a better insight on the model.  As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For drift-diffusion equations individual lattice scattering events or collisions are averaged and the particles have an average constant velocity under the effects of an electric field \cite{snowden}. This means that all the particles respond instantaneously to the changes in the electric field. The movement of the particles due to the electric field is called the drift current. The relationship between the drift velocity and the electric field is given by the following equation:
 
 \begin{equation}
 v=\mu E
@@ -39,7 +39,7 @@ Where q is the elementary charge and n is the electron density. In addition to t
 D=v_{th} \;l_f
 \end{equation}
 
-Drift and diffusion coefficients are related to each other via the Einstein relationship:
+Drift and diffusion coefficients are related to each other via the Einstein relationship\cite{snowden}:
 
 \begin{equation}
 D=\frac{\mu k T}{q}
@@ -87,7 +87,7 @@ Current density equations by themselves are not enough to solve this time depend
 
 $U_{n}$ and $U_{p}$ are net generation recombination rates. These terms were not included in the modeling of the memristor. 
 
-Electric field can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied potential. It is possible to calculate the potential distribution over an area by using Poisson's equation. Once the potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential.
+Electric field can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied potential. It is possible to calculate the potential distribution over an area by using Poisson's equation \cite{Dragica1}. Once the potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential.
 
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-\rho=-q(p-n+N_{D}^{+}-N_{A}^{-})
@@ -108,7 +108,7 @@ Electric field can be split into one, two or three components depending on the d
 \vec{E_y}=-\frac{\partial V}{\partial y}
 \end{equation}
 
-Once the electric field and current density is known, the amount of current in a particular place in the device can be easily calculated by using the following integral.
+Once the electric field and current density is known, the amount of current in a particular place in the device can be easily calculated by using the following integral \cite{snowden}.
 
 \begin{equation}
 I=\int\limits_{s}^{}\vec{J_{tot}} \cdot ds = \int\limits_{s}^{}(J_n+J_p+\varepsilon\frac{\partial E}{\partial t})ds
@@ -367,7 +367,7 @@ Following plots show the evolution of two particle densities with different init
 \end{figure}
 \clearpage
 \subsection{PN Junction}
-Previous analytical solutions involved the solution of Poisson's equation and continuity equation which were not coupled. An example where these equations are tightly coupled will be examined in this section. There are usually no direct analytical solution for coupled equations but it is possible to get a closed form solution by making use of certain approximations. One simple example of this situation is an abrupt p-n junction. An abrupt p-n junction is created when two materials of opposite doping,p type and n type, are brought together. A p type material has an excess number of acceptors $N_A$ and an n type material has an excess number of donors $N_D$. The junction is defined at the interface where $N_A=N_D$. 
+Previous analytical solutions involved the solution of Poisson's equation and continuity equation which are not coupled. An example where these equations are tightly coupled is examined in this section. There are usually no direct analytical solution for coupled equations but it is possible to get a closed form solution by making use of certain approximations. One simple example of this situation is an abrupt p-n junction. An abrupt p-n junction is created when two materials of opposite doping,p type and n type, are brought together. A p type material has an excess number of acceptors $N_A$ and an n type material has an excess number of donors $N_D$. The junction is defined at the interface where $N_A=N_D$ \cite{Physem}. 
 
 \begin{figure}[!htp]
 \centering
@@ -375,7 +375,7 @@ Previous analytical solutions involved the solution of Poisson's equation and co
 \caption{PN junction electron/hole density} 
 \end{figure}
 
-In this example an analytical solution for an abrupt p-n junction will be derived. To get a solution for this problem depletion region approximation will be used. This approximation starts by assuming that the charges are fully depleted around the junction. All the electric field is confined in the depletion region and regions far away from the junction are neutral. Based on this, the net charge density over the entire region is:
+In this example an analytical solution for an abrupt p-n junction is derived. To get a solution for this problem depletion region approximation is used. This approximation starts by assuming that the charges are fully depleted around the junction\cite{Physem}. All the electric field is confined in the depletion region and regions far away from the junction are neutral. Based on this, the net charge density over the entire region is:
 
 \begin{equation}
 \frac{d \vec{E} }{dx}=\frac{\rho}{\varepsilon}=\frac{q}{\varepsilon}(-N_{A}+N_{D})
@@ -501,12 +501,13 @@ E_{FN}-E_{FP}=q V_{bi}=kT \; ln(\frac{N_{D}}{n_i})+kT \; ln(\frac{N_{A}}{n_i})=k
 V_{bi}=\frac{kT}{q} \; ln(\frac{N_{A}N_{D}}{n_i^2})
 \end{equation}
 
-The calculation of the built in potential completes all the necessary equations for the analytical solution of the pn junction without any external bias. Following graphs shows the plots of approximate solutions for net charge, electric field and the junction potential.
+The calculation of the built in potential completes all the necessary equations for the analytical solution of the pn junction without any external bias. Figure \ref{pnplt} shows the plots of approximate solutions for net charge, electric field and the junction potential.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.8]{3332}
+\includegraphics[scale=0.6]{3332}
 \caption{Approximate Solution of a PN Junction} 
+\label{pnplt}
 \end{figure}
 
 \end{doublespace}

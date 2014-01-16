@@ -12,7 +12,7 @@ As discussed in the introduction, physical memristor simulations are almost non 
 
 
 \section{Finite Difference Method}
-There are many different methods that can be used to solve drift diffusion equations such as finite elements, finite difference or meshless methods. Finite difference was chosen as an appropriate method for this thesis due to its simplicity which allows straightforward implementation of unusual physical properties. Finite difference uses an approximation for the derivative of a function based on the mathematical definition of the derivative.
+There are many different methods that can be used to solve drift diffusion equations such as finite elements, finite difference or meshless methods. Finite difference was chosen as an appropriate method for this thesis due to its simplicity which allows straightforward implementation of unusual physical properties. Finite difference uses an approximation for the derivative of a function based on the mathematical definition of the derivative\cite{numerical2}.
 
 \begin{equation}
 \frac{df}{dx}=\lim\limits_{h \rightarrow 0} \frac{f(x+h)-f(x)}{h}
@@ -98,7 +98,7 @@ Overall these finite difference equations are enough to solve drift diffusion eq
 
 \section{Poisson Solver}
 
-Poisson's equation needs to be solved before drift diffusion equations in order find the potential distribution as well as the electric field inside the device. In order to solve for electric field and potential Poisson's equation is simplified through assumptions and then finite difference is used to solve this simplified equation. The first step of simplification is assuming that the permittivity is isotropic.
+Poisson's equation needs to be solved before drift diffusion equations in order find the potential distribution as well as the electric field inside the device. In order to solve for electric field and potential Poisson's equation is simplified through assumptions and then finite difference is used to solve this simplified equation\cite{smith1985numerical}. The first step of simplification is assuming that the permittivity is isotropic.
  
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-\rho
@@ -196,7 +196,7 @@ After solving for the potential distribution it is straightforward to calculate 
 
 \clearpage
 \section{Current Density Equations}
- Both drift and diffusion currents can be calculated over the entire grid. Drift current does not involve any differentials but it is a function of electric field and the diffusion current can be calculated using first order central difference. The current density is calculated in such a way that it falls between two points which simplifies the application of the boundary conditions.
+ Both drift and diffusion currents can be calculated over the entire grid. Drift current does not involve any differentials but it is a function of electric field and the diffusion current can be calculated using first order central difference\cite{Dragica1}. The current density is calculated in such a way that it falls between two points which simplifies the application of the boundary conditions.
 \begin{equation}
 J^x_{i+\frac{1}{2},j,k}=q\mu_n n_{i+\frac{1}{2},j,k} E^x_{i+\frac{1}{2},j,k}+D_n \frac{n_{i+1,j,k}-n_{i,j,k}}{\Delta}
 \end{equation}
@@ -353,7 +353,6 @@ Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the bounda
 \label{bc_perchlorate}
 \end{figure}
 
-
 During simulation, the application of this boundary condition differs from the no flow boundary which was applied implicitly. All the boundaries are simulated using a no flow condition but their values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
 
 \begin{equation}
@@ -402,7 +401,7 @@ t_{dr}=\frac{\varepsilon}{q n \mu}
 Dielectric relaxation time is only important when electric potential is highly affected by redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
 \subsection{Numerical Limitations}
 
-There are also numerical limits which can affect convergence and stability of a solution when using an explicit scheme. These are called Courant-Friedrichs-Lewy (CFL)conditions. CFL conditions for pure diffusion and pure drift are shown in the following equations.
+There are also numerical limits which can affect convergence and stability of a solution when using an explicit scheme. These are called Courant-Friedrichs-Lewy (CFL)conditions \cite{NumModel}. CFL conditions for pure diffusion and pure drift are shown in the following equations.
 
 \begin{equation}
 \frac{\Delta ^2}{2 D_n}>\Delta t

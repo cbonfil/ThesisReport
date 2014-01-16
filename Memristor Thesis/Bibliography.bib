@@ -7,7 +7,15 @@
 	 YEAR=1988.
 	 }
 
-
+	@ARTICLE{MisMem, 
+	author={Dmitri B. Strukov, Gregory S. Snider, Duncan R. Stewart, R. Stanley Williams}, 
+	journal={Nature}, 
+	title={Missing Memristor Found}, 
+	year={2008}, 
+	volume={453}, 
+	pages={80-83}, 
+	ISSN={0028-0836},} 	
+	
 @ARTICLE{chua, 
 author={Chua, L.O.}, 
 journal={Circuit Theory, IEEE Transactions on}, 
@@ -19,20 +27,49 @@ pages={507-519},
 keywords={Memristors;Network elements;Nonlinear network analysis & design;Active circuits;Active inductors;Capacitors;Electromagnetic fields;Laboratories;Maxwell equations;Memristors;Power supplies;RLC circuits;Resistors}, 
 ISSN={0018-9324},}
 
-@ARTICLE{SG, 
-author={Scharfetter, D.L. and Gummel, H.K.}, 
-journal={Electron Devices, IEEE Transactions on}, 
-title={Large-signal analysis of a silicon Read diode oscillator}, 
-year={1969}, 
-volume={16}, 
-number={1}, 
-pages={64-77}, 
-keywords={Admittance;Charge carrier processes;Current density;Diodes;Equations;Ionization;Oscillators;RLC circuits;Silicon;Voltage}, 
-ISSN={0018-9383},}
+
+@ARTICLE{AdaptiveMem, 
+author={Berzina, T. and Smerieri, Anteo and Bernabo, Marco and Pucci, Andrea and Ruggeri, Giacomo and Erokhin, V. and Fontana, M.P.}, 
+journal={Journal of Applied Physics}, 
+title={Optimization of an organic memristor as an adaptive memory element}, 
+year={2009}, 
+volume={105}, 
+number={12}, 
+pages={124515-124515-5}, 
+keywords={conducting polymers;electrical conductivity;electrochemical devices;optimisation;random-access storage;resistors;8247-a;8430Sk;8432Ff},  
+ISSN={0021-8979},}
+
+@INPROCEEDINGS{Synapse, 
+author={Alan Doolittle, W. and Calley, W.L. and Henderson, W.}, 
+booktitle={Semiconductor Device Research Symposium, 2009. ISDRS '09. International}, 
+title={Complementary oxide memristor technology facilitating both inhibitory and excitatory synapses for potential neuromorphic computing applications}, 
+year={2009}, 
+pages={1-2}, 
+keywords={memristors;complementary oxide memristor;crystalline oxides;excitatory synapse response;inhibitory synapse response;neuron/synapse brain function;potential neuromorphic computing;CMOS technology;Computer applications;Conducting materials;Conductivity;Crystallization;Memristors;Neuromorphics;Neurons;Size measurement;Voltage}, 
+}
+
+@INPROCEEDINGS{CMOS, 
+author={Yuhao Wang and Wei Fei and Hao Yu}, 
+booktitle={Cellular Nanoscale Networks and Their Applications (CNNA), 2012 13th International Workshop on}, 
+title={SPICE simulator for hybrid CMOS memristor circuit and system}, 
+year={2012}, 
+pages={1-6}, 
+keywords={CMOS integrated circuits;SPICE;memristors;doping;hybrid CMOS memristor circuit;hybrid CMOS memristor system;memristor SPICE simulator;memristor crossbar circuit;modified nodal analysis framework;CMOS integrated circuits;Equivalent circuits;Integrated circuit modeling;Memristors;Resistance;Semiconductor device modeling;Semiconductor process modeling;SPICE simulator;internal state variable;memristor},  
+ISSN={2165-0160},}
+
+
+@INPROCEEDINGS{OrganicMem, 
+author={Erokhin, V.}, 
+booktitle={Circuits and Systems (ISCAS), Proceedings of 2010 IEEE International Symposium on}, 
+title={Organic memristors : Basic principles}, 
+year={2010}, 
+pages={5-8}, 
+keywords={memristors;polymers;bio-inspired mimicking features;model adaptive circuits;organic memristors;polymeric nonlinear electrochemical element;Circuits;Computer architecture;Conductivity;Electrodes;FETs;History;Lithium;Memristors;Neurons;Solids}, 
+}
 
 
 	@BOOK{Dragica1,
-	 AUTHOR={D. Vasileska, Stephen M. Goodnick},
+	 AUTHOR={D. Vasileska and Stephen M. Goodnick},
 	 TITLE={Computational Electronics},
 	 PUBLISHER={Morgan and Claypool},
 	 ADDRESS={Arizona,United States },
@@ -50,14 +87,7 @@ ISSN={0018-9383},}
 	 ISBN={978-0387-30891-3},
 	 	 }
 	 	 
-	@ARTICLE{MisMem, 
-	author={Dmitri B. Strukov,Gregory S. Snider,Duncan R. Stewart, R. Stanley Williams}, 
-	journal={Nature}, 
-	title={Missing Memristor Found}, 
-	year={2008}, 
-	volume={453}, 
-	pages={80-83}, 
-	ISSN={0028-0836},} 	 
+ 
 	 
 	 	@ARTICLE{SimChargeTrans, 
 	 	author={E. Knapp, R. Häusermann, H. U. Schwarzenbach, and B. Ruhstaller}, 
@@ -71,18 +101,88 @@ ISSN={0018-9383},}
 	 	
 	 		@BOOK{PedotBook,
 	 		 AUTHOR={A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter},
-	 		 TITLE={Introduction to
-	 		 Numerical Methods in
-	 		 Differential Equations},
+	 		 TITLE={PEDOT},
 	 		 PUBLISHER={Taylor and Francis Group,},
 	 		 ADDRESS={Florida,United States },
 	 		 YEAR=2011,
 	 		 ISBN={978-1-4200-6911-2},
 	 		 	 } 
-	 		 	 
+	
+	@article{PedotDope,
+	   author = "Sapp, Shawn and Luebben, Silvia and Losovyj, Ya. B. and Jeppson, P. and Schulz, D. L. and Caruso, A. N.",
+	   title = "Work function and implications of doped poly(3,4-ethylenedioxythiophene)-co-poly(ethylene glycol)",
+	   journal = "Applied Physics Letters",
+	   year = "2006",
+	   volume = "88",
+	   number = "15", 
+	   eid = 152107,
+	   pages = "-",
+	} 		 	 
 @PhdThesis{PedotCon,
            title = "{On the conductivity of PEDOT:PSS thin films}",
           author = "A.M. Nardes",
           school =  "Technische Universiteit Eindhoven, Eindhoven",
             year = "2007",
+}
+
+
+@incollection{Mott,
+title = "Charge transport in non-crystalline semiconductors ",
+editor = "Madelung, O. ",
+booktitle = "Festkörper Probleme \{IX\} ",
+publisher = "Pergamon",
+edition = "",
+address = "",
+year = "1969",
+pages = "22 - 45",
+isbn = "978-0-08-015543-2",
+author = "N.F. Mott"
+}
+
+@ARTICLE{ChuaSim, 
+author={Hyongsuk Kim and Sah, M.P. and Changju Yang and Seongik Cho and Chua, L.O.}, 
+journal={Circuits and Systems I: Regular Papers, IEEE Transactions on}, 
+title={Memristor Emulator for Memristor Circuit Applications}, 
+year={2012}, 
+volume={59}, 
+number={10}, 
+pages={2422-2431}, 
+keywords={SPICE;circuit simulation;memristors;Spice simulation;TiO2;breadboard experiment;decremental configuration;hardware;incremental configuration;memristor emulator;off-the-shelf solid state component;parallel connection;polarities;real world memristor circuit application;serial connection;Capacitors;Integrated circuit modeling;Mathematical model;Memristors;Mirrors;Resistance;Decremental configuration;emulator;incremental configuration;memristor;off-the-shelf devices}, 
+ISSN={1549-8328},}
+
+@INPROCEEDINGS{MemCircuitSim, 
+author={Adzmi, A.F. and Nasrudin, A. and Abdullah, W.F.H. and Herman, S.H.}, 
+booktitle={Research and Development (SCOReD), 2012 IEEE Student Conference on}, 
+title={Memristor Spice model for designing analog circuit}, 
+year={2012}, 
+pages={78-83}, 
+keywords={SPICE;analogue circuits;circuit simulation;memristors;analog circuit design;circuit analysis;circuit behavior analysis;current-voltage hysteresis curve;device operation;integrator circuit;memristor Spice model;nonlinear dopant drift;passive circuit element;practical analog circuit;memristor;memristor SPICE model;non linear;window functions}, 
+}
+
+
+@book{Physem,
+  title={Physics of Semiconductor Devices},
+  author={Sze, S.M. and Ng, K.K.},
+  isbn={9780470068304},
+  lccn={2007280778},
+  year={2006},
+  publisher={Wiley}
+}
+
+@book{numerical2,
+  title={Numerical Methods: Using MATLAB},
+  author={Lindfield, G. and Penny, J.},
+  isbn={9780123869883},
+  year={2012},
+  publisher={Elsevier Science}
+}
+
+@book{smith1985numerical,
+  title={Numerical Solution of Partial Differential Equations: Finite Difference Methods},
+  author={Smith, G.D.},
+  isbn={9780198596509},
+  lccn={85019867},
+  series={Oxford applied mathematics and computing science series},
+  year={1985},
+  publisher={Clarendon Press}
 }
