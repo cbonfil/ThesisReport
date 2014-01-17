@@ -111,15 +111,15 @@ This example showed that simulation of a system of coupled equations, drift diff
 \clearpage
 \section{Region Specific Particle Density Limit}
 
-The last property of the drift diffusion simulation scheme to be tested concerns the movement of lithium ions. As lithium ions move into the PEDOT:PSS they bond with PSS polymers and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymers to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This behavior can be captured by stopping the particle flow into a node if the density will go over a set limit. This can be achieved in two different ways. 
+The last property of the drift diffusion simulation scheme that is tested in this section concerns the movement of lithium ions. As lithium ions move into the PEDOT:PSS they bond with PSS polymers and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymers to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This behavior is captured in the model by stopping the particle flow into a node if the density will go over a set limit. This can be achieved in two different ways. 
 
-A soft limit can be set by making particle mobility a function of its density. This function can be defined in such a way that it switches from high to a low value when the particle density approaches its limit. This implementation is straightforward and can be used in commercial simulators but it has a drawback. Once the maximum particle density is reached the mobility and diffusivity of the lithium particles are stuck at very low values. If there is an outflux of particles from that particular node then the density is stuck at the limit until the mobility and the diffusivity function goes back to a value which allows particle flow. This can introduce a considerable lag in the response of lithium current density.  
+A soft limit can be set by making the particle mobility a function of its density. This function can be defined in such a way that it switches from a high to a low value when the particle density approaches its limit. This implementation is straightforward and can be used in commercial simulators but it has some drawbacks. Once the maximum particle density is reached the mobility and the diffusivity of the lithium particles are stuck at very low values. If there is an outflux of particles from that particular node then the lithium density is stuck at the limit until the mobility and the diffusivity function goes back to a value which allows more particle flow. This can introduce a considerable lag in the response of the device.  
 
-An alternative approach is precalculating the particle density of a density limited node at the next time step, setting any influx to zero if the density is going to go over the limit and finally recalculating the particle densities at the next time step using the updated current densities. This mechanism sets a hard limit on the density since there is a sudden break instead of a gradual slowdown in the current flow. This density limiting mechanism is more responsive than the previous one but it requires the calculation of the next time step twice for the species that has a limit. Also large currents caused by either a big time step or high electric field can force the algorithm to cut the current flow into a node before the density reaches its limit.
+An alternative approach is pre-calculating the particle density of a density limited node at the next time step, setting any influx to zero if the density is going to go over the limit and finally recalculating the particle densities at the next time step using the updated current densities. This mechanism sets a hard limit on the density since there is a sudden break instead of a gradual slowdown in the current flow. This density limiting mechanism is more responsive than the previous one but it requires the calculation of the next time step twice for the species that has a limit. Also a large influx of particles caused by either a big time step or high electric field can force the algorithm to cut the current flow into a node before the density reaches its limit.
 
-To avoid adding any lag into the system latter method was chosen for memristor simulations in this thesis. This method was implemented in finite difference drift diffusion solver and it is tested in this chapter. Also a soft limit was implementend in COMSOL for comparison since it did not support the hard limit method.  
+To avoid adding any lag into the system the latter method is used for the memristor simulations in this thesis. This method is implemented in finite difference drift diffusion solver and it is tested in this chapter. Also a soft limit is implementend in COMSOL for comparison since it does not support the hard limit method.  
 
-In order to test density limiting method implemented for memristor simulation a simple example was set up. Two positively charged particles were initialized like the figure below (\ref{5412}). One set of particles has a concentration limit of $2 \; 10^{10} \; m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions.
+In order to test density limiting method implemented for the memristor simulation a simple example is set up. Two positively charged particles are initialized like the figure below in two separate simulations (\ref{5412}). One set of particles has a density limit of $2 \; 10^{10} \; m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions.
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.7]{5412}
@@ -127,12 +127,12 @@ In order to test density limiting method implemented for memristor simulation a 
 \label{5412}
 \end{figure}
 
-This transient simulation was done using a potential train. The potential is applied at the left side of the device and the right side is always grounded. For the first half of the simulation applied potential was positive and for the second half it was negative. Figure \ref{5412} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right side. The limit for the other particles is effectively stopping them from going in and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
+This transient simulation uses a potential pulse train. The potential is applied at the left side of the device and the right side is always grounded. For the first half of the simulation applied potential is positive and for the second half it is negative. Figure \ref{5412} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right side. The limit for the other particles is effectively stopping them from migrating and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
 
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.7]{5413}
-\caption{Limited Concentration Accumulation on the Right Side} 
+\caption{Limited Density Accumulation on the Right Side} 
 \label{5413}
 \end{figure}
 
@@ -140,7 +140,7 @@ When the potential is switched all the particles accumulate freely to the left s
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.7]{5414}
-\caption{Limited Concentration Accumulation on the Left Side} 
+\caption{Limited Concentration Density on the Left Side} 
 \label{5414}
 \end{figure}
 
@@ -157,28 +157,21 @@ This last figure (\ref{5411}) shows the transient response over time of a single
 Additional to the test that was run for finite difference, COMSOL was used to test the soft limiting mechanism. COMSOL does not have a built in option that allows limiting particle density. One possible solution to this is making particle mobility and diffusivity a function particle density. It is possible to use a sigmoid function which switches from 1 to 0 very quickly when particle density is close to its limit. Here is the equation of the sigmoid function used to limit the particle flow:
 
 \begin{equation}
-\mu = \frac{\mu_{0}}{1+e^{\sigma(n-n')}}
+\mu_v = \frac{\mu_{0}}{1+e^{\sigma(n-n')}}
 \label{mur}
 \end{equation} 
 
 $\mu_0$ is the original mobility of the charge carrier. $\sigma$ controls the sharpness of the switch and $n'$ determines the density at which the switch will be. 
 
-Another problem with COMSOL was the definition of mobility and diffusion coefficients over different areas. If these constants are defined as one single value per area COMSOL simulates without any errors but if they are defined as a function of concentration it causes convergence issues. This can be overcome by using two more sigmoid functions to distinguish between two areas with different mobilities and diffusion constants. Left sigmoid in figure \ref{5420}  was multiplied by the mobility/diffusivity of the left side of the area and the right sigmoid was multiplied by the mobility/diffusivity of the right side of the area. Both functions were summed to obtain a function which describes the characteristics of the entire area.
+Another problem with COMSOL is the definition of mobility and diffusion coefficients. When they are defined discontinuously and one of the mobilities is a function of the particle density like the example above, then COMSOL has convergence issues. To overcome the convergence problems, mobilities are set up to gradually switch from a constant value to a variable mobility using two more sigmoid functions which are dependent on position.
 
 \begin{equation}
-\mu=\frac{\mu_{l}}{1+e^{\sigma_x(x-x')}}+\frac{\mu_{r}}{1+e^{-\sigma_x(x-x')}}
+\mu=\frac{\mu_{v}}{1+e^{\sigma_x(x-x')}}+\frac{\mu_{c}}{1+e^{-\sigma_x(x-x')}}
 \end{equation}
 
-In this problem $\mu_r$ is the same as equation \ref{mur} since the region on the right side has a particle density limit. A sharp switch between right and left side mobility using the function above would be ideal for this simulation but unfortunately it causes convergence issues in COMSOL therefore there is a gradual change between two mobilities. 
+In this problem $\mu_v$ is the same as equation \ref{mur} since the region on the right side has a variable mobility and $\mu_c$ is just a constant mobility defined for the left side. $x'$ is the middle of the simulation area.
 
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.7]{5420}
-\caption{Mobility change from left to right side} 
-\label{5420}
-\end{figure}
-
-The initial carrier distribution for COMSOL was set to be exactly the same as finite difference simulation. Figures \ref{5416} and \ref{5423} show results for both COMSOL and finite difference simulations at steady state before the potential switch. The plot on the left side gives insight on how COMSOL simulation behaves for limited and limitless accumulation on the right wall. Due to the gradual change of mobility and diffusion constants between two areas we end up with concentration on the right side higher than the limit which is $2 \; 10^{10}$. Additionally, the particle density goes over its limit near the right wall. In figure \ref{5423} the difference between COMSOL and finite difference becomes more visible. In FD simulation the accumulation goes much higher due to higher electric field and unlike COMSOL it does not penetrate the right half of the simulation domain. 
+The initial carrier distribution for COMSOL is set to be exactly the same as finite difference simulation. Figures \ref{5416} and \ref{5423} show results for both COMSOL and finite difference simulations at steady state before the potential switch. The plot on the left side gives insight on how COMSOL simulation behaves for limited and limitless accumulation on the right wall. Due to the gradual change of mobility and diffusion constants between two areas, the density on the right side is higher than the limit which is $2 \; 10^{10}$. Additionally, the particle density goes over its limit near the right wall. In figure \ref{5423} the difference between COMSOL and finite difference becomes more visible. In FD simulation the accumulation goes much higher due to higher electric field and unlike COMSOL it does not penetrate the right half of the simulation domain. 
 
 \begin{figure}[ht]
 \centering
@@ -195,8 +188,7 @@ The initial carrier distribution for COMSOL was set to be exactly the same as fi
 \end{minipage}
 \end{figure}
 
-
-In figure \ref{5417} it is possible to see the accumulation of charge near the middle after the potential is switched. This is due to mobility being a function of distance and concentration. As the ions move from left to right they go from a low mobility region to a high mobility region and they slowly accumulate around the area where the change in mobility occurs. Figure comparing both COMSOL and finite difference shows that the accumulation does not happen in the case of finite difference due to the way concentration limiting mechanism was implemented.
+In figure \ref{5417} it is possible to see the accumulation of charge near the middle after the potential is switched. This is due to mobility being a function of distance and density. As the ions move from left to right they go from a low mobility region to a high mobility region and they slowly accumulate around the area where the change in mobility occurs. Figure comparing both COMSOL and finite difference shows that the accumulation does not happen in the case of finite difference due to the way density limiting mechanism is implemented.
 
 \begin{figure}[ht]
 \centering
@@ -213,7 +205,7 @@ In figure \ref{5417} it is possible to see the accumulation of charge near the m
 \end{minipage}
 \end{figure}
 
-With the decrease of ion concentration on the limited region the difference between low and high mobility regions diminish. Once the concentration on the limited side is low enough the whole system behaves as if there was no limit and ion mobility becomes equal for all regions and the ions freely accumulate on the left wall (figure \ref{5418}). Aside from the difference in electric field strength both simulations behave the same way as they approach steady state. Figure \ref{5426} shows concentration densities at steady state. COMSOL simulation has a lower electric field since it has convergence issues with high electric fields. 
+With the decrease of ion density on the limited region the difference between low and high mobility regions diminish. Once the density on the limited side is low enough the whole system behaves as if there is no limit and ion mobility becomes equal for all regions and the ions freely accumulate on the left wall (figure \ref{5418}). Aside from the difference in electric field strength both simulations behave the same way as they approach steady state. Figure \ref{5426} shows densities at steady state. COMSOL simulation has a lower electric field since it has convergence issues with high electric fields. 
 
 \begin{figure}[ht]
 \centering
@@ -230,7 +222,7 @@ With the decrease of ion concentration on the limited region the difference betw
 \end{minipage}
 \end{figure}
 
-This comparison can be finalized by looking the particle density transient response of the rightmost node. For the first half of the simulation everything is the same as the finite difference case except COMSOL goes a little bit over the limit. When the potential is switched, node without the limit has no noticeable difference in behaviour. The node with concentration limit has a lag when it comes to releasing the particles. This is due to the sigmoid function used to achieve a limiting behaviour. Once the limit is reached mobility and diffusivity are stuck at a very low value until the particle density starts to go lower than the limit.
+This comparison can be finalized by looking the particle density transient response of the rightmost node. For the first half of the simulation everything is the same as the finite difference case except COMSOL goes a little bit over the limit. When the potential is switched, node without the limit has no noticeable difference in behaviour. The node with density limit has a lag when it comes to releasing the particles. This is due to the sigmoid function used to achieve a limiting behaviour. Once the limit is reached mobility and diffusivity are stuck at a very low value until the particle density starts to go lower than the limit.
 \begin{figure}[ht]
 \centering
 \begin{minipage}[b]{0.45\linewidth}
@@ -246,7 +238,7 @@ This comparison can be finalized by looking the particle density transient respo
 \end{minipage}
 \end{figure}
 
-The simulations above showed that is possible to impose a density limit over any area using a simple no flow boundary condition in finite difference. For COMSOL some workarounds had to be implemented in order to simulate the same behavior which caused convergence issues. 
+The simulations above shows that is possible to impose a density limit over any area using a simple no flow boundary condition in finite difference. For COMSOL some workarounds are implemented in order to simulate the same behavior without any convergence issues. 
 
 
 \end{doublespace}

@@ -298,18 +298,18 @@ This solution needs a matrix inversion every time step but it is unconditionally
 
 \subsection{Boundary Conditions}
 
-For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on charged particles, no flow boundary and metal contact. No flow conditions are imposed on current density equations where metal contact condition is imposed on particle densities. There are two sub types of no flow boundary conditions used during simulation, regular and dependent no flow boundary conditions. A regular no flow condition is used when the particles cannot go past a certain boundary. This can be achieved by setting the particle flow at any boundary to zero. 
+For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on moving particles. No flow conditions are imposed on the current density equations where metal contact condition is imposed on the particle densities. There are two sub types of no flow boundary conditions used during simulation, regular and dependent no flow boundary conditions. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero. 
 
-Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is made a function of lithium density and it is used not only for the boundaries but also for all the points inside the PEDOT:PSS. Basically, during simulation at any point inside PEDOT:PSS if the lithium density goes over a certain limit then that point turns into a no flow wall for the lithium ions as long as there is an influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient.  
+Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is made a function of lithium density and it is used not only for the boundaries but also for all the points inside the PEDOT:PSS. Basically, during simulation, at any point inside PEDOT:PSS if the lithium density goes over a certain limit then that point turns into a no flow wall for the lithium ions as long as there is a net influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient.  
 
-To simulate the metal contacts it is assumed that they have an infinite amount of positive and negative charge and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
+To simulate the metal contacts it is assumed that they hold an infinite amount of positive and negative charges and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
 
 \begin{equation}
 N_{D} + p=N_{A} + n
 \label{chargeneutrality}
 \end{equation}
 
-For a semiconductor holes and electrons have to obey mass action law.
+For a semiconductor holes and electrons have to obey the mass action law.
 
 \begin{equation}
 np=n_i^2
@@ -323,7 +323,7 @@ p=\frac{1}{2}(N_A - N_D + \sqrt{(N_A - N_D)^2+4n_i^2})
 \label{nbound}
 \end{equation}
 
-Once the hole concentration is obtained it is possible to calculate the electron concentration using mass action law.
+Once the hole concentration is obtained it is possible to calculate the electron concentration using the mass action law.
 
 \begin{equation}
 n=\frac{n_i^2}{p}
@@ -353,7 +353,7 @@ Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the bounda
 \label{bc_perchlorate}
 \end{figure}
 
-During simulation, the application of this boundary condition differs from the no flow boundary which was applied implicitly. All the boundaries are simulated using a no flow condition but their values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
+During simulation, the application of this boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition but their values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
 
 \begin{equation}
 \frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
@@ -381,7 +381,7 @@ I=A \frac{dn}{dt}
 
 
 \section{Stability and Computational Efficiency}
-Before discussing numerical limitations of solving drift diffusion equation via finite difference it is important to look into physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve drift diffusion equations.
+Before discussing  the numerical limitations of solving drift diffusion equation via finite difference it is important to look into physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve drift diffusion equations.
 
 \subsection{Physical Limitations}
 Debye length is the length over which mobile charge carriers screen out an external electric field and it determines how steeply charges will accumulate over a certain distance.
