@@ -30,26 +30,24 @@
 \contentsline {section}{\numberline {3.5}Simulation Procedure}{42}{section.182}
 \contentsline {chapter}{\numberline {4}Testing Drift Diffusion Solver}{45}{chapter.191}
 \contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{45}{section.192}
-\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{50}{section.197}
-\contentsline {section}{\numberline {4.3}PN Junction}{51}{section.199}
-\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{54}{section.204}
-\contentsline {chapter}{\numberline {5}Memristor Simulation}{61}{chapter.215}
-\contentsline {section}{\numberline {5.1}Memristor Structure}{61}{section.216}
-\contentsline {section}{\numberline {5.2}Simulation Requirements}{64}{section.218}
-\contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{66}{section.220}
-\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{68}{section.222}
-\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Potential Pulse Train}{68}{subsection.223}
-\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{72}{subsection.229}
-\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{76}{subsection.235}
-\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{81}{chapter.245}
-\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{81}{section.246}
-\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{87}{section.253}
-\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{91}{section.259}
-\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{94}{section.263}
-\contentsline {chapter}{\numberline {7}Conclusion}{99}{chapter.272}
+\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{49}{section.197}
+\contentsline {section}{\numberline {4.3}PN Junction}{50}{section.199}
+\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{53}{section.204}
+\contentsline {chapter}{\numberline {5}Memristor Simulation}{60}{chapter.215}
+\contentsline {section}{\numberline {5.1}Memristor Structure}{60}{section.216}
+\contentsline {section}{\numberline {5.2}Simulation Requirements}{63}{section.218}
+\contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{65}{section.220}
+\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{67}{section.222}
+\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Potential Pulse Train}{67}{subsection.223}
+\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{71}{subsection.229}
+\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{75}{subsection.235}
+\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{80}{chapter.245}
+\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{80}{section.246}
+\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{86}{section.253}
+\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{90}{section.259}
+\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{93}{section.263}
+\contentsline {chapter}{\numberline {7}Conclusion}{98}{chapter.272}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Title 1}{101}{appendix.273}
-\contentsline {chapter}{\numberline {B}Title 2}{102}{appendix.274}
-\contentsline {chapter}{\numberline {C}Title 3}{103}{appendix.275}
+\contentsline {chapter}{\numberline {A}Title 1}{100}{appendix.273}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{104}{dummy.276}
+\contentsline {chapter}{Bibliography}{101}{dummy.274}

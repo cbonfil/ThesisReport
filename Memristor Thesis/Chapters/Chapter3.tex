@@ -8,7 +8,7 @@
 \begin{doublespace}
 
 
-As discussed in the introduction, physical memristor simulations are almost non existent. Memristor simulation developed in this thesis requires certain properties ,such as limitation of particle density or combination of 1-D and 2-D simulations, which may not be available in most commercial simulators. It is also possible that other unusual properties that are not studied in this thesis will be needed for further research. In this chapter a method for solving drift diffusion equations as well as Poisson's equation will be developed based on finite difference. This fully functioning simulator will have needed flexibility for current and future research opportunities.  
+As discussed in the introduction, memristor simulations with detailed physical effects are almost non existent. Memristor simulation developed in this thesis requires certain properties ,such as limitation of particle density or combination of 1-D and 2-D simulations, which may not be available in most commercial simulators. It is also possible that other unusual properties that are not studied in this thesis will be needed for further research. In this chapter a method for solving drift diffusion equations as well as Poisson's equation are developed based on finite difference method. This fully functioning simulator will have the needed flexibility for current and future research opportunities.  
 
 
 \section{Finite Difference Method}
@@ -18,7 +18,7 @@ There are many different methods that can be used to solve drift diffusion equat
 \frac{df}{dx}=\lim\limits_{h \rightarrow 0} \frac{f(x+h)-f(x)}{h}
 \end{equation}
 
-It is possible to obtain a numerical approximation for the first derivative by dropping the limit and assuming that h is small enough to get a value for the derivative reasonably close to the actual value. As h gets smaller the approximation becomes more and more accurate. The difference between the calculated value and the real value is called the truncation error and it is captured using $O(h^n)$ notation. n signifies the order of h which determines how fast the approximation is approaching the real solution as h decreases.  
+It is possible to obtain a numerical approximation for the first derivative of a function by dropping the limit and assuming that h is small enough that the numerical derivative is reasonably close to the actual derivative. As h gets smaller the approximation becomes more and more accurate. The difference between the calculated value and the real value is called the truncation error and it is captured using $O(h^n)$ notation. n signifies the order of h which determines how fast the approximation is approaching the real solution as h decreases.  
 \begin{equation}
 \frac{df}{dx}=\frac{f(x+h)-f(x)}{h} + O(h)
 \label{numdif}
@@ -40,7 +40,7 @@ Above equation is called forward difference because the derivative for point $x_
 f^{'}_i=\frac{f_{i+1}-f_i}{h}+ O(h)
 \end{equation}
 
-Forward difference is not the only way to calculate a discrete derivative. Here are a few other ways calculate the same derivative by making use of different points.
+Forward difference is not the only way to calculate a numerical derivative. Here are a few other ways calculate the same derivative by using of different points.
 
 \begin{equation}
 f^{'}_i=\frac{f_{i}-f_{i-1}}{h}+ O(h)
@@ -54,7 +54,7 @@ f^{'}_{i+\frac{1}{2}}=\frac{f_{i+1}-f_i}{h}+ O(h^2)
 
 Equation \ref{bdif} is called backward difference and equation \ref{cdif} is called central difference. One important aspect to note here is that in the central difference formula the derivative falls exactly in the middle of two points. It also gives more accurate results using the same number of points as forward and backward difference. 
 
-Using finite difference formulas it is possible to construct higher derivatives. A formula for a second order derivative at point $x_i$ using central difference can be calculated using first order derivative on $x_{i-\frac{1}{2}}$, $x_i$ and $x_{i+\frac{1}{2}}$  
+Using finite difference formulas it is possible to construct higher order derivatives. A formula for a second order derivative at point $x_i$ using central difference can be calculated using a first order derivative on $x_{i-\frac{1}{2}}$, $x_i$ and $x_{i+\frac{1}{2}}$  
 
 \begin{equation}
 f_{i+\frac{1}{2}}^{'}=\frac{f_{i+1}-f_{i}}{h}
@@ -71,7 +71,7 @@ f^{'}_{i}=\frac{f_{i+\frac{1}{2}}-f_{i-\frac{1}{2}}}{h}
 \label{2ndord}
 \end{equation}
 
-Second order derivative is constructed by taking the second derivative of the last function. Then equations \ref{forwardd} and \ref{backwardd} is placed into \ref{2ndord}.
+The second order derivative is constructed by taking the second derivative of the last function. Then equations \ref{forwardd} and \ref{backwardd} are placed into \ref{2ndord}.
 
 \begin{equation}\nonumber
 f^{''}_{i}=\frac{f_{i+\frac{1}{2}}^{'}-f_{i-\frac{1}{2}}^{'}}{h}
@@ -92,7 +92,7 @@ f^{''}_{i}=\frac{f_{i+1}-2f_{i}+f_{i-1}}{h^2}+O(h^2)
 \label{fdc2}
 \end{equation}
 
-Overall these finite difference equations are enough to solve drift diffusion equations. Even though all the derivations were done in 1-D it is trivial to extend them to higher dimensions. This method can be used to solve Poisson's equation and drift diffusion equations.
+Overall these finite difference equations are enough to solve drift diffusion equations. Even though all the derivations are done in 1-D it is trivial to extend them to other dimensions. This method can be used to solve Poisson's equation and drift diffusion equations.
 
 \clearpage
 
