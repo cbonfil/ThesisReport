@@ -98,7 +98,7 @@ Overall these finite difference equations are enough to solve drift diffusion eq
 
 \section{Poisson Solver}
 
-Poisson's equation needs to be solved before drift diffusion equations in order find the potential distribution as well as the electric field inside the device. In order to solve for electric field and potential Poisson's equation is simplified through assumptions and then finite difference is used to solve this simplified equation\cite{smith1985numerical}. The first step of simplification is assuming that the permittivity is isotropic.
+Poisson's equation needs to be solved before drift diffusion equations in order find the potential distribution as well as the electric field inside the device. In order to solve for the electric field and the potential, Poisson's equation is simplified through assumptions and then finite difference method is used to solve this simplified equation\cite{smith1985numerical}. The first step of simplification is assuming that the permittivity is isotropic.
  
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-\rho
@@ -119,14 +119,14 @@ Dividing both sides by permittivity and expanding the left hand side,,
  \nabla^2 V =\frac{\partial^2 V}{\partial^2 x}+\frac{\partial^2 V}{\partial^2 y}
 \end{equation}
 
-After discretizing the electric potential over a 2-D uniform grid and using the second order central finite difference formula \eqref{fdc2} laplacian of the electric potential can be calculated using:
+After discretizing the electric potential over a uniform 2-D grid and using the second order central finite difference formula \eqref{fdc2} laplacian of the electric potential can be calculated using:
 
 \begin{equation}
  \nabla^2 V_{i,j}=\frac{V_{i+1,j}-2V_{i,j}+V_{i-1,j}}{\Delta x^2}+\frac{V_{i,j+1}-2V_{i,j}+V_{i,j-1}}{\Delta y^2}
  \label{nablafd}
 \end{equation}
 
-Since the grid is uniform, the distance between two nodes in x and y directions are equal therefore only one variable is needed to represent the distance between two points.
+Since the grid is uniform the distance between two nodes in x and y directions are equal therefore only one variable is needed to represent the distance between two points.
 
 \begin{equation}
 \Delta=\Delta x =\Delta y
@@ -166,7 +166,7 @@ V_{i+1,j}=V_{i,j}
 \label{neumanny}
 \end{equation}
 
-Neumann boundary condition in x direction is obtained using the same procedure.
+Neumann boundary condition in x direction is obtained by using the same procedure.
 
 \begin{equation}
 V_{i,j+1}=V_{i,j}
@@ -178,13 +178,13 @@ Combining the equations above (\ref{discrete_poisson}, \ref{dirichlet},\ref{neum
 D_{2}\vec{V}=-\Delta^2\vec{\rho}-\vec{V_b}
 \end{equation}
 
-$D_{2}$ is the Laplace operator converted into a matrix using the finite difference method. One can easily get the potential distribution by simply solving this matrix equation. Due to the nature of the problem the resulting matrix is quite sparse and using a sparse LU rather than a regular LU decomposition increases the computational efficiency. Additionally, LU decomposition only needs to be performed once. Since the equation is static L and U matrices can be reused for all the solutions following the initial one. 
+$D_{2}$ is the Laplace operator converted into a matrix using the finite difference method. One can easily get the potential distribution by simply solving this matrix equation. Due to the nature of the problem the resulting matrix is quite sparse and using a sparse LU rather than a regular LU decomposition increases the computational efficiency. Additionally, LU decomposition only needs to be performed once since the equation is static and L and U matrices can be reused for all the solutions following the initial one. 
 
 \begin{equation}
 \vec{V}=D_{2}^{-1}(-\Delta^2\vec{\rho_{i,j}}-\vec{V_b})
 \end{equation}
 
-After solving for the potential distribution it is straightforward to calculate the electric field distribution discretely using the relationship between electric field and electric potential \eqref{Efield} and central difference equation \eqref{cdif}. 
+After solving for the potential distribution it is straightforward to calculate the electric field distribution discretely by using the relationship between the electric field and the electric potential \eqref{Efield} and the central difference equation \eqref{cdif}. 
 
 \begin{equation}
 \vec{E^x_{i,j}}=-\frac{V_{i+1,j}-V_{i-1,j}}{2\Delta}
@@ -196,11 +196,11 @@ After solving for the potential distribution it is straightforward to calculate 
 
 \clearpage
 \section{Current Density Equations}
- Both drift and diffusion currents can be calculated over the entire grid. Drift current does not involve any differentials but it is a function of electric field and the diffusion current can be calculated using first order central difference\cite{Dragica1}. The current density is calculated in such a way that it falls between two points which simplifies the application of the boundary conditions.
+ Both drift and diffusion currents can be calculated over the entire grid. Drift current does not involve any differentials but it is a function of the electric field and the diffusion current can be calculated using first order central difference\cite{Dragica1}. The current density is calculated in such a way that it falls between two points which simplifies the application of the boundary conditions.
 \begin{equation}
 J^x_{i+\frac{1}{2},j,k}=q\mu_n n_{i+\frac{1}{2},j,k} E^x_{i+\frac{1}{2},j,k}+D_n \frac{n_{i+1,j,k}-n_{i,j,k}}{\Delta}
 \end{equation}
-The electric field was calculated exactly on the nodes and linear interpolation was used in order to get a value between the nodes. The same argument is also valid for particle densities \textit{p} and \textit{n}. They were defined on the nodes but they were linearly interpolated to be used in current density equations.
+The electric field is calculated exactly on the nodes and linear interpolation is used in order to get a value between the nodes. The same argument is also valid for particle densities \textit{p} and \textit{n}. They are defined at the nodes but they are linearly interpolated to be used in current density equations.
 
 \begin{equation}\nonumber
 n_{i+\frac{1}{2},j,k}=\frac{n_{i+1,j,k}+n_{i,j,k}}{2}
@@ -209,7 +209,7 @@ n_{i+\frac{1}{2},j,k}=\frac{n_{i+1,j,k}+n_{i,j,k}}{2}
 E^{x}_{i+\frac{1}{2},j,k}=\frac{E^y_{i+1,j,k}+E^y_{i,j,k}}{2}
 \end{equation}
 
-Current density in y direction is calculated following the same method:
+Current density in y direction is calculated by following the same method:
 
 \begin{equation}
 J^y_{i,j+\frac{1}{2},k}=q\mu_n n_{i,j+\frac{1}{2},k} E^y_{i,j+\frac{1}{2},k}+D_n \frac{n_{i,j+1,k}-n_{i,j,k}}{\Delta}
@@ -242,14 +242,14 @@ It is possible to replace the derivative with central finite difference terms.
 \label{delJ}
 \end{equation}
 
-This is the general form of the divergence of the current density. These set of equations can be placed in to a matrix which is a linear function of particle density at time t.
+This is the general form of the divergence of the current density. These set of equations can be placed into a matrix which is a linear function of particle density at time t.
 
 \begin{equation}
 B = \nabla \cdot J_k 
 \label{fd_div}
 \end{equation}
 
-The time derivative can be replaced by a forward or backward finite difference terms respectively.
+The time derivative can be replaced by a forward or a backward finite difference term respectively.
 
 \begin{equation}
 \frac{\partial  \vec{n}_k}{\partial t}=\frac{ \vec{n}_{k+1}-\vec{n}_k}{\Delta t}
@@ -263,7 +263,7 @@ The time derivative can be replaced by a forward or backward finite difference t
 
 It is possible to find a numerical transient solution for the drift-diffusion problem by combining finite difference form of the time derivative (\eqref{forwardtime} or \eqref{backwardtime}) and the divergence of the current density equations \eqref{fd_div}.
 
-Forward difference approximation can be used to get an explicit solution for continuity equation.
+Forward difference approximation can be used to get an explicit solution for the continuity equation.
 
 \begin{equation}\nonumber
 \frac{ \vec{n}_{k+1}-\vec{n_k}}{\Delta t}=B
@@ -274,9 +274,9 @@ Forward difference approximation can be used to get an explicit solution for con
 \label{explicit}
 \end{equation}
 
-Both forward and backward difference formulas work sequentially in order to generate a transient solution.The solution from the previous time step is needed to calculate the solution for the next time step. The forward difference gives an explicit solution which has a few advantages. This solution can be implemented, without forming any matrices by directly calculating the divergence of the current density for each node and then marching through time using equation \ref{explicit}. Additionally, unlike backward difference, there are no equations to be solved for every time step. These two properties ease the computational load of the problem and speed up the solution process. Unfortunately this scheme has very strict stability conditions which have to be met in order to produce a solution.
+Both forward and backward difference formulas work sequentially in order to generate a transient solution. The solution from the previous time step is needed to calculate the solution for the next time step. The forward difference gives an explicit solution which has a few advantages. This solution can be implemented, without forming any matrices by directly calculating the divergence of the current density for each node and then marching through time using equation \ref{explicit}. Additionally, unlike backward difference, there are no equations to be solved for every time step. These two properties ease the computational load of the problem and speed up the solution process. Unfortunately this scheme has very strict stability conditions which have to be met in order to produce a solution.
 
-Backward difference can be used instead of forward difference to get an implicit solution.
+Backward difference can be replaced by forward difference to get an implicit solution.
 \begin{equation}\nonumber
 \frac{ \vec{n}_{k}-\vec{n}_{k-1}}{\Delta t}=\frac{1}{q}(qB)
 \end{equation}
@@ -292,15 +292,15 @@ Since all the equations in B matrix are a linear functions on n, it can be separ
 \vec{n}_k=(I-\Delta t C)^{-1}\vec{n}_{k-1}
 \end{equation}
 
-This solution needs a matrix inversion every time step but it is unconditionally stable if it is not used together with Poisson's equation. The decision to use an implicit or an explicit solution is not very simple and it will be discussed in detail in the section following boundary conditions.
+This solution needs a matrix inversion every time step but it is unconditionally stable if it is not coupled with Poisson's equation. The decision to use an implicit or an explicit solution requires deliberate analysis and it will be discussed in detail in the section following boundary conditions.
 \clearpage
 
 
 \subsection{Boundary Conditions}
 
-For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on moving particles. No flow conditions are imposed on the current density equations where metal contact condition is imposed on the particle densities. There are two sub types of no flow boundary conditions used during simulation, regular and dependent no flow boundary conditions. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero. 
+For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on mobile charged particles. No flow conditions are imposed on the current density equations where metal contact condition is imposed on the particle densities. There are two sub types of no flow boundary conditions used during simulation,a regular and a dependent no flow boundary condition. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero. 
 
-Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is made a function of lithium density and it is used not only for the boundaries but also for all the points inside the PEDOT:PSS. Basically, during simulation, at any point inside PEDOT:PSS if the lithium density goes over a certain limit then that point turns into a no flow wall for the lithium ions as long as there is a net influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient.  
+Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is a function of lithium density and it is used not only for the boundaries but also for all the points inside the PEDOT:PSS. During simulation, at any point inside PEDOT:PSS if the lithium density reaches a certain limit then that point turns into a no flow wall for the lithium ions as long as there is a net influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient simulation.  
 
 To simulate the metal contacts it is assumed that they hold an infinite amount of positive and negative charges and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
 
@@ -353,7 +353,7 @@ Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the bounda
 \label{bc_perchlorate}
 \end{figure}
 
-During simulation, the application of this boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition but their values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
+During simulation, the application of the metal contact boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition by default but for metal contacts boundary values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
 
 \begin{equation}
 \frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
@@ -381,7 +381,7 @@ I=A \frac{dn}{dt}
 
 
 \section{Stability and Computational Efficiency}
-Before discussing  the numerical limitations of solving drift diffusion equation via finite difference it is important to look into physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve drift diffusion equations.
+Before discussing  the numerical limitations of solving the drift diffusion equation via finite difference it is important to look into the physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve the drift diffusion equation.
 
 \subsection{Physical Limitations}
 Debye length is the length over which mobile charge carriers screen out an external electric field and it determines how steeply charges will accumulate over a certain distance.
@@ -389,46 +389,46 @@ Debye length is the length over which mobile charge carriers screen out an exter
 L_D=\sqrt{\frac{\varepsilon V_{th}}{q n}}
 \label{debye}
 \end{equation}
-Debye length limits how coarse the grid can be since the distribution of the charge density needs to be accurately captured. As it can be seen from the formula above the higher the charge density is the steeper the charge will accumulate. This behavior is also appears in the analytic solution provided in section 2.2.1 in chapter 2. The accumulation of the charged particle at the wall becomes steeper as the electric field strength increases. The debye length can become a major problem for device sizes in millimeter range and high charge densities since the mesh density needs to be extremely high.
+Debye length limits how coarse the grid can be since the distribution of the charge density needs to be accurately captured. As it can be seen from the formula above the higher the charge density is the steeper the charge will accumulate. This behavior is also appears in the analytic solution provided in section 2.2.1 in chapter 2. The accumulation of the charged particle at the wall becomes steeper as the electric field strength increases. The debye length can become a major problem for large devices with high charge densities since the mesh density needs to be extremely high.
 
-The amount if time it takes for charge fluctuations to disappear is called Dielectric relaxation time. It limits the maximum time step of a simulation since the fluctuations that are not properly resolved over time will make the simulation unstable.
+The amount of time it takes for charge fluctuations to disappear is called Dielectric relaxation time. It limits the maximum time step of a simulation since the fluctuations that are not properly resolved over time will make the simulation unstable.
 
 \begin{equation}
 t_{dr}=\frac{\varepsilon}{q n \mu}
 \label{tdr}
 \end{equation}
 
-Dielectric relaxation time is only important when electric potential is highly affected by redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
+Dielectric relaxation time is only important when the electric potential is highly affected by the redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
 \subsection{Numerical Limitations}
 
-There are also numerical limits which can affect convergence and stability of a solution when using an explicit scheme. These are called Courant-Friedrichs-Lewy (CFL)conditions \cite{NumModel}. CFL conditions for pure diffusion and pure drift are shown in the following equations.
+There are also numerical limits which can affect convergence and stability of a solution when using an explicit finite difference scheme. These are called Courant-Friedrichs-Lewy (CFL)conditions \cite{NumModel}. CFL conditions for diffusion and drift are shown in the following equations.
 
 \begin{equation}
 \frac{\Delta ^2}{2 D_n}>\Delta t
 \label{CFL_Diff}
 \end{equation}
 
-Above condition is for pure diffusion and it restricts the maximum time step. Following condition is for drift dominated systems:
+Above condition is for only diffusion and it restricts the maximum time step. Following condition is for drift dominated systems:
 
 \begin{equation}
 \frac{2 \Delta }{\mu E}>\Delta t
 \label{CFL_Drift}
 \end{equation}
 
-This is the second numerical restriction on the simulation. The condition for drift depends on the electric field therefore it needs to be satisfied as the electric field changes over time during simulation.
+This is the second numerical restriction on the simulation. The condition for drift depends on the electric field therefore it needs to be satisfied at all times as the electric field changes over time during simulation.
 
-Both physical and numerical constraints have to be evaluated and mesh density and time step needs to be selected in order to satisfy all these conditions discussed above. Particularly mesh density has a very strong effect on the accuracy, stability and computational efficiency of the simulation. Increasing the mesh density increases the computational time needed to calculate every time step since there are more points. Additionally because of the CFL condition for diffusion, time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be fixed by using a non uniform mesh which can dramatically decrease the amount points needed for the simulation. This is usually not very straightforward to implement in a finite difference scheme. Also a small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Both numerical and physical constraints for the memristor simulation are further discussed in chapter 5.
+Both physical and numerical constraints have to be evaluated and mesh density and time step need to be selected in order to satisfy all these conditions discussed above. Particularly mesh density has a very strong impact on the accuracy, stability and the computational efficiency of the simulation. Increasing the mesh density increases the computational time needed to calculate every time step since there are more operations to be performed. Additionally because of the CFL condition for diffusion, time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be fixed by using a non uniform mesh which can dramatically decrease the number points needed for the simulation. This is usually not very straightforward to implement in a finite difference scheme and a small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Both numerical and physical constraints for the memristor simulation are further discussed in chapter 5.
 
 \subsection{Explicit vs. Implicit Solution}
 
-Overall explicit and implicit solutions have their advantages and disadvantages. Choosing one over the other requires careful analysis of the problem. Implicit solution by itself is unconditionally stable therefore it can support very large time steps without any stability issues. However with increased time step, the accuracy of the transient solution decreases but the steady state solution does not get affected. So for steady state solutions it is better to use an implicit method which can reach steady state very quickly. This advantage disappears when particle densities are high enough to affect the electric field and Poisson's equation needs to be solved for every time step. In this scenario the maximum step size is determined by dielectric relaxation time which can be around the same order as CFL conditions or even smaller. Since the time step is going to be around the same order for both implicit and explicit methods it is reasonable to use the explicit one because it is computationally less expensive.
+Overall explicit and implicit solutions have their advantages and disadvantages. Choosing one over the other requires a careful analysis of the problem. Implicit solution by itself is unconditionally stable therefore it can support very large time steps without any stability issues. However, the accuracy of the transient solution decreases with a larger time step but the steady state solution does not get affected. So for steady state solutions it is better to use an implicit method which can reach steady state very quickly. This advantage disappears when the particle densities are high enough to affect the electric field and Poisson's equation needs to be solved for every time step. In this scenario the maximum time step is determined by the dielectric relaxation time which can be around the same order as CFL conditions or even smaller. Since the time step is going to be around the same order for both implicit and explicit methods it is reasonable to use the explicit solution because it is computationally less expensive.
 
-Usually implicit solution is preferable when there is no coupling between Poisson's equation and the drift diffusion equations and the transient response is not very important. Explicit solution has an edge over the implicit solution due to its lower computational resource requirement when the equations are coupled and the time steps for both schemes are restricted to fairly small values. For memirstor simulation, drift diffusion equations are strongly coupled with Poisson's equation. For this reason all memristor simulations in this thesis use explicit time stepping. 
+Usually an implicit solution is preferable when there is no coupling between Poisson's equation and the drift diffusion equations and the transient response is not very important. Explicit solution has an edge over the implicit solution due to its lower computational requirements when the equations are coupled and the time steps for both schemes are restricted to small values. For memirstor simulation, the drift diffusion equations are strongly coupled with Poisson's equation. For this reason all the memristor simulations in this thesis use explicit time stepping. 
 
 
 \clearpage
 \section{Simulation Procedure}
-Different equations and schemes that are used to solve drift diffusion and Poisson's equation is shown over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. Following equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using finite difference method:
+Different equations and schemes that are used to solve the drift diffusion and Poisson's equation is shown over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. Following equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using finite difference method:
 
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-q(p-n+N_{D}^{+}-N_{A}^{-})
@@ -452,12 +452,11 @@ Different equations and schemes that are used to solve drift diffusion and Poiss
 \frac{\partial N_{D}^{+}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{D}^{+}}}
 \end{equation}
 
-The geometry and physical properties of the problem as well as all initial and boundary conditions need to be defined at the beginning of the solution process.The initialization sets up the first time step of the problem at $t=0$. Once this first step is done it is possible generate the required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
+The geometry and the physical properties of the problem as well as all the initial and the boundary conditions need to be defined at the beginning of the solution process. The initialization sets up the first time step of the problem at $t=0$. Once this first step is done it is possible generate the required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
 
-The solution process starts by solving Poisson's equation using the charge distribution at current time step. Once it is solved, the electric field distribution is calculated and used in drift diffusion equations to calculate current density distribution. Next, explicit time stepping is used to determine carrier density in the next time step. Finally once the carrier distribution for the next step is calculated it is possible check for a stopping criterion. If this criterion is not met then the whole process will start all over again. If the charge concentration is so small that the equations are decoupled then it is possible to skip solving Poisson's equation for the rest of the simulation which speeds up the solution process.
+The solution process starts by solving Poisson's equation using the charge distribution at current time step. Once it is solved, the electric field distribution is calculated and used in the drift diffusion equations to calculate the current density distribution. Explicit time stepping is used to determine the carrier density in the next time step. Finally once the carrier distribution for the next step is calculated it is possible check for a stopping criterion. If this criterion is not met then the whole process will start all over again. If the charge concentration is so small that the equations are decoupled then it is possible to skip solving Poisson's equation for the rest of the simulation which speeds up the solution process.
 
  There are two different criteria that can be used to decide whether to finalize the simulation process or not. The simulation can stop if it reaches a certain point in time. This is quite simple since the current time can be checked and if it is equal or greater than the required simulation time then the simulation can be stopped. It is also possible to simulate until the simulation reaches steady state. This can be determined by comparing the current carrier distributions with distribution at the previous time step. If the difference is very small then the time derivatives of the carrier densities are very close to zero and the simulation has reached steady state therefore the simulation process can be stopped. The flowchart in figure \ref{flowchart} summarizes the solution procedure.
-
 
 \clearpage
 
