@@ -36,7 +36,7 @@
 \contentsline {figure}{\numberline {5.1}{\ignorespaces The structure of the memristor used for simulation (not to scale)\relax }}{61}{figure.caption.217}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Spatial and temporal requirements for simulation\relax }}{64}{figure.caption.219}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces 1.5-D Memristor Structure\relax }}{65}{figure.caption.221}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Change in resistivity over time due to applied potential\relax }}{68}{figure.caption.224}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Change in resistivity over time due to applied potential\relax }}{67}{figure.caption.224}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Potential and electric field at steady state\relax }}{68}{figure.caption.225}
 \contentsline {figure}{\numberline {5.6}{\ignorespaces Lithium and hole density distribution over time\relax }}{69}{figure.caption.226}
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Normalized resistivity over time\relax }}{70}{figure.caption.228}
@@ -59,7 +59,7 @@
 \contentsline {figure}{\numberline {6.7}{\ignorespaces Applied potential and normalized resistance over time of a 2-D memristor\relax }}{86}{figure.caption.254}
 \contentsline {figure}{\numberline {6.8}{\ignorespaces Electric field and potential at steady state along PEDOT:PSS\relax }}{87}{figure.caption.255}
 \contentsline {figure}{\numberline {6.9}{\ignorespaces Lithium and hole density distributions over time\relax }}{88}{figure.caption.256}
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Resistivity distribution of a memristor over time\relax }}{88}{figure.caption.257}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Resistivity distribution of a memristor over time\relax }}{89}{figure.caption.257}
 \contentsline {figure}{\numberline {6.11}{\ignorespaces Lithium current density over time\relax }}{89}{figure.caption.258}
 \contentsline {figure}{\numberline {6.12}{\ignorespaces Normalized Current vs. applied potential at different frequencies\relax }}{90}{figure.caption.260}
 \contentsline {figure}{\numberline {6.13}{\ignorespaces Hole distribution over time at different frequencies\relax }}{91}{figure.caption.261}
