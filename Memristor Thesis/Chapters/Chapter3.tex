@@ -198,7 +198,7 @@ After solving for the potential distribution it is straightforward to calculate 
 \section{Current Density Equations}
  Both drift and diffusion currents can be calculated over the entire grid. Drift current does not involve any differentials but it is a function of the electric field and the diffusion current can be calculated using first order central difference\cite{Dragica1}. The current density is calculated in such a way that it falls between two points which simplifies the application of the boundary conditions.
 \begin{equation}
-J^x_{i+\frac{1}{2},j,k}=q\mu_n n_{i+\frac{1}{2},j,k} E^x_{i+\frac{1}{2},j,k}+D_n \frac{n_{i+1,j,k}-n_{i,j,k}}{\Delta}
+J^x_{i+\frac{1}{2},j,k}=q\mu_n n_{i+\frac{1}{2},j,k} E^x_{i+\frac{1}{2},j,k}+q D_n \frac{n_{i+1,j,k}-n_{i,j,k}}{\Delta}
 \end{equation}
 The electric field is calculated exactly on the nodes and linear interpolation is used in order to get a value between the nodes. The same argument is also valid for particle densities \textit{p} and \textit{n}. They are defined at the nodes but they are linearly interpolated to be used in current density equations.
 
