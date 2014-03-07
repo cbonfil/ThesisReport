@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{19}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -50,12 +50,6 @@ Yuhao Wang, Wei Fei, and Hao Yu.
 \newblock In \emph{Cellular Nanoscale Networks and Their Applications (CNNA),
   2012 13th International Workshop on}, pages 1--6, 2012.
 
-\bibitem[Erokhin(2010)]{OrganicMem}
-V.~Erokhin.
-\newblock Organic memristors : Basic principles.
-\newblock In \emph{Circuits and Systems (ISCAS), Proceedings of 2010 IEEE
-  International Symposium on}, pages 5--8, 2010.
-
 \bibitem[A.~Elschner(2011)]{PedotBook}
 W.~Lövenich U. Merker K.~Reuter A.~Elschner, S.~Kirchmeyer.
 \newblock \emph{PEDOT}.
@@ -92,6 +86,12 @@ A.F. Adzmi, A.~Nasrudin, W.F.H. Abdullah, and S.H. Herman.
 \newblock In \emph{Research and Development (SCOReD), 2012 IEEE Student
   Conference on}, pages 78--83, 2012.
 
+\bibitem[Erokhin(2010)]{OrganicMem}
+V.~Erokhin.
+\newblock Organic memristors : Basic principles.
+\newblock In \emph{Circuits and Systems (ISCAS), Proceedings of 2010 IEEE
+  International Symposium on}, pages 5--8, 2010.
+
 \bibitem[Vasileska and Goodnick(2006)]{Dragica1}
 D.~Vasileska and Stephen~M. Goodnick.
 \newblock \emph{Computational Electronics}.
@@ -107,6 +107,12 @@ S.M. Sze and K.K. Ng.
 \newblock \emph{Physics of Semiconductor Devices}.
 \newblock Wiley, 2006.
 \newblock ISBN 9780470068304.
+
+\bibitem[Wallis(2000)]{2000semiconductor}
+R.F. Wallis.
+\newblock \emph{Semiconductor Physics and Applications}.
+\newblock Series on Semiconductor Science and Technology. OUP Oxford, 2000.
+\newblock ISBN 9780198517412.
 
 \bibitem[Lindfield and Penny(2012)]{numerical2}
 G.~Lindfield and J.~Penny.

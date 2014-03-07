@@ -1,6 +1,6 @@
 % Chapter Template
 
-\chapter{Testing Drift Diffusion Solver} % Main chapter title
+\chapter{Testing The Drift Diffusion Solver} % Main chapter title
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
@@ -8,7 +8,7 @@
 
 \begin{doublespace}
 
-Past chapter shows the details of how to solve drift-diffusion and Poisson's equation using finite difference method. In this chapter steady state and transient analysis for drift diffusion equations using finite differnce is compared to analytical solutions as well as a commercially available simulator called 'COMSOL Multiphysics' which uses finite element method instead of a finite difference approach. Following test cases are made to ensure that the key parts of the finite difference scheme runs properly and produces accurate results. 
+The past chapter shows the details of how to solve drift-diffusion and Poisson's equation using finite difference method. In this chapter steady state and transient analysis for drift diffusion equations using finite difference is compared to analytical solutions as well as a commercially available simulator called 'COMSOL Multiphysics' which uses finite element method instead of a finite difference approach. The following test cases were made to ensure that the key parts of the finite difference scheme run properly and produce accurate results. 
 
 \section{Solution for Closed Boundary}
 In this section the accuracy of the finite difference solution in steady state is tested. In order to do this, a simple 1-D problem with a finite number of negatively charged particles over a certain distance subject to constant electric field is used. This is the same problem that is solved analytically in section 3.3.1. It is also assumed that the charge density is very low and does not affect the electric field. Both ends of the simulation domain have no flow boundary conditions for charged particles. The solution process requires an initial distribution for the charge density over the area. For this problem the density of the negative particles was initialized to be uniform over the entire region. 
@@ -47,13 +47,13 @@ Figure  \ref{5ss} has two simulation results as well as the exact solution of th
  \label{5curdens}
 \end{figure}
 
-While deriving an analytical solution for this problem it was assumed that at steady state the drift current density must be equal to the diffusion current density. In figure \ref{5curdens} we see drift and diffusion current densities in log scale. Overall both currents match quite tightly.
+While deriving an analytical solution for this problem it was assumed that at steady state the drift current density must be equal and opposite in magnitude to the diffusion current density. In figure \ref{5curdens}, drift and diffusion current densities are shown in log scale. Overall both currents match quite tightly.
 
 Even though the simulation results are good for this example high electric fields due to either applied potential or high charge densities can introduce inaccuracies. If the electric field is very high then the accumulation of the charge can get very steep. The exponential accumulation requires higher mesh densities for accurate calculation.
 
 \clearpage
 \section{Solutions for Open Boundary}
-Another crucial aspect of the drift-diffusion simulation is its transient response. Like the previous test case, the analytic solution can be used to test the accuracy of the transient response. Two different analytic solutions for a similar drift diffusion problems which involved infinite boundaries and a uniform electric field are shown in section 3.3.2. The only difference between two cases are their initial carrier distributions. One has a rectangular and the other one has a gaussian initial carrier distribution. Finite difference scheme does not allow simulation over an infinitely long conductor. For this test case, simulation is performed until the carrier distribution gets close to a wall.   
+Another crucial aspect of the drift-diffusion simulation is its transient response. Like the previous test case, the analytic solution can be used to test the accuracy of the transient response. Two different analytic solutions for a similar drift diffusion problems which involved infinite boundaries and a uniform electric field are shown in section 3.3.2. The only difference between two cases are their initial carrier distributions. One has a rectangular and the other one has a gaussian initial carrier distribution. The finite difference scheme does not allow simulation over an infinitely long conductor. For this test case, simulation is performed until the carrier distribution gets close to a wall.   
 
 \begin{figure}[ht]
 \centering
@@ -62,7 +62,7 @@ Another crucial aspect of the drift-diffusion simulation is its transient respon
 \label{51}
 \end{figure}
 
-Figure \ref{51} has the transient response from COMSOL, finite difference and analytical solution. Snapshots of the carrier distributions were taken for each method at different time steps and they were superposed on top of each other. Increasing levels on y axis represent a carrier distributions at a different time starting from the bottom and moving forward in time towards the top. Figure \ref{51} has a gaussian initial carrier distribution. It can be seen from that the transient solution generated by both COMSOL and finite difference are quite close to the analytical solution.
+Figure \ref{51} has the transient responses from COMSOL, finite difference and analytical solution. Snapshots of the carrier distributions were taken for each method at different time steps and they were superposed on top of each other. Increasing levels on the \textit{y} axis represent a carrier distributions at a different time starting from the bottom and moving forward in time towards the top. Figure \ref{51} has a gaussian initial carrier distribution. It can be seen from that the transient solution generated by both COMSOL and finite difference are quite close to the analytical solution.
 
 
 \clearpage
@@ -111,7 +111,7 @@ This example showed that simulation of a system of coupled equations, drift diff
 \clearpage
 \section{Region Specific Particle Density Limit}
 
-The last property of the drift diffusion simulation scheme that is tested in this section concerns the movement of lithium ions. As lithium ions move into the PEDOT:PSS they bond with PSS polymers and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymers to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This behavior is captured in the model by blocking the particle flow into a node if the density will go over a set limit. This can be achieved in two different ways. 
+The last property of the drift diffusion simulation scheme that is tested in this section concerns the movement of lithium ions. As lithium ions move into the PEDOT:PSS they bond with PSS polymer sites and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymer sites to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This behavior is captured in the model by blocking the particle flow into an area if the density will go over a set limit. This can be achieved in two different ways. 
 
 A soft limit can be set by making the particle mobility a function of its density. This function can be defined in such a way that it switches from a high to a low value when the particle density approaches a defined limit. This implementation is straightforward and can be used in commercial simulators but it has some drawbacks. Once the maximum particle density is reached the mobility and the diffusivity of the lithium particles are stuck at very low values. If there is an outflux of particles from that particular node then the lithium density is stuck at the limit until the mobility and the diffusivity function goes back to a value which allows more particle flow. This can introduce a considerable lag in the response of the device.  
 
@@ -119,7 +119,7 @@ An alternative approach is pre-calculating the particle density of a density lim
 
 To avoid adding any lag into the system the latter method is used for the memristor simulations in this thesis. This method is implemented in the finite difference drift diffusion solver. Also a soft limit is implementend in COMSOL for comparison since it does not support the hard limit method.  
 
-In order to test density limiting method implemented for the memristor simulation a simple example is set up. Two positively charged particles are initialized like the figure below in two separate simulations (\ref{5412}). One set of particles has a density limit of $2 \; 10^{10} \; m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions.
+In order to test density limiting method implemented for the memristor simulation a simple example is set up. Two positively charged particles are initialized like the figure below in two separate simulations (\ref{5412}). One set of particles has a density limit of $2 \; 10^{10} \; m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions. The initial particle density on the left half of the simulation area is set to $5 \; 10^{10} \; m^{-3}$ for both simulations.
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.7]{5412}
@@ -127,7 +127,7 @@ In order to test density limiting method implemented for the memristor simulatio
 \label{5412}
 \end{figure}
 
-This transient simulation uses a potential pulse train. The potential is applied at the left side of the device and the right side is always grounded. For the first half of the simulation the applied potential is positive and for the second half it is negative. Figure \ref{5412} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right wall. The density limit for the other particles is effectively stopping them from migrating and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
+This transient simulation uses a potential pulse train. The potential is applied at the left side of the device and the right side is always grounded. For the first half of the transient simulation the applied potential is positive and for the second half it is negative. Figure \ref{5413} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right wall. The density limit for the other particles is effectively stopping them from migrating and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
 
 \begin{figure}[!htp]
 \centering
@@ -162,7 +162,7 @@ Additional to the test that is run for finite difference, COMSOL is used to test
 \label{mur}
 \end{equation} 
 
-$\mu_0$ is the original mobility of the charge carrier. $\sigma$ controls the slope of the switch and $n'$ determines the density at which the switch will be. 
+$\mu_0$ is the original mobility of the charge carrier. $\sigma$ controls the slope of the switch and $n'$ determines the density at which the transition will be. 
 
 Another problem with COMSOL is the definition of mobility and diffusion coefficients. When they are defined discontinuously and one of the mobilities is a function of the particle density like the example above, then COMSOL has convergence issues. To overcome the convergence problems, mobilities are set up to gradually switch from a constant value to a variable mobility using two more sigmoid functions which are dependent on position.
 
@@ -239,7 +239,7 @@ This comparison can be finalized by looking the particle density transient respo
 \end{minipage}
 \end{figure}
 
-The simulations above show that is possible to impose a density limit over any area using a simple no flow boundary condition in a numerical simulation. For COMSOL some workarounds are implemented in order to simulate the same behavior without any convergence issues. 
+The simulations above show that it is possible to impose a density limit over any area using a simple no flow boundary condition in a numerical simulation. For COMSOL some workarounds are implemented in order to simulate the same behavior without any convergence issues. 
 
 
 \end{doublespace}

@@ -8,7 +8,7 @@
 \begin{doublespace}
 
 
-As discussed in the introduction, memristor simulations with detailed physical effects are almost non existent. Memristor simulation developed in this thesis requires certain properties ,such as limitation of particle density or combination of 1-D and 2-D simulations, which may not be available in most commercial simulators. It is also possible that other unusual properties that are not studied in this thesis will be needed for further research. In this chapter a method for solving drift diffusion equations as well as Poisson's equation are developed based on finite difference method. This fully functioning simulator will have the needed flexibility for current and future research opportunities.  
+As discussed in the introduction, memristor simulations with detailed physical effects are almost non existent. The Memristor simulation developed in this thesis requires certain properties ,such as limitation of particle density or combination of 1-D and 2-D simulations, which are not normally available in most commercial simulators. It is also possible that other unusual properties that are not studied in this thesis will be needed for further research. In this chapter a method for solving drift diffusion equations as well as Poisson's equation are developed based on finite difference method. This fully functioning simulator will have the needed flexibility for current and future research opportunities.  
 
 
 \section{Finite Difference Method}
@@ -40,7 +40,7 @@ Above equation is called forward difference because the derivative for point $x_
 f^{'}_i=\frac{f_{i+1}-f_i}{h}+ O(h)
 \end{equation}
 
-Forward difference is not the only way to calculate a numerical derivative. Here are a few other ways calculate the same derivative by using of different points.
+Forward difference is not the only way to calculate a numerical derivative. Here are a couple other ways calculate the same derivative by using different points.
 
 \begin{equation}
 f^{'}_i=\frac{f_{i}-f_{i-1}}{h}+ O(h)
@@ -98,7 +98,7 @@ Overall these finite difference equations are enough to solve drift diffusion eq
 
 \section{Poisson Solver}
 
-Poisson's equation needs to be solved before drift diffusion equations in order find the potential distribution as well as the electric field inside the device. In order to solve for the electric field and the potential, Poisson's equation is simplified through assumptions and then finite difference method is used to solve this simplified equation\cite{smith1985numerical}. The first step of simplification is assuming that the permittivity is isotropic.
+Poisson's equation needs to be solved before drift diffusion equations in order find the potential distribution as well as the electric field inside the device. In order to solve for the electric field and the potential, Poisson's equation is simplified through assumptions and then the finite difference method is used to solve this simplified equation\cite{smith1985numerical}. The first step of simplification is assuming that the permittivity is isotropic.
  
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-\rho
@@ -292,17 +292,17 @@ Since all the equations in B matrix are a linear functions on n, it can be separ
 \vec{n}_k=(I-\Delta t C)^{-1}\vec{n}_{k-1}
 \end{equation}
 
-This solution needs a matrix inversion every time step but it is unconditionally stable if it is not coupled with Poisson's equation. The decision to use an implicit or an explicit solution requires deliberate analysis and it will be discussed in detail in the section following boundary conditions.
+This solution needs a matrix inversion every time step but it is unconditionally stable if it is not coupled with Poisson's equation. The decision to use an implicit or an explicit solution requires deliberate analysis and it will be discussed in detail in the section 3.4.
 \clearpage
 
 
 \subsection{Boundary Conditions}
 
-For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on mobile charged particles. No flow conditions are imposed on the current density equations where metal contact condition is imposed on the particle densities. There are two sub types of no flow boundary conditions used during simulation,a regular and a dependent no flow boundary condition. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero. 
+For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on mobile charged particles. For metal contacts the boundary condition is enforced by keeping the particle density constant at the boundary ($p = p_o$). A no flow condition is imposed by setting the net current density to zero ($J_p = 0 $) at the boundary or any region where certain types of particles are not allowed to move through. There are two sub types of no flow boundary conditions used during simulation, a regular and a dependent no flow boundary condition. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero. 
 
-Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is a function of lithium density and it is used not only for the boundaries but also for all the points inside the PEDOT:PSS. During simulation, at any point inside PEDOT:PSS if the lithium density reaches a certain limit then that point turns into a no flow wall for the lithium ions as long as there is a net influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient simulation.  
+Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is a function of lithium density and it is used not only for the boundaries but also for the points inside the PEDOT:PSS. During simulation, at any point inside PEDOT:PSS if the lithium density reaches a certain limit then that point turns into a no flow wall for the lithium ions as long as there is a net influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient simulation.  
 
-To simulate the metal contacts it is assumed that they hold an infinite amount of positive and negative charges and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
+To simulate the metal contacts it is assumed that they hold an unlimited amount of positive and negative charges and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
 
 \begin{equation}
 N_{D} + p=N_{A} + n
@@ -398,7 +398,7 @@ t_{dr}=\frac{\varepsilon}{q n \mu}
 \label{tdr}
 \end{equation}
 
-Dielectric relaxation time is only important when the electric potential is highly affected by the redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
+Dielectric relaxation time is only important when the electric potential is significantly affected by the redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
 \subsection{Numerical Limitations}
 
 There are also numerical limits which can affect convergence and stability of a solution when using an explicit finite difference scheme. These are called Courant-Friedrichs-Lewy (CFL)conditions \cite{NumModel}. CFL conditions for diffusion and drift are shown in the following equations.
@@ -408,7 +408,7 @@ There are also numerical limits which can affect convergence and stability of a 
 \label{CFL_Diff}
 \end{equation}
 
-Above condition is for only diffusion and it restricts the maximum time step. Following condition is for drift dominated systems:
+Above condition is for only diffusion and it restricts the maximum time step. The following condition is for drift dominated systems:
 
 \begin{equation}
 \frac{2 \Delta }{\mu E}>\Delta t
@@ -417,18 +417,18 @@ Above condition is for only diffusion and it restricts the maximum time step. Fo
 
 This is the second numerical restriction on the simulation. The condition for drift depends on the electric field therefore it needs to be satisfied at all times as the electric field changes over time during simulation.
 
-Both physical and numerical constraints have to be evaluated and mesh density and time step need to be selected in order to satisfy all these conditions discussed above. Particularly mesh density has a very strong impact on the accuracy, stability and the computational efficiency of the simulation. Increasing the mesh density increases the computational time needed to calculate every time step since there are more operations to be performed. Additionally because of the CFL condition for diffusion, time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be fixed by using a non uniform mesh which can dramatically decrease the number points needed for the simulation. This is usually not very straightforward to implement in a finite difference scheme and a small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Both numerical and physical constraints for the memristor simulation are further discussed in chapter 5.
+Both physical and numerical constraints have to be evaluated and mesh density and time step need to be selected in order to satisfy all these conditions discussed above. Particularly mesh density has a very strong impact on the accuracy, stability and the computational efficiency of the simulation. Increasing the mesh density increases the computational time needed to calculate every time step since there are more operations to be performed. Additionally because of the CFL condition for diffusion, the time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be improved by using a non uniform mesh which can dramatically decrease the number points needed for the simulation. This is usually not very straightforward to implement in a finite difference scheme and a small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Both numerical and physical constraints for the memristor simulation are further discussed in chapter 5.
 
 \subsection{Explicit vs. Implicit Solution}
 
-Overall explicit and implicit solutions have their advantages and disadvantages. Choosing one over the other requires a careful analysis of the problem. Implicit solution by itself is unconditionally stable therefore it can support very large time steps without any stability issues. However, the accuracy of the transient solution decreases with a larger time step but the steady state solution does not get affected. So for steady state solutions it is better to use an implicit method which can reach steady state very quickly. This advantage disappears when the particle densities are high enough to affect the electric field and Poisson's equation needs to be solved for every time step. In this scenario the maximum time step is determined by the dielectric relaxation time which can be around the same order as CFL conditions or even smaller. Since the time step is going to be around the same order for both implicit and explicit methods it is reasonable to use the explicit solution because it is computationally less expensive.
+Overall explicit and implicit solutions have their advantages and disadvantages. Choosing one over the other requires a careful analysis of the problem. Implicit solution by itself is unconditionally stable therefore it can support very large time steps without any stability issues. However, the accuracy of the transient solution decreases with a larger time step but the steady state solution is not affected. So for steady state solutions it is better to use an implicit method which can reach steady state very quickly. This advantage disappears when the particle densities are high enough to affect the electric field and Poisson's equation needs to be solved for every time step. In this scenario the maximum time step is determined by the dielectric relaxation time which can be around the same order as CFL conditions or even smaller. Since the time step is going to be around the same order for both implicit and explicit methods it is reasonable to use the explicit solution because it is computationally less expensive.
 
 Usually an implicit solution is preferable when there is no coupling between Poisson's equation and the drift diffusion equations and the transient response is not very important. Explicit solution has an edge over the implicit solution due to its lower computational requirements when the equations are coupled and the time steps for both schemes are restricted to small values. For memirstor simulation, the drift diffusion equations are strongly coupled with Poisson's equation. For this reason all the memristor simulations in this thesis use explicit time stepping. 
 
 
 \clearpage
 \section{Simulation Procedure}
-Different equations and schemes that are used to solve the drift diffusion and Poisson's equation is shown over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. Following equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using finite difference method:
+The different equations and schemes that were used to solve the drift diffusion  and Poison's equation have been presented over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. The following equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using the finite difference method:
 
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=-q(p-n+N_{D}^{+}-N_{A}^{-})

@@ -10,7 +10,7 @@ The memristor studied in this thesis uses a strip of PEDOT:PSS as a conductor. A
 
 
 \section{Carrier Transport Equations}
-Drift diffusion equations, which are based on BTE\cite{Dragica1}, need to be solved in order to model the complex behaviour of the memristor. Drift-diffusion equations are derived by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model, therefore they need to be well understood.
+Drift diffusion equations, which are based on Boltzmann Transport Equations (BTE) \cite{Dragica1}, need to be solved in order to model the complex behaviour of the memristor. The drift diffusion equations used are derived by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model, therefore they need to be well understood.
 
 The derivation of Boltzmann transport equation starts by stating that a distribution of charged particles can be defined by their position in space \textbf{r} and momentum \textbf{k} in time \textbf{t} using a probability distribution function f(k,r,t). This results in the most general form of Boltzmann transport equation.
 
@@ -87,12 +87,15 @@ Current density equations by themselves are not enough to solve this time depend
 
 $U_{n}$ and $U_{p}$ are net generation recombination rates. These terms were not included in the modeling of the memristor. 
 
-Electric field can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied potential. It is possible to calculate the potential distribution over an area by using Poisson's equation \cite{Dragica1}. Once the potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential.
+Electric field can be generated in two different ways. One is through the distribution of net charge over the area and the other one is an externally applied potential. It is possible to calculate the potential distribution over an area by using Poisson's equation \cite{Dragica1}. 
 
 \begin{equation}
-\nabla \cdot  (\varepsilon \nabla V)=-\rho=-q(p-n+N_{D}^{+}-N_{A}^{-})
+\nabla \cdot  (\varepsilon \nabla V)=-\rho
 \label{poisson}
 \end{equation}
+
+Where the variables \textit{$\varepsilon$}, \textit{V}, \textit{$\rho$} are permittivity, electric potential and charge density respectively. Once the electric potential is known the electric field can be obtained by just calculating the negative gradient of the electric potential. 
+
 \begin{equation}
 \vec{E}=-\nabla V
 \label{Efield}
@@ -116,33 +119,33 @@ I=\int\limits_{s}^{}\vec{J_{tot}} \cdot ds = \int\limits_{s}^{}(J_n+J_p+\varepsi
 
 Poisson's equation and drift-diffusion equations are coupled through the electric field and net charge distribution. The strength of this non linear coupling depends on the size of the device and the charge density which determines the total amount of charge over an area. In a strongly coupled system of differential equations, small changes in either the charge density or the electric field can easily cause instabilities in the simulation. This is further discussed in the next chapter while developing a numerical scheme to solve the system of equations described in this chapter. 
 
-Drift diffusion equations derived above hold for the ions in the electrolyte as long as fluid effects can be ignored. For the memristor simulated in this thesis, there are three distinct types of mobile particles, holes, lithium and perchlorate. In PEDOT:PSS there is also a finite amount of negatively charged particles which are immobile, therefore they are only included in Poisson's equation. The main equations for the drift-diffusion model that are used for the memristor simulation can be compactly written as:
+The drift diffusion equations derived above hold for the ions in the electrolyte as long as fluid effects can be ignored. For the memristor simulated in this thesis, there are three distinct types of mobile charged particles, holes, lithium and perchlorate. In PEDOT:PSS there is also a finite amount of negatively charged particles which are immobile, therefore they are only included in Poisson's equation. The main equations for the drift-diffusion model that are used for the memristor simulation can be compactly written as:
 
 \begin{equation}
-\nabla \cdot  (\varepsilon \nabla V)=-q(p-n+N_{D}^{+}-N_{A}^{-})
+\nabla \cdot  (\varepsilon \nabla V)=-q( p-N_{PSS}+ N_{Li} - N_{ClO_{4}})
 \end{equation}
 \begin{equation}
 \vec{J_p}=q\mu_p p \vec{E}-q D_p \nabla p
 \end{equation}
 \begin{equation}
-\vec{J_{N_{A}^{-}}}=q\mu_{N_{A}^{-}} N_{A}^{-} \vec{E}+q D_{N_{A}^{-}} \nabla N_{A}^{-}
+\vec{J_{N_{ClO_{4}}}}=q\mu_{N_{ClO_{4}}} N_{ClO_{4}} \vec{E}+q D_{N_{ClO_{4}}} \nabla N_{ClO_{4}}
 \end{equation}
 \begin{equation}
-\vec{J_{N_{D}^{+}}}=q\mu_{N_{D}^{+}} N_{D}^{+} \vec{E}-q D_{N_{D}^{+}} \nabla N_{D}^{+}
+\vec{J_{N_{Li}}}=q\mu_{N_{Li}} N_{Li} \vec{E}-q D_{N_{Li}} \nabla N_{Li}
 \end{equation}
 \begin{equation}
 \frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}
 \end{equation}
 \begin{equation}
-\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{A}^{-}}}
+\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{ClO_{4}}}}
 \end{equation}
 \begin{equation}
-\frac{\partial N_{D}^{+}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{D}^{+}}}
+\frac{\partial N_{Li}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{Li}}}
 \end{equation}
 
-This system of equations consist of 4 different charge carriers. There are 3 mobile species lithium ($N_{D}^{+}$) and perchlorate ($N_{A}^{-}$) and holes (p) and one fixed charge, electrons (n). The particles are coupled to each other through Poisson's equation since they all carry electric charge. 
+This system of equations consist of 4 different charged particles. There are 3 mobile species lithium ($N_{Li}$) and perchlorate ($N_{ClO_{4}}$) and holes (p) and one fixed charge, $PSS^{-}$ ions ($N_{PSS}$). The particles are coupled to each other through Poisson's equation since they all carry electric charge. 
 
-Even after many approximations to the BTE, the drif diffusion equations have analytical solutions for only few isolated cases. The analytical solutions developed in the rest of this chapter are used in the testing of the numerical method developed for simulating a memristor. 
+Even after many approximations to the BTE, the drift diffusion equations have analytical solutions for only few isolated cases. The analytical solutions developed in the rest of this chapter are used in the testing of the numerical method developed for simulating a memristor. 
 
 \clearpage
 \section{Analytic Solutions}
@@ -216,12 +219,18 @@ Equation \ref{p_ss} combined with equation \ref{p_ss_c} gives a complete solutio
 \caption{Increased accumulation of particles due to increased electric field} 
 \end{figure}
 
-Debye length is the length over which mobile charge carriers screen out an external electric field and it determines how steeply charges will accumulate over a certain distance. This example also illustrates the decrease in the debye length due to the increase in the charge density. Debye length is determined by the strength of the electric field created by the charge present in the material. The increase in the electric field in this example is analogous to the increase in charge density. Increased charge density creates a larger electric field. This creates a steeper accumulation of the charged particles and a decrease in the debye length. 
+The Debye length is the length over which mobile charge carriers screen out an external electric field and it determines how steeply charges will accumulate over a certain distance and it can be calculated using the following equation:
+
+\begin{equation}
+L_D=\sqrt{\frac{\varepsilon V_{th}}{q n}}
+\end{equation}
+
+Where $V_{th}$ represents the thermal voltage and \textit{n} represents the particle density. This example also illustrates the decrease in the debye length due to the increase in the charge density. Debye length is determined by the strength of the electric field created by the charge present in the material. The increase in the electric field in this example is analogous to the increase in charge density. Increased charge density creates a larger electric field. This creates a steeper accumulation of the charged particles and a decrease in the debye length. 
 
 \clearpage
 \subsection{Transient Solution Over an Infinite Domain}
 
-The problem that is solved in this section consists of an initial particle density distribution subject to a uniform electric field over an infinitely long conductor. The charge distribution drifts and diffuses over time. This requires a transient solution and the continuity equation (\ref{conn}) needs to be solved. Again, charged particles do not affect the electric field therefore solution of Poisson's equation is not necessary. 
+The problem that is solved in this section consists of an initial particle density distribution subject to a uniform electric field over an infinitely long conductor. The charge distribution drifts and diffuses over time. This requires a transient solution and the continuity equation (\ref{conn}) needs to be solved. Again, it is assumed that charged particles do not affect the electric field since their density is low enough , therefore solution of Poisson's equation is not necessary. 
 
 The first step of the solution process is the insertion of \eqref{cdenn} into \eqref{conn}.
 
@@ -312,21 +321,21 @@ n(x,t=0)=\int\limits_{-\infty}^{\infty}C(\omega) e^{-j\omega x}d\omega
 $C(\omega)$ is just the inverse fourier transform of $n(x,0)$.
 
 \begin{equation}
-C(\omega)=\int\limits_{-\infty}^{\infty}n(x,0)e^{-j\omega x}dx
+C(\omega)=\int\limits_{-\infty}^{\infty}n(x,0)e^{j\omega x}dx
 \label{comega}
 \end{equation}
 
 The final form of the solution is generated by placing equation \eqref{comega} into \eqref{nfinal1}:
 
 \begin{equation}
-n=\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}n(z,0)e^{j\omega z}dz e^{(\omega ^2 D-j\omega \mu_n E)t}e^{-j\omega x}d\omega
+n=\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}n(z,0)e^{j\omega z}dz e^{(\omega ^2 D-j\omega \mu_n E)t}e^{j\omega x}d\omega
 \label{nfinal2}
 \end{equation}
 
 Rearranging equation \eqref{nfinal2},
 
 \begin{equation}
-n=\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}n(z,0) e^{(\omega ^2 D-j\omega \mu_n E)t}e^{-j\omega x} e^{j\omega z}  dz d\omega
+n=\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}n(z,0) e^{(\omega ^2 D-j\omega \mu_n E)t}e^{j\omega x} e^{j\omega z}  dz d\omega
 \end{equation}
 
 Using a gaussian initial distribution results into:
@@ -336,7 +345,7 @@ n(x,0)=e^{- (\frac{x-x_o}{\sigma})^2}
 \end{equation}
 
 \begin{equation}
-n(x,t)=\frac{1}{\sqrt{4D_n\sigma^{-2}t+1}}e^{-\frac{(t\mu_n E-x+x_o)^2}{4D_n t+\sigma^2}}
+n(x,t)=\frac{1}{\sqrt{4D_nt+\sigma^{2}}}e^{-\frac{(t\mu_n E-x+x_o)^2}{4D_n t+\sigma^2}}
 \end{equation}
 
 If the initial distribution is a rectangular then the solution takes the following form:
@@ -364,7 +373,7 @@ Following plots show the evolution of two particle densities with different init
 \end{figure}
 \clearpage
 \subsection{PN Junction}
-Previous analytical solutions involved the solution of Poisson's equation and continuity equation which are not coupled. An example where these equations are tightly coupled is examined in this section. There are usually no direct analytical solutions for coupled equations but it is possible to get a closed form solution by making use of certain approximations. One example of this situation is an abrupt p-n junction. An abrupt p-n junction is created when two materials of opposite doping,p type and n type, are brought together. A p type material has an excess number of acceptors $N_A$ and an n type material has an excess number of donors $N_D$. The junction is defined at the interface where $N_A=N_D$ \cite{Physem}. 
+The previous analytical solutions involved the solution of Poisson's equation and the continuity equation which are not coupled. An example where these equations are tightly coupled is examined in this section. There are usually no direct analytical solutions for coupled equations but it is possible to get a closed form solution by making use of certain approximations. One example of this situation is an abrupt p-n junction. An abrupt p-n junction is created when two materials of opposite doping, p type and n type, are brought together. For this example the p-type material has a net hole concentration of $N_{A}$ and the n-type materials has a net electron concentration of $N_{D}$. The junction is defined at the interface where $N_A=N_D$ \cite{Physem}. 
 
 \begin{figure}[!htp]
 \centering
@@ -482,21 +491,7 @@ x_{n}=\sqrt{\frac{2\varepsilon V_{bi}}{q}\frac{N_{A}}{N_{D}(N_{D}+N_{A})}}
 x_{p}=\sqrt{\frac{2\varepsilon V_{bi}}{q}\frac{N_{D}}{N_{A}(N_{D}+N_{A})}}
 \end{equation}
 
-The value of the built in potential can also be calculated using fermi levels of p and n doped materials.
-
-\begin{equation}
-E_{FN}-E_{i}=kT \; ln(\frac{N_{D}}{n_i})
-\end{equation}
-
-\begin{equation}
-E_{i}-E_{FP}=kT \; ln(\frac{N_{A}}{n_i})
-\end{equation}
-
-$E_{FN}$ and $E_{FP}$ are fermi energy levels of electrons and holes respectively. The difference between the fermi levels divided by the single electron charge gives us the built in potential of the pn junction.
-
-\begin{equation}
-E_{FN}-E_{FP}=q V_{bi}=kT \; ln(\frac{N_{D}}{n_i})+kT \; ln(\frac{N_{A}}{n_i})=kT \; ln(\frac{N_{A}N_{D}}{n_i^2})
-\end{equation}
+The value of the built in potential can be calculated using the following equation\cite{2000semiconductor}:
 
 \begin{equation}
 V_{bi}=\frac{kT}{q} \; ln(\frac{N_{A}N_{D}}{n_i^2})
