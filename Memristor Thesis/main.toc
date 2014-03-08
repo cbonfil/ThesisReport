@@ -37,17 +37,17 @@
 \contentsline {section}{\numberline {5.1}Memristor Structure}{61}{section.214}
 \contentsline {section}{\numberline {5.2}Simulation Requirements}{64}{section.216}
 \contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{66}{section.218}
-\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{68}{section.220}
-\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Potential Pulse Train}{68}{subsection.221}
-\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{72}{subsection.227}
-\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{76}{subsection.233}
-\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{81}{chapter.243}
-\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{81}{section.244}
-\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{87}{section.251}
-\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{91}{section.257}
-\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{94}{section.261}
-\contentsline {chapter}{\numberline {7}Conclusion}{99}{chapter.270}
+\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{67}{section.220}
+\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Potential Pulse Train}{67}{subsection.221}
+\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{71}{subsection.226}
+\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{74}{subsection.231}
+\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{78}{chapter.241}
+\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{78}{section.242}
+\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{84}{section.249}
+\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{88}{section.255}
+\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{91}{section.259}
+\contentsline {chapter}{\numberline {7}Conclusion}{96}{chapter.268}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Title 1}{101}{appendix.271}
+\contentsline {chapter}{\numberline {A}Title 1}{98}{appendix.269}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{102}{dummy.272}
+\contentsline {chapter}{Bibliography}{99}{dummy.270}
