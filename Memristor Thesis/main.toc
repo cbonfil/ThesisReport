@@ -13,41 +13,44 @@
 \contentsline {section}{\numberline {1.4}Background}{3}{section.20}
 \contentsline {chapter}{\numberline {2}Theory}{6}{chapter.22}
 \contentsline {section}{\numberline {2.1}Carrier Transport Equations}{6}{section.23}
-\contentsline {section}{\numberline {2.2}Analytic Solutions}{12}{section.47}
-\contentsline {subsection}{\numberline {2.2.1}Steady State Solution Over a Finite Domain}{12}{subsection.48}
-\contentsline {subsection}{\numberline {2.2.2}Transient Solution Over an Infinite Domain}{16}{subsection.61}
-\contentsline {subsection}{\numberline {2.2.3}PN Junction}{20}{subsection.85}
-\contentsline {chapter}{\numberline {3}Numerical Solution of Drift-Diffusion Equation}{25}{chapter.106}
-\contentsline {section}{\numberline {3.1}Finite Difference Method}{25}{section.107}
-\contentsline {section}{\numberline {3.2}Poisson Solver}{29}{section.122}
-\contentsline {section}{\numberline {3.3}Current Density Equations}{32}{section.139}
-\contentsline {subsection}{\numberline {3.3.1}Continuity Equation}{33}{subsection.146}
-\contentsline {subsection}{\numberline {3.3.2}Boundary Conditions}{36}{subsection.160}
-\contentsline {section}{\numberline {3.4}Stability and Computational Efficiency}{39}{section.172}
-\contentsline {subsection}{\numberline {3.4.1}Physical Limitations}{39}{subsection.173}
-\contentsline {subsection}{\numberline {3.4.2}Numerical Limitations}{40}{subsection.176}
-\contentsline {subsection}{\numberline {3.4.3}Explicit vs. Implicit Solution}{41}{subsection.179}
-\contentsline {section}{\numberline {3.5}Simulation Procedure}{43}{section.180}
-\contentsline {chapter}{\numberline {4}Testing The Drift Diffusion Solver}{46}{chapter.189}
-\contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{46}{section.190}
-\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{50}{section.195}
-\contentsline {section}{\numberline {4.3}PN Junction}{51}{section.197}
-\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{54}{section.202}
-\contentsline {chapter}{\numberline {5}Memristor Simulation}{61}{chapter.213}
-\contentsline {section}{\numberline {5.1}Memristor Structure}{61}{section.214}
-\contentsline {section}{\numberline {5.2}Simulation Requirements}{64}{section.216}
-\contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{66}{section.218}
-\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{67}{section.220}
-\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Potential Pulse Train}{67}{subsection.221}
-\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{71}{subsection.226}
-\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{74}{subsection.231}
-\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{78}{chapter.241}
-\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{78}{section.242}
-\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{84}{section.249}
-\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{88}{section.255}
-\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{91}{section.259}
-\contentsline {chapter}{\numberline {7}Conclusion}{96}{chapter.268}
+\contentsline {section}{\numberline {2.2}Analytic Solutions}{13}{section.49}
+\contentsline {subsection}{\numberline {2.2.1}Steady State Solution Over a Finite Domain}{13}{subsection.50}
+\contentsline {subsection}{\numberline {2.2.2}Transient Solution Over an Infinite Domain}{17}{subsection.63}
+\contentsline {subsection}{\numberline {2.2.3}PN Junction}{21}{subsection.87}
+\contentsline {chapter}{\numberline {3}Numerical Solution of Drift-Diffusion Equation}{26}{chapter.108}
+\contentsline {section}{\numberline {3.1}Finite Difference Method}{26}{section.109}
+\contentsline {section}{\numberline {3.2}Poisson Solver}{30}{section.124}
+\contentsline {section}{\numberline {3.3}Current Density Equations}{33}{section.137}
+\contentsline {subsection}{\numberline {3.3.1}Continuity Equation}{34}{subsection.144}
+\contentsline {section}{\numberline {3.4}Stability and Computational Efficiency}{37}{section.158}
+\contentsline {subsection}{\numberline {3.4.1}Physical Limitations}{37}{subsection.159}
+\contentsline {subsection}{\numberline {3.4.2}Numerical Limitations}{38}{subsection.162}
+\contentsline {subsection}{\numberline {3.4.3}Explicit vs. Implicit Solution}{39}{subsection.165}
+\contentsline {section}{\numberline {3.5}Simulation Procedure}{40}{section.166}
+\contentsline {section}{\numberline {3.6}Simulation of a Memristor as a Coupled Electronic Device}{42}{section.168}
+\contentsline {subsection}{\numberline {3.6.1}Boundary and Initial Conditions of the Memristor Model}{42}{subsection.176}
+\contentsline {subsubsection}{\numberline {3.6.1.1}Drift Diffusion Equations}{42}{subsubsection.177}
+\contentsline {subsubsection}{\numberline {3.6.1.2}Metal Contacts}{45}{subsubsection.181}
+\contentsline {subsubsection}{\numberline {3.6.1.3}Poisson's Equation}{46}{subsubsection.190}
+\contentsline {chapter}{\numberline {4}Testing The Drift Diffusion Solver}{48}{chapter.196}
+\contentsline {section}{\numberline {4.1}Solution for Closed Boundary}{48}{section.197}
+\contentsline {section}{\numberline {4.2}Solutions for Open Boundary}{52}{section.202}
+\contentsline {section}{\numberline {4.3}PN Junction}{53}{section.204}
+\contentsline {section}{\numberline {4.4}Region Specific Particle Density Limit}{56}{section.209}
+\contentsline {chapter}{\numberline {5}Memristor Simulation}{63}{chapter.220}
+\contentsline {section}{\numberline {5.1}Memristor Structure}{63}{section.221}
+\contentsline {section}{\numberline {5.2}Simulation Requirements}{66}{section.223}
+\contentsline {section}{\numberline {5.3}1-D Memristor Approximation}{68}{section.225}
+\contentsline {section}{\numberline {5.4}1-D Memristor Simulations}{69}{section.227}
+\contentsline {subsection}{\numberline {5.4.1}1-D Memristor Simulation Using a Potential Pulse Train}{69}{subsection.228}
+\contentsline {subsection}{\numberline {5.4.2}1-D Memristor Simulation Using a Sinusoid}{73}{subsection.233}
+\contentsline {subsection}{\numberline {5.4.3}1-D Memristor Simulation With Increasing Charge Density}{76}{subsection.238}
+\contentsline {chapter}{\numberline {6}2-D Memristor Simulation}{80}{chapter.248}
+\contentsline {section}{\numberline {6.1}Effect of PEDOT:PSS Thickness}{80}{section.249}
+\contentsline {section}{\numberline {6.2}2-D Memristor Simulation Using a Potential Pulse Train}{86}{section.256}
+\contentsline {section}{\numberline {6.3}2-D Memristor Simulation Using a Sinusoid}{90}{section.262}
+\contentsline {section}{\numberline {6.4}Experiment vs. Simulation}{93}{section.266}
+\contentsline {chapter}{\numberline {7}Conclusion}{98}{chapter.275}
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Title 1}{98}{appendix.269}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{99}{dummy.270}
+\contentsline {chapter}{Bibliography}{100}{dummy.276}

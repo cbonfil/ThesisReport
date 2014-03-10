@@ -8,7 +8,7 @@
 \begin{doublespace}
 
 
-As discussed in the introduction, memristor simulations with detailed physical effects are almost non existent. The Memristor simulation developed in this thesis requires certain properties ,such as limitation of particle density or combination of 1-D and 2-D simulations, which are not normally available in most commercial simulators. It is also possible that other unusual properties that are not studied in this thesis will be needed for further research. In this chapter a method for solving drift diffusion equations as well as Poisson's equation are developed based on finite difference method. This fully functioning simulator will have the needed flexibility for current and future research opportunities.  
+The simulation method developed in this thesis requires certain properties ,such as limitation of particle density or a combination of 1-D and 2-D simulations, which are not normally available in most commercial simulators. It is also possible that other unusual properties that are not studied in this thesis will be needed for further research. In this chapter a method for solving drift diffusion equations as well as Poisson's equation are developed based on finite difference method. This fully functioning simulator will have the needed flexibility for current and future research opportunities.  
 
 
 \section{Finite Difference Method}
@@ -18,7 +18,7 @@ There are many different methods that can be used to solve drift diffusion equat
 \frac{df}{dx}=\lim\limits_{h \rightarrow 0} \frac{f(x+h)-f(x)}{h}
 \end{equation}
 
-It is possible to obtain a numerical approximation for the first derivative of a function by dropping the limit and assuming that h is small enough that the numerical derivative is reasonably close to the actual derivative. As h gets smaller the approximation becomes more and more accurate. The difference between the calculated value and the real value is called the truncation error and it is captured using $O(h^n)$ notation. n signifies the order of h which determines how fast the approximation is approaching the real solution as h decreases.  
+It is possible to obtain a numerical approximation for the first derivative of a function by dropping the limit and assuming that h is small enough that the numerical derivative is reasonably close to the actual derivative. As h gets smaller the approximation becomes more and more accurate. The difference between the calculated value and the real value is called the truncation error and it is captured using $O(h^n)$ notation. n signifies the order of h which determines how fast the approximation is approaching the real solution as h decreases\cite{numerical2}.  
 \begin{equation}
 \frac{df}{dx}=\frac{f(x+h)-f(x)}{h} + O(h)
 \label{numdif}
@@ -119,7 +119,7 @@ Dividing both sides by permittivity and expanding the left hand side,,
  \nabla^2 V =\frac{\partial^2 V}{\partial^2 x}+\frac{\partial^2 V}{\partial^2 y}
 \end{equation}
 
-After discretizing the electric potential over a uniform 2-D grid and using the second order central finite difference formula \eqref{fdc2} laplacian of the electric potential can be calculated using:
+After discretizing the electric potential over a uniform 2-D grid and using the second order central finite difference formula \eqref{fdc2} laplacian of the electric potential can be calculated using\cite{NumModel}:
 
 \begin{equation}
  \nabla^2 V_{i,j}=\frac{V_{i+1,j}-2V_{i,j}+V_{i-1,j}}{\Delta x^2}+\frac{V_{i,j+1}-2V_{i,j}+V_{i,j-1}}{\Delta y^2}
@@ -145,43 +145,19 @@ This equation can be rearranged into the form below:
 \label{discrete_poisson}
 \end{equation}
 
-Equation \ref{discrete_poisson} is valid for almost all the nodes in the system except two cases, boundary nodes and interface nodes. There are two different types of boundary conditions. The first one is Dirichlet boundary condition which forces a particular value for the potential at the boundary.
 
-\begin{equation}
-V_{i,j}=V_{b}
-\label{dirichlet}
-\end{equation}
 
-Where $V_{b}$ is the value of the potential at the boundary. The other possible boundary condition is called Neumann boundary condition which states that the derivative of the potential at the boundary is zero. This gives the following equation:
-
-\begin{equation}
-\frac{\partial V}{\partial x}=\frac{V_{i+1,j}-V_{i,j}}{\Delta}=0
-\label{neumannx}
-\end{equation}
-
-So for a boundary in y direction:
-
-\begin{equation}
-V_{i+1,j}=V_{i,j}
-\label{neumanny}
-\end{equation}
-
-Neumann boundary condition in x direction is obtained by using the same procedure.
-
-\begin{equation}
-V_{i,j+1}=V_{i,j}
-\end{equation}
-
-Combining the equations above (\ref{discrete_poisson}, \ref{dirichlet},\ref{neumannx} and \ref{neumanny}) it is possible to turn Poisson's equation, which is a second order differential equation, into a linear set of coupled algebraic equation.
+Combining the equations above (\ref{discrete_poisson}, \ref{dirichlet}, \ref{neumannx} and \ref{neumanny}) it is possible to turn Poisson's equation, which is a second order differential equation, into a linear set of coupled algebraic equation.
 
 \begin{equation}
 D_{2}\vec{V}=-\Delta^2\vec{\rho}-\vec{V_b}
 \end{equation}
 
-$D_{2}$ is the Laplace operator converted into a matrix using the finite difference method. One can easily get the potential distribution by simply solving this matrix equation. Due to the nature of the problem the resulting matrix is quite sparse and using a sparse LU rather than a regular LU decomposition increases the computational efficiency. Additionally, LU decomposition only needs to be performed once since the equation is static and L and U matrices can be reused for all the solutions following the initial one. 
+$D_{2}$ is the Laplace operator converted into a matrix using the finite difference method. One can easily get the potential distribution by simply solving this matrix equation(\ref{poimatrix}). Due to the nature of the problem the resulting matrix is quite sparse and using a sparse LU rather than a regular LU decomposition increases the computational efficiency. Additionally, LU decomposition only needs to be performed once since the equation is static and L and U matrices can be reused for all the solutions following the initial one. 
 
 \begin{equation}
 \vec{V}=D_{2}^{-1}(-\Delta^2\vec{\rho_{i,j}}-\vec{V_b})
+\label{poimatrix}
 \end{equation}
 
 After solving for the potential distribution it is straightforward to calculate the electric field distribution discretely by using the relationship between the electric field and the electric potential \eqref{Efield} and the central difference equation \eqref{cdif}. 
@@ -263,7 +239,7 @@ The time derivative can be replaced by a forward or a backward finite difference
 
 It is possible to find a numerical transient solution for the drift-diffusion problem by combining finite difference form of the time derivative (\eqref{forwardtime} or \eqref{backwardtime}) and the divergence of the current density equations \eqref{fd_div}.
 
-Forward difference approximation can be used to get an explicit solution for the continuity equation.
+Forward difference approximation can be used to get an explicit solution for the continuity equation\cite{Dragica1}.
 
 \begin{equation}\nonumber
 \frac{ \vec{n}_{k+1}-\vec{n_k}}{\Delta t}=B
@@ -274,7 +250,7 @@ Forward difference approximation can be used to get an explicit solution for the
 \label{explicit}
 \end{equation}
 
-Both forward and backward difference formulas work sequentially in order to generate a transient solution. The solution from the previous time step is needed to calculate the solution for the next time step. The forward difference gives an explicit solution which has a few advantages. This solution can be implemented, without forming any matrices by directly calculating the divergence of the current density for each node and then marching through time using equation \ref{explicit}. Additionally, unlike backward difference, there are no equations to be solved for every time step. These two properties ease the computational load of the problem and speed up the solution process. Unfortunately this scheme has very strict stability conditions which have to be met in order to produce a solution.
+Both forward and backward difference formulas work sequentially in order to generate a transient solution. The solution from the previous time step is needed to calculate the solution for the next time step. The forward difference gives an explicit solution which has a few advantages. This solution can be implemented, without forming any matrices by directly calculating the divergence of the current density for each node and then marching through time using equation \ref{explicit}. Additionally, unlike backward difference, there are no equations to be solved for every time step. These two properties ease the computational load of the problem and speed up the solution process. Unfortunately this scheme has stability conditions which have to be met in order to produce a solution\cite{Dragica1}.
 
 Backward difference can be replaced by forward difference to get an implicit solution.
 \begin{equation}\nonumber
@@ -292,93 +268,8 @@ Since all the equations in B matrix are a linear functions on n, it can be separ
 \vec{n}_k=(I-\Delta t C)^{-1}\vec{n}_{k-1}
 \end{equation}
 
-This solution needs a matrix inversion every time step but it is unconditionally stable if it is not coupled with Poisson's equation. The decision to use an implicit or an explicit solution requires deliberate analysis and it will be discussed in detail in the section 3.4.
+This solution needs a matrix inversion every time step but it is unconditionally stable\cite{Dragica1} as long as it is not coupled with Poisson's equation. The decision to use an implicit or an explicit solution requires deliberate analysis and it will be discussed in detail in the section 3.4.
 \clearpage
-
-
-\subsection{Boundary Conditions}
-
-For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on mobile charged particles. For metal contacts the boundary condition is enforced by keeping the particle density constant at the boundary ($p = p_o$). A no flow condition is imposed by setting the net current density to zero ($J_p = 0 $) at the boundary or any region where certain types of particles are not allowed to move through. There are two sub types of no flow boundary conditions used during simulation, a regular and a dependent no flow boundary condition. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero. 
-
-Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is a function of lithium density and it is used not only for the boundaries but also for the points inside the PEDOT:PSS. During simulation, at any point inside PEDOT:PSS if the lithium density reaches a certain limit then that point turns into a no flow wall for the lithium ions as long as there is a net influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient simulation.  
-
-To simulate the metal contacts it is assumed that they hold an unlimited amount of positive and negative charges and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
-
-\begin{equation}
-N_{D} + p=N_{A} + n
-\label{chargeneutrality}
-\end{equation}
-
-For a semiconductor holes and electrons have to obey the mass action law.
-
-\begin{equation}
-np=n_i^2
-\label{massaction}
-\end{equation}
-
-$n_i$ is the concentration of the semiconductor at equilibrium before getting doped. Solving \eqref{massaction} and \eqref{chargeneutrality} together results in the equation below:
-
-\begin{equation}
-p=\frac{1}{2}(N_A - N_D + \sqrt{(N_A - N_D)^2+4n_i^2})
-\label{nbound}
-\end{equation}
-
-Once the hole concentration is obtained it is possible to calculate the electron concentration using the mass action law.
-
-\begin{equation}
-n=\frac{n_i^2}{p}
-\label{pbound}
-\end{equation}
-
-Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the boundary conditions used for holes, lithium and perchlorate ions.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.6]{bc_hole}
-\caption{Boundary conditions for the holes } 
-\label{bc_hole}
-\end{figure}
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.6]{bc_lithium}
-\caption{Boundary conditions for the lithium ions } 
-\label{bc_lithium}
-\end{figure}
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.6]{bc_perchlorate}
-\caption{Boundary conditions for the perchlorate ions } 
-\label{bc_perchlorate}
-\end{figure}
-
-During simulation, the application of the metal contact boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition by default but for metal contacts boundary values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
-
-\begin{equation}
-\frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
-\end{equation}
-
-$n_{cr}$ is the excess carrier density and $n_{ct}$ is the equilibrium carrier density at the contact. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents. 
-
-\begin{equation}
-Q=An
-\label{charge_charge_density}
-\end{equation} 
-
-\begin{equation}
-I=\frac{dQ}{dt}
-\label{current_charge}
-\end{equation} 
- 
-
-Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating the current leaving or entering the device at any metal contact.
-
-\begin{equation}
-I=A \frac{dn}{dt}
-\label{current_charge_density}
-\end{equation}
-
 
 \section{Stability and Computational Efficiency}
 Before discussing  the numerical limitations of solving the drift diffusion equation via finite difference it is important to look into the physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve the drift diffusion equation.
@@ -428,31 +319,7 @@ Usually an implicit solution is preferable when there is no coupling between Poi
 
 \clearpage
 \section{Simulation Procedure}
-The different equations and schemes that were used to solve the drift diffusion  and Poison's equation have been presented over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. The following equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using the finite difference method:
-
-\begin{equation}
-\nabla \cdot  (\varepsilon \nabla V)=-q(p-n+N_{D}^{+}-N_{A}^{-})
-\end{equation}
-\begin{equation}
-\vec{J_p}=q\mu_p p \vec{E}-q D_p \nabla p
-\end{equation}
-\begin{equation}
-\vec{J_{N_{A}^{-}}}=q\mu_{N_{A}^{-}} N_{A}^{-} \vec{E}+q D_{N_{A}^{-}} \nabla N_{A}^{-}
-\end{equation}
-\begin{equation}
-\vec{J_{N_{D}^{+}}}=q\mu_{N_{D}^{+}} N_{D}^{+} \vec{E}-q D_{N_{D}^{+}} \nabla N_{D}^{+}
-\end{equation}
-\begin{equation}
-\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}
-\end{equation}
-\begin{equation}
-\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{A}^{-}}}
-\end{equation}
-\begin{equation}
-\frac{\partial N_{D}^{+}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{D}^{+}}}
-\end{equation}
-
-The geometry and the physical properties of the problem as well as all the initial and the boundary conditions need to be defined at the beginning of the solution process. The initialization sets up the first time step of the problem at $t=0$. Once this first step is done it is possible generate the required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
+The different equations and schemes that were used to solve the drift diffusion  and Poison's equation have been presented over the past few sections. Using all this information it is possible create a general approach to solve a drift diffusion problem. The geometry and the physical properties of the problem as well as all the initial and the boundary conditions need to be defined at the beginning of the solution process. The initialization sets up the first time step of the problem at $t=0$. Once this first step is done it is possible generate the required vectors and matrices and solve the problem for the next time steps, $t=t_i$. 
 
 The solution process starts by solving Poisson's equation using the charge distribution at current time step. Once it is solved, the electric field distribution is calculated and used in the drift diffusion equations to calculate the current density distribution. Explicit time stepping is used to determine the carrier density in the next time step. Finally once the carrier distribution for the next step is calculated it is possible check for a stopping criterion. If this criterion is not met then the whole process will start all over again. If the charge concentration is so small that the equations are decoupled then it is possible to skip solving Poisson's equation for the rest of the simulation which speeds up the solution process.
 
@@ -465,6 +332,158 @@ The solution process starts by solving Poisson's equation using the charge distr
 \includegraphics[scale=1.3]{flowchart}
 \caption{Finite Difference Drift-Diffusion Scheme Flowchart} 
 \label{flowchart}
+\end{figure}
+\clearpage
+\section{Simulation of a Memristor as a Coupled Electronic Device}
+
+The following equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using the finite difference method:
+
+\begin{equation}
+\nabla \cdot  (\varepsilon \nabla V)=-q( p-N_{PSS}+ N_{Li} - N_{ClO_{4}})
+\end{equation}
+\begin{equation}
+\vec{J_p}=q\mu_p p \vec{E}-q D_p \nabla p
+\end{equation}
+\begin{equation}
+\vec{J_{N_{ClO_{4}}}}=q\mu_{N_{ClO_{4}}} N_{ClO_{4}} \vec{E}+q D_{N_{ClO_{4}}} \nabla N_{ClO_{4}}
+\end{equation}
+\begin{equation}
+\vec{J_{N_{Li}}}=q\mu_{N_{Li}} N_{Li} \vec{E}-q D_{N_{Li}} \nabla N_{Li}
+\end{equation}
+\begin{equation}
+\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{ClO_{4}}}}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{Li}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{Li}}}
+\end{equation}
+%The memristor studied in this thesis uses a strip of PEDOT:PSS as a conductor. A drop of an electrolytic solution which has lithium and perchlorate ions is placed on top of this conducting strip. When a potential is applied, lithium ions inside the electrolyte solution migrate into PEDOT:PSS and modifiy its conductivity. Hole transport inside PEDOT:PSS as well as lithium and perchlorate movement are modeled using basic drift diffusion equations which are derived in the first part of this chapter. The second half of the chapter shows analytic solutions to drift diffusion equations which will be used to test the numerical methods derived in the following chapter.
+
+%The drift diffusion equations derived above hold for the ions in the electrolyte as long as fluid effects can be ignored. For the memristor simulated in this thesis, there are three distinct types of mobile charged particles, holes, lithium and perchlorate. In PEDOT:PSS there is also a finite amount of negatively charged particles which are immobile, therefore they are only included in Poisson's equation.
+%This system of equations consist of 4 different charged particles. There are 3 mobile species lithium ($N_{Li}$) and perchlorate ($N_{ClO_{4}}$) and holes (p) and one fixed charge, $PSS^{-}$ ions ($N_{PSS}$). The particles are coupled to each other through Poisson's equation since they all carry electric charge. 
+
+\subsection{Boundary and Initial Conditions of the Memristor Model}
+
+\subsubsection{Drift Diffusion Equations}
+
+For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on mobile charged particles. For metal contacts the boundary condition is enforced by keeping the particle density constant at the boundary ($p = p_o$). A no flow condition is imposed by setting the net current density to zero ($J_p = 0 $) at the boundary or any region where certain types of particles are not allowed to move through. There are two sub types of no flow boundary conditions used during simulation, a regular and a dependent no flow boundary condition. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero. 
+
+Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is a function of lithium density and it is used not only for the boundaries but also for the points inside the PEDOT:PSS. During simulation, at any point inside PEDOT:PSS if the lithium density reaches a certain limit then that point turns into a no flow wall for the lithium ions as long as there is a net influx of particles. The boundary condition is removed if the lithium density at that point will go below the set limit at the next time step during transient simulation.  
+
+Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the boundary conditions used for holes, lithium and perchlorate ions.
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.6]{bc_hole}
+\caption{Boundary conditions for the holes } 
+\label{bc_hole}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.6]{bc_lithium}
+\caption{Boundary conditions for the lithium ions } 
+\label{bc_lithium}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.6]{bc_perchlorate}
+\caption{Boundary conditions for the perchlorate ions } 
+\label{bc_perchlorate}
+\end{figure}
+
+\clearpage
+\subsubsection{Metal Contacts}
+To simulate the metal contacts it is assumed that they hold an unlimited amount of positive and negative charges and the boundary is always charge neutral. For example for holes, electrons, positive and negative doping it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
+
+\begin{equation}
+N_{D} + p=N_{A} + n
+\label{chargeneutrality}
+\end{equation}
+
+In semiconductor like devices holes and electrons have to obey the mass action law.
+
+\begin{equation}
+np=n_i^2
+\label{massaction}
+\end{equation}
+
+$n_i$ is the concentration of the semiconductor at equilibrium before getting doped. Solving \eqref{massaction} and \eqref{chargeneutrality} together results in the equation below:
+
+\begin{equation}
+p=\frac{1}{2}(N_A - N_D + \sqrt{(N_A - N_D)^2+4n_i^2})
+\label{nbound}
+\end{equation}
+
+Once the hole concentration is obtained it is possible to calculate the electron concentration using the mass action law.
+
+\begin{equation}
+n=\frac{n_i^2}{p}
+\label{pbound}
+\end{equation}
+
+During simulation, the application of the metal contact boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition by default but for metal contacts boundary values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
+
+\begin{equation}
+\frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
+\end{equation}
+
+$n_{cr}$ is the excess carrier density and $n_{ct}$ is the equilibrium carrier density at the contact. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents. 
+
+\begin{equation}
+Q=An
+\label{charge_charge_density}
+\end{equation} 
+
+\begin{equation}
+I=\frac{dQ}{dt}
+\label{current_charge}
+\end{equation} 
+ 
+
+Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating the current leaving or entering the device at any metal contact.
+
+\begin{equation}
+I=A \frac{dn}{dt}
+\label{current_charge_density}
+\end{equation}
+
+\subsubsection{Poisson's Equation}
+Equation \ref{discrete_poisson} is valid for almost all the nodes in the system except two cases, boundary nodes and interface nodes. There are two different types of boundary conditions. The first one is Dirichlet boundary condition which forces a particular value for the potential at the boundary.
+
+\begin{equation}
+V_{i,j}=V_{b}
+\label{dirichlet}
+\end{equation}
+
+Where $V_{b}$ is the value of the potential at the boundary. The other possible boundary condition is called Neumann boundary condition which states that the derivative of the potential at the boundary is zero. This gives the following equation:
+
+\begin{equation}
+\frac{\partial V}{\partial x}=\frac{V_{i+1,j}-V_{i,j}}{\Delta}=0
+\label{neumannx}
+\end{equation}
+
+So for a boundary in y direction:
+
+\begin{equation}
+V_{i+1,j}=V_{i,j}
+\label{neumanny}
+\end{equation}
+
+Neumann boundary condition in x direction is obtained by using the same procedure.
+
+\begin{equation}
+V_{i,j+1}=V_{i,j}
+\end{equation}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.6]{bc_V}
+\caption{Boundary conditions for electric potential } 
+\label{bc_V}
 \end{figure}
 
 \end{doublespace}

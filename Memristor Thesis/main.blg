@@ -5,6 +5,18 @@ I was expecting a `,' or a `}'---line 7 of file Bibliography.bib
  :   year=1988
  :            .
 I'm skipping whatever remains of this entry
+Warning--entry type for "SILVACO" isn't style-file defined
+--line 214 of file Bibliography.bib
+Warning--string name "march" is undefined
+--line 217 of file Bibliography.bib
+Warning--entry type for "Comsol" isn't style-file defined
+--line 222 of file Bibliography.bib
+Warning--string name "march" is undefined
+--line 225 of file Bibliography.bib
+Warning--entry type for "LumDev" isn't style-file defined
+--line 229 of file Bibliography.bib
+Warning--string name "march" is undefined
+--line 232 of file Bibliography.bib
 Too many commas in name 1 of "Dmitri B. Strukov, Gregory S. Snider, Duncan R. Stewart, R. Stanley Williams" for entry MisMem
 while executing---line 1233 of file unsrtnat.bst
 Too many commas in name 1 of "A. Elschner,S. Kirchmeyer,W. Lövenich, U. Merker, K. Reuter" for entry PedotBook

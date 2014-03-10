@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -102,6 +102,35 @@ Snowden C.M.
 \newblock \emph{Semiconductor Device Modelling}.
 \newblock Peter Peregrinus Ltd., London,United Kingdom, 1988.
 
+\bibitem[Inc.(2014{\natexlab{a}})]{Comsol}
+COMSOL Inc.
+\newblock Comsol multipysics,semiconductor module, 2014{\natexlab{a}}.
+\newblock URL \url{http://www.comsol.com/semiconductor-module}.
+
+\bibitem[Inc.(2014{\natexlab{b}})]{SILVACO}
+SILVACO Inc.
+\newblock S-pisces, 2d silicon device simulator, 2014{\natexlab{b}}.
+\newblock URL
+  \url{http://www.silvaco.com/products/vwf/atlas/spisces/spisces_br.html}.
+
+\bibitem[Inc.(2014{\natexlab{c}})]{LumDev}
+Lumerical~Solutions Inc.
+\newblock Device 3.1, 2014{\natexlab{c}}.
+\newblock URL \url{https://www.lumerical.com/tcad-products/device/}.
+
+\bibitem[Holmes(2007)]{NumModel}
+Mark~H. Holmes.
+\newblock \emph{Introduction to Numerical Methods in Differential Equations}.
+\newblock Springer Science,Business Media,, New York,United States, 2007.
+\newblock ISBN 978-0387-30891-3.
+
+\bibitem[Farlow(1994)]{DifEq}
+S.J. Farlow.
+\newblock \emph{An Introduction to Differential Equations And Their
+  Applications}.
+\newblock Dover Books on Mathematics Series. Dover Publications, 1994.
+\newblock ISBN 9780486445953.
+
 \bibitem[Sze and Ng(2006)]{Physem}
 S.M. Sze and K.K. Ng.
 \newblock \emph{Physics of Semiconductor Devices}.
@@ -127,11 +156,5 @@ G.D. Smith.
 \newblock Oxford applied mathematics and computing science series. Clarendon
   Press, 1985.
 \newblock ISBN 9780198596509.
-
-\bibitem[Holmes(2007)]{NumModel}
-Mark~H. Holmes.
-\newblock \emph{Introduction to Numerical Methods in Differential Equations}.
-\newblock Springer Science,Business Media,, New York,United States, 2007.
-\newblock ISBN 978-0387-30891-3.
 
 \end{thebibliography}

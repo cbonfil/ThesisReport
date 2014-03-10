@@ -14,7 +14,7 @@ A numerical method for a memristor simulation is developed and tested in previou
 \section{Memristor Structure}
 %-Problem Analysis and assumptions, semiconductor vs memristor plots
 
-Following figure (\ref{MemStc}) shows the structure of a simple memristor which is taken as a basis for all the memristor simulations presented in this thesis. It consists of 2 metal contacts, a polymer conductor strip (PEDOT:PSS) and an electrolyte solution which has lithium and perchlorate ions (perchlorate/lithium density $\approx$ 6.02 $10^{23}$ $m^{-3}$). The memristor is about 1 cm long and 1 mm wide. The thickness of the conductive layer is around 1 $\mu$m. During the experiment, the electrolyte solution is deposited on PEDOT:PSS using a syringe so its thickness can vary drastically but as long as the amount of ions in the electrolyte solution is enough to saturate PEDOT:PSS this does not make a significant difference in the operation of the memristor. For simulation it was assumed that there are always more than enough ions to saturate the PEDOT:PSS so the electrolyte is modeled as an infinite source/sink of ions. The top boundary of the electrolyte is assumed to be charge neutral at all times which provides a mechanism for moving ions in and out of the system. This way the movement of ions near the surface of the PEDOT can still be captured without having to simulate the ion movement for the entire electrolyte solution which is variable in size. 
+The following figure (\ref{MemStc}) shows the structure of a simple memristor which is taken as a basis for all the memristor simulations presented in this thesis. It consists of 2 metal contacts, a polymer conductor strip (PEDOT:PSS) and an electrolyte solution which has lithium and perchlorate ions (perchlorate/lithium density $\approx$ 6.02 $10^{23}$ $m^{-3}$). The memristor is about 1 cm long and 1 mm wide. The thickness of the conductive layer is around 1 $\mu$m. During the experiment, the electrolyte solution is deposited on PEDOT:PSS using a syringe so its thickness can vary drastically but as long as the amount of ions in the electrolyte solution is enough to saturate PEDOT:PSS this does not make a significant difference in the operation of the memristor. For simulation it was assumed that there are always more than enough ions to saturate the PEDOT:PSS so the electrolyte is modeled as an infinite source/sink of ions. The top boundary of the electrolyte is assumed to be charge neutral at all times which provides a mechanism for moving ions in and out of the system. This way the movement of ions near the surface of the PEDOT can still be captured without having to simulate the ion movement for the entire electrolyte solution which is variable in size. 
 
 \begin{figure}[!htp]
 \centering
@@ -33,7 +33,7 @@ PEDOT:PSS is a regular conductor with fixed negative charge and mobile holes. Ho
 \clearpage
 \section{Simulation Requirements}
 
-It is important to analyze the computational requirements of a simulation in order to asses the feasibility of the computational scheme. In this case, it is possible to determine the spacial and the temporal requirements using the equations \ref{debye} and \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. Following graph \ref{SpaceTime} shows the requirements for a memristor of the scale discussed above and a typical semiconductor device size around 1 $\mu$m. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the minimum step size was set to be 5 times smaller than the Debye length. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.c show the amount of points required to simulate a semiconductor and a memristor based on minimum step size. It is important to note that these values are for 1-D simulation and they can be converted to 2-D and 3-D by taking the square or the cube of the values in y axis respectively. Plots \ref{SpaceTime}.b and \ref{SpaceTime}.d are created using CFL conditions for drift and diffusion and dielectric relaxation time. A typical simulation time is estimated using the mobility and the electric field. Based on the estimated simulation time the number of time steps are calculated using the minimum time step obtained from CFL conditions and dielectric relaxation time.
+It is important to analyze the computational requirements of a simulation in order to asses the feasibility of the computational scheme. In this case, it is possible to determine the spacial and the temporal requirements using the equations \ref{debye} and \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. The following graph \ref{SpaceTime} shows the requirements for a memristor of the scale discussed above and a typical semiconductor device size around 1 $\mu$m. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the minimum step size was set to be 5 times smaller than the Debye length. The plots \ref{SpaceTime}.a and \ref{SpaceTime}.c show the amount of points required to simulate a semiconductor and a memristor based on minimum step size. It is important to note that these values are for 1-D simulation and they can be converted to 2-D and 3-D by taking the square or the cube of the values in \textit{y} axis respectively. Plots \ref{SpaceTime}.b and \ref{SpaceTime}.d are created using CFL conditions for drift and diffusion and dielectric relaxation time. A typical simulation time is estimated using the mobility and the electric field. Based on the estimated simulation time the number of time steps are calculated using the minimum time step obtained from CFL conditions and dielectric relaxation time.
 
 It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation such as 1 $\mu$m long PN diode. This is due to the larger size and higher charge density of the memristor. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.b show that a memristor with $10^{26}$ $m^{-3}$ charge density requires close to $10^9$ points and $10^{14}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. In order to investigate and find possible solutions to this issue, first a memristor with low charge density ($\approx 10^{15}$) is simulated in order to ensure that the simulation functions as designed. Then memristors with different charge densities are simulated and compared to each other to asses whether the behavior at low charge densities will be comparable to the behavior at high charge densities.
 
@@ -66,7 +66,7 @@ The lithium source has two different terms, one for drift and another one for di
 \clearpage
 \section{1-D Memristor Simulations}
 
-Following simulations are made based on the memristor approximations discussed above. The first two simulations are repeated in the next chapter using a 2-D drift diffusion and Poisson solver which captures a broader range of physical effects. Both approaches are compared in order to understand their advantages and disadvantages under different circumstances.
+The following simulations are made based on the memristor approximations discussed above. The first two simulations are repeated in the next chapter using a 2-D drift diffusion and Poisson solver which captures a broader range of physical effects. Both approaches are compared in order to understand their advantages and disadvantages under different circumstances.
 
 \subsection{1-D Memristor Simulation Using a Potential Pulse Train}
   
@@ -124,7 +124,7 @@ The memristor with a pulse train simulation shows the change in the current dens
 
 The sudden changes in current around 0 V can be attributed to the density limiting mechanism for lithium. Instead of a slowdown in the movement of lithium ions near maximum density, the current flow into that region is completely blocked. Even though this makes the lithium density more responsive to changes, sudden movement block combined with large time steps can result in fast changes which can be directly seen as abrupt changes in the hole/lithium current density during transient simulations.  
 
-As AC potential pushes lithium ions from one side to the other, an equilibrium is reached over time. At first, there is a drop in the average current since lithium diffusion is greater than lithium drift. This transient effect disappears once enough lithium settles into the PEDOT:PSS. 
+The following plots (\ref{BowtieCurr}) show that, at first, there is a drop in the average current for all frequencies since lithium diffusion is greater than lithium drift. This transient effect disappears once enough lithium settles into the PEDOT:PSS. 
 
 \begin{figure}[!htp]
 \centering
@@ -174,7 +174,7 @@ r = \frac{n_{initial}}{n_{0}}
 \label{NormConst}
 \end{equation}
 
-$n_{i}$ is the charge carrier density which could be either holes or lithium ions depending on the plot. J is the current density calculated from the right metal contact. r is the normalization constant which is calculated using initial carrier density ($n_{initial}$) of a simulation to be normalized and $n_{0}$ which is the carrier density of the initial plot ($5x10^{15}$ $m^{-3}$). After the normalization of various variables, all the plots are placed in the same graph to visually illustrate how increasing charge density affects the simulation. 
+$n_{i}$ is the charge carrier density which could be either holes or lithium ions depending on the plot. J is the current density calculated from the right metal contact. r is the normalization constant which is calculated using initial carrier density ($n_{initial}$) of a simulation to be normalized and $n_{0}$ which is the carrier density of the initial plot ($5 x 10^{15}$ $m^{-3}$). After the normalization of various variables, all the plots are placed in the same graph to visually illustrate how increasing charge density affects the simulation. 
 
 Plots for lithium ions (figure \ref{LithiumDiff}) and holes (figure \ref{HoleDiff}) are nearly identical to each other in terms of the plot shapes. They both get sharper around the area where there is a substantial accumulation of lithium. This is not unexpected since the debye length gets smaller with increasing carrier density. So with increased density it is expected that the density accumulation at the wet/dry PEDOT interface will be more narrow. This affect is not as strong for lithium ions since there is a maximum concentration limit on them. Lithium and hole plots only show the difference carrier density makes at steady state. The effect of debye length on the device operation can be further explored by looking at the current density over time.   
 
@@ -205,12 +205,12 @@ The impact of increasing charge density can be numerically explored using normal
 
 \begin{equation}
 \centering
-P_i = \frac{1}{ K}\sum_{k=1}^{K}\lvert 100 \;\frac{n_{i}(x_k)/r-n_{0}(x_k)}{n_{0}(x_k)}\rvert
+P_i^{n} = \frac{1}{ K}\sum_{k=1}^{K}\lvert 100 \;\frac{n_{i}(x_k)/r-n_{0}(x_k)}{n_{0}(x_k)}\rvert
 \end{equation}
 
 \begin{equation}
 \centering
-P_i = \frac{1}{ T}\sum_{k=1}^{T}\lvert 100 \;\frac{J_{i}(t_k)/r-J_{0}(t_k)}{J_{0}(t)}\rvert
+P_i^{J} = \frac{1}{ T}\sum_{k=1}^{T}\lvert 100 \;\frac{J_{i}(t_k)/r-J_{0}(t_k)}{J_{0}(t)}\rvert
 \end{equation}
 
 K is for total number of points along x axis and T is the total number of time steps taken by the simulator. $x_{k}$ and $t_{k}$ are used to for a point in x axis and a point in time respectively. r is the normalization constant described in equation \ref{NormConst}. Both equations start by taking a point in either space (lithium/hole density) or time (current density) for a simulation with a certain carrier density and normalize them. After that point is normalized its difference from the lowest carrier density simulation is calculated as a percentage. Finally all the differences are averaged and used as a measure of the difference between simulations with different charge densities. They can also be used as an approximate error during scaling. 
@@ -218,7 +218,7 @@ K is for total number of points along x axis and T is the total number of time s
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.46]{AllDiff}
-\caption{Average difference for hole lithium and current densities for various initial hole densities} 
+\caption{Average difference for hole, lithium and current densities for various initial hole densities} 
 \label{AllDiff}
 \end{figure}
 
