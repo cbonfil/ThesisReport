@@ -1,215 +1,212 @@
-% Chapter Template
 
-\chapter{Testing The Drift Diffusion Solver} % Main chapter title
+
+\chapter{Simulation of a Memristor as a Coupled Electronic Device} % Main chapter title
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 4. \emph{Testing Drift Diffusion Solver}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
-
+\lhead{Chapter 4. \emph{Simulation of a Memristor as a Coupled Electronic Device}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 \begin{doublespace}
 
-The past chapter shows the details of how to solve drift-diffusion and Poisson's equation using finite difference method. In this chapter steady state and transient analysis for drift diffusion equations using finite difference is compared to analytical solutions as well as a commercially available simulator called 'COMSOL Multiphysics' which uses finite element method instead of a finite difference approach. The following test cases were made to ensure that the key parts of the finite difference scheme run properly and produce accurate results. 
+An organic memristor which is an example of a coupled ionic/electronic device is simulated in this thesis. The memristor uses a strip of PEDOT:PSS as a conductor. A drop of an electrolytic solution which has lithium and perchlorate ions is placed on top of this conducting strip. When a potential is applied at two ends of this conducting strip, lithium ions inside the electrolyte solution migrate into PEDOT:PSS and modifiy its conductivity. Figure ... shows the memristor structure simulated in this thesis.
 
-\section{Solution for Closed Boundary}
-In this section the accuracy of the finite difference solution in steady state is tested. In order to do this, a simple 1-D problem with a finite number of negatively charged particles over a certain distance subject to constant electric field is used. This is the same problem that is solved analytically in section 3.3.1. It is also assumed that the charge density is very low and does not affect the electric field. Both ends of the simulation domain have no flow boundary conditions for charged particles. The solution process requires an initial distribution for the charge density over the area. For this problem the density of the negative particles was initialized to be uniform over the entire region. 
 
-Since the differential equations are uncoupled solving Poisson's equation only once is sufficient to determine the electric field over the course of the entire simulation. Figures \ref{5E} and \ref{5pot} show the potential and the electric field distribution over the entire simulation area calculated from Poisson's equation using finite difference. 
+One important characteristic of the simulated memristor is the movement of lithium ions inside PEDOT:PSS and how it limits the maximum resistivity of the device. As lithium ions move into the PEDOT:PSS they bond with PSS polymer sites and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymer sites to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This physical property requires special treatment during simulation and the details are further discussed in section 3.6.1.1. 
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.65]{5101}
-\caption{Potential Distribution} 
-\label{5pot}
-\end{figure}
+Hole transport inside PEDOT:PSS as well as lithium and perchlorate movement are modeled using basic drift diffusion equations which are derived in chapter 2. The following set of equations are used to simulate the ion and hole movement and the changes in electric field in an organic memristor using the finite difference method:
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.65]{5102}
-\caption{Electric Field Distribution} 
-\label{5E}
-\end{figure}
+\begin{equation}
+\nabla \cdot  (\varepsilon \nabla V)=-q( p-N_{PSS}+ N_{Li} - N_{ClO_{4}})
+\end{equation}
+\begin{equation}
+\vec{J_p}=q\mu_p p \vec{E}-q D_p \nabla p
+\end{equation}
+\begin{equation}
+\vec{J_{N_{ClO_{4}}}}=q\mu_{N_{ClO_{4}}} N_{ClO_{4}} \vec{E}+q D_{N_{ClO_{4}}} \nabla N_{ClO_{4}}
+\end{equation}
+\begin{equation}
+\vec{J_{N_{Li}}}=q\mu_{N_{Li}} N_{Li} \vec{E}-q D_{N_{Li}} \nabla N_{Li}
+\end{equation}
+\begin{equation}
+\frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{ClO_{4}}}}
+\end{equation}
+\begin{equation}
+\frac{\partial N_{Li}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{Li}}}
+\end{equation}
 
-\clearpage
+The drift diffusion equations shown above hold for the ions in the electrolyte as long as fluid effects can be ignored. As it can be seen from the equations, there are three distinct types of mobile charged particles, holes (\textit{p}), lithium ($N_{Li}$) and perchlorate($N_{ClO_{4}}$) ions. In PEDOT:PSS there is also a finite amount of negatively charged particles which are immobile, therefore they are only included in Poisson's equation.
 
-Figure  \ref{5ss} has two simulation results as well as the exact solution of this problem. The green line represents the result given by the finite difference method at steady state. It can be seen from the graph that the steady state solution generated by both COMSOL and finite difference matched the analytical solution.
+The following sections define the boundary and the initial conditions that are used to solve drift diffusion equations for the memristor.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.8]{511}
-\caption{Steady State Negative Charge Density} 
-\label{5ss}
-\end{figure}
+\section{Memristor Structure and Initial Conditions}
+%-Problem Analysis and assumptions, semiconductor vs memristor plots
+
+The following figure (\ref{MemStc}) shows the cross section of a simple memristor which is taken as a basis for all the memristor simulations presented in this thesis. It consists of 2 metal contacts, a polymer conductor strip (PEDOT:PSS) and an electrolyte solution which has lithium and perchlorate ions (perchlorate/lithium density $\approx$ 6.02 $10^{23}$ $m^{-3}$). The memristor is about 1 cm long and 1 mm wide. The thickness of the conductive layer is around 1 $\mu$m. During the experiment, the electrolyte solution is deposited on PEDOT:PSS using a syringe so its thickness can vary drastically but as long as the amount of ions in the electrolyte solution is enough to saturate PEDOT:PSS this does not make a significant difference in the operation of the memristor.
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.8]{513}
-\caption{Finite Difference Drift and Diffusion Current Densities}
- \label{5curdens}
+\includegraphics[scale=0.7]{Mem1}
+\caption{The structure of the memristor used for simulation (not to scale)} 
+\label{MemStc}
 \end{figure}
 
-While deriving an analytical solution for this problem it was assumed that at steady state the drift current density must be equal and opposite in magnitude to the diffusion current density. In figure \ref{5curdens}, drift and diffusion current densities are shown in log scale. Overall both currents match quite tightly.
 
-Even though the simulation results are good for this example high electric fields due to either applied potential or high charge densities can introduce inaccuracies. If the electric field is very high then the accumulation of the charge can get very steep. The exponential accumulation requires higher mesh densities for accurate calculation.
-
-\clearpage
-\section{Solutions for Open Boundary}
-Another crucial aspect of the drift-diffusion simulation is its transient response. Like the previous test case, the analytic solution can be used to test the accuracy of the transient response. Two different analytic solutions for a similar drift diffusion problems which involved infinite boundaries and a uniform electric field are shown in section 3.3.2. The only difference between two cases are their initial carrier distributions. One has a rectangular and the other one has a gaussian initial carrier distribution. The finite difference scheme does not allow simulation over an infinitely long conductor. For this test case, simulation is performed until the carrier distribution gets close to a wall.   
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.8]{5212}
-\caption{Gaussian Carrier Distribution Evolving Over time} 
-\label{51}
-\end{figure}
-
-Figure \ref{51} has the transient responses from COMSOL, finite difference and analytical solution. Snapshots of the carrier distributions were taken for each method at different time steps and they were superposed on top of each other. Increasing levels on the \textit{y} axis represent a carrier distributions at a different time starting from the bottom and moving forward in time towards the top. Figure \ref{51} has a gaussian initial carrier distribution. It can be seen from that the transient solution generated by both COMSOL and finite difference are quite close to the analytical solution.
+The initial conditions for all the charge carriers are the same. Negative and positive charges are balanced and uniformly distributed. Perchlorate ions are not allowed to move outside the electrolyte solution so a no flow boundary condition is used around the electrolyte. Lithium ions are free to move between PEDOT:PSS and the electrolyte solution but their maximum concentration is limited inside the PEDOT:PSS. The mobility of the lithium ions has further restrictions inside PEDOT:PSS. Lithium ions have higher mobility in PEDOT:PSS under the electrolyte solution, referred as wet PEDOT:PSS, than the region without any contact with electrolyte, dry PEDOT:PSS. In fact due to this difference only a very little amount of lithium reaches the metal contacts. This decrease in the mobility was modeled by making the mobility of lithium a function of position in PEDOT:PSS. The mobility of lithium ions were assumed to be 100 times slower than the mobility of holes in the wet PEDOT:PSS and it is zero in the dry PEDOT:PSS( $\mu_{hole} \approx$ $10^{-3}$ $m^2/Vs$). 
 
 
-\clearpage
-\section{PN Junction}
-In previous test cases, Poisson's equation is not coupled with drift diffusion equations. In this example both drift diffusion and Poisson's equation are tested to investigate how well they work when they are coupled together. A simple pn junction is quite adequate for this task since it has analytical solutions (under certain assumptions) for electric potential, electric field and carrier distribution.
+PEDOT:PSS is a regular conductor with fixed negative charge and mobile holes. Holes can move in an out of the PEDOT:PSS through the metal contacts which preserve the charge neutrality of the initial condition throughout the simulation. The interface between PEDOT and electrolyte only allows the exchange of lithium ions. During the simulation,the movement of lithium ions changes the conductivity of the PEDOT:PSS by increasing or decreasing the amount of available holes. In the actual memristor lithium ions also change the conductivity through additional physical effects like changing the mobility of holes by modifying their hopping distance. Even though the mobility of the holes can simply be made a function of the lithium density, the shape of this function is not known. The physical details of the additional effects are beyond the scope of this thesis. 
 
-For the simulation, initial hole and electron distributions are determined using mass action law and they are assumed to be constant at the boundaries. Keeping carrier density constant creates a mechanism in which the charge can move in and out of the simulation domain. If the charge density at any time step is higher than the fixed density then the difference will move out of the system. If there is a lack of charge at the boundary then carriers will move in to fill in the gap. Following figure (\ref{npcon}) shows the final result of bringing p and n type materials together. 
+\subsection{Boundary Conditions of the Memristor Model}
+
+For the simulation of the memristor there are two different types of equations which require boundary and initial conditions, drift diffusion and Poisson's equation. For drift diffusion equations the boundary conditions are applied on particle and current densities. For Poisson's equation the boundary conditions are applied on the electric potential or the derivative of the electric potential.
  
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.8]{5311}
-\caption{Electron/hole Concentration of a PN Junction} 
-\label{npcon}
-\end{figure}
+\subsubsection{Drift Diffusion Equations}
 
-There is a little mismatch between simulated and analytic charge densities. Analytic solution have sharp edges and simulated solution does not. This is due to all the assumptions made in order to find an analytic solution. This mismatch can also be seen for electric field, electric potential and net charge .
+For the drift diffusion problem solved in this thesis there are two different possibilities for boundary conditions on three different mobile charged particles. For metal contacts the boundary condition is enforced by keeping the net charge at zero at all times. There are two sub types of no flow boundary conditions used during simulation, a regular and a dependent no flow boundary condition. A regular no flow condition is used when the particles cannot go past a certain boundary. This is achieved by setting the particle flow at any boundary to zero (\textit{J = 0}). 
 
- Figure \ref{pnpot} shows the potential distribution for simulated and analytic solutions. Close match in electric potential distribution shows that coupled equations can generate accurate solutions.
- 
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.7]{5312}
-\caption{Potential Distribution of a PN Junction} 
-\label{pnpot}
-\end{figure}
+Dependent no flow boundary condition is a term that is used to describe a boundary condition which can be a function of any variable such as temperature, particle or charge density. For the lithium ions this condition is a function of lithium density and it is used not only for the boundaries but also for the points inside the PEDOT:PSS. The density limiting behavior is captured in the model by blocking the particle flow into an area if the density will go over a set limit. This can be achieved in two different ways. 
 
-Calculation of the electric field involves one basic derivative. Since simulated potential is matching the analytic solution quite nicely the electric field should follow a similar pattern. Figure \ref{pnefield} shows that this is indeed the case, simulated electric field matches the calculated electric field.
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.7]{5313}
-\caption{Electric Field Distribution of a PN Junction} 
-\label{pnefield}
-\end{figure}
-
-Figure \ref{pncd} shows the total charge distribution at steady state. Simulated net charge density follows the analytic one except the abrupt changes at two ends. 
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{5314}
-\caption{Total Charge Distribution of a PN Junction} 
-\label{pncd}
-\end{figure}
-
-This example showed that simulation of a system of coupled equations, drift diffusion and Poisson's equation, using finite difference can produce accurate results. This accuracy depends on the strength of the coupling. High charge densities can produce strongly coupled systems. This effect shows the importance of CFL conditions as well as the physical limitations of the simulation.
-
-
-\clearpage
-\section{Region Specific Particle Density Limit}
-
-The last property of the drift diffusion simulation scheme that is tested in this section concerns the movement of lithium ions. As lithium ions move into the PEDOT:PSS they bond with PSS polymer sites and replace holes. PEDOT:PSS can only absorb lithium as long as there are available PSS polymer sites to bond with therefore PEDOT:PSS has limited capacity to accept lithium ions. This behavior is captured in the model by blocking the particle flow into an area if the density will go over a set limit. This can be achieved in two different ways. 
-
-A soft limit can be set by making the particle mobility a function of its density. This function can be defined in such a way that it switches from a high to a low value when the particle density approaches a defined limit. This implementation is straightforward and can be used in commercial simulators but it has some drawbacks. Once the maximum particle density is reached the mobility and the diffusivity of the lithium particles are stuck at very low values. If there is an outflux of particles from that particular node then the lithium density is stuck at the limit until the mobility and the diffusivity function goes back to a value which allows more particle flow. This can introduce a considerable lag in the response of the device.  
+A soft limit can be set by making the particle mobility and diffusivity a function of its density. This function can be defined in such a way that it switches from a high to a low value when the particle density approaches a defined limit. This implementation is straightforward and can be used in commercial simulators but it has some drawbacks. Once the maximum particle density is reached the mobility and the diffusivity of the lithium particles are stuck at very low values. If there is an outflux of particles from that particular area then the lithium density is stuck at the limit until the mobility and the diffusivity function goes back to a value which allows more particle flow. This can introduce a considerable lag in the response of the device.  
 
 An alternative approach is pre-calculating the particle density of a density limited node at the next time step, setting any influx to zero if the density is going to go over the limit and finally recalculating the particle densities at the next time step using the updated current densities. This mechanism sets a hard limit on the density since there is a sudden break instead of a gradual slowdown in the current flow. This density limiting mechanism is more responsive than the previous one but it requires the calculation of the next time step twice for the species that has a limit. Also a large influx of particles caused by either a big time step or a high electric field can force the algorithm to cut the current flow into a node before the density reaches its limit.
 
-To avoid adding any lag into the system the latter method is used for the memristor simulations in this thesis. This method is implemented in the finite difference drift diffusion solver. Also a soft limit is implementend in COMSOL for comparison since it does not support the hard limit method.  
+To avoid adding any unwanted lag into the system the latter method is used for the memristor simulations in this thesis. This method is implemented in the finite difference drift diffusion solver. Also a soft limit is implementend in COMSOL for comparison since it does not support the hard limit method.
 
-In order to test density limiting method implemented for the memristor simulation a simple example is set up. Two positively charged particles are initialized like the figure below in two separate simulations (\ref{5412}). One set of particles has a density limit of $2 \; 10^{10} \; m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions. The initial particle density on the left half of the simulation area is set to $5 \; 10^{10} \; m^{-3}$ for both simulations.
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.7]{5412}
-\caption{Initial Particle Density} 
-\label{5412}
-\end{figure}
-
-This transient simulation uses a potential pulse train. The potential is applied at the left side of the device and the right side is always grounded. For the first half of the transient simulation the applied potential is positive and for the second half it is negative. Figure \ref{5413} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right wall. The density limit for the other particles is effectively stopping them from migrating and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
+Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the boundary conditions used for holes, lithium and perchlorate ions.
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.7]{5413}
-\caption{Limited Density Accumulation on the Right Side} 
-\label{5413}
+\includegraphics[scale=0.6]{bc_hole}
+\caption{Boundary conditions for the holes } 
+\label{bc_hole}
 \end{figure}
-
-When the potential is switched all the particles accumulate freely at the left side of the simulation domain since there are no restrictions on this side (figure \ref{5414}).
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.7]{5414}
-\caption{Limited Concentration Density on the Left Side} 
-\label{5414}
+\includegraphics[scale=0.6]{bc_lithium}
+\caption{Boundary conditions for the lithium ions } 
+\label{bc_lithium}
 \end{figure}
-
-This last figure (\ref{5411}) shows the transient response over time of a single node on the right side. The potential is positive for the first 1.5 seconds and it is switched to negative for the last 1.5 seconds. The node without any limit keeps accepting charge until a steady state has been reached but the density limited node stops accepting charged particles once the limit is reached. After the potential is switched density limited node has no problem releasing the particles.
-
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.7]{5411}
-\caption{Accumulation at the right wall over time} 
-\label{5411}
+\includegraphics[scale=0.6]{bc_perchlorate}
+\caption{Boundary conditions for the perchlorate ions } 
+\label{bc_perchlorate}
 \end{figure}
 
-Additional to the test that is run for finite difference, COMSOL is used to test the soft limiting mechanism. COMSOL does not have a built in option that allows limiting the particle density. One possible solution to this is making particle mobility and diffusivity a function particle density. It is possible to use a sigmoid function which switches from 1 to 0 very quickly when particle density is close to its limit. Here is the equation of the sigmoid function used to limit the particle flow:
+
+
+
+\clearpage
+\subsubsection{Metal Contacts}
+To simulate the metal contacts it is assumed that they hold an unlimited amount of positive and negative charges and the boundary is always charge neutral (add ref). For example for holes, electrons, positive and negative ions it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration. 
 
 \begin{equation}
-\mu_v = \frac{\mu_{0}}{1+e^{\sigma(n-n')}}
-\label{mur}
-\end{equation} 
-
-$\mu_0$ is the original mobility of the charge carrier. $\sigma$ controls the slope of the switch and $n'$ determines the density at which the transition will be. 
-
-Another problem with COMSOL is the definition of mobility and diffusion coefficients. When they are defined discontinuously and one of the mobilities is a function of the particle density like the example above, then COMSOL has convergence issues. To overcome the convergence problems, mobilities are set up to gradually switch from a constant value to a variable mobility using two more sigmoid functions which are dependent on position.
-
-\begin{equation}
-\mu=\frac{\mu_{v}}{1+e^{\sigma_x(x-x')}}+\frac{\mu_{c}}{1+e^{-\sigma_x(x-x')}}
+ N_{Li} + p = n + N_{ClO_{4}}
+\label{chargeneutrality}
 \end{equation}
 
-In this problem $\mu_v$ is the same as equation \ref{mur} since the region on the right side has a variable mobility and $\mu_c$ is just a constant mobility defined for the left side. $x'$ is the middle of the simulation area.
+In semiconductor like devices holes and electrons have to obey the mass action law.
 
-The initial carrier distribution for COMSOL is set to be exactly the same as finite difference simulation. Figures \ref{5416}.a and \ref{5416}.b show results for both COMSOL and finite difference simulations at steady state before the switch of the applied potential. The plot on the left side gives insight on how COMSOL simulation behaves for limited and limitless accumulation on the right wall. Due to the gradual change of mobility and diffusion constants between two areas, the density on the right side is higher than the limit which is $2 \; 10^{10}$. Additionally, the particle density goes over its limit near the right wall. In figure \ref{5416}.b the difference between COMSOL and finite difference becomes more visible. In FD simulation the accumulation goes much higher due to higher electric field and unlike COMSOL it does not penetrate the right half of the simulation domain. 
+\begin{equation}
+np=n_i^2
+\label{massaction}
+\end{equation}
+
+$n_i$ is the concentration at equilibrium before any ions move into the PEDOT:PSS. Solving \eqref{massaction} and \eqref{chargeneutrality} together results in the equation below:
+
+\begin{equation}
+p=\frac{1}{2}(N_{ClO_{4}} -  N_{Li} + \sqrt{(N_{ClO_{4}} -  N_{Li})^2+4n_i^2})
+\label{nbound}
+\end{equation}
+
+Equation \ref{nbound} can be further simplified to equation \ref{nboundsimpl} by observing that lithium and perchlorate ions never reach the metal contact through PEDOT:PSS therefore their density will always be zero for the setup shown in (ref to 3d pic).  
+
+\begin{equation}
+p=ni
+\label{nboundsimpl}
+\end{equation}
+
+During simulation, the application of the metal contact boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition by default but for metal contacts boundary values are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
+
+\begin{equation}
+\frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
+\end{equation}
+
+$n_{cr}$ is the excess carrier density and $n_{ct}$ is the equilibrium carrier density at the contact. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents. 
+
+\begin{equation}
+Q=An
+\label{charge_charge_density}
+\end{equation} 
+
+\begin{equation}
+I=\frac{dQ}{dt}
+\label{current_charge}
+\end{equation} 
+ 
+
+Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating the current leaving or entering the device at any metal contact.
+
+\begin{equation}
+I=A \frac{dn}{dt}
+\label{current_charge_density}
+\end{equation}
+
+\subsubsection{Poisson's Equation}
+Discrete Poisson's equation (\ref{discrete_poisson}) is valid for almost all the nodes in the system except the boundary nodes. There are two different types of boundary conditions. The first one is Dirichlet boundary condition which forces a particular value for the potential at the boundary.
+
+\begin{equation}
+V_{i,j}=V_{b}
+\label{dirichlet}
+\end{equation}
+
+Where $V_{b}$ is the value of the potential at the boundary. The other possible boundary condition is called Neumann boundary condition which states that the derivative of the potential at the boundary is zero. This gives the following equation:
+
+\begin{equation}
+\frac{\partial V}{\partial x}=\frac{V_{i+1,j}-V_{i,j}}{\Delta}=0
+\label{neumannx}
+\end{equation}
+
+So for a boundary in y direction:
+
+\begin{equation}
+V_{i+1,j}=V_{i,j}
+\label{neumanny}
+\end{equation}
+
+Neumann boundary condition in x direction is obtained by using the same procedure.
+
+\begin{equation}
+V_{i,j+1}=V_{i,j}
+\end{equation}
+
+Neumann boundary condition is used to let the potential float at the edge of the simulation domain and Dirichlet boundary condition is used to set applied potentials at the metal contacts. These boundary conditions are shown in figure \ref{bc_V}.
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.48]{5416}
-\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
-\label{5416}
+\includegraphics[scale=0.6]{bc_V}
+\caption{Boundary conditions for electric potential } 
+\label{bc_V}
 \end{figure}
 
+\clearpage
+\section{Simulation Requirements}
 
-In figure \ref{5417} it is possible to see the accumulation of charge near the middle section after the potential is switched. This is due to mobility being a function of distance and density. As the ions move from left to right they go from a low mobility region to a high mobility region and they slowly accumulate around the area where the change in mobility occurs. Figure comparing both COMSOL and finite difference shows that the accumulation does not happen in the case of finite difference due to the way density limiting mechanism is implemented.
+It is important to analyze the computational requirements of a simulation in order to asses the feasibility of the computational scheme. In this case, it is possible to determine the spacial and the temporal requirements using the equations \ref{debye} and \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. The following graph \ref{SpaceTime} shows the requirements for a memristor of the scale discussed above and a typical semiconductor device size around 1 $\mu$m. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the minimum step size was set to be 5 times smaller than the Debye length. The plots \ref{SpaceTime}.a and \ref{SpaceTime}.c show the amount of points required to simulate a semiconductor and a memristor based on minimum step size. It is important to note that these values are for 1-D simulation and they can be converted to 2-D and 3-D by taking the square or the cube of the values in \textit{y} axis respectively. Plots \ref{SpaceTime}.b and \ref{SpaceTime}.d are created using CFL conditions for drift and diffusion and dielectric relaxation time. A typical simulation time is estimated using the mobility and the electric field. Based on the estimated simulation time the number of time steps are calculated using the minimum time step obtained from CFL conditions and dielectric relaxation time.
 
-\begin{figure}[!htp]
+It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation such as 1 $\mu$m long PN diode. This is due to the larger size and higher charge density of the memristor. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.b show that a memristor with $10^{26}$ $m^{-3}$ charge density requires close to $10^9$ points and $10^{14}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. In order to investigate and find possible solutions to this issue, first a memristor with low charge density ($\approx 10^{15}$) is simulated in order to ensure that the simulation functions as designed. Then memristors with different charge densities are simulated and compared to each other to asses whether the behavior at low charge densities will be comparable to the behavior at high charge densities.
+
+\begin{landscape}
+\begin{figure}[htp]
 \centering
-\includegraphics[scale=0.48]{5417}
-\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
-\label{5417}
+\includegraphics[scale=0.60]{SpaceTime}
+\caption{Spatial and temporal requirements for simulation} 
+\label{SpaceTime}
 \end{figure}
-
-With the decrease of ion density on the limited region the difference between low and high mobility regions diminish. Once the density on the limited side is low enough the whole system behaves as if there is no limit and ion mobility becomes equal for all regions and the ions freely accumulate on the left wall (figure \ref{5418}). Aside from the difference in electric field strength both simulations behave the same way as they approach steady state. Figure \ref{5418}.b shows densities at steady state. COMSOL simulation has a lower electric field since it has convergence issues with high electric fields. 
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.48]{5418}
-\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
-\label{5418}
-\end{figure}
-
-This comparison can be finalized by looking the particle density transient response of the rightmost node. For the first half of the simulation everything is the same as the finite difference case except COMSOL goes a little bit over the limit. When the potential is switched, node without the limit has no noticeable difference in behaviour. The node with density limit has a lag when it comes to releasing the particles. This is due to the sigmoid function used to achieve a limiting behaviour. Once the limit is reached mobility and diffusivity are stuck at a very low value until the particle density starts to go lower than the limit.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.48]{5419}
-\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
-\label{5419}
-\end{figure}
-
-The simulations above show that it is possible to impose a density limit over any area using a simple no flow boundary condition in a numerical simulation. For COMSOL some workarounds are implemented in order to simulate the same behavior without any convergence issues. 
-
+\end{landscape}
 
 \end{doublespace}

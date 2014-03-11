@@ -1,235 +1,198 @@
 % Chapter Template
 
-\chapter{2-D Memristor Simulation} % Main chapter title
+\chapter{Memristor Simulation} % Main chapter title
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 \lhead{Chapter 6. \emph{Memristor Simulation}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
 \begin{doublespace}
 
-Even though 1-D simulation is able to capture the main characteristics of the memristor it is still lacking certain physical effects that can be captured in a 2-D simulation such as the movement of ions inside the electrolytic solution which cancels some of the applied electric field. This chapter shows the simulation of a memristor in 2-D and compares the results with 1-D simulations. It starts with the simulation of a memristor with different PEDOT:PSS layer thicknesses and shows the changes in particle the density distributions, electric field and current density. Transient simulations with a potential pulse train and a sinusoidal potential are presented and compared to 1-D siumlations. Finally current vs time and I-V curves for an actual memristor are used to show the accuracy of 2-D simulations in capturing the behavior of the actual device .  
-
-\section{Effect of PEDOT:PSS Thickness}
-
-The physical dimensions of the memristor is presented in the previous chapter. The thickness of the PEDOT:PSS layer is very small compared to the other dimensions of the device such as the thickness of the electrolyte and length of the conductive material. This complicates the simulation of the PEDOT:PSS strip using a uniform mesh. Although non uniform meshing seems like an appropriate solution for this problem, a close examination of the numerical limitations show that this is not the case. Decreasing the mesh size in one dimension severely reduces the maximum time step for the entire simulation therefore non uniform meshing is not feasible for this problem. 
-
-An alternative solution to the meshing problem is using an infinitesimally thin PEDOT:PSS layer in a 2-D simulation. This method is used for the memristor simulations in this chapter. For PEDOT:PSS, the effects in 2-D are ignored since the layer thickness is 10000 times smaller than other dimensions such as the thickness of the electrolyte. For the holes in the conductive layer only the horizontal component of the electric field is used and all the current densities are calculated in 1-D. Following plots compare two simulations with PEDOT:PSS thicknesses higher than the actual device thickness and a 2-D simulation with a 1-D PEDOT:PSS layer.  
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.45]{2D_Memristor_Thick_Resistivity}
-\caption{Normalized resistivity over time or different PEDOT:PSS thicknesses} 
-\label{thick_resistivity}
-\end{figure}
-
-The memristor is simulated using a constant potential at the contacts. Left metal contact is 1 V and the right metal contact is grounded. The resistivity measured at the right contact for different PEDOT:PSS thicknesses is shown in figure \ref{thick_resistivity}. These plots show that as the PEDOT:PSS thickness gets smaller the device responds faster. This is due to the decrease in the distance lithium ions have to travel inside PEDOT:PSS in order to change its resistivity. Another change in the behavior of the memristor is its resistivity at steady state. The increase in resistivity for different PEDOT:PSS thicknesses at steady state can be attributed to the ion/hole interaction at the interface between the PEDOT:PSS and the electrolyte solution which is illustrated in the following figures \ref{thick_p_ss}, \ref{thick_li_ss} and \ref{thick_perch_ss}.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.50]{2D_Memristor_Thick_Hole_SS}
-\caption{Hole distribution at steady state for different PEDOT:PSS thicknesses} 
-\label{thick_p_ss}
-\end{figure}
-
-Figure \ref{thick_p_ss} shows the hole distribution in PEDOT:PSS at steady state for different thicknesses. The electrolyte is on top of PEDOT:PSS but it is not visible in these plots since its hole density is zero at all times. As lithium ions move into the PEDOT:PSS they move towards the metal contact and accumulate at the wet/dry interface. There is a lack of holes around the region where lithium ions accumulate. This effect can be seen in figures \ref{thick_p_ss} and  \ref{thick_li_ss}. For all the plots, there is a section of the hole distribution which is missing due to high concentration of lithium ions.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.50]{2D_Memristor_Thick_Lithium_SS}
-\caption{Lithium distribution at steady state for different PEDOT:PSS thicknesses} 
-\label{thick_li_ss}
-\end{figure}
-
-The accumulation of holes at the surface of the PEDOT:PSS is due to the perchlorate accumulation near the positive contact in the electrolyte (figure \ref{thick_perch_ss}). As perchlorate ions accumulate on the surface of the PEDOT:PSS they also attract holes towards the surface.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.40]{2D_Memristor_Thick_Perchlorate_SS}
-\caption{Perchlorate distribution at steady state for different PEDOT:PSS thicknesses} 
-\label{thick_perch_ss}
-\end{figure}
-
-Figure \ref{thick_netq_p} shows the charge density of holes at the surface of the PEDOT:PSS and the net charge density in the electrolyte near PEDOT:PSS. Negative charges that accumulate on the left side of the electrolyte creates an abundance of holes where positive charges on the right side creates a lack of holes. This additional mechanism is the key difference between 1-D and 2-D simulations. In 1-D simulation, ion density inside the electrolyte and the changes in the electric field due to these charges were not present.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.40]{2D_Memristor_netq_hole}
-\caption{Net charge distribution at steady state for different PEDOT:PSS thicknesses} 
-\label{thick_netq_p}
-\end{figure}
-
-As shown in the previous chapter, the electric field has the highest value where the lithium ions accumulate. The figure \ref{thick_efield} shows the change in the shape of the electric field as PEDOT:PSS gets thinner. For all the plots most of the potential drop occurs where lithium ions accumulate and it is concentrated at the surface of the PEDOT:PSS. 
-
-The above plots show that changing the thickness of the PEDOT:PSS does not have a drastic effect in the operation of the memristor since most of the changes occur at the interface between electrolyte and PEDOT:PSS. 1-D approximation of the polymer conductor contains all the necessary physics for the simulation of the memristor described in chapter 5.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.50]{2D_Memristor_Thick_E}
-\caption{Electric field strength at steady state for different PEDOT:PSS thicknesses} 
-\label{thick_efield}
-\end{figure}
+A numerical method for a memristor simulation is developed and tested in previous chapters based on drift-diffusion equations and finite difference. This chapter starts with a preliminary problem analysis to determine the required mesh density and maximum possible time step for the simulation. This preliminary analysis is followed by 1-D simulations of a memristor under various conditions.
 
 
-\clearpage
-\section{2-D Memristor Simulation Using a Potential Pulse Train}
+\section{1-D Memristor Approximation}
 
-Following results are generated using the same boundary and initial conditions as the simulations in the previous section in order to show the differences between 1-D and 2-D memristor models.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.50]{2D_Memristor_Pulse_Train}
-\caption{Applied potential and normalized resistance over time of a 2-D memristor} 
-\label{2D_mem_train}
-\end{figure}
-
- Even though the general trend of the current densities are similar for the plots (\ref{MemResTrain} and \ref{2D_mem_train}), there are some essential differences between 1-D and 2-D simulations. The movement of the lithium ions controls the change in the resistivity over time therefore the response of the device is dependent on the velocity of the lithium ions which is a function of mobility and the electric field. In 1-D simulations the vertical mobility of the lithium needs to be adjusted in order to account for the thickness of the electrolyte since it is collapsed into a single layer for 1-D simulations. Because of this the mobility of the lithium has different values in different directions. Additionally the strength of the electric field is not constant over the entire PEDOT:PSS strip. The speed of the lithium ions vary depending on their position and direction due to the changes in the mobility and the electric field. The difference in the current density outputs for left and right metal contacts during transient simulations indicate that the lithium ions accumulate on one side of the PEDOT:PSS relatively fast and holes are not able to keep up with this change. 
+ For 1-D simulation it is assumed that there are always more than enough ions to saturate the PEDOT:PSS so the electrolyte is modeled as an infinite source/sink of ions. The top boundary of the electrolyte is assumed to be charge neutral at all times which provides a mechanism for moving ions in and out of the system. This way the movement of ions near the surface of the PEDOT can still be captured without having to simulate the ion movement for the entire electrolyte solution which is variable in size. This assumption is not used for 2-D simulations since the electrolyte is fully simulated.
  
-The amount of charge that can accumulate inside the PEDOT:PSS is dependent on the drift and the diffusion of the lithium ions. Due to the electric field, the lithium ions are forced to accumulate on one side of the PEDOT:PSS layer instead of being evenly distributed. The ratio of vertical to horizontal drift of the lithium near the metal contact determines the maximum amount of charge that can accumulate which determines the maximum resistivity of the material. The results of both simulations show that the relative strength of the lithium drift current from the electrolyte to the PEDOT:PSS compared to the drift from one contact to the other is greater in 1-D simulation. This explains why the current density at steady state is lower in 2-D memristor simulations. 
+The horizontal cross section from figure \ref{MemStc} has the most crucial elements of the memristor but its simulation in 1-D is not straight forward. This cross section through the PEDOT does not include the vertical movement of the lithium ions. Without this effect, PEDOT:PSS is just a regular conductor with a uniform current density. In order to overcome this problem a generation/recombination term for lithium ions (calculated at every time step) is added to capture the vertical movement in addition to the regular drift diffusion equations which represents the horizontal movement. This generation/recombination term can be symbolized as a current source with a resistor connected to all the nodes (figure \ref{MemStc15}). Perchlorate ions are not included in the simulation since they do not move into the PEDOT.
 
+ 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.50]{2D_Memristor_Pulse_Train_EV}
-\caption{Electric field and potential at steady state along PEDOT:PSS} 
-\label{2D_E_V_ss}
+\includegraphics[scale=0.74]{1DMem}
+\caption{1.5-D Memristor Structure} 
+\label{MemStc15}
 \end{figure}
 
-Electric field and potential distributions (figure \ref{2D_E_V_ss}) for 1-D and 2-D simulations are almost identical at steady state. In both cases most of the potential drop and electric field occurs where lithium ions accumulate.
+The lithium source has two different terms, one for drift and another one for diffusion. It was assumed that the concentration of lithium is always constant in the electrolyte. This way the vertical diffusion current density can be calculated using the difference between the lithium density in PEDOT:PSS and electrolyte. For the diffusion term an electric field is estimated between the PEDOT:PSS and the electrolyte. First the potential of the electrolyte is assumed to be half of the net applied potential. Then an electric field is calculated using the electrolyte and the instantaneous potential of the PEDOT at different positions.
 
-The lithium and hole density plots shown in figure \ref{lit_hole_dist} are also similar to the plots (\ref{MempLi}) shown in section 5.4.1. For both of the simulations the lithium ions move into the PEDOT:PSS until the end of the wet region. At the same time holes move out of the wet/dry interface and create a high resistance region.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.50]{2D_Memristor_Pulse_Lithium_Hole}
-\caption{Lithium and hole density distributions over time} 
-\label{lit_hole_dist}
-\end{figure}
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.50]{2D_Memristor_Resistivity}
-\caption{Resistivity distribution of a memristor over time} 
-\label{2dres}
-\end{figure}
-
-This final plot (figre \ref{mag_lit_curr}) shows the magnitude of the lithium current density over time. Almost all of the lithium ion movement occurs at the wet/dry interface of PEDOT:PSS since most of the electric field concentrates around that region. So when the potential is flipped from one side to the other, most of the lithium ions drift and diffuse back into the electrolyte instead of going through the PEDOT:PSS. This effect is also demonstrated in section 6.4 (figures \ref{notch} and \ref{Notch_flip_side}). 
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.50]{2D_Memristor_Pulse_Lithium_J}
-\caption{Lithium current density over time} 
-\label{mag_lit_curr}
-\end{figure}
-
+%Since the main characteristic of a memristor is the change in resistivity over time it is important to develop a standard approach for measuring the resistivity. Initially, simulations in this chapter and the following one, are run until steady state without the movement of lithium/perchlorate ions. Ions in the electrolyte start to move after holes reach steady state. The movement of ions create another transient which involves changes in resistivity. The current density (at steady state) obtained from the initial simulation is used as a normalizing factor in order to determine the changes in resistivity after the ion movement has started.
 
 \clearpage
-\section{2-D Memristor Simulation Using a Sinusoid}
+\section{1-D Memristor Simulations}
 
-A memristor with an AC potential with different frequencies is simulated in this section. Following 4 plots (figure \ref{1dIV}) show the I-V curves of the memristor for 0.5, 5, 10 and 100 Hz. In these simulations there are two effects working against each other, the increase in the applied potential which increases the current output and the lithium ions working against the increase of the current by migrating into the PEDOT:PSS and increasing resistivity. Both of these effects can be clearly seen in the I-V curve for 0.5 Hz. Initially as the potential increases from 0 to 0.5 V, there is an increase in the current which means that there are not enough lithium ions in PEDOT:PSS to increase the resistivity of the device. As the potential reaches 0.5 V the accumulation of the lithium ions overtake the increase in potential such that the output current starts to decrease even though the potential is increasing. This effect disappears at higher frequencies since the lithium ions are too slow to catch up with the change in the potential. 
-   
+The following simulations are made based on the memristor approximations discussed above. The first two simulations are repeated in the next chapter using a 2-D drift diffusion and Poisson solver which captures a broader range of physical effects. Both approaches are compared in order to understand their advantages and disadvantages under different circumstances.
+
+\subsection{1-D Memristor Simulation Using a Potential Pulse Train}
+  
+For the following simulation a potential pulse train, slow enough to let the memristor reach steady state, is applied at the left contact.
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.45]{2D_Memristor_bowtie_f}
+\includegraphics[scale=0.40]{1DMemPulseTrain}
+%\includegraphics[scale=0.60]{Ex5DCResistivity}
+\caption{Change in resistivity over time due to applied potential} 
+\label{MemResTrain}
+\end{figure}
+ Following plot \ref{MemResTrain} shows the current density output for both contacts separately. As expected the current density of the device decreased as the lithium ions move in. Additionally, it can be seen from the graph \ref{MemResTrain} that the current density output from left and right contacts are not always the same over the duration of the simulation. This is due to the PEDOT:PSS layer losing holes on one side and gaining holes on the other side which produces a difference in the measured current density between contacts. The scale of the difference depends on the rate of change in lithium movement on either side. When holes are not fast enough to track the change in the ion movement, the current densities on each side can take different values.  
+
+The current density in figure \ref{MemResTrain} shows a sudden increase when the potential is switched from 1 to 0 and vice versa. This sudden increase occurs because of the accumulation of lithium ions at the wet/dry interface which creates an opposing potential to the applied potential (see figure \ref{MemEss}). When the electric potential changes suddenly, previously opposing electric field now helps the movement of holes and lithium towards the other end of the device. This additional electric field momentarily increases the current density output of the device.
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.70]{1DMemPot_Efield_SS}
+\caption{Potential and electric field at steady state} 
+\label{MemEss}
+\end{figure}
+
+Figure \ref{MempLi} demonstrates the replacement of holes by lithium ions over time which directly effects current density.  As lithium ions get pulled in from the electrolyte toward the contact they accumulate inside the PEDOT:PSS. Concurrently hole density decreases in areas where lithium accumulates. The decrease in the hole density in the PEDOT:PSS decreases the current density output of the memristor. This change in current density over time is illustrated in figure \ref{MemResTrain}.
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.65]{1DMemDensityOverTime}
+%\includegraphics[scale=0.40]{Ex5pNp_Time1}
+\caption{Lithium and hole density distribution over time} 
+\label{MempLi}
+\end{figure}
+
+It is important to note that lithium ions are free to move in \textit{x} and \textit{y} directions. In figure \ref{MempLi} it can be seen that after the potential is switched as the lithium density moves from  side to the other. Most of the lithium movement happens through the exchange of ions between PEDOT:PSS and the electrolyte since the distance between them is far less than the length of the PEDOT. So most of the lithium ions, traveling from the positive to the negative contact, are pulled into the electrolyte before they reach the other side. Near the negative contact lithium ions are quickly pulled into the PEDOT:PSS and accumulate at the wet/dry interface. 
+
+By examining the hole/lithium density plots of the PEDOT:PSS it is possible to conclude that it is composed of 3 distinct regions. 2 dry regions, where there is no contact with the electrolyte, have constant uniform resistance. Between these two resistances there is a variable non uniformly distributed resistance controlled by hole/lithium density and hole mobility. So this model captures the main characteristic of the memristor which is a variable charge dependent resistance where the resistance at any time depends on the past of the device. Following equation gives the total resistance/memristance for the memristor model developed for this thesis:
+
+\begin{equation}
+\centering
+M(q(t))_{tot}=2R_{dry}+R(Li,p,\mu_{hole})
+\end{equation}
+
+The minimum resistance of this device is just the total resistance of the PEDOT:PSS without the lithium ions. The maximum resistance depends on different factors such as applied potential and the distribution and density of lithium ions inside PEDOT:PSS.
+
+\clearpage
+\subsection{1-D Memristor Simulation Using a Sinusoid}
+
+The memristor with a pulse train simulation shows the change in the current density over time due to an applied potential but it does not clearly demnostrate the memory effects. The memory effect of the memristor can be clearly demonstrated in an I-V curve using a sinusoidal potential. Following four graphs (figure \ref{Bowtie}) are created using an AC potential with different frequencies at the contacts. All the plots show that current density can have more than one value for the same potential at different times. This means that simulated memristor's past states affects its present output, therefore the device has a memory. There is a pinch in the current for negative applied potential because it is measured from one contact which has relatively low change in resistance for a period of time during transient simulation. 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.43]{BowtiefAll}
 \caption{Normalized Current vs. applied potential at different frequencies} 
-\label{1dIV}
+\label{Bowtie}
 \end{figure}
 
-There are a few differences between 1-D and 2-D simulations using AC potential which can be explained by using observations from the previous section. In 2-D simulations the resistivity measured from the left and the right contacts match each other quite closely. So the device current is symmetrical for both negative and positive potentials. 
+The sudden changes in current around 0 V can be attributed to the density limiting mechanism for lithium. Instead of a slowdown in the movement of lithium ions near maximum density, the current flow into that region is completely blocked. Even though this makes the lithium density more responsive to changes, sudden movement block combined with large time steps can result in fast changes which can be directly seen as abrupt changes in the hole/lithium current density during transient simulations.  
 
-During simulation, even though there is no applied potential, the current never goes to zero because of the stored electric field inside the PEDOT:PSS due to the accumulated charge. This capacitive effect prevents the current from going to zero when there is no applied potential. In 1-D simulations the amount of charge stored in the PEDOT:PSS is lower therefore the value of the current can get closer to zero compared to 2-D simulations.  
+The following plots (\ref{BowtieCurr}) show that, at first, there is a drop in the average current for all frequencies since lithium diffusion is greater than lithium drift. This transient effect disappears once enough lithium settles into the PEDOT:PSS. 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.55]{2D_Memristor_f_Hole}
-\caption{Hole distribution over time at different frequencies} 
-\label{fhole}
+\includegraphics[scale=0.51]{BowtieCurr4f}
+\caption{Normalized current over time} 
+\label{BowtieCurr}
 \end{figure}
 
-Figures \ref{fhole} and \ref{flit} show hole and lithium densities over time inside the PEDOT:PSS. At low frequencies the lack of holes due to the lithium ions as well as excess holes due to the perchlorate accumulation inside the electrolyte is clearly visible. At high frequencies, since the potential is changing rapidly, there is not enough time for the ions to accumulate on either side. So the hole distribution remains mostly undisturbed. Lithium ions move into the PEDOT:PSS only through diffusion but they do not affect the hole distribution. Based on these plots, it is possible to conclude that both 1-D and 2-D memristor models behave like a regular resistor at high frequencies. 
+Figures \ref{Bowhole} and \ref{Bowli} show the changes in the hole and lithium density in PEDOT:PSS over time. A visual comparison of the plots show that changes in the lithium density are tied to the changes in the hole density. As the frequency increases lithium diffusion becomes more dominant than lithium drift. At 100 Hz lithium drift due to the applied potential is barely present. Since the ions do not create a visible impact on the hole density, the resistivity of the device remains constant over time. This means that the memristor model behaves like a regular resistor at high frequencies.
 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.55]{2D_Memristor_f_Lithium}
-\caption{Lithium distribution over time at different frequencies} 
-\label{flit}
+\includegraphics[scale=0.43]{1D_Memristor_Hole}
+\caption{Hole density over time at different frequencies} 
+\label{Bowhole}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[scale=0.43]{1D_Memristor_Lithium}
+\caption{Lithium density over time at different frequencies} 
+\label{Bowli}
 \end{figure}
 
 
 \clearpage
-\section{Experiment vs. Simulation}
+\subsection{1-D Memristor Simulation With Increasing Charge Density}
 
-The memristor model presented in this thesis has many approximations and it is far from complete but the preliminary simulations show promising results. In this section 2-D memristor simulations are compared with the experimental results in order to validate the model developed in this thesis. Due to the approximations and difficulties in the simulation mentioned in the previous chapters the current values obtained from the simulation are much lower than the actual device therefore the memristor model is only behaviorally compared to the experimental results. 
+After establishing that the simulation behaves as expected it is important to investigate how charge density effects this model since the size of the device limits the maximum charge density that can be simulated. The actual device has a hole density in the range of $ \approx 10^{22}$ $m^{-3}$ but the simulation is restricted to $\approx 10^{15}$ $m^{-3}$. In theory, if the densities used for the simulation does have a limited affect on the behavior of the memristor then the simulations with low particle densities can be use as a proxy for the actual device which operates in much higher particle densities.
 
+ The following 3 graphs (\ref{HoleDiff}, \ref{LithiumDiff} and \ref{DensityDiff} ) show the hole and the lithium densities at steady state as well as the current density over time at the right metal contact for various charge densities. The simulations are run using high mesh densities to allow stable simulation at high charge densities. 20 different simulations were made using densities ranging from $5$ x $10^{15}$  $m^{-3}$ to 1 x $10^{17}$  $m^{-3}$ but only 5 of them are plotted for illustration purposes. All the values are normalized to the initial plot using respective hole/lithium density ratios. Following equations ares used for the normalization procedure.
+
+
+\begin{equation}
+\centering
+n_{norm}= \frac{n_i}{r} 
+\end{equation}
+\begin{equation}
+\centering
+J_{norm}= \frac{J_i}{r} 
+\end{equation}
+
+\begin{equation}
+\centering
+r = \frac{n_{initial}}{n_{0}}
+\label{NormConst}
+\end{equation}
+
+$n_{i}$ is the charge carrier density which could be either holes or lithium ions depending on the plot. J is the current density calculated from the right metal contact. r is the normalization constant which is calculated using initial carrier density ($n_{initial}$) of a simulation to be normalized and $n_{0}$ which is the carrier density of the initial plot ($5 x 10^{15}$ $m^{-3}$). After the normalization of various variables, all the plots are placed in the same graph to visually illustrate how increasing charge density affects the simulation. 
+
+Plots for lithium ions (figure \ref{LithiumDiff}) and holes (figure \ref{HoleDiff}) are nearly identical to each other in terms of the plot shapes. They both get sharper around the area where there is a substantial accumulation of lithium. This is not unexpected since the debye length gets smaller with increasing carrier density. So with increased density it is expected that the density accumulation at the wet/dry PEDOT interface will be more narrow. This affect is not as strong for lithium ions since there is a maximum concentration limit on them. Lithium and hole plots only show the difference carrier density makes at steady state. The effect of debye length on the device operation can be further explored by looking at the current density over time.   
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.30]{memf1e-1}
-\caption{Experimental results for various applied potentials at 0.1 Hz (Courtesy of Eduardo Barrera)} 
-\label{memf1e-1}
+\includegraphics[scale=0.48]{HoleDiff}
+\caption{Normalized hole densities at steady state} 
+\label{HoleDiff}
 \end{figure}
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.35]{Bowtief01Vchng}
-\caption{Simulation results for various applied potentials at 0.1 Hz} 
-\label{Bowtief01Vchng}
+\includegraphics[scale=0.48]{LithiumDiff}
+\caption{Normalized lithium densities at steady state} 
+\label{LithiumDiff}
 \end{figure}
 
-Figures \ref{memf1e-1} and \ref{Bowtief01Vchng} show the I-V curve of the memristor using various potentials. At low potentials the current voltage relationship is linear for both simulation and experimental results which means that the resistance is constant over time. At low voltages lithium ions do not move very fast therefore the change in the resistivity of the PEDOT:PSS is minimal. At higher potentials the resistivity starts to increase due to the accumulation of the lithium ions and over time it completely cancels out the increase in the potential. 
+First few miliseconds of this simulation is run without the movement of lithium ions. At this stage normalized currents are identical to each other which means that a simulation with low density can be scaled up to any density without introducing any errors. The introduction of lithium ions slowly deviates the current plots from each other over time but the overall behavior of the memristor remains unchanged. The current density decreases over time and reaches a steady state value. After the first plot which has the lowest hole density, consecutive plots get closer and they are almost impossible to distinguish from each other at steady state.
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.27]{memf1}
-\caption{Experimental results for various applied potentials at 1.0 Hz (Courtesy of Eduardo Barrera)} 
-\label{memf1}
+\includegraphics[scale=0.48]{DensityDiff}
+\caption{Normalized hole current densities} 
+\label{DensityDiff}
 \end{figure}
 
-For the plots \ref{memf1} and \ref{2D_Memristor_5e-1Hz} the same experiment is repeated using a frequency of 1.0 Hz. This time the linear region is longer since the change in potential is faster and lithium ions cannot keep up with it. Once the movement of the lithium ions speeds up due to the applied potential and there is enough accumulation inside the PEDOT:PSS then the resistivity increases much faster than the increase in the potential. 
+The impact of increasing charge density can be numerically explored using normalized plots. The following formula is used to calculate a percentage difference between different normalized carrier densities as well as normalized current densities. 
+
+\begin{equation}
+\centering
+P_i^{n} = \frac{1}{ K}\sum_{k=1}^{K}\lvert 100 \;\frac{n_{i}(x_k)/r-n_{0}(x_k)}{n_{0}(x_k)}\rvert
+\end{equation}
+
+\begin{equation}
+\centering
+P_i^{J} = \frac{1}{ T}\sum_{k=1}^{T}\lvert 100 \;\frac{J_{i}(t_k)/r-J_{0}(t_k)}{J_{0}(t)}\rvert
+\end{equation}
+
+K is for total number of points along x axis and T is the total number of time steps taken by the simulator. $x_{k}$ and $t_{k}$ are used to for a point in x axis and a point in time respectively. r is the normalization constant described in equation \ref{NormConst}. Both equations start by taking a point in either space (lithium/hole density) or time (current density) for a simulation with a certain carrier density and normalize them. After that point is normalized its difference from the lowest carrier density simulation is calculated as a percentage. Finally all the differences are averaged and used as a measure of the difference between simulations with different charge densities. They can also be used as an approximate error during scaling. 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.35]{2D_Memristor_5e-1Hz}
-\caption{Simulation results for various applied potentials at 1.0 Hz} 
-\label{2D_Memristor_5e-1Hz}
+\includegraphics[scale=0.46]{AllDiff}
+\caption{Average difference for hole, lithium and current densities for various initial hole densities} 
+\label{AllDiff}
 \end{figure}
 
-The pinched area towards the end of the outermost loop shows that the change in resistivity slows down as it starts to reach its maximum value. This is also apparent in the transient simulations with a potential pulse train. The increase in resistance is fast up to a certain value and then it slows down as PEDOT:PSS is saturated by lithium ions.
+Figure \ref{AllDiff} shows the difference hole/lithium density makes in the simulation. Carrier densities in the dry regions of the PEODT:PSS change very little between consecutive simulations since lithium ions do not reach there. For this reason only the densities at the wet PEDOT are used to measure the difference between plots. 
 
-The following plots (\ref{experimental} and \ref{MemF}) are created using a variable frequency instead of a variable potential. For the simulation and the experiment, the memristor behaves more like a resistor as frequency increases. This is due to lithium ions not having enough time to drift into the PEDOT:PSS to make a change in the resistance. Even though the frequencies used for simulation is different than the ones used in the experiment, both plots show similar behavior. A better match can be achieved by improving the mobility models used for lithium ions and holes. 
+In all 3 cases, there is an increase in average difference for increasing carrier density. Hole density shows the most difference between plots. Since holes are free to move inside the PEDOT:PSS they directly get affected by the change in the debye length due to the increase in hole density. This is not the case for lithium ions because their movement is restricted by the limit on lithium density. In contrast, current density is not as sensitive to density changes as lithium and hole distributions.
 
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.31]{experimental}
-\caption{Measured I-V curve at different frequencies (Courtesy of Eduardo Barrera)} 
-\label{experimental}
-\end{figure}
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.55]{MemF}
-\caption{Simulated I-V curve at different frequencies } 
-\label{MemF}
-\end{figure}
-
-\clearpage
-This last example consists of a memristor where PEDOT:PSS strip is separated into two pieces with a notch which prohibits the hole flow trough the device. Figure \ref{notch} shows the measured movement of lithium from the right strip to the left strip. Red color represents the lack of charge and blue color shows the presence of charge. For the simulation results (figre \ref{Notch_flip_side}) red color represents a high charge density and blue color represents a low charge density.
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.45]{notch}
-\caption{Experimental results for accumulation of lithium inside PEDOT:PSS (Courtesy of Eduardo Barrera)} 
-\label{notch}
-\end{figure}
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.45]{Notch_flip_side}
-\caption{Simulation results for accumulation of lithium inside PEDOT:PSS} 
-\label{Notch_flip_side}
-\end{figure}
-
-When a potential is applied, one side of the PEDOT:PSS strip is filled with lithium ions. It can be seen from both the simulation and the experimental results that the lithium ions start migrate out of the PEDOT:PSS near the notch and the wet/dry PEDOT:PSS interface which are the areas with highest electric field. Both plots show that lithium ions uniformly distribute themselves inside PEDOT:PSS at steady state. This uniform distribution of lithium ions supports the assumption that there is a limit on how many lithium ions PEDOT:PSS can accept per unit area. If this was not the case the lithium ions would have accumulated on one side of the device instead of being uniformly distributed.
+% An approximate error estimation can be made for current density if a low hole/lithium density is used for simulation and then scaled up to match the actual memristor. Figure \ref{AllDiff} shows a 3.3 \% difference for 2 orders of magnitude increase in the hole density. Assuming the error scales linearly after that point a total of 6 orders of magnitude will result in 9.9 \% error introduced in order to linearly scale from $10^{15}$ to $10^{21}$. The actual error is likely to be less since the error progresses sub linearly. Following the same procedure 6 orders of magnitude difference produces a 12 \% error for lithium distribution and 48 \% error for hole distribution. The difference in the hole distribution seems very large but the overall shape of the plot is always preserved since the highest amount change occurs around the wet/dry PEDOT interface where lithium accumulates. Based on these error margins and previous plots it can be concluded that the behavior of the memristor simulated using a low charge density is very similar to the simulation at a high charge density.    
 
 
 \end{doublespace}
-
