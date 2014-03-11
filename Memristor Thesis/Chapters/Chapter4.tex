@@ -172,71 +172,41 @@ Another problem with COMSOL is the definition of mobility and diffusion coeffici
 
 In this problem $\mu_v$ is the same as equation \ref{mur} since the region on the right side has a variable mobility and $\mu_c$ is just a constant mobility defined for the left side. $x'$ is the middle of the simulation area.
 
-The initial carrier distribution for COMSOL is set to be exactly the same as finite difference simulation. Figures \ref{5416} and \ref{5423} show results for both COMSOL and finite difference simulations at steady state before the switch of the applied potential. The plot on the left side gives insight on how COMSOL simulation behaves for limited and limitless accumulation on the right wall. Due to the gradual change of mobility and diffusion constants between two areas, the density on the right side is higher than the limit which is $2 \; 10^{10}$. Additionally, the particle density goes over its limit near the right wall. In figure \ref{5423} the difference between COMSOL and finite difference becomes more visible. In FD simulation the accumulation goes much higher due to higher electric field and unlike COMSOL it does not penetrate the right half of the simulation domain. 
+The initial carrier distribution for COMSOL is set to be exactly the same as finite difference simulation. Figures \ref{5416}.a and \ref{5416}.b show results for both COMSOL and finite difference simulations at steady state before the switch of the applied potential. The plot on the left side gives insight on how COMSOL simulation behaves for limited and limitless accumulation on the right wall. Due to the gradual change of mobility and diffusion constants between two areas, the density on the right side is higher than the limit which is $2 \; 10^{10}$. Additionally, the particle density goes over its limit near the right wall. In figure \ref{5416}.b the difference between COMSOL and finite difference becomes more visible. In FD simulation the accumulation goes much higher due to higher electric field and unlike COMSOL it does not penetrate the right half of the simulation domain. 
 
-\begin{figure}[ht]
+\begin{figure}[!htp]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5416}
-\caption{COMSOL Simulation for Particle Density Limit}
+\includegraphics[scale=0.48]{5416}
+\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
 \label{5416}
-\end{minipage}
-\quad
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5423}
-\caption{COMSOL and Finite Difference Simulation}
-\label{5423}
-\end{minipage}
 \end{figure}
+
 
 In figure \ref{5417} it is possible to see the accumulation of charge near the middle section after the potential is switched. This is due to mobility being a function of distance and density. As the ions move from left to right they go from a low mobility region to a high mobility region and they slowly accumulate around the area where the change in mobility occurs. Figure comparing both COMSOL and finite difference shows that the accumulation does not happen in the case of finite difference due to the way density limiting mechanism is implemented.
 
-\begin{figure}[ht]
+\begin{figure}[!htp]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5417}
-\caption{COMSOL Simulation for Particle Density Limit}
+\includegraphics[scale=0.48]{5417}
+\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
 \label{5417}
-\end{minipage}
-\quad
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5424}
-\caption{COMSOL and Finite Difference Simulation}
-\label{5424}
-\end{minipage}
 \end{figure}
 
-With the decrease of ion density on the limited region the difference between low and high mobility regions diminish. Once the density on the limited side is low enough the whole system behaves as if there is no limit and ion mobility becomes equal for all regions and the ions freely accumulate on the left wall (figure \ref{5418}). Aside from the difference in electric field strength both simulations behave the same way as they approach steady state. Figure \ref{5426} shows densities at steady state. COMSOL simulation has a lower electric field since it has convergence issues with high electric fields. 
+With the decrease of ion density on the limited region the difference between low and high mobility regions diminish. Once the density on the limited side is low enough the whole system behaves as if there is no limit and ion mobility becomes equal for all regions and the ions freely accumulate on the left wall (figure \ref{5418}). Aside from the difference in electric field strength both simulations behave the same way as they approach steady state. Figure \ref{5418}.b shows densities at steady state. COMSOL simulation has a lower electric field since it has convergence issues with high electric fields. 
 
-\begin{figure}[ht]
+\begin{figure}[!htp]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5418}
-\caption{COMSOL Simulation for Particle Density Limit}
+\includegraphics[scale=0.48]{5418}
+\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
 \label{5418}
-\end{minipage}
-\quad
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5426}
-\caption{COMSOL and Finite Difference Simulation}
-\label{5426}
-\end{minipage}
 \end{figure}
 
 This comparison can be finalized by looking the particle density transient response of the rightmost node. For the first half of the simulation everything is the same as the finite difference case except COMSOL goes a little bit over the limit. When the potential is switched, node without the limit has no noticeable difference in behaviour. The node with density limit has a lag when it comes to releasing the particles. This is due to the sigmoid function used to achieve a limiting behaviour. Once the limit is reached mobility and diffusivity are stuck at a very low value until the particle density starts to go lower than the limit.
-\begin{figure}[ht]
+
+\begin{figure}[!htp]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5419}
-\caption{Density on the right wall over time using COMSOL}
+\includegraphics[scale=0.48]{5419}
+\caption{ a) COMSOL Simulation for Particle Density Limit b)COMSOL and Finite Difference Simulation} 
 \label{5419}
-\end{minipage}
-\quad
-\begin{minipage}[b]{0.45\linewidth}
-\includegraphics[scale=0.45]{5421}
-\caption{Density on the right wall over time,COMSOL vs. Finite Difference}
-\label{5421}
-\end{minipage}
 \end{figure}
 
 The simulations above show that it is possible to impose a density limit over any area using a simple no flow boundary condition in a numerical simulation. For COMSOL some workarounds are implemented in order to simulate the same behavior without any convergence issues. 
