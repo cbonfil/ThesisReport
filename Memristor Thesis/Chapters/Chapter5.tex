@@ -8,7 +8,7 @@
 
 \begin{doublespace}
 
-The past chapter shows the details of how to solve drift-diffusion and Poisson's equation using finite difference method. In this chapter steady state and transient analysis for drift diffusion equations using finite difference is compared to analytical solutions as well as a commercially available simulator called 'COMSOL Multiphysics' which uses finite element method instead of a finite difference approach. The following test cases were made to ensure that the key parts of the finite difference scheme run properly and produce accurate results. 
+ The simulation scheme presented in chapter 3 needs to be tested thoroughly before attempting to simulate a memristor in order to ensure that it functions as expected and produces accurate results. In this chapter steady state and transient analysis for drift diffusion equations using finite difference is compared to analytical solutions as well as a commercially available simulator called 'COMSOL Multiphysics' which uses finite element method instead of a finite difference approach.
 
 \section{Solution for Closed Boundary}
 In this section the accuracy of the finite difference solution in steady state is tested. In order to do this, a simple 1-D problem with a finite number of negatively charged particles over a certain distance subject to constant electric field is used. This is the same problem that is solved analytically in section 3.3.1. It is also assumed that the charge density is very low and does not affect the electric field. Both ends of the simulation domain have no flow boundary conditions for charged particles. The solution process requires an initial distribution for the charge density over the area. For this problem the density of the negative particles was initialized to be uniform over the entire region. 
@@ -111,7 +111,7 @@ This example showed that simulation of a system of coupled equations, drift diff
 \clearpage
 \section{Region Specific Particle Density Limit}
 
-The last property of the drift diffusion simulation scheme that is tested in this section concerns the movement of lithium ions. In order to test density limiting method implemented for the memristor simulation a simple example is set up. Two positively charged particles are initialized like the figure below in two separate simulations (\ref{5412}). One set of particles has a density limit of $2 \; 10^{10} \; m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions. The initial particle density on the left half of the simulation area is set to $5 \; 10^{10} \; m^{-3}$ for both simulations.
+The last property of the drift diffusion simulation scheme that is tested in this section concerns the movement of lithium ions. In order to test density limiting method implemented for the memristor simulation a simple example is set up. Two positively charged particles are initialized like the figure below in two separate simulations (\ref{5412}). One set of particles has a density limit of 0.5 $m^{-3}$ on the right half of the simulation area and no limit on the left half. The other set has no restrictions. The initial particle density on the left half of the simulation area is set to $1 \; m^{-3}$ for both simulations.
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.7]{5412}
@@ -119,7 +119,7 @@ The last property of the drift diffusion simulation scheme that is tested in thi
 \label{5412}
 \end{figure}
 
-This transient simulation uses a potential pulse train. The potential is applied at the left side of the device and the right side is always grounded. For the first half of the transient simulation the applied potential is positive and for the second half it is negative. Figure \ref{5413} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right wall. The density limit for the other particles is effectively stopping them from migrating and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
+This transient simulation uses a potential pulse train. The potential is applied at the left side of the device and the right side is always grounded. For the first 100 seconds of the transient simulation the applied potential is positive and for the rest of the simulation it is negative. Figure \ref{5413} shows how two simulations differ when the particles are pushed towards the right wall due to the electric field created by the positive potential. Particles with no limit on the right side move freely and accumulate on the right wall. The density limit for the other particles is effectively stopping them from migrating and accumulating freely. Once the limit is reached at a certain node the density cannot increase any further and that node turns into a no flow wall. 
 
 \begin{figure}[!htp]
 \centering
@@ -137,7 +137,7 @@ When the potential is switched all the particles accumulate freely at the left s
 \label{5414}
 \end{figure}
 
-This last figure (\ref{5411}) shows the transient response over time of a single node on the right side. The potential is positive for the first 1.5 seconds and it is switched to negative for the last 1.5 seconds. The node without any limit keeps accepting charge until a steady state has been reached but the density limited node stops accepting charged particles once the limit is reached. After the potential is switched density limited node has no problem releasing the particles.
+This last figure (\ref{5411}) shows the transient response over time of a single node on the right side. The potential is positive for the first 100 seconds and it is switched to negative for the rest of the simulation. The node without any limit keeps accepting charge until a steady state has been reached but the density limited node stops accepting charged particles once the limit is reached. After the potential is switched density limited node has no problem releasing the particles.
 
 
 \begin{figure}[!htp]
@@ -164,7 +164,7 @@ Another problem with COMSOL is the definition of mobility and diffusion coeffici
 
 In this problem $\mu_v$ is the same as equation \ref{mur} since the region on the right side has a variable mobility and $\mu_c$ is just a constant mobility defined for the left side. $x'$ is the middle of the simulation area.
 
-The initial carrier distribution for COMSOL is set to be exactly the same as finite difference simulation. Figures \ref{5416}.a and \ref{5416}.b show results for both COMSOL and finite difference simulations at steady state before the switch of the applied potential. The plot on the left side gives insight on how COMSOL simulation behaves for limited and limitless accumulation on the right wall. Due to the gradual change of mobility and diffusion constants between two areas, the density on the right side is higher than the limit which is $2 \; 10^{10}$. Additionally, the particle density goes over its limit near the right wall. In figure \ref{5416}.b the difference between COMSOL and finite difference becomes more visible. In FD simulation the accumulation goes much higher due to higher electric field and unlike COMSOL it does not penetrate the right half of the simulation domain. 
+The initial carrier distribution for COMSOL is set to be exactly the same as finite difference simulation. Figures \ref{5416}.a and \ref{5416}.b show results for both COMSOL and finite difference simulations at steady state before the switch of the applied potential. The plot on the left side gives insight on how COMSOL simulation behaves for limited and limitless accumulation on the right wall. Due to the gradual change of mobility and diffusion constants between two areas, the density on the right side is higher than the limit which is $0.5 \; m^{-3}$. Additionally, the particle density goes over its limit near the right wall. In figure \ref{5416}.b the difference between COMSOL and finite difference becomes more visible. In FD simulation the accumulation is similarly shaped but unlike COMSOL it does not penetrate the right half of the simulation domain. 
 
 \begin{figure}[!htp]
 \centering
@@ -174,7 +174,7 @@ The initial carrier distribution for COMSOL is set to be exactly the same as fin
 \end{figure}
 
 
-In figure \ref{5417} it is possible to see the accumulation of charge near the middle section after the potential is switched. This is due to mobility being a function of distance and density. As the ions move from left to right they go from a low mobility region to a high mobility region and they slowly accumulate around the area where the change in mobility occurs. Figure comparing both COMSOL and finite difference shows that the accumulation does not happen in the case of finite difference due to the way density limiting mechanism is implemented.
+In figure \ref{5417} it is possible to see a spike of charge in COMSOL simulation near the middle section after the potential is switched. This is due to mobility being a function of distance and density. As the ions move from left to right they go from a low mobility region to a high mobility region and they slowly accumulate around the area where the change in mobility occurs. Figure \ref{5417}.b comparing both COMSOL and finite difference shows that the accumulation does not happen in the case of finite difference due to the way density limiting mechanism is implemented.
 
 \begin{figure}[!htp]
 \centering
@@ -183,7 +183,7 @@ In figure \ref{5417} it is possible to see the accumulation of charge near the m
 \label{5417}
 \end{figure}
 
-With the decrease of ion density on the limited region the difference between low and high mobility regions diminish. Once the density on the limited side is low enough the whole system behaves as if there is no limit and ion mobility becomes equal for all regions and the ions freely accumulate on the left wall (figure \ref{5418}). Aside from the difference in electric field strength both simulations behave the same way as they approach steady state. Figure \ref{5418}.b shows densities at steady state. COMSOL simulation has a lower electric field since it has convergence issues with high electric fields. 
+With the decrease of ion density on the limited region the difference between low and high mobility regions diminish. Once the density on the limited side is low enough the whole system behaves as if there is no limit and ion mobility becomes equal for all regions and the ions freely accumulate on the left wall (figure \ref{5418}). Both simulations behave the same way as they approach steady state. Figure \ref{5418}.b shows densities at steady state.
 
 \begin{figure}[!htp]
 \centering
@@ -192,7 +192,7 @@ With the decrease of ion density on the limited region the difference between lo
 \label{5418}
 \end{figure}
 
-This comparison can be finalized by looking the particle density transient response of the rightmost node. For the first half of the simulation everything is the same as the finite difference case except COMSOL goes a little bit over the limit. When the potential is switched, node without the limit has no noticeable difference in behaviour. The node with density limit has a lag when it comes to releasing the particles. This is due to the sigmoid function used to achieve a limiting behaviour. Once the limit is reached mobility and diffusivity are stuck at a very low value until the particle density starts to go lower than the limit.
+This comparison can be finalized by looking the particle density transient response of the rightmost node (figure \ref{5419}). For the first half of the simulation everything is the same as the finite difference case except COMSOL goes a little bit over the limit. When the potential is switched, node without the limit has no noticeable difference in behaviour. The node with density limit has a lag when it comes to releasing the particles. This is due to the sigmoid function used to achieve a limiting behaviour. Once the limit is reached mobility and diffusivity are stuck at a very low value until the particle density starts to go lower than the limit.
 
 \begin{figure}[!htp]
 \centering

@@ -1,9 +1,81 @@
-\begin{thebibliography}{23}
+\begin{thebibliography}{34}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Gardner et~al.(2004)Gardner, Nonner, and Eisenberg]{electrodiff}
+CarlL. Gardner, Wolfgang Nonner, and RobertS. Eisenberg.
+\newblock Electrodiffusion model simulation of ionic channels: 1d simulations.
+\newblock \emph{Journal of Computational Electronics}, 3\penalty0 (1):\penalty0
+  25--31, 2004.
+\newblock ISSN 1569-8025.
+\newblock \doi{10.1023/B:JCEL.0000029453.09980.fb}.
+\newblock URL \url{http://dx.doi.org/10.1023/B%3AJCEL.0000029453.09980.fb}.
+
+\bibitem[Kurnikova et~al.(1999)Kurnikova, Coalson, Graf, and
+  Nitzan]{GramacidinChannel}
+Maria~G. Kurnikova, Rob~D. Coalson, Peter Graf, and Abraham Nitzan.
+\newblock A lattice relaxation algorithm for three-dimensional
+  poisson-nernst-planck theory with application to ion transport through the
+  gramicidin a channel.
+\newblock \emph{Biophysical Journal}, 76\penalty0 (2):\penalty0 642 -- 656,
+  1999.
+\newblock ISSN 0006-3495.
+\newblock \doi{http://dx.doi.org/10.1016/S0006-3495(99)77232-2}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0006349599772322}.
+
+\bibitem[Kwon and Ravaioli(2006)]{IonicMemoryDev}
+Hyuck~In Kwon and Umberto Ravaioli.
+\newblock Simulation of electronic/ionic mixed conduction in solid ionic memory
+  devices.
+\newblock \emph{Microelectronics Journal}, 37\penalty0 (10):\penalty0 1047 --
+  1051, 2006.
+\newblock ISSN 0026-2692.
+\newblock \doi{http://dx.doi.org/10.1016/j.mejo.2006.04.009}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0026269206000747}.
+
+\bibitem[Kozicki et~al.(2005)Kozicki, Park, and Mitkova]{NanoScaleMemEle}
+M.N. Kozicki, Mira Park, and M.~Mitkova.
+\newblock Nanoscale memory elements based on solid-state electrolytes.
+\newblock \emph{Nanotechnology, IEEE Transactions on}, 4\penalty0 (3):\penalty0
+  331--338, May 2005.
+\newblock ISSN 1536-125X.
+\newblock \doi{10.1109/TNANO.2005.846936}.
+
+\bibitem[Panzer and Frisbie(2008)]{OrganicFet}
+Matthew~J. Panzer and C.~Daniel Frisbie.
+\newblock Exploiting ionic coupling in electronic devices: Electrolyte-gated
+  organic field-effect transistors.
+\newblock \emph{Advanced Materials}, 20\penalty0 (16):\penalty0 3177--3180,
+  2008.
+\newblock ISSN 1521-4095.
+\newblock \doi{10.1002/adma.200800617}.
+\newblock URL \url{http://dx.doi.org/10.1002/adma.200800617}.
+
+\bibitem[Islam et~al.(2010)Islam, Johns, Do, Ohlberg, Wang, and
+  Williams]{OrganicMemSim}
+M.S. Islam, C.~Johns, Long Do, D.~A~A Ohlberg, Shih-Yuan Wang, and R.~Stanley
+  Williams.
+\newblock Memristors based on an organic monolayer of molecules and a thin film
+  of solid electrolytes.
+\newblock In \emph{Electrical and Computer Engineering (ICECE), 2010
+  International Conference on}, pages 761--764, Dec 2010.
+\newblock \doi{10.1109/ICELCE.2010.5700804}.
+
+\bibitem[Brumleve and Buck(1978)]{NumericalPNP}
+Timothy~R. Brumleve and Richard~P. Buck.
+\newblock Numerical solution of the nernst-planck and poisson equation system
+  with applications to membrane electrochemistry and solid state physics.
+\newblock \emph{Journal of Electroanalytical Chemistry and Interfacial
+  Electrochemistry}, 90\penalty0 (1):\penalty0 1 -- 31, 1978.
+\newblock ISSN 0022-0728.
+\newblock \doi{http://dx.doi.org/10.1016/S0022-0728(78)80137-5}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0022072878801375}.
 
 \bibitem[Chua(1971)]{chua}
 L.O. Chua.
@@ -86,6 +158,16 @@ A.F. Adzmi, A.~Nasrudin, W.F.H. Abdullah, and S.H. Herman.
 \newblock In \emph{Research and Development (SCOReD), 2012 IEEE Student
   Conference on}, pages 78--83, 2012.
 
+\bibitem[Zhang et~al.(2013)Zhang, Chen, Joshua~Yang, Wysocki, McDonald, and
+  Chen]{MemTiO2}
+Lu~Zhang, Zhijie Chen, J.~Joshua~Yang, Bryant Wysocki, Nathan McDonald, and
+  Yiran Chen.
+\newblock A compact modeling of tio2-tio2 \#x2013;x memristor.
+\newblock \emph{Applied Physics Letters}, 102\penalty0 (15):\penalty0
+  153503--153503--4, Apr 2013.
+\newblock ISSN 0003-6951.
+\newblock \doi{10.1063/1.4802206}.
+
 \bibitem[Erokhin(2010)]{OrganicMem}
 V.~Erokhin.
 \newblock Organic memristors : Basic principles.
@@ -142,6 +224,25 @@ R.F. Wallis.
 \newblock \emph{Semiconductor Physics and Applications}.
 \newblock Series on Semiconductor Science and Technology. OUP Oxford, 2000.
 \newblock ISBN 9780198517412.
+
+\bibitem[Dhatt et~al.(2012)Dhatt, Lefran{\c{c}}ois, and Touzot]{FinEleTxt}
+G.~Dhatt, E.~Lefran{\c{c}}ois, and G.~Touzot.
+\newblock \emph{Finite Element Method}.
+\newblock ISTE. Wiley, 2012.
+\newblock ISBN 9781118569702.
+
+\bibitem[LeVeque(2007)]{FinDifTxt}
+R.J. LeVeque.
+\newblock \emph{Finite Difference Methods for Ordinary and Partial Differential
+  Equations: Steady-State and Time-Dependent Problems}.
+\newblock Society for Industrial and Applied Mathematics, 2007.
+\newblock ISBN 9780898716290.
+
+\bibitem[Li and Mulay(2013)]{Meshless}
+H.~Li and S.S. Mulay.
+\newblock \emph{Meshless Methods and Their Numerical Properties}.
+\newblock Taylor \& Francis, 2013.
+\newblock ISBN 9781466517462.
 
 \bibitem[Lindfield and Penny(2012)]{numerical2}
 G.~Lindfield and J.~Penny.

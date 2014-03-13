@@ -7,7 +7,7 @@
 \lhead{Chapter 2. \emph{Theory}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 \begin{doublespace}
 
-The equations presented in this chapter as well as the derivation of drift diffusion equations form a basis for simulating coupled ionic-electronic devices. First Boltzmann transport equation which is the starting point for generating the drift diffusion equation is introduced. The introduction of Boltzmann transport equation is followed by the derivation of drift diffusion equation and the presentation of the set of equations that describe the behavior of a coupled ionic-electronic device. The last part of the chapter shows analytic solutions to drift diffusion equations which are used to test the numerical methods derived in chapter 3.   
+The equations presented in this chapter as well as the derivation of drift diffusion equations form a basis for simulating coupled ionic-electronic devices. First, Boltzmann transport equation which is the starting point for generating the drift diffusion equation is introduced. The introduction of Boltzmann transport equation is followed by the derivation of drift diffusion equation and the presentation of the set of equations that describe the behavior of a coupled ionic-electronic device. The last part of the chapter shows analytic solutions to drift diffusion equations which are used to test the numerical methods derived in chapter 4.   
 
 \section{Carrier Transport Equations}
 Drift diffusion equations, which are based on Boltzmann Transport Equations (BTE) \cite{Dragica1}, need to be solved in order to model the complex behaviour of an ionic electronic device. The drift diffusion equations used are derived by simplifying BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model, therefore they need to be well understood.
@@ -72,7 +72,7 @@ The current density equations can be used for both positively and negatively cha
 \vec{J_p^x}=q \mu_{p} p \vec{E_x}-qD_{p} \frac{dp}{dx} 
 \label{cdenp}
 \end{equation}
-Anisotropic drift and diffusion coefficients can be handled with ease by using different coefficients for different directions. Also the mobility and the diffusivity can be a function of any variable such as position or temperature. This is a useful property for a memristor simulation since hole mobility depends on lithium density in the PEDOT:PSS at any given position. 
+Anisotropic drift and diffusion coefficients can be handled with ease by using different coefficients for different directions. Also the mobility and the diffusivity can be a function of any variable such as position or temperature.
 
 Current density equations by themselves are not enough to solve this time dependent problem. It is necessary to account for the movement of charge over time which is captured in the continuity equation. It is a statement of conservation of particle density over time. The change in the amount of carriers over time in a particular area must be equal to the difference in current density over the same area. Additionally the amount of charge can change due to generation-recombination of charged particles. The continuity is captured by equations:
 
@@ -106,11 +106,11 @@ Where the variables \textit{$\varepsilon$}, \textit{V}, \textit{$\rho$} are perm
 The electric field can be split into multiple components depending on the dimensions of the problem. In a 2-D case they are $\vec{E_x}$ and $\vec{E_y}$.
 
 \begin{equation}
-\vec{E_x}=-\frac{\partial V}{\partial x}
+\vec{E_x}=-\hat{x}\frac{\partial V}{\partial x}
 \end{equation}
 
 \begin{equation}
-\vec{E_y}=-\frac{\partial V}{\partial y}
+\vec{E_y}=-\hat{y}\frac{\partial V}{\partial y}
 \end{equation}
 
 Once the electric field and the current density is known, the current at any point in the device can be easily calculated by using the following integral \cite{snowden}.
@@ -151,14 +151,12 @@ Poisson's equation and drift-diffusion equations are coupled through the electri
 \frac{\partial N_{c}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{ N_{c} }}+ U_{N_{c}}
 \end{equation}
 
-This system of equations consist of 4 different mobile charged particles, holes (\textit{p}), electrons (\textit{n}), cations (\textit{$N_{c}$}) and anions (\textit{$N_{a}$}). \textit{$N_{f}$} is used for fixed charge which can be positive or negative depending on the device. \textit{U} is used for the generation recombination term of each mobile charge carrier. The particles are coupled to each other through Poisson's equation since they all carry electric charge. Drift diffusion model does not limit the amount of mobile particles that can be simulated in a device. So this model can be easily modified any number of mobile species based on what is physically present in a device.
-
-Even after many approximations to the BTE, the drift diffusion equations have analytical solutions for only few isolated cases. The analytical solutions developed in the rest of this chapter are used in the testing of the numerical method developed for simulating a memristor. 
+This system of equations consist of 4 different mobile charged particles, holes (\textit{p}), electrons (\textit{n}), cations (\textit{$N_{c}$}) and anions (\textit{$N_{a}$}). \textit{$N_{f}$} is used for fixed charge which can be positive or negative depending on the device. \textit{U} is used for the generation recombination term of each mobile charge carrier. The particles are coupled to each other through Poisson's equation since they all carry electric charge. Drift diffusion model does not limit the amount of mobile particles that can be simulated in a device. So this model can be easily modified to accommodate any number of mobile species based on what is physically present in a device. Even after many approximations to the BTE, the drift diffusion equations have analytical solutions for only few isolated cases. The analytical solutions developed in the rest of this chapter are used in the testing of the numerical method developed for simulating a memristor. 
 
 \clearpage
 \section{Analytic Solutions}
 
-Three different analytic solutions to drift diffusion equations will be developed in this section. It starts with a simple steady state problem with uniform electric field. The second example, which is more complex than the first one, is a transient solution for a charge distribution moving under uniform electric field. Finally, a PN junction problem is solved which incorporates the drift diffusion equation with Poisson's equation and provides a steady state solution for electron/hole density distributions, potential and electric field. 
+Three different analytic solutions to drift diffusion equations are developed in this section. It starts with a simple steady state problem with uniform electric field. The second example, which is more complex than the first one, is a transient solution for a charge distribution moving under uniform electric field. Finally, a PN junction problem is solved which incorporates the drift diffusion equation with Poisson's equation and provides a steady state solution for electron/hole density distributions, electric potential and electric field. 
   
 \subsection{Steady State Solution Over a Finite Domain}
 
@@ -223,7 +221,7 @@ Equation \ref{p_ss} combined with equation \ref{p_ss_c} gives a complete solutio
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.7]{AnalyticSS}
+\includegraphics[scale=0.65]{AnalyticSS}
 \caption{Increased accumulation of particles due to increased electric field} 
 \end{figure}
 
@@ -238,7 +236,7 @@ Where the variables \textit{$V_{th}$}, \textit{n} and \textit{$\varepsilon$} are
 \clearpage
 \subsection{Transient Solution Over an Infinite Domain}
 
-The problem that is solved in this section consists of an initial particle density distribution subject to a uniform electric field over an infinitely long conductor. The charge distribution drifts and diffuses over time. This requires a transient solution and the continuity equation (\ref{conn}) needs to be solved. Again, it is assumed that charged particles do not affect the electric field since their density is low enough , therefore solution of Poisson's equation is not necessary. 
+The problem that is solved in this section consists of an initial particle density distribution subject to a uniform electric field over an infinitely long conductor. The charge distribution drifts and diffuses over time. This requires a transient solution therefore the continuity equation (\ref{conn}) needs to be solved. Again, it is assumed that charged particles do not affect the electric field since their density is low enough , therefore solution of Poisson's equation is not necessary. 
 
 The first step of the solution process is the insertion of \eqref{cdenn} into \eqref{conn}.
 
@@ -262,12 +260,12 @@ Using separation of variables the solution can be separated into time and space 
 n(t,x)=n(t)n(x)=n_t n_x
 \label{adifn}
 \end{equation}
-Placing equation \eqref{adifn} into \eqref{adifg} and dividing by n(t,x),
+Placing equation \eqref{adifn} into \eqref{adifg} and dividing by \textit{n(t,x)},
 \begin{equation}
 \frac{1}{n_{t}}\frac{d n_{t}}{d t}=\mu_n E \frac{1}{n_{x}}\frac{d n_{x}}{dx}+D\frac{1}{n_{x}}\frac{d^2 n_{x}}{dx^2}
 \label{Adif}
 \end{equation}
-Assuming both sides of the equation are equal to a constant -k, time dependent part of the problem becomes a simple first order differential equation.
+Assuming both sides of the equation are equal to a constant \textit{-k}, time dependent part of the problem becomes a simple first order differential equation.
 
 \begin{equation}
 \nonumber
@@ -425,7 +423,7 @@ E(x=-x_{p})=0  \; \;  \Rightarrow  \;\; C_{1}= \frac{-qN_{A}}{\varepsilon}x_{p}
 E(x=x_{n})=0  \; \;  \Rightarrow  \;\; C_{1}= \frac{qN_{D}}{\varepsilon}x_{n}
 \end{equation}
 
-Then E(x) becomes:
+Then \textit{E(x)} becomes:
 
 \begin{equation}
 E(x) = \begin{cases}
@@ -433,7 +431,7 @@ E(x) = \begin{cases}
          \frac{qN_{D}}{\varepsilon}(x-x_{n})  &  \text{for} \; 0 \leq x \leq x_{n}  \\
      \end{cases}
 \end{equation}
- Additionally, the electric field must be continuous across the interface therefore the electric field in the p-type side and the n-type side must equal each other at the interface or when x = 0 . 
+ Additionally, the electric field must be continuous across the interface therefore the electric field in the p-type side and the n-type side must equal each other at the interface or when \textit{x = 0} . 
 
 \begin{equation}
 \frac{-qN_{A}}{\varepsilon}(x_{p})=\frac{qN_{D}}{\varepsilon}(-x_{n})
@@ -455,7 +453,7 @@ V(x) = \begin{cases}
      \end{cases}
 \end{equation}
 
-The potential at one side of the junction can be set to zero. Defining the voltage on the p type side as zero, such that at x= $x_p$, V=0 gives the constant $C_3$ as:
+The potential at one side of the junction can be set to zero. Defining the voltage on the \textit{p} type side as zero, such that at \textit{x=} $x_p$, \textit{V=0} gives the constant $C_3$ as:
 
 \begin{equation}
 C_{3}=\frac{qN_{A}}{2\varepsilon}x_{p}^{2}
@@ -475,7 +473,7 @@ V_{p}(x=0)=\frac{qN_{A}}{2\varepsilon}x_{p}^2=V_{n}(x=0)=\frac{qN_{A}}{2\varepsi
 C_{4}=\frac{qN_{A}}{2\varepsilon}x_{p}^2
 \end{equation}
 
-Now an overall expression for V(x) can be obtained.
+Now an overall expression for \textit{V(x)} can be obtained.
 
 \begin{equation}
 V(x) = \begin{cases}
@@ -506,7 +504,7 @@ The value of the built in potential can be calculated using the following equati
 V_{bi}=\frac{kT}{q} \; ln(\frac{N_{A}N_{D}}{n_i^2})
 \end{equation}
 
-The calculation of the built in potential completes all the necessary equations for the analytical solution of the pn junction without any external bias. Figure \ref{pnplt} shows the plots of approximate solutions for net charge, electric field and the junction potential.
+The calculation of the built in potential completes all the necessary equations for the analytical solution of the pn junction without any external bias. The figure \ref{pnplt} shows the plots of approximate solutions for net charge, electric field and the junction potential.
 
 \begin{figure}
 \centering
