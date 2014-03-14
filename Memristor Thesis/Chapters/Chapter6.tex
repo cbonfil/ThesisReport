@@ -8,12 +8,12 @@
 
 \begin{doublespace}
 
-A numerical method for a memristor simulation is developed and tested in previous chapters based on drift-diffusion equations and finite difference. This chapter starts with a preliminary problem analysis to determine the required mesh density and maximum possible time step for the simulation. This preliminary analysis is followed by 1-D simulations of a memristor under various conditions.
+A numerical method for a coupled ionic-electronic device simulation is developed and tested in previous chapters based on drift-diffusion equations and finite difference. This chapter introduces a 1-D approximation for 2-D cross section of the memristor. Then 1-D simulations of a memristor are shown under various conditions.
 
 
 \section{1-D Memristor Approximation}
 
- For 1-D simulation it is assumed that there are always more than enough ions to saturate the PEDOT:PSS so the electrolyte is modeled as an infinite source/sink of ions. The top boundary of the electrolyte is assumed to be charge neutral at all times which provides a mechanism for moving ions in and out of the system. This way the movement of ions near the surface of the PEDOT can still be captured without having to simulate the ion movement for the entire electrolyte solution which is variable in size. This assumption is not used for 2-D simulations since the electrolyte is fully simulated.
+For 1-D simulation it is assumed that there are always more than enough ions to saturate the PEDOT:PSS so the electrolyte is modeled as an infinite source/sink of ions. The top boundary of the electrolyte is assumed to be charge neutral at all times which provides a mechanism for moving ions in and out of the system. This way the movement of ions near the surface of the PEDOT can still be captured without having to simulate the ion movement for the entire electrolyte solution which is variable in size. This assumption is not used for 2-D simulations since the electrolyte is fully simulated.
  
 The horizontal cross section from figure \ref{MemStc} has the most crucial elements of the memristor but its simulation in 1-D is not straight forward. This cross section through the PEDOT does not include the vertical movement of the lithium ions. Without this effect, PEDOT:PSS is just a regular conductor with a uniform current density. In order to overcome this problem a generation/recombination term for lithium ions (calculated at every time step) is added to capture the vertical movement in addition to the regular drift diffusion equations which represents the horizontal movement. This generation/recombination term can be symbolized as a current source with a resistor connected to all the nodes (figure \ref{MemStc15}). Perchlorate ions are not included in the simulation since they do not move into the PEDOT.
 
@@ -27,8 +27,6 @@ The horizontal cross section from figure \ref{MemStc} has the most crucial eleme
 
 The lithium source has two different terms, one for drift and another one for diffusion. It was assumed that the concentration of lithium is always constant in the electrolyte. This way the vertical diffusion current density can be calculated using the difference between the lithium density in PEDOT:PSS and electrolyte. For the diffusion term an electric field is estimated between the PEDOT:PSS and the electrolyte. First the potential of the electrolyte is assumed to be half of the net applied potential. Then an electric field is calculated using the electrolyte and the instantaneous potential of the PEDOT at different positions.
 
-%Since the main characteristic of a memristor is the change in resistivity over time it is important to develop a standard approach for measuring the resistivity. Initially, simulations in this chapter and the following one, are run until steady state without the movement of lithium/perchlorate ions. Ions in the electrolyte start to move after holes reach steady state. The movement of ions create another transient which involves changes in resistivity. The current density (at steady state) obtained from the initial simulation is used as a normalizing factor in order to determine the changes in resistivity after the ion movement has started.
-
 \clearpage
 \section{1-D Memristor Simulations}
 
@@ -39,12 +37,12 @@ The following simulations are made based on the memristor approximations discuss
 For the following simulation a potential pulse train, slow enough to let the memristor reach steady state, is applied at the left contact.
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.40]{1DMemPulseTrain}
+\includegraphics[scale=0.55]{1DMemPulseTrain}
 %\includegraphics[scale=0.60]{Ex5DCResistivity}
-\caption{Change in resistivity over time due to applied potential} 
+\caption{Change in current density over time due to applied potential} 
 \label{MemResTrain}
 \end{figure}
- Following plot \ref{MemResTrain} shows the current density output for both contacts separately. As expected the current density of the device decreased as the lithium ions move in. Additionally, it can be seen from the graph \ref{MemResTrain} that the current density output from left and right contacts are not always the same over the duration of the simulation. This is due to the PEDOT:PSS layer losing holes on one side and gaining holes on the other side which produces a difference in the measured current density between contacts. The scale of the difference depends on the rate of change in lithium movement on either side. When holes are not fast enough to track the change in the ion movement, the current densities on each side can take different values.  
+ Following plot \ref{MemResTrain} shows the current density output for both contacts separately. As expected the current density of the device decreased as the lithium ions move in. Additionally, it can be seen from the graph \ref{MemResTrain} that the current density output from left and right contacts are not always the same over the duration of the simulation. This is due to the PEDOT:PSS layer losing holes on one side and gaining holes on the other side which produces a difference in the measured current density between contacts. The scale of the difference depends on the rate of change in lithium movement on either side.
 
 The current density in figure \ref{MemResTrain} shows a sudden increase when the potential is switched from 1 to 0 and vice versa. This sudden increase occurs because of the accumulation of lithium ions at the wet/dry interface which creates an opposing potential to the applied potential (see figure \ref{MemEss}). When the electric potential changes suddenly, previously opposing electric field now helps the movement of holes and lithium towards the other end of the device. This additional electric field momentarily increases the current density output of the device.
 
@@ -120,7 +118,7 @@ Figures \ref{Bowhole} and \ref{Bowli} show the changes in the hole and lithium d
 \clearpage
 \subsection{1-D Memristor Simulation With Increasing Charge Density}
 
-After establishing that the simulation behaves as expected it is important to investigate how charge density effects this model since the size of the device limits the maximum charge density that can be simulated. The actual device has a hole density in the range of $ \approx 10^{22}$ $m^{-3}$ but the simulation is restricted to $\approx 10^{15}$ $m^{-3}$. In theory, if the densities used for the simulation does have a limited affect on the behavior of the memristor then the simulations with low particle densities can be use as a proxy for the actual device which operates in much higher particle densities.
+After establishing that the simulation behaves as expected it is important to investigate how charge density effects this model since the size of the device limits the maximum charge density that can be simulated. The actual device has a hole density in the range of $ \approx 10^{26}$ $m^{-3}$ but the simulation is restricted to $\approx 10^{17}$ $m^{-3}$. In theory, if the densities used for the simulation does have a limited affect on the behavior of the memristor then the simulations with low particle densities can be use as a proxy for the actual device which operates in much higher particle densities.
 
  The following 3 graphs (\ref{HoleDiff}, \ref{LithiumDiff} and \ref{DensityDiff} ) show the hole and the lithium densities at steady state as well as the current density over time at the right metal contact for various charge densities. The simulations are run using high mesh densities to allow stable simulation at high charge densities. 20 different simulations were made using densities ranging from $5$ x $10^{15}$  $m^{-3}$ to 1 x $10^{17}$  $m^{-3}$ but only 5 of them are plotted for illustration purposes. All the values are normalized to the initial plot using respective hole/lithium density ratios. Following equations ares used for the normalization procedure.
 
@@ -140,7 +138,7 @@ r = \frac{n_{initial}}{n_{0}}
 \label{NormConst}
 \end{equation}
 
-$n_{i}$ is the charge carrier density which could be either holes or lithium ions depending on the plot. J is the current density calculated from the right metal contact. r is the normalization constant which is calculated using initial carrier density ($n_{initial}$) of a simulation to be normalized and $n_{0}$ which is the carrier density of the initial plot ($5 x 10^{15}$ $m^{-3}$). After the normalization of various variables, all the plots are placed in the same graph to visually illustrate how increasing charge density affects the simulation. 
+$n_{i}$ is the charge carrier density which could be either holes or lithium ions depending on the plot. \textit{J} is the current density calculated from the right metal contact. \textit{r} is the normalization constant which is calculated using initial carrier density ($n_{initial}$) of a simulation to be normalized and $n_{0}$ which is the carrier density of the initial plot ($5 x 10^{15}$ $m^{-3}$). After the normalization of various variables, all the plots are placed in the same graph to visually illustrate how increasing charge density affects the simulation. 
 
 Plots for lithium ions (figure \ref{LithiumDiff}) and holes (figure \ref{HoleDiff}) are nearly identical to each other in terms of the plot shapes. They both get sharper around the area where there is a substantial accumulation of lithium. This is not unexpected since the debye length gets smaller with increasing carrier density. So with increased density it is expected that the density accumulation at the wet/dry PEDOT interface will be more narrow. This affect is not as strong for lithium ions since there is a maximum concentration limit on them. Lithium and hole plots only show the difference carrier density makes at steady state. The effect of debye length on the device operation can be further explored by looking at the current density over time.   
 
@@ -179,7 +177,7 @@ P_i^{n} = \frac{1}{ K}\sum_{k=1}^{K}\lvert 100 \;\frac{n_{i}(x_k)/r-n_{0}(x_k)}{
 P_i^{J} = \frac{1}{ T}\sum_{k=1}^{T}\lvert 100 \;\frac{J_{i}(t_k)/r-J_{0}(t_k)}{J_{0}(t)}\rvert
 \end{equation}
 
-K is for total number of points along x axis and T is the total number of time steps taken by the simulator. $x_{k}$ and $t_{k}$ are used to for a point in x axis and a point in time respectively. r is the normalization constant described in equation \ref{NormConst}. Both equations start by taking a point in either space (lithium/hole density) or time (current density) for a simulation with a certain carrier density and normalize them. After that point is normalized its difference from the lowest carrier density simulation is calculated as a percentage. Finally all the differences are averaged and used as a measure of the difference between simulations with different charge densities. They can also be used as an approximate error during scaling. 
+\textit{K} is for total number of points along \textit{x} axis and \textit{T} is the total number of time steps taken by the simulator. $x_{k}$ and $t_{k}$ are used to for a point in \textit{x} axis and a point in time respectively. \textit{r} is the normalization constant described in equation \ref{NormConst}. Both equations start by taking a point in either space (lithium/hole density) or time (current density) for a simulation with a certain carrier density and normalize them. After that point is normalized its difference from the lowest carrier density simulation is calculated as a percentage. Finally all the differences are averaged and used as a measure of the difference between simulations with different charge densities. They can also be used as an approximate error during scaling. 
 
 \begin{figure}[!htp]
 \centering

@@ -133,16 +133,16 @@ p=ni
 \label{nboundsimpl}
 \end{equation}
 
-During simulation, the application of the metal contact boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition by default but for metal contacts boundary values for particle densities are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by integrating the derivative of the current density over time. 
+During simulation, the application of the metal contact boundary condition differs from the no flow boundary which is applied implicitly. All the boundaries are simulated using a no flow condition by default but for metal contacts boundary values for particle densities are set to the appropriate values at the end of every time step. The lack of charge is compensated and excess charge is taken off by the metal contact. The difference between the boundary value of the charge density and its actual value is used to calculate the derivative of the current density with respect to time. The current in and out of the device is calculated by using the derivative of the charge density over time. 
 
 \begin{equation}
-\frac{dn}{dt}=\frac{n_{cr}-n_{ct}}{\Delta t}
+\frac{d\rho}{dt}=q\frac{n_{ex}-n_{eq}}{\Delta t}
 \end{equation}
 
-$n_{cr}$ is the excess carrier density and $n_{ct}$ is the equilibrium carrier density at the contact. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents. 
+$n_{ex}$ is the excess carrier density and $n_{eq}$ is the equilibrium carrier density at the contact. Using these boundary conditions for holes and electrons and the following two equations it is possible to calculate incoming and outgoing currents\cite{PocketRef}. 
 
 \begin{equation}
-Q=An
+Q=Aqn
 \label{charge_charge_density}
 \end{equation} 
 
@@ -151,30 +151,31 @@ I=\frac{dQ}{dt}
 \label{current_charge}
 \end{equation} 
  
-
-Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating the current leaving or entering the device at any metal contact.
+Equation \ref{charge_charge_density} is an approximate relationship between charge and charge density, calculated by using a first order approximation, where Q is total charge, A is the area holding that charge. Equation \ref{current_charge} is simply the general definition of current. By combining these two equations it is possible to derive a formula for calculating the current leaving or entering the device at any metal contact.
 
 \begin{equation}
-I=A \frac{dn}{dt}
+I=A q\frac{dn}{dt}
 \label{current_charge_density}
 \end{equation}
 
+Since the main characteristic of a memristor is the change in current output due to change in resistivity over time it is important to develop a standard approach for measuring the change in the current output. Initially, simulations in chapters 6 and 7 are run until steady state without the movement of lithium/perchlorate ions. Ions in the electrolyte start to move after holes reach steady state. The movement of ions create another transient which involves changes in resistivity and current density. The current density (at steady state) obtained from the simulation without the movement of ions is used as a normalizing factor in order to determine the changes in current after the ion movement has started.
+
 \subsection{Poisson's Equation}
-Discretized form of Poisson's equation (\ref{discrete_poisson}) is valid for almost all the nodes in the system except the boundary nodes. There are two different types of boundary conditions. The first one is Dirichlet boundary condition which forces a particular value for the potential at the boundary (add ref).
+Discretized form of Poisson's equation (\ref{discrete_poisson}) is valid for almost all the nodes in the system except the boundary nodes. There are two different types of boundary conditions. The first one is Dirichlet boundary condition which forces a particular value for the potential at the boundary\cite{ODEtxtbk}.
 
 \begin{equation}
 V_{i,j}=V_{b}
 \label{dirichlet}
 \end{equation}
 
-Where $V_{b}$ is the value of the potential at the boundary. The other possible boundary condition is called Neumann boundary condition which states that the derivative of the potential at the boundary is zero. This gives the following equation (add ref):
+Where $V_{b}$ is the value of the potential at the boundary. The other possible boundary condition is called Neumann boundary condition which states that the derivative of the potential at the boundary is zero\cite{ODEtxtbk}. This gives the following equation:
 
 \begin{equation}
 \frac{\partial V}{\partial x}=\frac{V_{i+1,j}-V_{i,j}}{\Delta}=0
 \label{neumannx}
 \end{equation}
 
-So for a boundary in y direction:
+So for a boundary in \textit{y} direction:
 
 \begin{equation}
 V_{i+1,j}=V_{i,j}

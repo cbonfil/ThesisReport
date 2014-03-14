@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{37}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -162,7 +162,7 @@ A.F. Adzmi, A.~Nasrudin, W.F.H. Abdullah, and S.H. Herman.
   Chen]{MemTiO2}
 Lu~Zhang, Zhijie Chen, J.~Joshua~Yang, Bryant Wysocki, Nathan McDonald, and
   Yiran Chen.
-\newblock A compact modeling of tio2-tio2 \#x2013;x memristor.
+\newblock A compact modeling of tio2-tio2 memristor.
 \newblock \emph{Applied Physics Letters}, 102\penalty0 (15):\penalty0
   153503--153503--4, Apr 2013.
 \newblock ISSN 0003-6951.
@@ -257,5 +257,23 @@ G.D. Smith.
 \newblock Oxford applied mathematics and computing science series. Clarendon
   Press, 1985.
 \newblock ISBN 9780198596509.
+
+\bibitem[Schmidt-Walter and Kories(2007)]{PocketRef}
+H.~Schmidt-Walter and R.~Kories.
+\newblock \emph{Electrical Engineering: A Pocket Reference}.
+\newblock Artech House, 2007.
+\newblock ISBN 9781596932449.
+
+\bibitem[Agarwal and O'Regan(2008)]{ODEtxtbk}
+R.P. Agarwal and D.~O'Regan.
+\newblock \emph{Ordinary and Partial Differential Equations: With Special
+  Functions, Fourier Series, and Boundary Value Problems}.
+\newblock Universitext. Springer, 2008.
+\newblock ISBN 9780387791463.
+
+\bibitem[Ramirez(2008)]{eduardo}
+Eduardo~Barrera Ramirez.
+\newblock Missing memristor found.
+\newblock Master's thesis, 2008.
 
 \end{thebibliography}
