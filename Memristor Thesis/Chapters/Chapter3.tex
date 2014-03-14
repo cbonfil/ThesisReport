@@ -262,14 +262,14 @@ This solution needs a matrix inversion every time step but it is unconditionally
 Before discussing  the numerical limitations of solving the drift diffusion equation via finite difference it is important to look into the physical limitations of the problem. These limitations persist no matter what kind of numerical scheme is employed to solve the drift diffusion equation.
 
 \subsection{Physical Limitations}
-Debye length is the length over which mobile charge carriers screen out an external electric field and it determines how steeply charges will accumulate over a certain distance.
+Debye length is the length over which mobile charge carriers screen out an external electric field and it determines how steeply charges will accumulate over a certain distance\cite{Dragica1}.
 \begin{equation}
 L_D=\sqrt{\frac{\varepsilon V_{th}}{q n}}
 \label{debye}
 \end{equation}
 Debye length limits how coarse the grid can be since the distribution of the charge density needs to be accurately captured. As it can be seen from the formula above the higher the charge density is the steeper the charge will accumulate. This behavior is also appears in the analytic solution provided in section 2.2.1 in chapter 2. The accumulation of the charged particle at the wall becomes steeper as the electric field strength increases. The debye length can become a major problem for large devices with high charge densities since the mesh density needs to be extremely high.
 
-The amount of time it takes for charge fluctuations to disappear is called Dielectric relaxation time. It limits the maximum time step of a simulation since the fluctuations that are not properly resolved over time will make the simulation unstable.
+The amount of time it takes for charge fluctuations to disappear is called Dielectric relaxation time. It limits the maximum time step of a simulation since the fluctuations that are not properly resolved over time will make the simulation unstable\cite{Dragica1}.
 
 \begin{equation}
 t_{dr}=\frac{\varepsilon}{q n \mu}
@@ -295,7 +295,7 @@ Above condition is for only diffusion and it restricts the maximum time step. Th
 
 This is the second numerical restriction on the simulation. The condition for drift depends on the electric field therefore it needs to be satisfied at all times as the electric field changes over time during simulation.
 
-Both physical and numerical constraints have to be evaluated and mesh density and time step need to be selected in order to satisfy all these conditions discussed above. Particularly mesh density has a very strong impact on the accuracy, stability and the computational efficiency of the simulation. Increasing the mesh density increases the computational time needed to calculate every time step since there are more operations to be performed. Additionally because of the CFL condition for diffusion, the time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be improved by using a non uniform mesh which can dramatically decrease the number points needed for the simulation. This is usually not very straightforward to implement in a finite difference scheme and a small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Both numerical and physical constraints for the memristor simulation are further discussed in chapter 5.
+Both physical and numerical constraints have to be evaluated and mesh density and time step need to be selected in order to satisfy all these conditions discussed above. Particularly mesh density has a very strong impact on the accuracy, stability and the computational efficiency of the simulation. Increasing the mesh density increases the computational time needed to calculate every time step since there are more operations to be performed. Additionally because of the CFL condition for diffusion, the time step is related to the square of the mesh size. This means that maximum allowed step size decreases much quicker than the mesh density. Also, increasing charge density can decrease the maximum mesh size to a very small value. This can be improved by using a non uniform mesh which can dramatically decrease the number points needed for the simulation. This is usually not very straightforward to implement in a finite difference scheme and a small mesh size requires small time steps. This cannot be avoided through non uniform meshing. Both numerical and physical constraints for the memristor simulation are further discussed in chapter 4.
 
 \subsection{Explicit vs. Implicit Solution}
 
