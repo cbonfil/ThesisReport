@@ -63,7 +63,7 @@
 \contentsline {figure}{\numberline {7.14}{\ignorespaces Experimental results for various applied potentials at 0.1 Hz (Courtesy of Eduardo Barrera)\cite {eduardo}\relax }}{94}{figure.caption.263}
 \contentsline {figure}{\numberline {7.15}{\ignorespaces Simulation results for various applied potentials at 0.1 Hz\relax }}{94}{figure.caption.264}
 \contentsline {figure}{\numberline {7.16}{\ignorespaces Experimental results for various applied potentials at 1.0 Hz (Courtesy of Eduardo Barrera)\cite {eduardo}\relax }}{95}{figure.caption.265}
-\contentsline {figure}{\numberline {7.17}{\ignorespaces Simulation results for various applied potentials at 1.0 Hz\relax }}{95}{figure.caption.266}
+\contentsline {figure}{\numberline {7.17}{\ignorespaces Simulation results for various applied potentials at 1.0 Hz \leavevmode {\color {red}my scaled plot}\relax }}{95}{figure.caption.266}
 \contentsline {figure}{\numberline {7.18}{\ignorespaces Measured I-V curve at different frequencies (Courtesy of Eduardo Barrera)\cite {eduardo}\relax }}{96}{figure.caption.267}
 \contentsline {figure}{\numberline {7.19}{\ignorespaces Simulated I-V curve at different frequencies \relax }}{96}{figure.caption.268}
 \contentsline {figure}{\numberline {7.20}{\ignorespaces Experimental results for accumulation of lithium inside PEDOT:PSS (Courtesy of Eduardo Barrera)\relax }}{97}{figure.caption.269}
