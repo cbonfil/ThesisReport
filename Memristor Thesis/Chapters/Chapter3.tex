@@ -7,7 +7,7 @@
 \lhead{Chapter 3. \emph{Numerical Solution for Drift-Diffusion Equations}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 \begin{doublespace}
 
-The simulation method developed in this thesis \tjs{to model charge transport in a region} requires certain properties, such as \tjsr{limitation}{the saturation} of \tjs{a} particle density or a combination of 1-D and 2-D simulations, which are not \tjsr{normally}{} available in most commercial simulators. \tjs{In future extensions of this work it is anticipated that}{It is also possible} that other unusual properties that are not studied in this thesis will be needed \tjsr{for further research}{and which are not normally implemented}. \tjsr{I}{For these reasons it was decided to write a Matlab based simulator and i}n this chapter a method for solving drift diffusion equations as well as Poisson's equation are developed based on finite difference method.
+The simulation method developed in this thesis \tjs{to model charge transport in a region} requires certain properties, such as \tjsr{limitation}{the saturation} of \tjs{a} particle density or a combination of 1-D and 2-D simulations, which are not \tjsr{normally}{} available in most commercial simulators. \tjsr{It is also possible}{In future extensions of this work it is anticipated that} that other unusual properties that are not studied in this thesis will be needed \tjsr{for further research}{and which are not normally implemented}. \tjsr{I}{For these reasons it was decided to write a Matlab based simulator and i}n this chapter a method for solving drift diffusion equations as well as Poisson's equation are developed based on finite difference method.
 
 \section{Finite Difference Method}
 There are many different methods that can be used to solve drift diffusion equations such as finite elements\cite{FinEleTxt}, finite difference\cite{FinDifTxt} or meshless methods\cite{Meshless}. Finite difference was chosen as an appropriate method for this thesis due to its simplicity which allows straightforward implementation of unusual physical properties. Finite difference uses an approximation for the derivative of a function based on the mathematical definition of the derivative\cite{numerical2},
@@ -88,7 +88,7 @@ is simplified through assumptions and then the finite difference method is used 
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=\varepsilon  \nabla^2 V
 \end{equation}
-Dividing both sides \tjs{of (ref{Poissons2})} by \tjs{the} permittivity and expanding the left hand side \tjs{we get,}
+Dividing both sides \tjs{of (\ref{Poissons2})} by \tjs{the} permittivity and expanding the left hand side \tjs{we get,}
 \begin{equation}
  \nabla^2 V =-\frac{\rho}{\varepsilon}
  \label{Poissons}
@@ -181,7 +181,7 @@ It is possible to replace the derivative with central finite difference terms:
 \nabla \cdot J_{i,j,k}=\frac{J^x_{i+\frac{1}{2},j,k}-J^x_{i-\frac{1}{2},j,k}}{h}+\frac{J^y_{i,j+\frac{1}{2},k}-J^y_{i,j-\frac{1}{2},k}}{h}
 \label{delJ}
 \end{equation}
-This is the general form of the divergence of the current density \tjs{at each node}. \tjsr{These}{This} set of equations can be \tjsr{placed}{formulated} into a matrix \tjs{equation} which is a linear function of \tjs{the} particle densit\tjsr{y}{ies} at time t,
+This is the general form of the divergence of the current density \tjs{at each node}. These \tjsr{set of}{} equations \tjs{are a linear function of particle densities $\vec{n}$ and} can be \tjsr{placed}{formulated} into a matrix \tjs{equation} \tjsr{which is a linear function of particle density} at time \tjs{$t_k$, where $k$ indicates the current time step},
 \begin{equation}
 \nabla \cdot J_k = B \tjs{\vec{n_k}
 }\label{fd_div}
@@ -244,7 +244,7 @@ The amount of time it takes for charge fluctuations to disappear is called Diele
 t_{dr}=\frac{\varepsilon}{q n \mu}
 \label{tdr}
 \end{equation}
-\tjs{D}{The d}ielectric relaxation time is only important when the electric potential is significantly affected by the redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
+\tjsr{D}{The d}ielectric relaxation time is only important when the electric potential is significantly affected by the redistribution of charge over time. Otherwise it has minimal impact on the stability of the problem.
 
 \subsection{Numerical Limitations}
 
