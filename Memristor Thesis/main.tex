@@ -37,7 +37,8 @@
 \usepackage{rotating}
 \usepackage{pdflscape}
 \usepackage{ulem}
-
+\newcommand\redout{\bgroup\markoverwith
+{\textcolor{red}{\rule[.5ex]{2pt}{1pt}}}\ULon}
 % \usepackage[usenames]{color}
 \usepackage{color}
 
@@ -46,7 +47,7 @@
 \title{\ttitle} % Defines the thesis title - don't touch this
 
 \newcommand{\tjs}[1] {\textcolor{red}{#1}}
-\newcommand{\tjsr}[2] {\sout{#1}\textcolor{red}{#2}}
+\newcommand{\tjsr}[2] {\redout{#1}\textcolor{red}{#2}}
 
 \begin{document}
 

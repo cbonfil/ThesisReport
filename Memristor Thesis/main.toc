@@ -44,13 +44,13 @@
 \contentsline {section}{\numberline {6.2}1-D Memristor Simulations}{68}{section.224}
 \contentsline {subsection}{\numberline {6.2.1}1-D Memristor Simulation Using a Potential Pulse Train}{68}{subsection.225}
 \contentsline {subsection}{\numberline {6.2.2}1-D Memristor Simulation Using a Sinusoid}{72}{subsection.230}
-\contentsline {subsection}{\numberline {6.2.3}1-D Memristor Simulation With Increasing Charge Density}{75}{subsection.235}
-\contentsline {chapter}{\numberline {7}2-D Memristor Simulation}{79}{chapter.245}
-\contentsline {section}{\numberline {7.1}Effect of PEDOT:PSS Thickness}{79}{section.246}
-\contentsline {section}{\numberline {7.2}2-D Memristor Simulation Using a Potential Pulse Train}{85}{section.253}
-\contentsline {section}{\numberline {7.3}2-D Memristor Simulation Using a Sinusoid}{89}{section.258}
-\contentsline {section}{\numberline {7.4}Experiment vs. Simulation}{92}{section.262}
-\contentsline {chapter}{\numberline {8}Conclusion}{97}{chapter.271}
+\contentsline {subsection}{\numberline {6.2.3}1-D Memristor Simulation With Increasing Charge Density \leavevmode {\color {red}(I got a few questions)}}{76}{subsection.235}
+\contentsline {chapter}{\numberline {7}2-D Memristor Simulation}{81}{chapter.245}
+\contentsline {section}{\numberline {7.1}Effect of PEDOT:PSS Thickness}{81}{section.246}
+\contentsline {section}{\numberline {7.2}2-D Memristor Simulation Using a Potential Pulse Train}{87}{section.253}
+\contentsline {section}{\numberline {7.3}2-D Memristor Simulation Using a Sinusoid}{91}{section.258}
+\contentsline {section}{\numberline {7.4}Experiment vs. Simulation}{94}{section.262}
+\contentsline {chapter}{\numberline {8}Conclusion}{99}{chapter.271}
 \vspace {2em}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{99}{dummy.272}
+\contentsline {chapter}{Bibliography}{101}{dummy.272}
