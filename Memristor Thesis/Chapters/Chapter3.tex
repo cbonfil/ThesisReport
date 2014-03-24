@@ -74,7 +74,7 @@ f^{''}_{i}=\frac{f_{i+1}-2f_{i}+f_{i-1}}{h^2}+O(h^2)
 \label{fdc2}
 \end{equation}
 
-Overall these finite difference equations are enough to solve drift diffusion equations. Even though all the derivations are done in 1-D it is trivial to extend them to other dimensions. This method can be used to solve Poisson's equation and drift diffusion equations.
+These finite difference equations are sufficient to solve drift diffusion equations. Even though all the derivations are done in 1-D it is trivial to extend them to other dimensions. This method can be used to solve Poisson's equation and drift diffusion equations.
 \clearpage
 
 \section{Poisson Solver}
@@ -84,7 +84,7 @@ Poisson's equation needs to be solved before drift diffusion equations in order 
 \nabla \cdot  (\varepsilon \nabla V)=-\rho
 \label{Poissons2}
 \end{equation}
-is simplified through assumptions and then the finite difference method is used to solve this simplified equation\cite{smith1985numerical}. The first step of simplification is assuming that the permittivity is isotropic \tjs{which gives}
+is simplified through assumptions and then the finite difference method is used to solve this simplified equation\cite{smith1985numerical}. The first step of simplification is assuming that the permittivity is isotropic \tjs{which gives,}
 \begin{equation}
 \nabla \cdot  (\varepsilon \nabla V)=\varepsilon  \nabla^2 V
 \end{equation}
@@ -121,7 +121,7 @@ Combining the equations above (\ref{discrete_poisson}, \ref{dirichlet}, \ref{neu
 \begin{equation}
 D_{2}\vec{V}=-\Delta^2\vec{\rho}-\vec{V_b}
 \end{equation}
-\tjs{The matrix} $D_{2}$ is the Laplace operator converted into a matrix using the finite difference method. One can easily get the potential distribution by simply solving \tjsr{this matrix equation(\ref{poimatrix}).}{} 
+\tjs{The matrix} $D_{2}$ is the Laplace operator converted into a matrix using the finite difference method. One can easily get the potential distribution by simply solving, \tjsr{this matrix equation(\ref{poimatrix}).}{} 
 \begin{equation}
 \vec{V}=D_{2}^{-1}(-\Delta^2\vec{\rho_{i,j}}-\vec{V_b})
 \label{poimatrix}

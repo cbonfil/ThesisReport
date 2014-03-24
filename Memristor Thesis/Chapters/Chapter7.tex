@@ -11,7 +11,7 @@ Even though 1-D simulation is able to capture the main characteristics of the me
 
 \section{Effect of PEDOT:PSS Thickness}
 
-The physical dimensions of the memristor \tjsr{is}{are} presented in the previous chapter. The thickness of the PEDOT:PSS layer is very small compared to the other dimensions of the device such as the thickness of the electrolyte and length of the conductive material. This complicates the simulation of the PEDOT:PSS strip using a uniform mesh. Although non uniform meshing seems like an appropriate solution for this problem, a close examination of the numerical limitations show that this is not the case. Decreasing the mesh size in one dimension severely reduces the maximum time step for the entire simulation therefore non uniform meshing is not feasible for this problem. 
+The physical dimensions of the memristor \tjsr{is}{are} presented in chapter 4. The thickness of the PEDOT:PSS layer is very small compared to the other dimensions of the device such as the thickness of the electrolyte and length of the conductive material. This complicates the simulation of the PEDOT:PSS strip using a uniform mesh. Although non uniform meshing seems like an appropriate solution for this problem, a close examination of the numerical limitations show that this is not the case. Decreasing the mesh size in one dimension severely reduces the maximum time step for the entire simulation therefore non uniform meshing is not feasible for this problem. 
 
 An alternative solution to the meshing problem is \tjsr{using}{embedding} an infinitesimally thin PEDOT:PSS layer in a 2-D simulation. This method is used for the memristor simulations in this chapter. For PEDOT:PSS, the effects in 2-D are ignored since the layer thickness is 10000 times smaller than other dimensions such as the thickness of the electrolyte. For the holes in the conductive layer only the horizontal component of the electric field is used and all the current densities are calculated in 1-D. Following plots compare two simulations with PEDOT:PSS thicknesses higher than the actual device thickness and a 2-D simulation with a 1-D PEDOT:PSS layer.  
 
@@ -22,7 +22,7 @@ An alternative solution to the meshing problem is \tjsr{using}{embedding} an inf
 \label{thick_resistivity}
 \end{figure}
 
-The memristor is simulated using a constant potential at the contacts. \tjs{The} left metal contact is \tjs{at} 1 V and the right metal contact is grounded. The current density measured at the right contact for different PEDOT:PSS thicknesses is shown in figure \ref{thick_resistivity}. These plots show that as the PEDOT:PSS thickness gets smaller the device responds faster. This is due to the decrease \tjs{[Is distance correct or is the larger volume??]} in the distance lithium ions have to travel inside PEDOT:PSS in order to change its resistivity. Another change in the behavior of the memristor is its resistivity at steady state. The increase in resistivity for different PEDOT:PSS thicknesses at steady state can be attributed to the ion/hole interaction at the interface between the PEDOT:PSS and the electrolyte solution which is illustrated in the following figures \ref{thick_p_ss}, \ref{thick_li_ss} and \ref{thick_perch_ss}.
+The memristor is simulated using a constant potential at the contacts. \tjs{The} left metal contact is \tjs{at} 1 V and the right metal contact is grounded. The current density measured at the right contact for different PEDOT:PSS thicknesses is shown in figure \ref{thick_resistivity}. These plots show that as the PEDOT:PSS thickness gets smaller the device responds faster. This is due to the decrease in volume of the PEDOT:PSS. Another change in the behavior of the memristor is its resistivity at steady state. The increase in resistivity for different PEDOT:PSS thicknesses at steady state can be attributed to the ion/hole interaction at the interface between the PEDOT:PSS and the electrolyte solution which is illustrated in the following figures \ref{thick_p_ss}, \ref{thick_li_ss} and \ref{thick_perch_ss}.
 
 \begin{figure}[!htp]
 \centering
@@ -47,15 +47,6 @@ The accumulation of holes at the surface of the PEDOT:PSS is due to the perchlor
 \includegraphics[scale=0.40]{2D_Memristor_Thick_Perchlorate_SS}
 \caption{Perchlorate distribution at steady state for different PEDOT:PSS thicknesses} 
 \label{thick_perch_ss}
-\end{figure}
-
-Figure \ref{thick_netq_p} shows the charge density of holes at the surface of the PEDOT:PSS and the net charge density in the electrolyte near PEDOT:PSS. Negative charges that accumulate on the left side of the electrolyte create\tjsr{s}{} an abundance of holes where\tjs{as} positive charges on the right side creates a lack of holes. This additional mechanism is the key difference between 1-D and 2-D simulations. In 1-D simulation, ion density inside the electrolyte and the changes in the electric field due to these charges were not present.
-
-\begin{figure}[!htp] 
-\centering
-\includegraphics[scale=0.40]{2D_Memristor_netq_hole}
-\caption{Net charge distribution at steady state for different PEDOT:PSS thicknesses} 
-\label{thick_netq_p}
 \end{figure}
 
 As shown in the previous chapter, the electric field has the highest value where the lithium ions accumulate. The figure \ref{thick_efield} shows the change in the shape of the electric field as PEDOT:PSS gets thinner. For all the plots most of the potential drop occurs where lithium ions accumulate and it is concentrated at the surface of the PEDOT:PSS. 
@@ -182,9 +173,9 @@ For the plots \ref{memf1} and \ref{2D_Memristor_5e-1Hz} the same experiment is r
 
 \begin{figure}[!htp]
 \centering
-% \includegraphics[scale=0.35]{2D_Memristor_5e-1Hz}
-\includegraphics[scale=0.125]{2D_Memristor_5e-1Hz-2}
-\caption{Simulation results for various applied potentials at 1.0 Hz \tjs{tjs scaled plot}} 
+\includegraphics[scale=0.47]{2D_Memristor_5e-1Hz}
+%\includegraphics[scale=0.125]{2D_Memristor_5e-1Hz-2}
+\caption{Simulation results for various applied potentials at 1.0 Hz}
 \label{2D_Memristor_5e-1Hz}
 \end{figure}
 
@@ -207,19 +198,19 @@ The following plots (\ref{experimental} and \ref{MemF}) are created using a vari
 \end{figure}
 
 \clearpage
-This last example consists of a memristor where PEDOT:PSS strip is separated into two pieces with a notch which prohibits the hole flow trough the device. Figure \ref{notch} shows the measured movement of lithium from the right strip to the left strip. Red color represents the lack of charge and blue color shows the presence of charge. For the simulation results (figre \ref{Notch_flip_side}) red color represents a high charge density and blue color represents a low charge density.
+This last example consists of a coupled ionic-electronic device where PEDOT:PSS strip is separated into two pieces with a notch which prohibits the hole flow trough the device. Figure \ref{notch} shows the measured movement of lithium from the right strip to the left strip. Red color represents the lack of charge and blue color shows the presence of charge. For the simulation results (figre \ref{Notch_flip_side}) red color represents a high charge density and blue color represents a low charge density.
 
 \begin{figure}[!htp]
 \centering
 \includegraphics[scale=0.45]{notch}
-\caption{Experimental results for accumulation of lithium inside PEDOT:PSS (Courtesy of Eduardo Barrera)} 
+\caption{Experimental results for accumulation of lithium inside PEDOT:PSS (Courtesy of Eduardo Barrera)\cite{eduardo}} 
 \label{notch}
 \end{figure}
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.45]{Notch_flip_side}
-\caption{Simulation results for accumulation of lithium inside PEDOT:PSS \tjs{[Ok I'm having trouble with the comparison]}} 
+\includegraphics[scale=0.41]{Notch_flip_side2}
+\caption{Simulation results for accumulation of lithium inside PEDOT:PSS} 
 \label{Notch_flip_side}
 \end{figure}
 

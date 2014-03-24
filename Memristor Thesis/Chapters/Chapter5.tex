@@ -8,7 +8,7 @@
 
 \begin{doublespace}
 
- The simulation scheme presented in chapter 3 needs to be tested thoroughly before attempting to simulate a memristor in order to ensure that it functions as expected and produces accurate results. In this chapter steady state and transient analysis for drift diffusion equations using finite difference is compared to analytical solutions as well as a commercially available simulator called ``COMSOL Multiphysics'' \tjs{[REF]} which uses \tjs{the} finite element method instead of a finite difference approach.
+ The simulation scheme presented in chapter 3 needs to be tested thoroughly before attempting to simulate a memristor in order to ensure that it functions as expected and produces accurate results. In this chapter steady state and transient analysis for drift diffusion equations using finite difference is compared to analytical solutions as well as a commercially available simulator called ``COMSOL Multiphysics'' \tjs{}\cite{Comsol} which uses \tjs{the} finite element method instead of a finite difference approach.
 
 \section{Solution for Closed Boundary}
 In this section the accuracy of the finite difference solution in steady state is tested. In order to do this, a simple 1-D problem with a finite number of negatively charged particles \tjsr{over a certain distance}{distributed over a region} subject to constant electric field is used. This is the same problem that is solved analytically in section 3.3.1. It is also assumed that the charge density is very low and does not affect the electric field. Both ends of the simulation domain have no flow boundary conditions for charged particles. The solution process requires an initial distribution for the charge density over the area. For this problem the density of the negative particles was initialized to be uniform over the entire region. 
@@ -36,7 +36,7 @@ Figure  \ref{5ss} has two simulation results as well as the exact solution of th
 \begin{figure}
 \centering
 \includegraphics[scale=0.8]{511}
-\caption{Steady State Negative Charge Density} 
+\caption{Steady State Negative Particle Density} 
 \label{5ss}
 \end{figure}
 
