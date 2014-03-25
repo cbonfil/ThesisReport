@@ -44,7 +44,7 @@
 \contentsline {section}{\numberline {6.2}1-D Memristor Simulations}{70}{section.229}
 \contentsline {subsection}{\numberline {6.2.1}1-D Memristor Simulation Using a Potential Pulse Train}{70}{subsection.230}
 \contentsline {subsection}{\numberline {6.2.2}1-D Memristor Simulation Using a Sinusoid}{74}{subsection.235}
-\contentsline {subsection}{\numberline {6.2.3}1-D Memristor Simulation With Increasing Charge Density \leavevmode {\color {black}(I got a few questions)}}{77}{subsection.240}
+\contentsline {subsection}{\numberline {6.2.3}1-D Memristor Simulation With Increasing Charge Density}{77}{subsection.240}
 \contentsline {chapter}{\numberline {7}2-D Memristor Simulation}{82}{chapter.251}
 \contentsline {section}{\numberline {7.1}Effect of PEDOT:PSS Thickness}{82}{section.252}
 \contentsline {section}{\numberline {7.2}2-D Memristor Simulation Using a Potential Pulse Train}{87}{section.258}
