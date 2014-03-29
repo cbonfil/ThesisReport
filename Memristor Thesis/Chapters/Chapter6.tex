@@ -9,8 +9,6 @@
 \begin{doublespace}
 
 A numerical method for a coupled ionic-electronic device simulation \tjsr{is}{was} developed and tested in previous chapters based on drift-diffusion equations and finite difference. This chapter introduces a 1-D approximation for \tjs{a} 2-D cross section of the memristor. Then 1-D simulations of a memristor are shown under various conditions.
-
-
 \section{1-D Memristor Approximation}
 
 For \tjs{the} 1-D simulation it is assumed that there are always more than enough ions to saturate the PEDOT:PSS so the electrolyte is modeled as an infinite source/sink of ions. The top boundary of the electrolyte is assumed to be charge neutral at all times which provides a mechanism for moving ions in and out of the system. This way the movement of ions near the surface of the PEDOT can still be captured without having to simulate the ion movement for the entire electrolyte solution which is variable in size. This assumption is not used for 2-D simulations since the electrolyte is fully simulated.
@@ -24,6 +22,7 @@ The horizontal cross section from figure \ref{MemStc} has the most crucial eleme
 \caption{1-D Memristor Model} 
 \label{MemStc15}
 \end{figure}
+
 
 The lithium source has two different terms, one for drift and another one for diffusion. It was assumed that the concentration of lithium is always constant in the electrolyte. This way the vertical diffusion current density can be calculated using the difference between the lithium density in PEDOT:PSS and electrolyte,
 \begin{equation}
@@ -49,7 +48,6 @@ J_{drift} = \begin{cases}
 J_{s} =  J_{drift}+J_{diff}
 \end{equation}
 For both drift and diffusion the horizontal movement of lithium ions inside the electrolyte is not modeled. The 1D model therefore models the flow of Lithium in and out of the PEDOT as a strictly vertical 1D flow.
-
 
 
 \clearpage
@@ -143,9 +141,9 @@ Figures \ref{Bowhole} and \ref{Bowli} show the changes in the hole and lithium d
 \clearpage
 \subsection{1-D Memristor Simulation With Increasing Charge Density}
 
-After establishing that the simulation behaves as expected it is important to investigate how charge density effects this model since the size of the device limits the maximum charge density that can be simulated. The actual device has a hole density in the range of $ \approx 10^{26}$ $m^{-3}$ but the simulation is restricted to $\approx 10^{17}$ $m^{-3}$. In theory, if the densities used for the simulation \tjsr{does}{} have a limited affect on the behavior of the memristor then the simulations with low particle densities can be use as a proxy for the actual device which operates in much higher particle densities.
+After establishing that the simulation behaves as expected it is important to investigate how charge density effects this model since the size of the device limits the maximum charge density that allows stable simulation. The actual device has a hole density in the range of $ \approx 10^{26}$ $m^{-3}$ but the simulation is restricted to $\approx 10^{17}$ $m^{-3}$. In theory, if the densities used for the simulation \tjsr{does}{} have a limited affect on the behavior of the memristor then the simulations with low particle densities can be use as a proxy for the actual device which operates in much higher particle densities.
 
- The following 3 graphs (\ref{HoleDiff}, \ref{LithiumDiff} and \ref{DensityDiff}) show the hole and the lithium densities at steady state as well as the current density over time at the right metal contact for various charge densities. The simulations are run using high mesh densities to allow stable simulation up to $10^{17}$ $m^{-3}$. 20 different simulations were made using densities ranging from $5$ x $10^{15}$  $m^{-3}$ to 1 x $10^{17}$  $m^{-3}$ but only 5 of them are plotted for illustration purposes. All the values are normalized using respective hole/lithium density ratios. Following equations ares used for the normalization procedure.
+ The following 3 figures (\ref{HoleDiff}, \ref{LithiumDiff} and \ref{DensityDiff}) show the hole and the lithium densities at steady state as well as the current density over time at the right metal contact for various charge densities. The simulations are run using high mesh densities to allow stable simulation up to $10^{17}$ $m^{-3}$. 20 different simulations were made using densities ranging from $5$ x $10^{15}$  $m^{-3}$ to 1 x $10^{17}$  $m^{-3}$ but only 5 of them are plotted for illustration purposes. All the values are normalized using respective hole/lithium density ratios. The following equations ares used for the normalization procedure.
 \begin{equation}
 \centering
 n_{i}(x,t)^{'}= \frac{n_{i}(x,t)}{r_i} 
@@ -163,7 +161,7 @@ r_i = \frac{n_{i}(x,t=0)}{n_{1}(x,t=0)}
 
 Where $n_{i}(x,t)^{'}$ and $J_{i}(t)^{'}$ are the particle and the current densities normalized by the coefficient $r_{i}$. This normalization coefficient is calculated by using the particle densities at $t=0$. 
 
-$n_{1}(x,t=0)$ is the particle density of the plot with lowest initial hole or lithium density which is $5\;10^{15}\;1/m^3$ in this case. For example for a hole distribution with initial hole density at $65\;10^{15}\;1/m^3$ the normalization constant is,
+$n_{1}(x,t=0)$ is the particle density of the plot with lowest initial hole or lithium density which is $5\;10^{15}\;1/m^3$ in this set of simulations. For example for a hole distribution with initial hole density at $65\;10^{15}\;1/m^3$ the normalization constant is,
 
 \begin{equation}
 \centering
@@ -171,20 +169,20 @@ r_i = \frac{n_{i}(x,t=0)}{n_{1}(x,t=0)} = \frac{65\;10^{15} }{5\;10^{15}} = 13
 \label{NormConstVal}
 \end{equation}
 
-Once the transient simulation is complete the hole distribution is normalized using the normalization constant calculated above(\ref{NormConstVal}). Different normalization constants are calculated for various hole and lithium densities and they are used to normalize the particle and current density distributions once the simulations are complete. The results are shown in figures \ref{LithiumDiff}, \ref{HoleDiff} and \ref{DensityDiff}. 
+Once a transient simulation is complete the hole distribution is normalized using the normalization constant. A different normalization constant is calculated for every hole and lithium density and used to normalize the particle and current density distributions. The results are shown in figures \ref{LithiumDiff}, \ref{HoleDiff} and \ref{DensityDiff}. 
  
-Plots for lithium ions (figure \ref{LithiumDiff}) and holes (figure \ref{HoleDiff}) are nearly identical to each other in terms of the plot shapes. They both get sharper around the area where there is a substantial accumulation of lithium. This is not unexpected since the debye length gets smaller with increasing carrier density. So with increased density it is expected that the density accumulation at the wet/dry PEDOT interface will be more narrow. This affect is not as strong for lithium ions since there is a maximum density limit on them. Lithium and hole plots only show the difference carrier density makes at steady state. The effect of debye length on the device operation can be further explored by looking at the current density over time.   
+Plots for lithium ions (figure \ref{LithiumDiff}) and holes (figure \ref{HoleDiff}) are nearly identical to each other in terms of the plot shapes. They both get sharper around the area where there is a substantial accumulation of lithium ions. The debye length gets smaller with increasing carrier density. So with increased density it is expected that the density accumulation at the wet/dry PEDOT interface will be more narrow. This affect is not as strong for lithium ions because of density saturation. Lithium and hole plots only show the difference carrier density makes at steady state. The effect of debye length on the device operation can be further explored by looking at the current density over time.   
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.48]{HoleDiff}
+\includegraphics[scale=0.45]{HoleDiff}
 \caption{Normalized hole densities at steady state} 
 \label{HoleDiff}
 \end{figure}
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.48]{LithiumDiff}
+\includegraphics[scale=0.45]{LithiumDiff}
 \caption{Normalized lithium densities at steady state} 
 \label{LithiumDiff}
 \end{figure}
@@ -193,39 +191,13 @@ Plots for lithium ions (figure \ref{LithiumDiff}) and holes (figure \ref{HoleDif
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[scale=0.48]{DensityDiff}
+\includegraphics[scale=0.45]{DensityDiff}
 \caption{Normalized hole current densities} 
 \label{DensityDiff}
 \end{figure}
 
-The impact of increasing charge density can be numerically explored using normalized plots. The following formula is used to calculate a percentage difference between different normalized carrier densities as well as normalized current densities. 
-
-\begin{equation}
-\centering
-P_i^{n} = \frac{100}{ K}\sum_{k=1}^{K}\lvert  \;\frac{n_{i}(x_k)^{'}-n_{1}(x_k)}{n_{1}(x_k)}\rvert
-\label{diffDens}
-\end{equation}
-
-\begin{equation}
-\centering
-P_i^{J} = \frac{100}{ T}\sum_{k=1}^{T}\lvert  \;\frac{J_{i}(t_k)^{'}-J_{1}(t_k)}{J_{1}(t_k)}\rvert
-\label{diffCurr}
-\end{equation}
-
-\textit{K} is the total number of points along \textit{x} axis and \textit{T} is the total number of time steps taken by the simulator. $x_{k}$ and $t_{k}$ are used to describe a point in \textit{x} axis and a point in time respectively. For various hole and lithium distributions at steady state, equation \ref{diffDens} is used to calculate the average percentage difference between the distribution which has the lowest initial particle density distribution ($n_{1}(x_k)$) and other normalized particle density distributions ($n_{i}(x_k)^{'}$). The equation \ref{diffCurr} is used to perform the same operation as equation \ref{diffDens} on current density outputs over time for various particle densities. 
-
-\begin{figure}[!htp]
-\centering
-\includegraphics[scale=0.46]{AllDiff}
-\caption{Average difference for hole, lithium and current densities for various initial hole densities} 
-\label{AllDiff}
-\end{figure}
-
-Figure \ref{AllDiff} shows the impact of increasing hole/lithium density on the simulation results. In all 3 cases, there is an increase in average difference for increasing carrier density. Hole density shows the most difference between plots. Since holes are free to move inside the PEDOT:PSS they \tjs{get} directly \tjsr{get}{} affected by the change in the Debye length due to the increase in hole density. This is not the case for lithium ions because their movement is restricted by the limit on lithium density. In contrast, current density is not as sensitive to density changes as lithium and hole distributions.
-
- The difference in the hole distribution seems very large but the overall shape of the plot is always preserved since the highest amount change occurs around the wet/dry PEDOT interface where lithium accumulates. Based on the plots above it can be concluded that the behavior of the memristor simulated using a low charge density is very similar to the simulation at a high charge density
-
-\tjs{ {\bf We need something like this --} An approximate error estimation can be made for current density if a low hole/lithium density is used for simulation and then scaled up to match the actual memristor. Figure \ref{AllDiff} shows a 3.3 \% difference for 2 orders of magnitude increase in the hole density. Assuming the error scales linearly after that point a total of 6 orders of magnitude will result in 9.9 \% error introduced in order to linearly scale from $10^{15}$ to $10^{21}$. The actual error is likely to be less since the error progresses sub linearly. Following the same procedure 6 orders of magnitude difference produces a 12 \% error for lithium distribution and 48 \% error for hole distribution. The difference in the hole distribution seems very large but the overall shape of the plot is always preserved since the highest amount change occurs around the wet/dry PEDOT interface where lithium accumulates. Based on these error margins and previous plots it can be concluded that the behavior of the memristor simulated using a low charge density is very similar to the simulation at a high charge density.    
-}
+ The normalized difference in the hole and lithium density distributions are not substantial and the overall shape of the plots are always preserved. The current density plots are also alike. Based on the plots above(\ref{HoleDiff},\ref{LithiumDiff} and \ref{DensityDiff}) it can be concluded that the behavior of the memristor simulated using a low charge density is very similar to the memristor simulation at a high charge density. This conclusion is also confirmed in section 7.4 where simulation results show comparable behavior to the experimental results.
 
 \end{doublespace}
+
+

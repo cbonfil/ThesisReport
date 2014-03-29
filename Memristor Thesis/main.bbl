@@ -5,8 +5,13 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Inc.(2014{\natexlab{a}})]{Comsol}
+COMSOL Inc.
+\newblock Comsol multipysics,semiconductor module, 2014{\natexlab{a}}.
+\newblock URL \url{http://www.comsol.com/semiconductor-module}.
+
 \bibitem[Gardner et~al.(2004)Gardner, Nonner, and Eisenberg]{electrodiff}
-CarlL. Gardner, Wolfgang Nonner, and RobertS. Eisenberg.
+Carl~L. Gardner, Wolfgang Nonner, and RobertS. Eisenberg.
 \newblock Electrodiffusion model simulation of ionic channels: 1d simulations.
 \newblock \emph{Journal of Computational Electronics}, 3\penalty0 (1):\penalty0
   25--31, 2004.
@@ -184,11 +189,6 @@ Snowden C.M.
 \newblock \emph{Semiconductor Device Modelling}.
 \newblock Peter Peregrinus Ltd., London,United Kingdom, 1988.
 
-\bibitem[Inc.(2014{\natexlab{a}})]{Comsol}
-COMSOL Inc.
-\newblock Comsol multipysics,semiconductor module, 2014{\natexlab{a}}.
-\newblock URL \url{http://www.comsol.com/semiconductor-module}.
-
 \bibitem[Inc.(2014{\natexlab{b}})]{SILVACO}
 SILVACO Inc.
 \newblock S-pisces, 2d silicon device simulator, 2014{\natexlab{b}}.
@@ -271,9 +271,10 @@ R.P. Agarwal and D.~O'Regan.
 \newblock Universitext. Springer, 2008.
 \newblock ISBN 9780387791463.
 
-\bibitem[Ramirez(2008)]{eduardo}
+\bibitem[Ramirez(2013)]{eduardo2}
 Eduardo~Barrera Ramirez.
-\newblock Missing memristor found.
-\newblock Master's thesis, 2008.
+\newblock \emph{Characterization of a PEDOT:PSS Electrolytic Device Using an in
+  situ Spectroelectrochemical Technique,}.
+\newblock 2013.
 
 \end{thebibliography}

@@ -1,10 +1,10 @@
-\contentsline {chapter}{Acknowledgements}{iii}{dummy.1}
+\contentsline {chapter}{Acknowledgements}{ii}{dummy.1}
 \vspace {1em}
-\contentsline {chapter}{List of Figures}{vi}{dummy.3}
-\contentsline {chapter}{List of Tables}{viii}{dummy.5}
-\contentsline {chapter}{Abbreviations}{ix}{dummy.7}
-\contentsline {chapter}{Physical Constants}{x}{dummy.10}
-\contentsline {chapter}{Symbols}{xi}{dummy.13}
+\contentsline {chapter}{List of Figures}{v}{dummy.3}
+\contentsline {chapter}{List of Tables}{vii}{dummy.5}
+\contentsline {chapter}{Abbreviations}{viii}{dummy.7}
+\contentsline {chapter}{Physical Constants}{ix}{dummy.10}
+\contentsline {chapter}{Symbols}{x}{dummy.13}
 \vspace {2em}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.16}
 \contentsline {section}{\numberline {1.1}Thesis Objectives}{1}{section.17}
@@ -45,12 +45,12 @@
 \contentsline {subsection}{\numberline {6.2.1}1-D Memristor Simulation Using a Potential Pulse Train}{70}{subsection.230}
 \contentsline {subsection}{\numberline {6.2.2}1-D Memristor Simulation Using a Sinusoid}{74}{subsection.235}
 \contentsline {subsection}{\numberline {6.2.3}1-D Memristor Simulation With Increasing Charge Density}{77}{subsection.240}
-\contentsline {chapter}{\numberline {7}2-D Memristor Simulation}{82}{chapter.251}
-\contentsline {section}{\numberline {7.1}Effect of PEDOT:PSS Thickness}{82}{section.252}
-\contentsline {section}{\numberline {7.2}2-D Memristor Simulation Using a Potential Pulse Train}{87}{section.258}
-\contentsline {section}{\numberline {7.3}2-D Memristor Simulation Using a Sinusoid}{91}{section.263}
-\contentsline {section}{\numberline {7.4}Experiment vs. Simulation}{94}{section.267}
-\contentsline {chapter}{\numberline {8}Conclusion}{99}{chapter.276}
+\contentsline {chapter}{\numberline {7}2-D Memristor Simulation}{80}{chapter.248}
+\contentsline {section}{\numberline {7.1}Effect of PEDOT:PSS Thickness}{80}{section.249}
+\contentsline {section}{\numberline {7.2}2-D Memristor Simulation Using a Potential Pulse Train}{85}{section.255}
+\contentsline {section}{\numberline {7.3}2-D Memristor Simulation Using a Sinusoid}{89}{section.260}
+\contentsline {section}{\numberline {7.4}Experiment vs. Simulation}{92}{section.264}
+\contentsline {chapter}{\numberline {8}Conclusion}{97}{chapter.273}
 \vspace {2em}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{101}{dummy.277}
+\contentsline {chapter}{Bibliography}{99}{dummy.274}
