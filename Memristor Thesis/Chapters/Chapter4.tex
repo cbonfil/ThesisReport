@@ -178,29 +178,51 @@ Neumann boundary condition is used to let the potential float at the edge of the
 
 \clearpage
 \section{Simulation Requirements}
-
-After setting all the initial and boundary conditions the last step before simulation is analyzing the computational requirements of a simulation in order to determine the required mesh size and asses the feasibility of the computational scheme. In this case, it is possible to determine the spacial and the temporal requirements using \tjsr{the}{} equations \ref{debye} and \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. The following graph \ref{SpaceTime} shows the requirements for a memristor of the scale discussed above and a typical semiconductor device size around 1 $\mu$m. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the minimum step size was set to be 5 times smaller than the Debye length. The plots \ref{SpaceTime}.a and \ref{SpaceTime}.c show the amount of points required to simulate a semiconductor and a memristor based on minimum step size. It is important to note that these values are for 1-D simulation and they can be converted to 2-D and 3-D by taking the square or the cube of the values in \textit{y} axis respectively. Plots \ref{SpaceTime}.b and \ref{SpaceTime}.d are created using CFL conditions for drift and diffusion and dielectric relaxation time. A typical simulation time is estimated using the mobility and the electric field. Based on the estimated simulation time the number of time steps are calculated using the minimum time step obtained from CFL conditions and dielectric relaxation time.
-
-
+After setting all the initial and boundary conditions the last step before simulation is analyzing the computational requirements of a simulation in order to determine the required mesh size and asses the feasibility of the computational scheme. In this case, it is possible to determine the spacial and the temporal requirements using \tjsr{the}{} equations \ref{debye},\ref{CFL_Diff} and \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the mesh size was set to be 5 times smaller than the Debye length. The number of points required for a uniform mesh can be calculated using the following formula,
+\begin{equation}
+n_x = 5\frac{L}{L_{D}}
+\end{equation} 
+Where \textit{L} is the length of the device and $L_{D}$ is the debye length given by equation \ref{debye}. A simulation time has to be estimated in order to obtain the number of time steps. To estimate a simulation time an average electric field inside the device is calculated using the applied electric potential and the length of the device,
+\begin{equation}
+E = \frac{V}{L}
+\end{equation} 
+Where \textit{V} is the applied potential. Once the electric field inside the device is determined then the velocity of the charge carriers can be found using,
+\begin{equation}
+\nu = \mu E
+\end{equation} 
+A simulation time is calculated using the velocity of the charge carrier and the length of the device. This simulation time represents the time taken by a charged particle to travel from one end of the device to another.  
+\begin{equation}
+t = \frac{L}{\nu} 
+\end{equation} 
+Based on the estimated simulation time the number of time steps are calculated using the minimum required time step obtained from CFL conditions and the dielectric relaxation time.
+\begin{equation}
+n_{t} = \frac{t}{min(t_{dr},t_{diff},t_{drift})} 
+\end{equation} 
+ \begin{table}
 \begin{center}
   \begin{tabular}{ l | c | r }
     \hline
       & Memristor & Semiconductor \\ \hline
-    Hole Mobility ($m^2/Vs$)& $1.0\;10^{-3}$ & 0.45 \\ \hline
-     Hole Density ($1/m^3$)& $1.0\;10^{24}$ & $1.0\;10^{21}$ \\ \hline
-    Device Length ($m$) & $0.01$ & $1.0\;10^{-4}$ \\ \hline
+    Carrier Mobility ($m^2/Vs$)& $1.00\;10^{-5}$ & 0.45 \\ \hline
+     Carrier Density ($1/m^3$)& $1.00\;10^{25}$ & $1.00\;10^{21}$ \\ \hline
+    Device Length ($m$) & $1.00\;10^{-3}$ & $1.00\;10^{-5}$ \\ \hline
     Applied Voltage ($V$) & 1 & 1 \\ \hline
-     Electric Field ($V/m$) & 100 & $1.0\;10^{4}$ \\ \hline
-    Hole Velocity ($m/s$) & $0.1$ & $4.5\;10^{3}$ \\ \hline
-      Debye Length ($m$) & $1.2\;10^{-9}$ & $3.81\;10^{-8}$ \\  \hline
-    Relaxation Time ($s$) & $5.52\;10^{-14}$ & $1.23\;10^{-13}$ \\  \hline
-    Simulation Time ($s$) & 0.1 & $1.0\;10^{-6}$ \\  \hline
-    Number Time Steps ($Unitless$) & $9.05\; 10^{13}$ & $4.07\; 10^8$ \\  \hline
-     Number of Points in $x$ ($Unitless$) & $4.15\; 10^7$  &  $1.31\; 10^5$ \\  \hline
+     Electric Field ($V/m$) & 1000 & $1.00\;10^{5}$ \\ \hline
+    Carrier Velocity ($m/s$) & $0.01$ & $4.50\;10^{4}$ \\ \hline
+      Debye Length ($m$) & $3.81\;10^{-10}$ & $3.82\;10^{-8}$ \\  \hline
+    Relaxation Time ($s$) & $5.53\;10^{-13}$ & $1.23\;10^{-13}$ \\  \hline
+    Simulation Time ($s$) & 0.10 & $0.22\;10^{-9}$ \\  \hline
+    Number Time Steps ($Unitless$) & $9.05\; 10^{12}$ & $9.05\; 10^4$ \\  \hline
+     Number of Points in $x$ ($Unitless$) & $6.56\; 10^7$  &  $6.56\; 10^3$   
   \end{tabular}
+      \caption{Spatial and temporal requirements for a simulation} 
 \end{center}
+\end{table}
+Table above summarizes the requirements for a memristor of the scale discussed in section 4.1 and a typical semiconductor device size around 10 $\mu$m. The mobility of lithium ions is used to calculate the requirements for the memristor simulation since their movement determines the response of the device. For the semiconductor the hole mobility is used for the simulation requirement calculations.
 
-It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation such as 1 $\mu$m long PN diode. This is due to the larger size and higher charge density of the memristor. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.b show that a memristor with $10^{26}$ $m^{-3}$ charge density requires close to $10^9$ points and $10^{14}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. In order to investigate and find possible solutions to this issue, first a memristor with low charge density ($\approx 10^{15}$) is simulated in chapter 6 in order to ensure that the simulation functions as designed. Then memristors with different charge densities are simulated (section 6.2.3) and compared to each other to asses whether the behavior at low charge densities will be comparable to the behavior at high charge densities.
+The plots in figure \ref{SpaceTime} were generated using the number mesh points and the number of time steps calculated for semiconductor and memristor simulations for different particle densities. The plots \ref{SpaceTime}.a and \ref{SpaceTime}.c show the amount of points required to simulate a semiconductor. It is important to note that these values are for 1-D simulation and they can be converted to 2-D and 3-D by taking the square or the cube of the values in \textit{y} axis respectively. Plots \ref{SpaceTime}.b and \ref{SpaceTime}.d are created using CFL conditions for drift and diffusion and dielectric relaxation time.
+
+It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation such as 10 $\mu$m long PN diode. This is due to the larger size and higher charge density of the memristor. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.b show that a memristor with $10^{25}$ $m^{-3}$ charge density requires close to $10^7$ points and $10^{12}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. In order to investigate and find possible solutions to this issue, first a memristor with low charge density ($\approx 10^{15}$) is simulated in chapter 6 in order to ensure that the simulation functions as designed. Then memristors with different charge densities are simulated (section 6.2.3) and compared to each other to asses if the behavior at low charge densities will be comparable to the behavior at high charge densities.
 
 
 \begin{landscape}
