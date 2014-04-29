@@ -36,7 +36,7 @@ Hole transport inside PEDOT:PSS as well as lithium and perchlorate movement are 
 \frac{\partial p}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_p}
 \end{equation}
 \begin{equation}
-\frac{\partial N_{A}^{-}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{ClO_{4}}}}
+\frac{\partial N_{ClO_{4}}}{\partial t}=\frac{1}{q}\nabla \cdot \vec{J_{N_{ClO_{4}}}}
 \end{equation}
 \begin{equation}
 \frac{\partial N_{Li}}{\partial t}=-\frac{1}{q}\nabla \cdot \vec{J_{N_{Li}}}
@@ -48,7 +48,7 @@ The following sections define the boundary and the initial conditions that are u
 \section{Memristor Structure and Initial Conditions}
 %-Problem Analysis and assumptions, semiconductor vs memristor plots
 
-The following figure (\ref{MemStc}) shows the cross section of a simple memristor which is taken as a basis for all the memristor simulations presented in this thesis. It consists of 2 metal contacts, a polymer conductor strip (PEDOT:PSS) and an electrolyte solution which has lithium and perchlorate ions (perchlorate/lithium density $\approx$ 6.02 $10^{23}$ $m^{-3}$). The memristor is about 1 cm long and 1 mm wide. The thickness of the conductive layer is around 1 $\mu$m. During the experiment, the electrolyte solution is deposited on PEDOT:PSS using a syringe so its thickness can vary drastically but as long as the amount of ions in the electrolyte solution is enough to saturate PEDOT:PSS this does not make a significant difference in the operation of the memristor.
+The following figure (\ref{MemStc}) shows the cross section of a simple memristor which is taken as a basis for all the memristor simulations presented in this thesis. It consists of 2 metal contacts, a polymer conductor strip (PEDOT:PSS) and an electrolyte solution which has lithium and perchlorate ions (perchlorate/lithium density $\approx$ 6.02 $10^{26}$ $m^{-3}$). The memristor is about 1 cm long and 1 mm wide. The thickness of the conductive layer is around 1 $\mu$m. During the experiment, the electrolyte solution is deposited on PEDOT:PSS using a syringe so its thickness can vary drastically but as long as the amount of ions in the electrolyte solution is enough to saturate PEDOT:PSS this does not make a significant difference in the operation of the memristor.
 
 \begin{figure}[!htp]
 \centering
@@ -101,7 +101,6 @@ Figures \ref{bc_hole}, \ref{bc_lithium} and \ref{bc_perchlorate} show the bounda
 \end{figure}
 
 
-\clearpage
 \subsection{Metal Contacts}
 To simulate the metal contacts it is assumed that they hold an unlimited amount of positive and negative charges and the boundary is always charge neutral. For example for holes, electrons, \tjs{and} positive and negative ions it is assumed that at the boundary positive charge concentration will be equal to the negative charge concentration:
 \begin{equation}
@@ -176,9 +175,9 @@ Neumann boundary condition is used to let the potential float at the edge of the
 \label{bc_V}
 \end{figure}
 
-\clearpage
+
 \section{Simulation Requirements}
-After setting all the initial and boundary conditions the last step before simulation is analyzing the computational requirements of a simulation in order to determine the required mesh size and assess the feasibility of the computational scheme. In this case, it is possible to determine the spacial and the temporal requirements using \tjsr{the}{} equations \ref{debye},\ref{CFL_Diff} and \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the mesh size was set to be 5 times smaller than the Debye length. The number of points required for a uniform mesh can be calculated using the following formula,
+After setting all the initial and boundary conditions the last step before simulation is analyzing the computational requirements of a simulation in order to determine the required mesh size and assess the feasibility of the computational scheme. In this case, it is possible to determine the spatial and the temporal requirements using \tjsr{the}{} equations \ref{debye},\ref{tdr},\ref{CFL_Diff} and \ref{CFL_Drift} which describe physical and numerical limitations of the simulation. The mesh density has to be high enough in order to capture the exponential charge accumulation for charge shielding so the mesh size was set to be 5 times smaller than the Debye length. The number of points required for a uniform mesh can be calculated using the following formula,
 \begin{equation}
 n_x = 5\frac{L}{L_{D}}
 \end{equation} 
