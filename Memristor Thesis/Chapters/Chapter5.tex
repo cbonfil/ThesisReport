@@ -145,7 +145,7 @@ This last figure (\ref{5411}) shows the transient response over time of a single
 \label{5411}
 \end{figure}
 
-In addition to the test that \tjsr{is}{was} run for \tjs{the} finite difference \tjs{solver}, COMSOL is used to test the soft limiting mechanism. COMSOL does not have a built in option that allows limiting the particle density. One possible solution to this is making particle mobility and diffusivity a function particle density. It is possible to use a sigmoid function which switches from 1 to 0 very quickly when particle density is close to its limit. Here is the equation of the sigmoid function used to limit the particle flow:
+In addition of the test that \tjsr{is}{was} run for \tjs{the} finite difference \tjs{solver}, COMSOL is used to test the soft limiting mechanism. COMSOL does not have a built in option that allows limiting the particle density. One possible solution to this is making particle mobility and diffusivity a function particle density. It is possible to use a sigmoid function which switches from 1 to 0 very quickly when particle density is close to its limit. Here is the equation of the sigmoid function used to limit the particle flow:
 \begin{equation}
 \mu_v = \frac{\mu_{0}}{1+e^{\sigma(n-n')}}
 \label{mur}
