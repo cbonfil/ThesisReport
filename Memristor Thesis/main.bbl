@@ -1,9 +1,11 @@
-\begin{thebibliography}{37}
+\begin{thebibliography}{38}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+
 
 \bibitem[Inc.(2014{\natexlab{a}})]{Comsol}
 COMSOL Inc.
@@ -200,6 +202,12 @@ Lumerical~Solutions Inc.
 \newblock Device 3.1, 2014{\natexlab{c}}.
 \newblock URL \url{https://www.lumerical.com/tcad-products/device/}.
 
+\bibitem[{Haynes} and {Shockley}(1949)]{1949PhRv...75..691H}
+J.~R. {Haynes} and W.~{Shockley}.
+\newblock {Investigation of Hole Injection in Transistor Action}.
+\newblock \emph{Physical Review}, 75:\penalty0 691--691, February 1949.
+\newblock \doi{10.1103/PhysRev.75.691}.
+
 \bibitem[Holmes(2007)]{NumModel}
 Mark~H. Holmes.
 \newblock \emph{Introduction to Numerical Methods in Differential Equations}.
@@ -276,5 +284,4 @@ Eduardo~Barrera Ramirez.
 \newblock \emph{Characterization of a PEDOT:PSS Electrolytic Device Using an in
   situ Spectroelectrochemical Technique,}.
 \newblock 2013.
-
 \end{thebibliography}
