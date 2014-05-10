@@ -199,29 +199,29 @@ n_{t} = \frac{t}{min(t_{dr},t_{diff},t_{drift})}
 \end{equation} 
  \begin{table}
 \begin{center}
-  \begin{tabular}{ l | c | r }
+  \begin{tabular}{ l | c | c | c }
     \hline
-      & Memristor & Semiconductor \\ \hline
-    Carrier Mobility ($m^2/Vs$)& $1.00\;10^{-5}$ & 0.45 \\ \hline
-     Carrier Density ($1/m^3$)& $1.00\;10^{25}$ & $1.00\;10^{21}$ \\ \hline
-    Device Length ($m$) & $1.00\;10^{-3}$ & $1.00\;10^{-5}$ \\ \hline
-    Applied Voltage ($V$) & 1 & 1 \\ \hline
-     Electric Field ($V/m$) & 1000 & $1.00\;10^{5}$ \\ \hline
-    Carrier Velocity ($m/s$) & $0.01$ & $4.50\;10^{4}$ \\ \hline
-      Debye Length ($m$) & $3.81\;10^{-10}$ & $3.82\;10^{-8}$ \\  \hline
-    Relaxation Time ($s$) & $5.53\;10^{-13}$ & $1.23\;10^{-13}$ \\  \hline
-    Simulation Time ($s$) & 0.10 & $0.22\;10^{-9}$ \\  \hline
-    Number Time Steps ($Unitless$) & $9.05\; 10^{12}$ & $9.05\; 10^4$ \\  \hline
-     Number of Points in $x$ ($Unitless$) & $6.56\; 10^7$  &  $6.56\; 10^3$   
+      & Memristor 1 & Memristor 2& Semiconductor \\ \hline
+    Carrier Mobility ($m^2/Vs$)& $1.00\;10^{-5}$& $1.00\;10^{-5}$ & 0.45 \\ \hline
+     Carrier Density ($1/m^3$)& $1.00\;10^{25}$ & $1.00\;10^{15}$&$1.00\;10^{21}$ \\ \hline
+    Device Length ($m$) & $1.00\;10^{-3}$& $1.00\;10^{-3}$ & $1.00\;10^{-5}$ \\ \hline
+    Applied Voltage ($V$) & 1 & 1 & 1 \\ \hline
+     Electric Field ($V/m$) & 1000 & 1000&$1.00\;10^{5}$ \\ \hline
+    Carrier Velocity ($m/s$) & $0.01$ & $0.01$ &$4.50\;10^{4}$ \\ \hline
+      Debye Length ($m$) & $3.81\;10^{-10}$ &$3.81\;10^{-5}$ & $3.82\;10^{-8}$ \\  \hline
+    Relaxation Time ($s$) & $5.53\;10^{-13}$ & $5.53\;10^{-3}$ &$1.23\;10^{-13}$ \\  \hline
+    Simulation Time ($s$) & 0.10 &  0.10 & $0.22\;10^{-9}$ \\  \hline
+    Number Time Steps ($Unitless$) & $9.05\; 10^{12}$& 181 & $9.05\; 10^4$ \\  \hline
+     Number of Points in $x$ ($Unitless$) & 131 &$6.56\; 10^7$  &  $6.56\; 10^3$   
   \end{tabular}
       \caption{Spatial and temporal requirements for a simulation} 
 \end{center}
 \end{table}
-Table above summarizes the requirements for a memristor of the scale discussed in section 4.1 and a typical semiconductor device size around 10 $\mu$m. The mobility of lithium ions is used to calculate the requirements for the memristor simulation since their movement determines the response of the device. For the semiconductor the hole mobility is used for the simulation requirement calculations.
+Table above summarizes the requirements for two memristors of the scale discussed in section 4.1 and a typical semiconductor device size around 10 $\mu$m. Memristor 1 column shows the requirements for the physical device and Memristor 2 column shows the simulated device. The mobility of lithium ions is used to calculate the requirements for the memristor simulation since their movement determines the response of the device. For the semiconductor the hole mobility is used for the simulation requirement calculations.
 
 The plots in figure \ref{SpaceTime} were generated using the number mesh points and the number of time steps calculated for semiconductor and memristor simulations for different particle densities. The plots \ref{SpaceTime}.a and \ref{SpaceTime}.c show the amount of points required to simulate a semiconductor. It is important to note that these values are for 1-D simulation and they can be converted to 2-D and 3-D by taking the square or the cube of the values in \textit{y} axis respectively. Plots \ref{SpaceTime}.b and \ref{SpaceTime}.d are created using CFL conditions for drift and diffusion and dielectric relaxation time.
 
-It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation such as 10 $\mu$m long PN diode. This is due to the larger size and higher charge density of the memristor. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.b show that a memristor with $10^{25}$ $m^{-3}$ charge density requires close to $10^7$ points and $10^{12}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. In order to investigate and find possible solutions to this issue, first a memristor with low charge density ($\approx 10^{15}$) is simulated in chapter 6 in order to ensure that the simulation functions as designed. Then memristors with different charge densities are simulated (section 6.2.3) and compared to each other to assess if the behavior at low charge densities will be comparable to the behavior at high charge densities.
+It can be seen from graphs \ref{SpaceTime}.a and \ref{SpaceTime}.c that memristor simulations require much higher mesh densities compared to a typical semiconductor simulation such as 10 $\mu$m long PN diode. This is due to the larger size and higher charge density of the memristor. Plots \ref{SpaceTime}.a and \ref{SpaceTime}.b show that a memristor with $10^{25}$ $m^{-3}$ charge density requires close to $10^7$ points and $10^{12}$ time steps to simulate in 1-D. These requirements make the simulation of the memristor extremely challenging. In order to investigate and find possible solutions to this issue, first a memristor with low charge density (Memristor 2, n $\approx 10^{15}$) is simulated in chapter 6 in order to ensure that the simulation functions as designed. Then memristors with different charge densities are simulated (section 6.2.3) and compared to each other to assess if the behavior at low charge densities will be comparable to the behavior at high charge densities.
 
 
 \begin{landscape}
