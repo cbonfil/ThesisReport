@@ -11,7 +11,7 @@
 The equations presented in this chapter as well as the derivation of drift diffusion equations form a basis for simulating coupled ionic-electronic devices. First, \tjs{the} Boltzmann transport equation which is the starting point for generating the drift diffusion equation is introduced. The introduction of \tjs{the} Boltzmann transport equation is followed by the derivation of \tjs{the} drift diffusion equation and the presentation of the set of equations that describe the behavior of a coupled ionic-electronic device. The last part of the chapter shows analytic solutions to \tjs{the} drift diffusion equations which are used to test the numerical methods derived in chapter 4.   
 
 \section{Carrier Transport Equations}
-Drift diffusion equations, which are based on Boltzmann Transport Equations (BTE) \cite{Dragica1}, need to be solved in order to model the complex behaviour of an ionic electronic device. The drift diffusion equations used are derived by simplifying \tjs{the} BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model, therefore they need to be well understood.
+Drift diffusion equations, which are based on Boltzmann Transport Equations (BTE) \cite{Dragica1}, need to be solved in order to model the complex behavior of an ionic electronic device. The drift diffusion equations used are derived by simplifying \tjs{the} BTE equation via approximations. These simplifications dictate the limits of the drift-diffusion model, therefore they need to be well understood.
 
 The derivation of \tjs{the} Boltzmann transport equation starts by stating that a distribution of charged particles can be defined by their position in space \textbf{r} and momentum \textbf{k} in time \textbf{t} using a probability distribution function $f(k,r,t)$. This results in the most general form of \tjs{the} Boltzmann transport equation\cite{snowden}.
 
@@ -22,7 +22,7 @@ The derivation of \tjs{the} Boltzmann transport equation starts by stating that 
 This general form of BTE needs to be expanded and relevant physical equations need to be incorporated to get an equation describing a specific problem or a device. 
 Many different device simulators use some sort of approximation to \tjs{the} BTE. In commercial semiconductor simulators drift diffusion equations are commonly used to describe the movement of charge carriers such as holes ($p$) and electrons ($n$) in a material\cite{Comsol}\cite{SILVACO}\cite{LumDev}. 
 
-After this brief introduction to \tjs{the} BTE, rather than going through the mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation are discussed in order to get a better insight on the model. The approximations and equations presented in this chapter is based on C.M Snowden's book called ``Semiconductor Device Modelling''\cite{snowden}. It must be noted that the following derivation is only true for isotropic media but it can be extended to accommodate anisotropic media by using appropriate tensor equations for carrier mobilities and diffusivities.
+After this brief introduction to \tjs{the} BTE, rather than going through the mathematical derivation of the drift diffusion model, the approximations that are made along the process of derivation are discussed in order to get a better insight on the model. The approximations and equations presented in this chapter is based on C.M Snowden's book called ``Semiconductor Device Modeling''\cite{snowden}. It must be noted that the following derivation is only true for isotropic media but it can be extended to accommodate anisotropic media by using appropriate tensor equations for carrier mobilities and diffusivities.
 
 As a particle travels in a solid state device it collides with other particles as well as the atoms in the device. For \tjs{the} drift-diffusion equations individual lattice scattering events or collisions are averaged and all the particles have an average constant \tjs{drift} velocity under the effects of an electric field \cite{snowden}. The movement of the particles due to the electric field is called the drift current. The relationship between the drift velocity and the electric field is given by the following equation:
 \begin{equation}
@@ -130,7 +130,7 @@ This system of equations consist of 4 different mobile charged particles, holes 
 
 \section{Analytic Solutions}
 
-Three different analytic solutions to drift diffusion equations are developed in this section. \tjsr{It starts with}{Initally} a simple steady state problem with uniform electric field \tjs{is solved}. The second example, which is more complex than the first one, is a transient solution for a charge distribution moving under uniform electric field. Finally, a PN junction problem is solved which incorporates the drift diffusion equation with Poisson's equation and provides a steady state solution for electron/hole density distributions, electric potential and electric field. 
+Three different analytic solutions to drift diffusion equations are developed in this section. \tjsr{It starts with}{Initially} a simple steady state problem with uniform electric field \tjs{is solved}. The second example, which is more complex than the first one, is a transient solution for a charge distribution moving under uniform electric field. Finally, a PN junction problem is solved which incorporates the drift diffusion equation with Poisson's equation and provides a steady state solution for electron/hole density distributions, electric potential and electric field. 
   
 \subsection{Steady State Solution Over a Finite Domain}
 
@@ -192,7 +192,7 @@ Equation \ref{p_ss} combined with equation \ref{p_ss_c} gives a complete solutio
 \begin{equation}
 L_D=\sqrt{\frac{\varepsilon V_{th}}{q n}}
 \end{equation}
-Where the variables \textit{$V_{th}$}, \textit{n} and \textit{$\varepsilon$} are thermal voltage, particle density and permittivity respectively. This example also illustrates the decrease in the Debye length due to the increase in the charge density. Debye length is determined by the strength of the electric field created by the charge present in the material. The increase in the electric field in this example is analogous to the increase in charge density. Increased charge density creates a larger electric field. This creates a steeper accumulation of the charged particles and a decrease in the debye length. 
+Where the variables \textit{$V_{th}$}, \textit{n} and \textit{$\varepsilon$} are thermal voltage, particle density and permittivity respectively. This example also illustrates the decrease in the Debye length due to the increase in the charge density. Debye length is determined by the strength of the electric field created by the charge present in the material. The increase in the electric field in this example is analogous to the increase in charge density. Increased charge density creates a larger electric field. This creates a steeper accumulation of the charged particles and a decrease in the Debye length. 
 
 
 \subsection{Transient Solution Over an Infinite Domain}
